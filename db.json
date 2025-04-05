@@ -1,0 +1,669 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "nationalID": 30304218800000,
+      "phoneNumber": "01127471188",
+      "firstName": "عبدالرحمن",
+      "secondName": "احمد",
+      "thirdName": "عبدالله",
+      "fourthName": "عبدالله",
+      "jobTitle": "موظف",
+      "department": "علوم الحاسب",
+      "dateAppointment": "19/9/2024",
+      "address": "قنا",
+      "email": "yahyasaad2024@gmail.com",
+      "leavess": [
+        {
+          "id": 1,
+          "type": "اعتيادية",
+          "startDate": "19/9/2024",
+          "endDate": "22/9/2024",
+          "status": "معتمدة",
+          "notes": "بدون",
+          "coworker": "محمد احمد"
+        },
+        {
+          "id": 2,
+          "type": "اعتيادية",
+          "startDate": "19/9/2024",
+          "endDate": "22/9/2024",
+          "status": "معتمدة",
+          "notes": "بدون",
+          "coworker": "محمد احمد"
+        },
+        {
+          "id": 3,
+          "type": "اعتيادية",
+          "startDate": "19/9/2024",
+          "endDate": "22/9/2024",
+          "status": "معتمدة",
+          "notes": "بدون",
+          "coworker": "محمد احمد"
+        },
+        {
+          "id": 4,
+          "type": "اعتيادية",
+          "startDate": "19/9/2024",
+          "endDate": "22/9/2024",
+          "status": "معتمدة",
+          "notes": "بدون",
+          "coworker": "محمد احمد"
+        },
+        {
+          "id": 5,
+          "type": "اعتيادية",
+          "startDate": "19/9/2024",
+          "endDate": "22/9/2024",
+          "status": "معتمدة",
+          "notes": "بدون",
+          "coworker": "محمد احمد"
+        },
+        {
+          "id": 6,
+          "type": "اعتيادية",
+          "startDate": "2025-03-05",
+          "endDate": "2025-03-20",
+          "status": "قيد المراجعة",
+          "notes": "21",
+          "coworker": "إبراهبم"
+        },
+        {
+          "id": 7,
+          "type": "اعتيادية",
+          "startDate": "2025-03-11",
+          "endDate": "2025-03-13",
+          "status": "قيد المراجعة",
+          "notes": "",
+          "coworker": "إبراهبم"
+        },
+        {
+          "id": 8,
+          "type": "اعتيادية",
+          "startDate": "2025-03-19",
+          "endDate": "2025-03-29",
+          "status": "قيد المراجعة",
+          "notes": "بدون",
+          "coworker": "عبدالرحمن"
+        },
+        {
+          "id": 9,
+          "type": "اعتيادية",
+          "startDate": "2025-03-04",
+          "endDate": "2025-03-13",
+          "status": "قيد المراجعة",
+          "notes": "ررب",
+          "coworker": "إبراهبم"
+        },
+        {
+          "id": 10,
+          "type": "اعتيادية",
+          "startDate": "2025-03-07",
+          "endDate": "2025-03-12",
+          "status": "قيد المراجعة",
+          "notes": "12",
+          "coworker": "إبراهبم"
+        },
+        {
+          "id": 11,
+          "type": "اعتيادية",
+          "startDate": "2025-03-19",
+          "endDate": "2025-03-22",
+          "status": "قيد المراجعة",
+          "notes": "123456789",
+          "coworker": "محمد"
+        },
+        {
+          "id": 12,
+          "type": "اعتيادية",
+          "startDate": "2025-03-06",
+          "endDate": "",
+          "status": "قيد المراجعة",
+          "notes": "123",
+          "coworker": ""
+        },
+        {
+          "id": 13,
+          "type": "اعتيادية",
+          "startDate": "2025-03-07",
+          "endDate": "",
+          "status": "قيد المراجعة",
+          "notes": "55555555555",
+          "coworker": ""
+        },
+        {
+          "id": 14,
+          "type": "اعتيادية",
+          "startDate": "2025-03-07",
+          "endDate": "2025-03-15",
+          "status": "قيد المراجعة",
+          "notes": "6666666",
+          "coworker": "إبراهبم"
+        },
+        {
+          "id": 15,
+          "type": "اعتيادية",
+          "startDate": "2025-03-14",
+          "endDate": "2025-03-14",
+          "status": "قيد المراجعة",
+          "notes": "7777",
+          "coworker": "إبراهبم"
+        },
+        {
+          "id": 16,
+          "type": "اعتيادية",
+          "startDate": "2025-03-14",
+          "endDate": "2025-03-14",
+          "status": "قيد المراجعة",
+          "notes": "7777",
+          "coworker": "إبراهبم"
+        },
+        {
+          "id": 17,
+          "type": "اعتيادية",
+          "startDate": "2025-03-07",
+          "endDate": "2025-03-15",
+          "status": "قيد المراجعة",
+          "notes": "888888888888",
+          "coworker": "إبراهبم"
+        },
+        {
+          "id": 18,
+          "type": "اعتيادية",
+          "startDate": "2025-03-07",
+          "endDate": "2025-03-15",
+          "status": "قيد المراجعة",
+          "notes": "888888888888",
+          "coworker": "إبراهبم"
+        },
+        {
+          "id": 19,
+          "type": "اعتيادية",
+          "startDate": "2025-03-12",
+          "endDate": "2025-03-21",
+          "status": "قيد المراجعة",
+          "notes": "بدون",
+          "coworker": "يحيى"
+        },
+        {
+          "id": 20,
+          "type": "اعتيادية",
+          "startDate": "2025-03-11",
+          "endDate": "2025-03-14",
+          "status": "قيد المراجعة",
+          "notes": "بدون",
+          "coworker": "إبراهبم"
+        },
+        {
+          "id": 21,
+          "type": "اعتيادية",
+          "startDate": "2025-03-19",
+          "endDate": "2025-03-22",
+          "status": "قيد المراجعة",
+          "notes": "1",
+          "coworker": "محمد"
+        }
+      ],
+      "leaves": [
+        {
+          "id": 1,
+          "type": "اعتيادي",
+          "totalBalance": 42,
+          "takenBalance": 31
+        },
+        {
+          "id": 2,
+          "type": "عارضة",
+          "totalBalance": 7,
+          "takenBalance": 2
+        },
+        {
+          "id": 3,
+          "type": "مرضي",
+          "totalBalance": "",
+          "takenBalance": 2
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "nationalID": 30304218800000,
+      "phoneNumber": "01127471188",
+      "firstName": "إبراهبم",
+      "secondName": "محمد",
+      "thirdName": "عبدالله",
+      "fourthName": "عبدالله",
+      "jobTitle": "عبدالله",
+      "department": "علوم الحاسب",
+      "dateAppointment": "19/9/2024",
+      "address": "قنا",
+      "email": "yahyasaad2024@gmail.com"
+    },
+    {
+      "id": "3",
+      "nationalID": 30304218800000,
+      "phoneNumber": "01127471188",
+      "firstName": "إبراهبم",
+      "secondName": "محمد",
+      "thirdName": "عبدالله",
+      "fourthName": "عبدالله",
+      "jobTitle": "عبدالله",
+      "department": "علوم الحاسب",
+      "dateAppointment": "19/9/2024",
+      "address": "قنا",
+      "email": "yahyasaad2024@gmail.com"
+    },
+    {
+      "id": "4",
+      "nationalID": 30304218800000,
+      "phoneNumber": "01127471188",
+      "firstName": "إبراهبم",
+      "secondName": "محمد",
+      "thirdName": "عبدالله",
+      "fourthName": "عبدالله",
+      "jobTitle": "عبدالله",
+      "department": "علوم الحاسب",
+      "dateAppointment": "19/9/2024",
+      "address": "قنا",
+      "email": "yahyasaad2024@gmail.com"
+    },
+    {
+      "id": "5",
+      "nationalID": 30304218800000,
+      "phoneNumber": "01127471188",
+      "firstName": "إبراهبم",
+      "secondName": "محمد",
+      "thirdName": "عبدالله",
+      "fourthName": "عبدالله",
+      "jobTitle": "عبدالله",
+      "department": "علوم الحاسب",
+      "dateAppointment": "19/9/2024",
+      "address": "قنا",
+      "email": "yahyasaad2024@gmail.com"
+    },
+    {
+      "id": "6",
+      "nationalID": 30304218800000,
+      "phoneNumber": "01127471188",
+      "firstName": "إبراهبم",
+      "secondName": "محمد",
+      "thirdName": "عبدالله",
+      "fourthName": "عبدالله",
+      "jobTitle": "عبدالله",
+      "department": "علوم الحاسب",
+      "dateAppointment": "19/9/2024",
+      "address": "قنا",
+      "email": "yahyasaad2024@gmail.com"
+    },
+    {
+      "id": "8",
+      "nationalID": 30304218800000,
+      "phoneNumber": "01127471188",
+      "firstName": "إبراهبم",
+      "secondName": "محمد",
+      "thirdName": "عبدالله",
+      "fourthName": "عبدالله",
+      "jobTitle": "عبدالله",
+      "department": "علوم الحاسب",
+      "dateAppointment": "19/9/2024",
+      "address": "قنا",
+      "email": "yahyasaad2024@gmail.com"
+    },
+    {
+      "id": "9",
+      "nationalID": 30304218800000,
+      "phoneNumber": "01127471188",
+      "firstName": "إبراهبم",
+      "secondName": "محمد",
+      "thirdName": "عبدالله",
+      "fourthName": "عبدالله",
+      "jobTitle": "عبدالله",
+      "department": "علوم الحاسب",
+      "dateAppointment": "19/9/2024",
+      "address": "قنا",
+      "email": "yahyasaad2024@gmail.com"
+    },
+    {
+      "id": "10",
+      "nationalID": 30304218800000,
+      "phoneNumber": "01127471188",
+      "firstName": "إبراهبم",
+      "secondName": "محمد",
+      "thirdName": "عبدالله",
+      "fourthName": "عبدالله",
+      "jobTitle": "عبدالله",
+      "department": "علوم الحاسب",
+      "dateAppointment": "19/9/2024",
+      "address": "قنا",
+      "email": "yahyasaad2024@gmail.com"
+    },
+    {
+      "id": "12",
+      "nationalID": 30304218800000,
+      "phoneNumber": "01127471188",
+      "firstName": "إبراهبم",
+      "secondName": "محمد",
+      "thirdName": "عبدالله",
+      "fourthName": "عبدالله",
+      "jobTitle": "عبدالله",
+      "department": "علوم الحاسب",
+      "dateAppointment": "19/9/2024",
+      "address": "قنا",
+      "email": "yahyasaad2024@gmail.com"
+    },
+    {
+      "id": "f642",
+      "firstName": "محمد",
+      "secondName": "احمد",
+      "thirdName": "عبدالله",
+      "fourthName": "محمود",
+      "nationalID": "30201243601233",
+      "phoneNumber": "01127471199",
+      "address": "",
+      "email": "yahyasaad2025@gmail.com",
+      "dateAppointment": "2025-03-01",
+      "employeePicture": "",
+      "department": "علوم الحاسب",
+      "jobTitle": "مدير قسم",
+      "sex": "ذكر",
+      "password": ""
+    },
+    {
+      "id": "3ee6",
+      "firstName": "يحيى",
+      "secondName": "سعد",
+      "thirdName": "عبدالموجود",
+      "fourthName": "جادالرب",
+      "nationalID": "3020124360355",
+      "phoneNumber": "01127471188",
+      "address": "قنا . المحطة",
+      "email": "yahyasaad2025@gmail.com",
+      "dateAppointment": "2025-03-19",
+      "employeePicture": "C:\\fakepath\\download (5).jpg",
+      "department": "علوم الحاسب",
+      "jobTitle": "مدير قسم",
+      "sex": "عامل",
+      "password": "12345678",
+      "confirmPassword": "12345678"
+    }
+  ],
+  "departments": [
+    {
+      "id": "1",
+      "departmentName": "علوم الحاسب",
+      "departmentCode": 26641,
+      "dateCreation": "19/9/2024",
+      "departmentManager": "احمد محمد"
+    },
+    {
+      "id": "2",
+      "departmentName": "تكنولوجيا المعلومات",
+      "departmentCode": 26642,
+      "dateCreation": "19/9/2024",
+      "departmentManager": "احمد محمد"
+    },
+    {
+      "id": "3",
+      "departmentName": "الذكاء الاصطناعي",
+      "departmentCode": 26643,
+      "dateCreation": "19/9/2024",
+      "departmentManager": "احمد محمد"
+    },
+    {
+      "id": "4",
+      "departmentName": "علوم البيانات",
+      "departmentCode": 26644,
+      "dateCreation": "19/9/2024",
+      "departmentManager": "احمد محمد"
+    },
+    {
+      "id": "62c8",
+      "departmentName": "CS",
+      "departmentManager": "عبدالرحمن",
+      "departmentCode": "51",
+      "dateCreation": "2025-03-12"
+    }
+  ],
+  "requests": [
+    {
+      "id": "1",
+      "type": "عارضة",
+      "startDate": "13/9/2024",
+      "endDate": "15/9/2024",
+      "status": "مقبولة",
+      "notes": "بدون",
+      "coworker": "محمد احمد",
+      "employee": [
+        {
+          "id": 1,
+          "nationalID": 30304218800000,
+          "phoneNumber": "01021514586",
+          "firstName": "عمر",
+          "secondName": "حمدي",
+          "thirdName": "سيد",
+          "fourthName": "عبدالقادر",
+          "jobTitle": "موظف",
+          "department": "علوم الحاسب",
+          "dateAppointment": "19/9/2024",
+          "address": "قنا"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "type": "عارضة",
+      "startDate": "13/9/2024",
+      "endDate": "15/9/2024",
+      "status": "مقبولة",
+      "notes": "بدون",
+      "coworker": "محمد احمد",
+      "employee": [
+        {
+          "id": 2,
+          "nationalID": 30304218800000,
+          "phoneNumber": "01021514586",
+          "firstName": "عمر",
+          "secondName": "حمدي",
+          "thirdName": "سيد",
+          "fourthName": "عبدالقادر",
+          "jobTitle": "موظف",
+          "department": "علوم الحاسب",
+          "dateAppointment": "19/9/2024",
+          "address": "قنا"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "type": "عارضة",
+      "startDate": "13/9/2024",
+      "endDate": "15/9/2024",
+      "status": "مقبولة",
+      "notes": "بدون",
+      "coworker": "محمد احمد",
+      "employee": [
+        {
+          "id": 3,
+          "nationalID": 30304218800000,
+          "phoneNumber": "01021514586",
+          "firstName": "عمر",
+          "secondName": "حمدي",
+          "thirdName": "سيد",
+          "fourthName": "عبدالقادر",
+          "jobTitle": "موظف",
+          "department": "علوم الحاسب",
+          "dateAppointment": "19/9/2024",
+          "address": "قنا"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "type": "عارضة",
+      "startDate": "13/9/2024",
+      "endDate": "15/9/2024",
+      "status": "مقبولة",
+      "notes": "بدون",
+      "coworker": "محمد احمد",
+      "employee": [
+        {
+          "id": 4,
+          "nationalID": 30304218800000,
+          "phoneNumber": "01021514586",
+          "firstName": "عمر",
+          "secondName": "حمدي",
+          "thirdName": "سيد",
+          "fourthName": "عبدالقادر",
+          "jobTitle": "موظف",
+          "department": "علوم الحاسب",
+          "dateAppointment": "19/9/2024",
+          "address": "قنا"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "type": "عارضة",
+      "startDate": "13/9/2024",
+      "endDate": "15/9/2024",
+      "status": "مقبولة",
+      "notes": "بدون",
+      "coworker": "محمد احمد",
+      "employee": [
+        {
+          "id": 5,
+          "nationalID": 30304218800000,
+          "phoneNumber": "01021514586",
+          "firstName": "عمر",
+          "secondName": "حمدي",
+          "thirdName": "سيد",
+          "fourthName": "عبدالقادر",
+          "jobTitle": "موظف",
+          "department": "علوم الحاسب",
+          "dateAppointment": "19/9/2024",
+          "address": "قنا"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "type": "عارضة",
+      "startDate": "13/9/2024",
+      "endDate": "15/9/2024",
+      "status": "مقبولة",
+      "notes": "بدون",
+      "coworker": "محمد احمد",
+      "employee": [
+        {
+          "id": 6,
+          "nationalID": 30304218800000,
+          "phoneNumber": "01021514586",
+          "firstName": "عمر",
+          "secondName": "حمدي",
+          "thirdName": "سيد",
+          "fourthName": "عبدالقادر",
+          "jobTitle": "موظف",
+          "department": "علوم الحاسب",
+          "dateAppointment": "19/9/2024",
+          "address": "قنا"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "type": "عارضة",
+      "startDate": "13/9/2024",
+      "endDate": "15/9/2024",
+      "status": "مقبولة",
+      "notes": "بدون",
+      "coworker": "محمد احمد",
+      "employee": [
+        {
+          "id": 7,
+          "nationalID": 30304218800000,
+          "phoneNumber": "01021514586",
+          "firstName": "عمر",
+          "secondName": "حمدي",
+          "thirdName": "سيد",
+          "fourthName": "عبدالقادر",
+          "jobTitle": "موظف",
+          "department": "علوم الحاسب",
+          "dateAppointment": "19/9/2024",
+          "address": "قنا"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "type": "عارضة",
+      "startDate": "13/9/2024",
+      "endDate": "15/9/2024",
+      "status": "مقبولة",
+      "notes": "بدون",
+      "coworker": "محمد احمد",
+      "employee": [
+        {
+          "id": 8,
+          "nationalID": 30304218800000,
+          "phoneNumber": "01021514586",
+          "firstName": "عمر",
+          "secondName": "حمدي",
+          "thirdName": "سيد",
+          "fourthName": "عبدالقادر",
+          "jobTitle": "موظف",
+          "department": "علوم الحاسب",
+          "dateAppointment": "19/9/2024",
+          "address": "قنا"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "type": "عارضة",
+      "startDate": "13/9/2024",
+      "endDate": "15/9/2024",
+      "status": "مقبولة",
+      "notes": "بدون",
+      "coworker": "محمد احمد",
+      "employee": [
+        {
+          "id": 9,
+          "nationalID": 30304218800000,
+          "phoneNumber": "01021514586",
+          "firstName": "عمر",
+          "secondName": "حمدي",
+          "thirdName": "سيد",
+          "fourthName": "عبدالقادر",
+          "jobTitle": "موظف",
+          "department": "علوم الحاسب",
+          "dateAppointment": "19/9/2024",
+          "address": "قنا"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "type": "عارضة",
+      "startDate": "13/9/2024",
+      "endDate": "15/9/2024",
+      "status": "مقبولة",
+      "notes": "بدون",
+      "coworker": "محمد احمد",
+      "employee": [
+        {
+          "id": 10,
+          "nationalID": 30304218800000,
+          "phoneNumber": "01021514586",
+          "firstName": "عمر",
+          "secondName": "حمدي",
+          "thirdName": "سيد",
+          "fourthName": "عبدالقادر",
+          "jobTitle": "موظف",
+          "department": "علوم الحاسب",
+          "dateAppointment": "19/9/2024",
+          "address": "قنا"
+        }
+      ]
+    }
+  ]
+}

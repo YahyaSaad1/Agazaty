@@ -1,0 +1,23 @@
+.SideBar{
+    background-color: #fefeff;
+    border-left: 2px solid #eee;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.Agazaty{
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.2;
+    text-decoration: none;
+    justify-content: center;
+}
+
+.hintSideBar{
+    width: 22px;
+    height: 22px;
+}
+
+ 

@@ -1,0 +1,39 @@
+.space{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.xxx{
+    width: 75px;
+    height: 75px;
+    background-color: #cfcfcf;
+    z-index: -1;
+    border: 6px solid #9b9b9b;
+
+}
+
+.line{
+    width: 80px;
+    height: 25px;
+    background-color: #cfcfcf;
+    margin: 0 -6px;
+    border-top: 6px solid #9b9b9b;
+    border-bottom: 6px solid #9b9b9b;
+    z-index: 999;
+}
+
+.vvv{
+    width: 75%;
+    height: 75%;
+}
+
+.bbb{
+    width: 100%;
+    margin: 0 -4px;
+}
+
+.qqq{
+    margin-top: 10px;
+    font-size: 12px;
+}

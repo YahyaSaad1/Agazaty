@@ -1,0 +1,13 @@
+.head{
+    height: 80px;
+    border-bottom: 3px solid #eee;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.03);
+}
+
+.custom-scroll {
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    scrollbar-width: none;
+}

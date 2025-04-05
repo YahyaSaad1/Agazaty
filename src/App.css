@@ -1,0 +1,119 @@
+.App{
+    margin: 0;
+    padding: 0;
+}
+
+.row {
+    margin: 0;
+}
+
+.box{
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 12px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.box2{
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 12px;
+    background: #b7d2ff;
+    box-shadow: 0 4px 8px #b7d2ff;
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: #b7d2ff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #76a8ff;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0a58ca;
+}
+
+
+
+
+
+
+
+.pr-1{
+    padding-right: 3px;
+}
+.pr-2{
+    padding-right: 6px;
+}
+.pr-3{
+    padding-right: 9px;
+}
+.pr-4{
+    padding-right: 12px;
+}
+.pr-5{
+    padding-right: 15px;
+}
+
+
+.pl-1{
+    padding-left: 3px;
+}
+.pl-2{
+    padding-left: 6px;
+}
+.pl-3{
+    padding-left: 9px;
+}
+.pl-4{
+    padding-left: 12px;
+}
+.pl-5{
+    padding-left: 15px;
+}
+
+
+
+.fontt{
+    font-size: 25px;
+    margin: 2px 5px;
+}
+
+.printer{
+    cursor: pointer;
+}
+
+.printer:hover{
+    transform: scale(1.1);
+    transition: .15s;
+}
+
+.zzz{
+    background-color: #0a58ca;
+    border-radius: 0 0 0 60px;
+    color: white;
+}
+
+.xxxx{
+    border: 1px solid #e3e3e3;
+    border-radius: 7px;
+    box-shadow: -4px 2px 0px -3px #d9d6d6;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
+.qqq{
+    background-color: red !important;
+}
