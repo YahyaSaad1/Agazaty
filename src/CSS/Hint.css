@@ -1,0 +1,16 @@
+.hint{
+    height: 147px;
+    border: 1px solid #eee;
+    padding: 12px;
+}
+
+.hintImage{
+    background-color: #F8FAFF;
+    width: 162px;
+    height: 123px;
+}
+.hintImage img{
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+}

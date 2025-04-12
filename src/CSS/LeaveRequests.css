@@ -1,0 +1,83 @@
+.profileCom2{
+    border: 1px solid #0d6efd;
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+}
+
+/* For sm screens (up to 576px) */
+@media (max-width: 576px) {
+    .rounded-start {
+        max-width: 150px; /* 250px for small screens */
+    }
+}
+
+/* For md screens (from 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .rounded-start {
+        max-width: 250px; /* 350px for medium screens */
+    }
+}
+
+/* For lg screens (from 768px and above) */
+@media (min-width: 768px) {
+    .rounded-start {
+        max-width: 250px; /* 400px for large screens */
+    }
+}
+/* نافذة الصور
+
+
+
+
+
+
+
+
+
+/* نافذة الصورة */
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    max-width: 90%; /* العرض هو 90% من النافذة */
+    max-height: 90vh; /* الحد الأقصى للارتفاع هو 90% من الشاشة */
+    overflow: hidden; /* منع التمرير في حال كانت الصورة أكبر */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-image {
+    width: 100%;
+    height: auto; /* ضمان أن الصورة تتناسب مع العرض */
+    object-fit: contain; /* الصورة ستظل كاملة دون تقطيع */
+    max-height: 80vh; /* الحد الأقصى للارتفاع هو 80% من النافذة */
+}
+
+.btn-close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

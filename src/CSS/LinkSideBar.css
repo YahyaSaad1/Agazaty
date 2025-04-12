@@ -1,0 +1,140 @@
+.link-SideBar{
+    text-decoration: none;
+}
+
+.link-SideBar li{
+    display: flex;
+    margin: 10px;
+    align-items: center;
+    padding: 15px;
+    border-radius: 12px;
+}
+@media (max-width: 450px) { 
+    .link-SideBar li {
+        display: flex;
+        margin: 10px;
+        align-items: center;
+        padding: 15px 5px;
+        border-radius: 3px;
+    }
+}
+
+.link-SideBar li:hover{
+    background-color: #0b5ed7;
+    color: white;
+}
+
+.link-SideBar li span{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.hover-danger li:hover{
+    background-color: red;
+    color: #ffffff !important;
+}
+.active-link {
+    background-color: #0b5ed7 !important;
+    color: white;
+}
+
+.tran{
+    transition: .5s;
+}
+
+
+
+
+
+
+
+
+
+
+
+.link-SideBar2{
+    text-decoration: none;
+}
+
+.link-SideBar2 ul li::before {
+    content: "●";
+    color: #0b5ed7;
+    font-size: 1.2em;
+    margin-left: 10px;
+}
+
+.link-SideBar2 ul{
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.link-SideBar2 ul:hover{
+    background-color: #0b5ed7;
+    color: white;
+}
+
+.link-SideBar2 ul li{
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px;
+} 
+
+@media (max-width: 450px) { 
+    .link-SideBar2 ul {
+        display: flex;
+        margin: 10px;
+        align-items: center;
+        padding: 15px 5px;
+        border-radius: 3px;
+    }
+}
+
+
+
+
+
+
+.link-SideBar3{
+    text-decoration: none;
+}
+
+.link-SideBar3 ul li::before {
+    content: "●";
+    color: #0b5ed7;
+    font-size: 1.2em;
+    margin-left: 10px;
+    margin-left: 10px;
+    margin-left: 10px;
+}
+
+.link-SideBar3 ul{
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.link-SideBar3 ul:hover{
+    background-color: #0b5ed7;
+    color: white;
+}
+
+.link-SideBar3 ul li{
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px;
+} 
+
+@media (max-width: 450px) { 
+    .link-SideBar3 ul {
+        display: flex;
+        margin: 10px;
+        align-items: center;
+        padding: 15px 5px;
+        border-radius: 3px;
+    }
+}
