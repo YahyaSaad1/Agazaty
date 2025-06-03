@@ -5,7 +5,7 @@ import Ahmed from "../Images/Ahmed.jpg";
 import AbdElQadir from "../Images/AbdElQadir.jpg";
 import Hesham from "../Images/Hesham.jpg";
 import Ashraf from "../Images/Ashraf.jpg";
-import Omar from "../Images/Ashraf.jpg";
+import Omar from "../Images/Omar.jpg";
 import { Link } from "react-router-dom";
 import NavTeam from "../components/NavTeam";
 
