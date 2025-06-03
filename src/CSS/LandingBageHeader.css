@@ -1,0 +1,174 @@
+/* Import Cairo Font */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+/* General Styling */
+body {
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    background-color: #f8f9fa;
+}
+
+/* Header Styling */
+header {
+    background-color: #007bff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid #000000;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.mainBGColor {
+    background-color: #007bff !important;
+}
+
+.mainTColor {
+    color: #000000;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff !important;
+    margin: 0;
+}
+
+.nav-buttons .btn {
+    font-size: 1rem;
+    padding: 8px 16px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    color: #3579c1 !important;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-buttons .btn:hover {
+    background-color: #e2e6ea;
+    transform: translateY(-2px);
+}
+
+.btn.fw-bold {
+    background-color: #28a745;
+    padding: 8px 20px;
+    border-radius: 8px;
+    color: #ffffff !important;
+    transition: background-color 0.2s ease;
+}
+
+.btn.fw-bold:hover {
+    background-color: #218838;
+}
+
+.translate-y-0 {
+    transform: translateY(0);
+    transition: transform 0.5s ease;
+}
+
+.-translate-y-full {
+    transform: translateY(-100%);
+    transition: transform 0.5s ease;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.back-to-top:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .nav-buttons .btn {
+        margin: 0;
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+
+    .logo {
+        font-size: 1.5rem !important;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+}
+
+.h-95 {
+    height: 86vh;
+    margin: 20px;
+}
+
+.btnHeader {
+    font-size: large;
+    font-family: 'Cairo', sans-serif;
+    /* استخدام خط كايرو */
+    color: rgb(246, 246, 247);
+    /* لون النص الأبيض */
+    background: none;
+    /* إزالة أي خلفية */
+    border: none;
+    /* إزالة الحدود الافتراضية */
+    /* border-bottom: 3px solid #3498db; */
+    /* خط أسفل بأسلوب مختلف (لون أزرق وسمك 3 بكسل) */
+    text-decoration: none;
+    /* إزالة الخط الافتراضي للرابط */
+    transition: all 0.3s ease;
+    /* تأثير انتقال سلس */
+}
+
+.btnHeader:hover {
+    transform: translateY(-2px);
+    /* يتحرك لأعلى 2 بكسل */
+    color: #848588;
+    /* تغيير خفيف في لون النص */
+    border-bottom: 3px solid #2980b9;
+    /* تغيير لون الخط الأسفل عند الهوفر */
+}
+
+.ff {
+    width: 100%;
+    /* أو أي عرض محدد تريده */
+    height: 350px;
+    /* أو أي ارتفاع محدد تريده */
+    position: relative;
+    /* لضمان تحكم أفضل في الصورة */
+}
+
+.PersonImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* الصورة تملأ الـ div مع قص الزيادة */
+    display: block;
+    /* إزالة أي فراغات غير مرغوبة */
+}

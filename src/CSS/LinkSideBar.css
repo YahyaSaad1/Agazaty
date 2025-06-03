@@ -1,0 +1,95 @@
+.link-SideBar{
+    text-decoration: none;
+}
+
+.link-SideBar li{
+    display: flex;
+    margin: 10px;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+}
+@media (max-width: 450px) { 
+    .link-SideBar li {
+        display: flex;
+        margin: 10px;
+        align-items: center;
+        padding: 15px 5px;
+        border-radius: 3px;
+    }
+}
+
+.link-SideBar li:hover{
+    background-color: var(--main-color) ;
+    color: white;
+}
+
+.link-SideBar li span{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.hover-danger li:hover{
+    background-color: red;
+    color: #ffffff !important;
+}
+.active-link {
+    background-color: var(--main-color) !important;
+    color: white;
+}
+
+.tran{
+    transition: .5s;
+}
+
+
+
+
+
+
+
+.link-SideBar4{
+    text-decoration: none;
+}
+
+.link-SideBar4 ul{
+    border-radius: 8px;
+}
+
+.link-SideBar4 li{
+    display: flex;
+    margin: 10px;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+@media (max-width: 450px) { 
+    .link-SideBar4 li {
+        display: flex;
+        margin: 10px;
+        align-items: center;
+        padding: 15px 5px;
+        border-radius: 3px;
+    }
+}
+
+.link-SideBar4 li:hover{
+    background-color: var(--main-color);
+    color: white;
+}
+
+.link-SideBar4 li span{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.hover-danger li:hover{
+    background-color: red;
+    color: #ffffff !important;
+}
+
+.active-link {
+    background-color: #0d6efd !important;
+    color: white;
+}

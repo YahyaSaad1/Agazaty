@@ -1,0 +1,65 @@
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .calendar-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .calendar-header button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .calendar-header button:hover {
+    background: #0056b3;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  
+  .day-header {
+    font-weight: bold;
+    text-align: center;
+    color: #555;
+  }
+  
+  .day-cell {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f9f9f9;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .day-cell.selected {
+    background: #007bff;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .day-cell.empty {
+    background: transparent;
+    cursor: default;
+  }
+  
+  .day-cell:hover:not(.empty):not(.selected) {
+    background: #e0e0e0;
+    cursor: pointer;
+  }
+  
