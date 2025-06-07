@@ -54,8 +54,6 @@ export async function downloadActiveUsersExcel() {
   }
 }
 
-
-
 // export async function GetUserById() {
 //   fetch(`${BASE_API_URL}/api/Account/GetUserById/${userID}`, {
 //     method: "GET",
@@ -66,9 +64,6 @@ export async function downloadActiveUsersExcel() {
 //   }).then((res) => res.json());
 // }
 
-
-
-
 export function validate(id, title, numMax) {
   const input = document.getElementById(id);
   if (input.value > numMax) {
@@ -77,15 +72,3 @@ export function validate(id, title, numMax) {
     input.setCustomValidity("");
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

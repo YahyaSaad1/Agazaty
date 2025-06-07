@@ -362,7 +362,6 @@ function DesPermits() {
           تعديل عدد أيام الاجازات
         </button>
       </div>
-
       <div className="mb-4 me-3 d-flex align-items-center gap-3">
         <input
           type="text"
@@ -386,11 +385,10 @@ function DesPermits() {
           <option value="inactive">محتسب</option>
         </select>
       </div>
-
       <div className="row">
-        <div>
+        <div style={{ maxHeight: "450px", overflowY: "auto" }}>
           <table className="m-0 table table-striped">
-            <thead>
+            <thead className="sticky-top bg-white">
               <tr>
                 <th style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
                 <th style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
