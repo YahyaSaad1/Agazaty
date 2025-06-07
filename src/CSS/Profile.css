@@ -1,0 +1,17 @@
+@media (max-width: 767.98px) {
+  .profile-header {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .profile-buttons {
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  .profile-buttons button,
+  .profile-buttons a {
+    white-space: nowrap;
+    width: auto;
+  }
+}
