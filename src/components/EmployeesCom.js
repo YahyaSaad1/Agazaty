@@ -246,7 +246,7 @@ function EmployeesCom({ type }) {
 
   return (
     <div>
-      <div className="d-flex mb-4 justify-content-between">
+      <div className="d-flex mb-4 justify-content-between employee-header">
         <div className="zzz d-flex p-3 ps-5 justify-content-center align-items-center">
           {type === "active" ? (
             <h2 className="m-0">الموظفيين</h2>
@@ -259,7 +259,7 @@ function EmployeesCom({ type }) {
 
         {(roleName === "مدير الموارد البشرية" ||
           roleName === "عميد الكلية") && (
-          <div className="d-flex">
+          <div className="d-flex employee-buttons">
             <button
               onClick={downloadActiveUsersExcel}
               className="my-3 mx-1 btn btn-success d-flex justify-content-center align-items-center"
@@ -303,7 +303,7 @@ function EmployeesCom({ type }) {
 
       <div className="row">
         <div>
-          <div className="table-responsive">
+          <div className="table-responsive" style={{ height: "100vh" }}>
             <table className="m-0 table table-striped">
               <thead>
                 <tr>

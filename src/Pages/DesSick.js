@@ -59,7 +59,7 @@ function DesSick() {
         </div>
       </div>
       <div className="row">
-        <div className="table-responsive">
+        <div className="table-responsive" style={{ height: "100vh" }}>
           <table className="m-0 table table-striped">
             <thead>
               <tr>

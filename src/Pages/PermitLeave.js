@@ -126,9 +126,12 @@ function PermitLeave() {
         </div>
       </div>
       <div className="row mt-5 d-flex justify-content-center">
-        <div className="col-sm-12 col-lg-10 col-xl-8 box">
+        <div
+          className="col-sm-12 col-lg-10 col-xl-8 box table-responsive"
+          style={{ height: "100vh" }}
+        >
           <div
-            className="d-flex flex-row p-2 align-items-stretch table-responsive"
+            className="d-flex flex-row p-2 align-items-stretch "
             style={{ direction: "rtl" }}
           >
             <table className="table table-striped m-0 w-100">
