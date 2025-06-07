@@ -107,7 +107,7 @@ function EditEmployeeForHR() {
     return yearsDiff;
   };
   const getDeptNameById = (id) => {
-    return departments.find((dept) => dept.id === Number(id))?.name ?? "";
+    return departments.find((dept) => dept.id === id)?.name ?? "";
   };
   useEffect(() => {
     setAge(getAge(user.dateOfBirth));
@@ -333,7 +333,9 @@ function EditEmployeeForHR() {
             onChange={handleChange}
             value={updatedFields.disability ?? user.disability ?? ""}
           >
-            <option value="" disabled selected>اختر</option>
+            <option value="" disabled selected>
+              اختر
+            </option>
             <option value={false}>لا</option>
             <option value={true}>نعم</option>
           </select>
@@ -351,7 +353,9 @@ function EditEmployeeForHR() {
             onChange={handleChange}
             value={updatedFields.roleName ?? user.roleName}
           >
-            <option value="" disabled selected>اختر منصبًا</option>
+            <option value="" disabled selected>
+              اختر منصبًا
+            </option>
             {roles.map((role) => (
               <option key={role.id} value={role.name}>
                 {role.name}
@@ -372,7 +376,9 @@ function EditEmployeeForHR() {
             onChange={handleChange}
             value={updatedFields.gender ?? user.gender ?? ""}
           >
-            <option value="" disabled selected>اختر الجنس</option>
+            <option value="" disabled selected>
+              اختر الجنس
+            </option>
             <option value="ذكر">ذكر</option>
             <option value="أنثى">أنثى</option>
           </select>
@@ -534,7 +540,9 @@ function EditEmployeeForHR() {
               dir="rtl"
               value={updatedFields.position ?? user.position ?? ""}
             >
-              <option value="" disabled selected>اختر الدرجة</option>
+              <option value="" disabled selected>
+                اختر الدرجة
+              </option>
               <option value="2">دكتور</option>
               <option value="1">معيد</option>
             </select>
@@ -553,7 +561,9 @@ function EditEmployeeForHR() {
               dir="rtl"
               value={updatedFields.position ?? user.position ?? ""}
             >
-              <option value="" disabled selected>اختر الدرجة</option>
+              <option value="" disabled selected>
+                اختر الدرجة
+              </option>
               <option value={2}>إداري</option>
               <option value={1}>عامل</option>
             </select>
@@ -572,7 +582,9 @@ function EditEmployeeForHR() {
               dir="rtl"
               value={updatedFields.position ?? user.position ?? ""}
             >
-              <option value="" disabled selected>اختر الدرجة</option>
+              <option value="" disabled selected>
+                اختر الدرجة
+              </option>
               <option value={2}>دكتور</option>
             </select>
           </div>
@@ -590,7 +602,9 @@ function EditEmployeeForHR() {
               dir="rtl"
               value={updatedFields.position ?? user.position ?? ""}
             >
-              <option value="" disabled selected>اختر الدرجة</option>
+              <option value="" disabled selected>
+                اختر الدرجة
+              </option>
               <option value={2}>إداري</option>
             </select>
           </div>
@@ -674,7 +688,9 @@ function EditEmployeeForHR() {
                 ""
               }
             >
-              <option value="" disabled selected>اختر القسم</option>
+              <option value="" disabled selected>
+                اختر القسم
+              </option>
               <option value={null}>حذف القسم</option>
               {getFilteredDepartments().map((department) => (
                 <option key={department.id} value={department.id}>

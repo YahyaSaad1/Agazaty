@@ -9,47 +9,47 @@ function LeaveRecord() {
 
   useEffect(() => {
     const fetchLeaves = async () => {
-        try {
-          const urls = [
-            `${BASE_API_URL}/api/NormalLeave/WaitingByGeneral_ManagerID/${userID}`,
-            `${BASE_API_URL}/api/NormalLeave/WaitingByDirect_ManagerID/${userID}`
-          ];
+      try {
+        const urls = [
+          `${BASE_API_URL}/api/NormalLeave/WaitingByGeneral_ManagerID/${userID}`,
+          `${BASE_API_URL}/api/NormalLeave/WaitingByDirect_ManagerID/${userID}`,
+        ];
 
-          const requests = urls.map((url) => 
-            fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                      },
-                  }).then((res) => {
-                      if (!res.ok) throw new Error("Network response was not ok");
-                      return res.json();
-                  })
-              );
-  
-              const results = await Promise.allSettled(requests);
-  
-              const combinedData = results.reduce((acc, result) => {
-                  if (result.status === "fulfilled" && Array.isArray(result.value)) {
-                      acc = acc.concat(result.value);
-                  }
-                  return acc;
-              }, []);
-  
-              setLeavesWating(combinedData);
-              } catch (error) {
-                console.error("Error fetching leave requests:", error);
-                setLeavesWating([]);
-              }
-          };
-  
-        fetchLeaves();
-      }, []);
+        const requests = urls.map((url) =>
+          fetch(url, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }).then((res) => {
+            if (!res.ok) throw new Error("Network response was not ok");
+            return res.json();
+          })
+        );
 
-    if (!leavesWating || leavesWating.length === 0) {
-      return <LoadingOrError data={leavesWating} />;
-    }
+        const results = await Promise.allSettled(requests);
+
+        const combinedData = results.reduce((acc, result) => {
+          if (result.status === "fulfilled" && Array.isArray(result.value)) {
+            acc = acc.concat(result.value);
+          }
+          return acc;
+        }, []);
+
+        setLeavesWating(combinedData);
+      } catch (error) {
+        console.error("Error fetching leave requests:", error);
+        setLeavesWating([]);
+      }
+    };
+
+    fetchLeaves();
+  }, []);
+
+  if (!leavesWating || leavesWating.length === 0) {
+    return <LoadingOrError data={leavesWating} />;
+  }
 
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
@@ -59,7 +59,9 @@ function LeaveRecord() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
-          <h2 className="m-0">طلبات الاجازات</h2>
+          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
+            طلبات الاجازات
+          </h2>
         </div>
       </div>
       <div className="row">
@@ -67,23 +69,45 @@ function LeaveRecord() {
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>القسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>رقم الهاتف</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>نوع الاجازة</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ البداية</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ النهاية</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  المرجع
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  الاسم
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  القسم
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  رقم الهاتف
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  نوع الاجازة
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  تاريخ البداية
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  تاريخ النهاية
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  عدد الأيام
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  حالة الطلب
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  الأرشيف
+                </th>
               </tr>
             </thead>
             <tbody>
-              {currentRows.length > 0 && (
+              {currentRows.length > 0 &&
                 currentRows.map((leave, index) => (
                   <tr key={index}>
-                    <th>#{(indexOfFirstRow + index + 1).toLocaleString('ar-EG')}</th>
+                    <th>
+                      #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
+                    </th>
                     <th>{leave.userName}</th>
                     <th>{leave.departmentName}</th>
                     <th>{leave.phoneNumber}</th>
@@ -100,7 +124,8 @@ function LeaveRecord() {
                     </th>
 
                     <th>
-                      {leave.days ? leave.days.toLocaleString("ar-EG") : "0"} أيام
+                      {leave.days ? leave.days.toLocaleString("ar-EG") : "0"}{" "}
+                      أيام
                     </th>
                     <th
                       className={
@@ -118,8 +143,7 @@ function LeaveRecord() {
                       />
                     </th>
                   </tr>
-                ))
-              )}
+                ))}
             </tbody>
           </table>
           {leavesWating.length > rowsPerPage && (

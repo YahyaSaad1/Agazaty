@@ -9,11 +9,11 @@
     --btn-hover-false: #9c0202;
 }
 
-.text-bold{
+.text-bold {
     font-weight: bold;
 }
 
-.text-600{
+.text-600 {
     font-weight: 600;
 }
 
@@ -24,10 +24,10 @@
 
 .swal-content-red {
     color: red;
-    
+
 }
 
-.abdo{
+.abdo {
     font-size: 22px;
     font-weight: bold;
     color: var(--main-color);
@@ -74,15 +74,15 @@
 }
 
 
-.parent div{
+.parent div {
     justify-content: space-between;
 }
 
-.parent div img{
+.parent div img {
     height: 70px;
 }
 
-.parent div h2{
+.parent div h2 {
     font-size: 32px;
     font-weight: bold;
 }
@@ -107,14 +107,14 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.box-radio{
+.box-radio {
     border: 1px solid #eee;
     border-radius: 12px;
     background: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.box-radio .label1{
+.box-radio .label1 {
     display: flex;
     border-radius: 12px 12px 0 0;
     padding: 17px;
@@ -123,14 +123,15 @@
 }
 
 
-.box-radio .label2{
+.box-radio .label2 {
     display: flex;
     border-radius: 0 0 12px 12px;
     padding: 17px;
     justify-content: space-between;
 }
 
-.label1 input, .label2 input{
+.label1 input,
+.label2 input {
     width: 20px;
 }
 
@@ -145,7 +146,7 @@
     border: 2px solid #b7d2ff;
 }
 
-.title{
+.title {
     margin-bottom: 1rem !important;
     font-size: 0.875rem;
     font-weight: 600;
@@ -253,7 +254,7 @@
 }
 
 .zzz {
-    background-color: var(--main-color) ;
+    background-color: var(--main-color);
     border-radius: 0 0 0 60px;
     color: white;
 }
@@ -311,23 +312,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.vc{
+.vc {
     color: #f0f0f0;
     color: #e3f2fd;
     color: #e8f5e9;
@@ -336,17 +321,7 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-.bbb{
+.bbb {
     font-family: Cairo sans-serif;
     font-weight: 600;
     font-size: calc(1.325rem + .9vw);
@@ -365,20 +340,20 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    
+
 }
 
-.desc{
+.desc {
     display: flex;
     margin-top: -60.35px;
     justify-content: center;
 }
 
-.desc div{
+.desc div {
     width: 85.2%;
 }
 
-.bbbb{
+.bbbb {
     background-color: white;
 }
 
@@ -402,7 +377,7 @@
     justify-content: space-between;
 }
 
-.vvvv{
+.vvvv {
     border: 1px solid #565656;
     border-radius: 7px;
 }

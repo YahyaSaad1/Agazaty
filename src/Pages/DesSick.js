@@ -12,13 +12,16 @@ function DesSick() {
   useEffect(() => {
     const fetchSickLeaves = async () => {
       try {
-        const response = await fetch(`${BASE_API_URL}/api/SickLeave/GetAllSickLeave`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          `${BASE_API_URL}/api/SickLeave/GetAllSickLeave`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         const data = await response.json();
         if (Array.isArray(data)) {
@@ -50,7 +53,9 @@ function DesSick() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
-          <h2 className="m-0">سجل الاجازات المرضية</h2>
+          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
+            سجل الاجازات المرضية
+          </h2>
         </div>
       </div>
       <div className="row">
@@ -69,31 +74,47 @@ function DesSick() {
               </tr>
             </thead>
             <tbody>
-              {currentRows.length > 0 && (
+              {currentRows.length > 0 &&
                 currentRows.map((leave, index) => (
                   <tr key={index}>
-                    <th>#{(indexOfFirstRow + index + 1).toLocaleString('ar-EG')}</th>
+                    <th>
+                      #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
+                    </th>
                     <th>{leave.userName}</th>
                     {leave.startDate === "0001-01-01T00:00:00" ? (
                       <th className="text-danger">لم يحدد بعد</th>
                     ) : (
-                      <th>{new Date(leave.startDate).toLocaleDateString('ar-EG')}</th>
+                      <th>
+                        {new Date(leave.startDate).toLocaleDateString("ar-EG")}
+                      </th>
                     )}
                     {leave.endDate === "0001-01-01T00:00:00" ? (
                       <th className="text-danger">لم يحدد بعد</th>
                     ) : (
-                      <th>{new Date(leave.endDate).toLocaleDateString('ar-EG')}</th>
+                      <th>
+                        {new Date(leave.endDate).toLocaleDateString("ar-EG")}
+                      </th>
                     )}
                     {leave.days === null ? (
                       <th className="text-danger">لم يُحتسب بعد</th>
                     ) : (
-                      <th>{leave.days.toString().replace(/[0-9]/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[digit])} أيام</th>
+                      <th>
+                        {leave.days
+                          .toString()
+                          .replace(
+                            /[0-9]/g,
+                            (digit) => "٠١٢٣٤٥٦٧٨٩"[digit]
+                          )}{" "}
+                        أيام
+                      </th>
                     )}
                     {leave.certified === true ? (
                       <th className="text-success">مقبولة</th>
-                    ) : !leave.responseDoneFinal && !leave.respononseDoneForMedicalCommitte ? (
+                    ) : !leave.responseDoneFinal &&
+                      !leave.respononseDoneForMedicalCommitte ? (
                       <th className="text-primary">معلقة عند التحديث الأول</th>
-                    ) : !leave.responseDoneFinal && leave.respononseDoneForMedicalCommitte ? (
+                    ) : !leave.responseDoneFinal &&
+                      leave.respononseDoneForMedicalCommitte ? (
                       <th className="text-primary">معلقة عند التحديث الثاني</th>
                     ) : (
                       <th className="text-danger">مرفوضة</th>
@@ -115,16 +136,25 @@ function DesSick() {
                       />
                     </th>
                   </tr>
-                ))
-              )}
+                ))}
             </tbody>
           </table>
 
           {leaves.length > rowsPerPage && (
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "20px",
+              }}
+            >
               <nav>
                 <ul className="pagination">
-                  <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+                  <li
+                    className={`page-item ${
+                      currentPage === 1 ? "disabled" : ""
+                    }`}
+                  >
                     <button
                       className="page-link"
                       onClick={() =>
@@ -138,19 +168,29 @@ function DesSick() {
                   {Array.from({ length: totalPages }, (_, i) => (
                     <li
                       key={i}
-                      className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
+                      className={`page-item ${
+                        currentPage === i + 1 ? "active" : ""
+                      }`}
                     >
-                      <button className="page-link" onClick={() => setCurrentPage(i + 1)}>
+                      <button
+                        className="page-link"
+                        onClick={() => setCurrentPage(i + 1)}
+                      >
                         {i + 1}
                       </button>
                     </li>
                   ))}
 
-                  <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
+                  <li
+                    className={`page-item ${
+                      currentPage === totalPages ? "disabled" : ""
+                    }`}
+                  >
                     <button
                       className="page-link"
                       onClick={() =>
-                        currentPage < totalPages && setCurrentPage(currentPage + 1)
+                        currentPage < totalPages &&
+                        setCurrentPage(currentPage + 1)
                       }
                     >
                       التالي

@@ -37,7 +37,6 @@ function DesNormal() {
       });
   }, []);
 
-
   if (!leaves || leaves.length === 0) {
     return <LoadingOrError data={leaves} />;
   }
@@ -50,7 +49,9 @@ function DesNormal() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
-          <h2 className="m-0">سجل الاجازات الاعتيادية</h2>
+          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
+            سجل الاجازات الاعتيادية
+          </h2>
         </div>
       </div>
       <div className="row">
@@ -58,34 +59,67 @@ function DesNormal() {
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ البدء</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الانتهاء</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>القائم بالعمل</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>ملحوظات</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  المرجع
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  الاسم
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  تاريخ البدء
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  تاريخ الانتهاء
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  عدد الأيام
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  القائم بالعمل
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  ملحوظات
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  حالة الطلب
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  طباعة
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  الأرشيف
+                </th>
               </tr>
             </thead>
             <tbody>
-              {currentRows.length > 0 && (
+              {currentRows.length > 0 &&
                 currentRows.map((leave, index) => (
                   <tr key={index}>
-                    <th>#{(indexOfFirstRow + index + 1).toLocaleString('ar-EG')}</th>
+                    <th>
+                      #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
+                    </th>
                     <th>{leave.userName}</th>
-                    <th>{new Date(leave.startDate).toLocaleDateString('ar-EG')}</th>
-                    <th>{new Date(leave.endDate).toLocaleDateString('ar-EG')}</th>
-                    <th>{leave.days.toString().replace(/[0-9]/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[digit])} أيام</th>
+                    <th>
+                      {new Date(leave.startDate).toLocaleDateString("ar-EG")}
+                    </th>
+                    <th>
+                      {new Date(leave.endDate).toLocaleDateString("ar-EG")}
+                    </th>
+                    <th>
+                      {leave.days
+                        .toString()
+                        .replace(/[0-9]/g, (digit) => "٠١٢٣٤٥٦٧٨٩"[digit])}{" "}
+                      أيام
+                    </th>
                     <th>{leave.coworkerName}</th>
                     <th>{leave.notesFromEmployee || "بدون"}</th>
-                      {leave.leaveStatus === 0
-                        ?<th className="text-primary">معلقة</th>
-                        : leave.leaveStatus === 1
-                        ?<th className="text-success">مقبولة</th>
-                        :<th className="text-danger">مرفوضة</th>}
+                    {leave.leaveStatus === 0 ? (
+                      <th className="text-primary">معلقة</th>
+                    ) : leave.leaveStatus === 1 ? (
+                      <th className="text-success">مقبولة</th>
+                    ) : (
+                      <th className="text-danger">مرفوضة</th>
+                    )}
                     <th>
                       <FontAwesomeIcon
                         icon={faPrint}
@@ -103,8 +137,7 @@ function DesNormal() {
                       />
                     </th>
                   </tr>
-                ))
-              )}
+                ))}
             </tbody>
           </table>
           {leaves.length > rowsPerPage && (

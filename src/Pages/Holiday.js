@@ -29,7 +29,7 @@ function Holidays() {
           console.error("Unexpected data format:", data);
           setHolidays([]);
         }
-      })
+      });
   }, []);
 
   const handleDelete = (id) => {
@@ -41,22 +41,22 @@ function Holidays() {
       confirmButtonText: "نعم، احذفها!",
       cancelButtonText: "إلغاء",
       customClass: {
-        title: 'text-blue',
-        confirmButton: 'blue-button',
-        cancelButton: 'red-button'
+        title: "text-blue",
+        confirmButton: "blue-button",
+        cancelButton: "red-button",
       },
       didOpen: () => {
-        const popup = document.querySelector('.swal2-popup');
-        if (popup) popup.setAttribute('dir', 'rtl');
-      }
+        const popup = document.querySelector(".swal2-popup");
+        if (popup) popup.setAttribute("dir", "rtl");
+      },
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`${BASE_API_URL}/api/Holiday/DeleteHoliday/${id}`, {
           method: "DELETE",
           headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
-          }
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         })
           .then(() => {
             setHolidays(holidays.filter((holiday) => holiday.id !== id));
@@ -66,14 +66,14 @@ function Holidays() {
               icon: "success",
               confirmButtonText: "حسناً",
               customClass: {
-                title: 'text-blue',
-                confirmButton: 'blue-button',
-                cancelButton: 'red-button'
+                title: "text-blue",
+                confirmButton: "blue-button",
+                cancelButton: "red-button",
               },
               didOpen: () => {
-                const popup = document.querySelector('.swal2-popup');
-                if (popup) popup.setAttribute('dir', 'rtl');
-              }
+                const popup = document.querySelector(".swal2-popup");
+                if (popup) popup.setAttribute("dir", "rtl");
+              },
             });
           })
           .catch((error) => {
@@ -83,14 +83,14 @@ function Holidays() {
               icon: "error",
               confirmButtonText: "حسناً",
               customClass: {
-                title: 'text-blue',
-                confirmButton: 'blue-button',
-                cancelButton: 'red-button'
+                title: "text-blue",
+                confirmButton: "blue-button",
+                cancelButton: "red-button",
               },
               didOpen: () => {
-                const popup = document.querySelector('.swal2-popup');
-                if (popup) popup.setAttribute('dir', 'rtl');
-              }
+                const popup = document.querySelector(".swal2-popup");
+                if (popup) popup.setAttribute("dir", "rtl");
+              },
             });
           });
       }
@@ -98,7 +98,13 @@ function Holidays() {
   };
 
   if (!holidays || holidays.length === 0) {
-    return <LoadingOrError data={holidays} btnTitle="إضافة اجازة رسمية" btnLink="/add-holiday" />;
+    return (
+      <LoadingOrError
+        data={holidays}
+        btnTitle="إضافة اجازة رسمية"
+        btnLink="/add-holiday"
+      />
+    );
   }
 
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -110,7 +116,9 @@ function Holidays() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
-          <h2 className="m-0">الاجازات الرسمية</h2>
+          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
+            الاجازات الرسمية
+          </h2>
         </div>
         <div className="p-3">
           <BtnLink
@@ -140,12 +148,16 @@ function Holidays() {
               </tr>
             </thead>
             <tbody>
-              {currentRows.length > 0 && (
+              {currentRows.length > 0 &&
                 currentRows.map((holiday, index) => (
                   <tr>
-                    <th style={{ height: "50px" }}>#{(indexOfFirstRow + index + 1).toLocaleString('ar-EG')}</th>
+                    <th style={{ height: "50px" }}>
+                      #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
+                    </th>
                     <th style={{ height: "50px" }}>{holiday.name}</th>
-                    <th>{new Date(holiday.date).toLocaleDateString('ar-EG')}</th>
+                    <th>
+                      {new Date(holiday.date).toLocaleDateString("ar-EG")}
+                    </th>
                     <th style={{ height: "50px" }}>
                       <Link to={`/holiday/edit/${holiday.id}`}>
                         <FontAwesomeIcon
@@ -163,9 +175,7 @@ function Holidays() {
                       />
                     </th>
                   </tr>
-
-                ))
-              )}
+                ))}
             </tbody>
           </table>
           {holidays.length > rowsPerPage && (

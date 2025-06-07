@@ -3,7 +3,10 @@ import BtnLink from "../components/BtnLink";
 import { BASE_API_URL, rowsPerPage, token } from "../server/serves";
 import LoadingOrError from "../components/LoadingOrError";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleCheck,
+  faCircleXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 
 function DesPermits() {
@@ -47,8 +50,8 @@ function DesPermits() {
   }, []);
 
   const handleLeaveUpdate = async () => {
-    const inputId = 'user-input-datalist';
-    const datalistId = 'users-datalist';
+    const inputId = "user-input-datalist";
+    const datalistId = "users-datalist";
 
     const { value: selectedUserId } = await Swal.fire({
       title: "اختر الموظف",
@@ -64,7 +67,12 @@ function DesPermits() {
         </style>
         <input id="${inputId}" class="swal2-input" list="${datalistId}" placeholder="اختر موظفًا">
         <datalist id="${datalistId}">
-          ${users.map(user => `<option value="${user.fullName}" data-id="${user.id}"></option>`).join('')}
+          ${users
+            .map(
+              (user) =>
+                `<option value="${user.fullName}" data-id="${user.id}"></option>`
+            )
+            .join("")}
         </datalist>
       `,
       focusConfirm: false,
@@ -78,8 +86,9 @@ function DesPermits() {
           Swal.showValidationMessage("يجب اختيار موظف");
           return;
         }
-        const option = [...document.querySelectorAll(`#${datalistId} option`)]
-          .find(opt => opt.value === selectedName);
+        const option = [
+          ...document.querySelectorAll(`#${datalistId} option`),
+        ].find((opt) => opt.value === selectedName);
         if (!option) {
           Swal.showValidationMessage("الموظف غير موجود بالقائمة");
           return;
@@ -87,123 +96,128 @@ function DesPermits() {
         return option.dataset.id;
       },
       customClass: {
-        title: 'text-blue',
-        confirmButton: 'blue-button',
-        cancelButton: 'red-button'
+        title: "text-blue",
+        confirmButton: "blue-button",
+        cancelButton: "red-button",
       },
       didOpen: () => {
-        const popup = document.querySelector('.swal2-popup');
-        if (popup) popup.setAttribute('dir', 'rtl');
-      }
+        const popup = document.querySelector(".swal2-popup");
+        if (popup) popup.setAttribute("dir", "rtl");
+      },
     });
 
     if (!selectedUserId) return;
 
     const { value: days } = await Swal.fire({
-      title: 'كم عدد الأيام التي تريد خصمها؟',
-      input: 'number',
-      inputPlaceholder: 'مثال: 3',
+      title: "كم عدد الأيام التي تريد خصمها؟",
+      input: "number",
+      inputPlaceholder: "مثال: 3",
       showCancelButton: true,
-      confirmButtonText: 'التالي',
-      cancelButtonText: 'إلغاء',
+      confirmButtonText: "التالي",
+      cancelButtonText: "إلغاء",
       customClass: {
-        title: 'text-blue',
-        confirmButton: 'blue-button',
-        cancelButton: 'red-button'
+        title: "text-blue",
+        confirmButton: "blue-button",
+        cancelButton: "red-button",
       },
-      inputValidator: (value) => (!value || isNaN(value) || parseInt(value) <= 0) && 'يرجى إدخال رقم أكبر من صفر',
+      inputValidator: (value) =>
+        (!value || isNaN(value) || parseInt(value) <= 0) &&
+        "يرجى إدخال رقم أكبر من صفر",
       didOpen: () => {
-        const popup = document.querySelector('.swal2-popup');
-        if (popup) popup.setAttribute('dir', 'rtl');
-      }
+        const popup = document.querySelector(".swal2-popup");
+        if (popup) popup.setAttribute("dir", "rtl");
+      },
     });
 
     if (days === undefined) return;
 
     const { value: notes } = await Swal.fire({
-      title: 'يرجى كتابة ملاحظة توضح سبب الخصم',
-      input: 'textarea',
-      inputPlaceholder: 'مثال: تم خصم أيام بسبب غياب غير مبرر',
+      title: "يرجى كتابة ملاحظة توضح سبب الخصم",
+      input: "textarea",
+      inputPlaceholder: "مثال: تم خصم أيام بسبب غياب غير مبرر",
       showCancelButton: true,
-      confirmButtonText: 'تنفيذ',
-      cancelButtonText: 'إلغاء',
+      confirmButtonText: "تنفيذ",
+      cancelButtonText: "إلغاء",
       customClass: {
-        title: 'text-blue',
-        confirmButton: 'blue-button',
-        cancelButton: 'red-button'
+        title: "text-blue",
+        confirmButton: "blue-button",
+        cancelButton: "red-button",
       },
-      inputValidator: (value) => (!value || value.trim() === '') && 'الملاحظة مطلوبة',
+      inputValidator: (value) =>
+        (!value || value.trim() === "") && "الملاحظة مطلوبة",
       didOpen: () => {
-        const popup = document.querySelector('.swal2-popup');
-        if (popup) popup.setAttribute('dir', 'rtl');
-      }
+        const popup = document.querySelector(".swal2-popup");
+        if (popup) popup.setAttribute("dir", "rtl");
+      },
     });
 
     if (notes === undefined) return;
 
     try {
-      const response = await fetch(`${BASE_API_URL}/api/NormalLeave/MinusOrAddNormalLeavesToUser/${selectedUserId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          days: parseInt(days),
-          decision: false,
-          notes: notes.trim()
-        })
-      });
+      const response = await fetch(
+        `${BASE_API_URL}/api/NormalLeave/MinusOrAddNormalLeavesToUser/${selectedUserId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            days: parseInt(days),
+            decision: false,
+            notes: notes.trim(),
+          }),
+        }
+      );
 
       if (response.ok) {
         Swal.fire({
-          title: 'تم خصم الأيام بنجاح',
-          icon: 'success',
+          title: "تم خصم الأيام بنجاح",
+          icon: "success",
           confirmButtonText: "حسنًا",
           customClass: {
-            title: 'text-blue',
-            confirmButton: 'blue-button',
-            cancelButton: 'red-button'
+            title: "text-blue",
+            confirmButton: "blue-button",
+            cancelButton: "red-button",
           },
           didOpen: () => {
-            const popup = document.querySelector('.swal2-popup');
-            if (popup) popup.setAttribute('dir', 'rtl');
-          }
+            const popup = document.querySelector(".swal2-popup");
+            if (popup) popup.setAttribute("dir", "rtl");
+          },
         }).then(() => window.location.reload());
       } else {
         Swal.fire({
-          title: 'حدث خطأ أثناء الخصم',
-          icon: 'error',
+          title: "حدث خطأ أثناء الخصم",
+          icon: "error",
           confirmButtonText: "حسنًا",
           customClass: {
-            title: 'text-red',
-            confirmButton: 'blue-button',
-            cancelButton: 'red-button'
+            title: "text-red",
+            confirmButton: "blue-button",
+            cancelButton: "red-button",
           },
           didOpen: () => {
-            const popup = document.querySelector('.swal2-popup');
-            if (popup) popup.setAttribute('dir', 'rtl');
-          }
+            const popup = document.querySelector(".swal2-popup");
+            if (popup) popup.setAttribute("dir", "rtl");
+          },
         });
       }
     } catch (error) {
       Swal.fire({
-        title: 'تعذر الاتصال بالخادم',
-        icon: 'error',
+        title: "تعذر الاتصال بالخادم",
+        icon: "error",
         confirmButtonText: "حسنًا",
         customClass: {
-          title: 'text-red',
-          confirmButton: 'blue-button',
-          cancelButton: 'red-button'
+          title: "text-red",
+          confirmButton: "blue-button",
+          cancelButton: "red-button",
         },
         didOpen: () => {
-          const popup = document.querySelector('.swal2-popup');
-          if (popup) popup.setAttribute('dir', 'rtl');
-        }
+          const popup = document.querySelector(".swal2-popup");
+          if (popup) popup.setAttribute("dir", "rtl");
+        },
       });
     }
   };
-
 
   useEffect(() => {
     fetch(`${BASE_API_URL}/api/PermitLeave/GetAllPermitLeaves`, {
@@ -236,22 +250,25 @@ function DesPermits() {
       confirmButtonText: "نعم، احتساب!",
       cancelButtonText: "إلغاء",
       customClass: {
-        title: 'text-blue',
-        confirmButton: 'blue-button',
-        cancelButton: 'red-button'
+        title: "text-blue",
+        confirmButton: "blue-button",
+        cancelButton: "red-button",
       },
       didOpen: () => {
-        const popup = document.querySelector('.swal2-popup');
-        if (popup) popup.setAttribute('dir', 'rtl');
-      }
+        const popup = document.querySelector(".swal2-popup");
+        if (popup) popup.setAttribute("dir", "rtl");
+      },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`${BASE_API_URL}/api/PermitLeave/SoftDeletePermitLeave/${permitId}`, {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        fetch(
+          `${BASE_API_URL}/api/PermitLeave/SoftDeletePermitLeave/${permitId}`,
+          {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
           .then(async (response) => {
             const data = await response.json();
             if (!response.ok) {
@@ -266,13 +283,13 @@ function DesPermits() {
               icon: "success",
               confirmButtonText: "حسنًا",
               customClass: {
-                title: 'text-blue',
-                confirmButton: 'blue-button',
+                title: "text-blue",
+                confirmButton: "blue-button",
               },
               didOpen: () => {
-                const popup = document.querySelector('.swal2-popup');
-                if (popup) popup.setAttribute('dir', 'rtl');
-              }
+                const popup = document.querySelector(".swal2-popup");
+                if (popup) popup.setAttribute("dir", "rtl");
+              },
             }).then(() => {
               window.location.reload();
             });
@@ -283,13 +300,13 @@ function DesPermits() {
               text: error.message,
               icon: "error",
               customClass: {
-                title: 'text-blue',
-                confirmButton: 'blue-button',
+                title: "text-blue",
+                confirmButton: "blue-button",
               },
               didOpen: () => {
-                const popup = document.querySelector('.swal2-popup');
-                if (popup) popup.setAttribute('dir', 'rtl');
-              }
+                const popup = document.querySelector(".swal2-popup");
+                if (popup) popup.setAttribute("dir", "rtl");
+              },
             });
           });
       }
@@ -300,14 +317,12 @@ function DesPermits() {
     return <LoadingOrError data={permitLeaves} />;
   }
 
-
   const filteredRows = permitLeaves
     .filter((permit) => {
       const query = searchQuery.trim().toLowerCase();
 
       // فلترة بحث نصي على الاسم أو عدد الساعات فقط
-      const matchesSearch =
-        permit.userName.toLowerCase().includes(query)
+      const matchesSearch = permit.userName.toLowerCase().includes(query);
 
       // فلترة حسب حالة التصريح بناءً على filterStatus
       const matchesStatus =
@@ -334,10 +349,16 @@ function DesPermits() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
-          <h2 className="m-0">سجل التصاريح</h2>
+          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
+            سجل التصاريح
+          </h2>
         </div>
 
-        <button className="m-3 btn btn-primary" onClick={handleLeaveUpdate}>
+        <button
+          style={{ whiteSpace: "nowrap" }}
+          className="m-3 btn btn-primary"
+          onClick={handleLeaveUpdate}
+        >
           تعديل عدد أيام الاجازات
         </button>
       </div>
@@ -374,7 +395,11 @@ function DesPermits() {
                 <th style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
                 <th style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
                 <th style={{ backgroundColor: "#F5F9FF" }}>التاريخ</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>عدد الساعات</th>
+                <th
+                  style={{ backgroundColor: "#F5F9FF", whiteSpace: "nowrap" }}
+                >
+                  عدد الساعات
+                </th>
                 <th style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
                 <th style={{ backgroundColor: "#F5F9FF" }}>المزيد</th>
               </tr>
@@ -383,11 +408,16 @@ function DesPermits() {
               {currentRows.length > 0 ? (
                 currentRows.map((permit, index) => (
                   <tr key={permit.id}>
-                    <th>#{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}</th>
+                    <th>
+                      #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
+                    </th>
                     <th>{permit.userName}</th>
                     <th>{new Date(permit.date).toLocaleDateString("ar-EG")}</th>
-                    <th>
-                      {permit.hours.toString().replace(/[0-9]/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d])} ساعات
+                    <th style={{ whiteSpace: "nowrap", paddingRight: "30px" }}>
+                      {permit.hours
+                        .toString()
+                        .replace(/[0-9]/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d])}{" "}
+                      ساعات
                     </th>
                     <th>
                       <BtnLink
@@ -403,7 +433,11 @@ function DesPermits() {
                           icon={faCircleXmark}
                           onClick={() => softDeletePermit(permit.id)}
                           className="fontt"
-                          style={{ cursor: "pointer", marginLeft: "10px", color: "#ff0000" }}
+                          style={{
+                            cursor: "pointer",
+                            marginLeft: "10px",
+                            color: "#ff0000",
+                          }}
                         />
                       </th>
                     ) : (
@@ -432,22 +466,44 @@ function DesPermits() {
             <div className="d-flex justify-content-center mt-3">
               <nav>
                 <ul className="pagination">
-                  <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-                    <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>
+                  <li
+                    className={`page-item ${
+                      currentPage === 1 ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => setCurrentPage(currentPage - 1)}
+                    >
                       السابق
                     </button>
                   </li>
 
                   {Array.from({ length: totalPages }, (_, i) => (
-                    <li key={i} className={`page-item ${currentPage === i + 1 ? "active" : ""}`}>
-                      <button className="page-link" onClick={() => setCurrentPage(i + 1)}>
+                    <li
+                      key={i}
+                      className={`page-item ${
+                        currentPage === i + 1 ? "active" : ""
+                      }`}
+                    >
+                      <button
+                        className="page-link"
+                        onClick={() => setCurrentPage(i + 1)}
+                      >
                         {i + 1}
                       </button>
                     </li>
                   ))}
 
-                  <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
-                    <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>
+                  <li
+                    className={`page-item ${
+                      currentPage === totalPages ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => setCurrentPage(currentPage + 1)}
+                    >
                       التالي
                     </button>
                   </li>

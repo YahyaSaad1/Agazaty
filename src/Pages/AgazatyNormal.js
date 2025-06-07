@@ -3,7 +3,7 @@ import BtnLink from "../components/BtnLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
 import { BASE_API_URL, rowsPerPage, token, userID } from "../server/serves";
-  import { FaRegFolderOpen } from "react-icons/fa";
+import { FaRegFolderOpen } from "react-icons/fa";
 import LoadingOrError from "../components/LoadingOrError";
 function AgazatyNormal() {
   const [normalLeaves, setNormalLeaves] = useState(null); // null معناها جاري التحميل
@@ -30,11 +30,9 @@ function AgazatyNormal() {
       });
   }, []);
 
-
-    if (!normalLeaves || normalLeaves.length === 0) {
-      return <LoadingOrError data={normalLeaves} />;
-    }
-
+  if (!normalLeaves || normalLeaves.length === 0) {
+    return <LoadingOrError data={normalLeaves} />;
+  }
 
   // Pagination calculations
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -46,7 +44,9 @@ function AgazatyNormal() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
-          <h2 className="m-0">سجل الاجازات الاعتيادية</h2>
+          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
+            سجل الاجازات الاعتيادية
+          </h2>
         </div>
       </div>
       <div className="row">
@@ -68,10 +68,19 @@ function AgazatyNormal() {
             <tbody>
               {currentRows.map((leave, index) => (
                 <tr key={index}>
-                  <th>#{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}</th>
-                  <th>{new Date(leave.startDate).toLocaleDateString("ar-EG")}</th>
+                  <th>
+                    #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
+                  </th>
+                  <th>
+                    {new Date(leave.startDate).toLocaleDateString("ar-EG")}
+                  </th>
                   <th>{new Date(leave.endDate).toLocaleDateString("ar-EG")}</th>
-                  <th>{leave.days.toString().replace(/[0-9]/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d])} أيام</th>
+                  <th>
+                    {leave.days
+                      .toString()
+                      .replace(/[0-9]/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d])}{" "}
+                    أيام
+                  </th>
                   <th>{leave.coworkerName}</th>
                   <th>{leave.notesFromEmployee || "بدون"}</th>
                   <th
@@ -90,7 +99,12 @@ function AgazatyNormal() {
                       : "مرفوضة"}
                   </th>
                   <th>
-                    <FontAwesomeIcon icon={faPrint} fontSize={"26px"} color="blue" className="printer" />
+                    <FontAwesomeIcon
+                      icon={faPrint}
+                      fontSize={"26px"}
+                      color="blue"
+                      className="printer"
+                    />
                   </th>
                   <th>
                     <BtnLink
@@ -115,27 +129,48 @@ function AgazatyNormal() {
             >
               <nav>
                 <ul className="pagination">
-                  <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+                  <li
+                    className={`page-item ${
+                      currentPage === 1 ? "disabled" : ""
+                    }`}
+                  >
                     <button
                       className="page-link"
-                      onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
+                      onClick={() =>
+                        currentPage > 1 && setCurrentPage(currentPage - 1)
+                      }
                     >
                       السابق
                     </button>
                   </li>
 
                   {Array.from({ length: totalPages }, (_, i) => (
-                    <li key={i} className={`page-item ${currentPage === i + 1 ? "active" : ""}`}>
-                      <button className="page-link" onClick={() => setCurrentPage(i + 1)}>
+                    <li
+                      key={i}
+                      className={`page-item ${
+                        currentPage === i + 1 ? "active" : ""
+                      }`}
+                    >
+                      <button
+                        className="page-link"
+                        onClick={() => setCurrentPage(i + 1)}
+                      >
                         {i + 1}
                       </button>
                     </li>
                   ))}
 
-                  <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
+                  <li
+                    className={`page-item ${
+                      currentPage === totalPages ? "disabled" : ""
+                    }`}
+                  >
                     <button
                       className="page-link"
-                      onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
+                      onClick={() =>
+                        currentPage < totalPages &&
+                        setCurrentPage(currentPage + 1)
+                      }
                     >
                       التالي
                     </button>

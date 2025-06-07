@@ -1,81 +1,78 @@
-import { Navigate, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
-import './App.css';
-import Login from './Pages/Login';
-import LoginCom from './components/LoginCom';
-import ForgetPassword from './components/ForgetPassword';
-import OTPCode from './components/OTPCode';
-import ResetPassword from './components/ResetPassword';
-import About from './Pages/About';
-import Messages from './Pages/Messages';
-import NavBar from './components/NavBar';
-import SideBar from './components/SideBar';
-import Home from './Pages/Home';
-import Profile from './Pages/Profile';
-import EditProfile from './Pages/EditProfile';
-import Sitting from './Pages/Sitting';
-import AddDepartment from './Pages/AddDepartment';
-import Departments from './Pages/Departments';
-import Employees from './Pages/Employees';
-import AddEmployee from './Pages/AddEmployee';
-import LeaveRecord from './Pages/LeaveRecord';
-import EditDepartment from './Pages/EditDepartment';
-import Inquiries from './Pages/Inquiries';
-import NormalLeave from './components/NormalLeave';
-import SickLeave from './components/SickLeave';
-import CasualLeave from './components/CasualLeave';
-import NormalLeaveRequest from './Pages/NormalLeaveRequest';
-import SickLeaveRequest from './components/SickLeaveRequest';
-import EditPassword from './components/EditPassword';
-import Archives from './Pages/Archives';
-import CasualLeaveRequestManger from './Pages/NormalLeaveRequestManager';
-import NormalRequestManager from './Pages/NormalLeaveRequestGeneralManager';
-import UpdateNormalLeave from './Pages/UpdateNormalLeave';
-import EditEmployeeForHR from './Pages/EditEmployee';
-import ExceptionalLeave from './Pages/ExceptionalLeave';
-import SickLeavesRecord2 from './Pages/SickLeavesRecord2';
-import UpdateSickLeave from './components/UpdateSickLeave';
-import UpdateSickLeave2 from './components/UpdateSickLeave2';
-import DesNormal from './Pages/DesNormal';
-import DesCasual from './Pages/DesCasual';
-import DesSick from './Pages/DesSick';
-import DesPermit from './Pages/DesParameter';
-import Permit from './Pages/Permit';
-import PermitLeave from './Pages/PermitLeave';
-import ProfileForHR from './Pages/ProfileForHR';
-import AgazatyNormal from './Pages/AgazatyNormal';
-import AgazatySick from './Pages/AgazatySick';
-import AgazatyCasual from './Pages/AgazatyCasual';
-import UserNormalLeaveRequest from './Pages/UserNormalLeaveRequest';
-import UserCasualLeaveRequest from './Pages/UserCasualLeaveRequest';
-import UserSickLeaveRequest from './Pages/SickLeaveRequest-User';
-import Error404 from './Pages/Error404';
-import Holidays from './Pages/Holiday';
-import AddHoliday from './Pages/AddHoliday';
-import EditHoliday from './Pages/EditHoliday';
-import UploadUsersExcel from './Pages/UploadUsersExcel';
-import RequireAuth from './RequireAuth';
-import Error403 from './Pages/Error403';
-import Team from './Pages/Team';
-import ChatBot from './Pages/ChatBot';
-import LandingPage from './Pages/LandingPage';
-import AgazatyPermit from './Pages/AgazatyPermit';
-import React from 'react';
-import CasualRequestManager from './Pages/CasualRequestManager';
-import CasualLeaveRecord from './Pages/CasualLeaveRecord';
-import Amazon from './Pages/Amazon';
-import Leaves from './Pages/Leaves';
-import SickLeaveRecord from './Pages/SickLeaveRecord';
-import SickRequestManager from './Pages/SickRequestManager';
+import { Navigate, Outlet, Route, Routes, useNavigate } from "react-router-dom";
+import "./App.css";
+import Login from "./Pages/Login";
+import LoginCom from "./components/LoginCom";
+import ForgetPassword from "./components/ForgetPassword";
+import OTPCode from "./components/OTPCode";
+import ResetPassword from "./components/ResetPassword";
+import About from "./Pages/About";
+import Messages from "./Pages/Messages";
+import NavBar from "./components/NavBar";
+import SideBar from "./components/SideBar";
+import Home from "./Pages/Home";
+import Profile from "./Pages/Profile";
+import EditProfile from "./Pages/EditProfile";
+import Sitting from "./Pages/Sitting";
+import AddDepartment from "./Pages/AddDepartment";
+import Departments from "./Pages/Departments";
+import Employees from "./Pages/Employees";
+import AddEmployee from "./Pages/AddEmployee";
+import LeaveRecord from "./Pages/LeaveRecord";
+import EditDepartment from "./Pages/EditDepartment";
+import Inquiries from "./Pages/Inquiries";
+import NormalLeave from "./components/NormalLeave";
+import SickLeave from "./components/SickLeave";
+import CasualLeave from "./components/CasualLeave";
+import NormalLeaveRequest from "./Pages/NormalLeaveRequest";
+import SickLeaveRequest from "./components/SickLeaveRequest";
+import EditPassword from "./components/EditPassword";
+import Archives from "./Pages/Archives";
+import CasualLeaveRequestManger from "./Pages/NormalLeaveRequestManager";
+import NormalRequestManager from "./Pages/NormalLeaveRequestGeneralManager";
+import UpdateNormalLeave from "./Pages/UpdateNormalLeave";
+import EditEmployeeForHR from "./Pages/EditEmployee";
+import ExceptionalLeave from "./Pages/ExceptionalLeave";
+import SickLeavesRecord2 from "./Pages/SickLeavesRecord2";
+import UpdateSickLeave from "./components/UpdateSickLeave";
+import UpdateSickLeave2 from "./components/UpdateSickLeave2";
+import DesNormal from "./Pages/DesNormal";
+import DesCasual from "./Pages/DesCasual";
+import DesSick from "./Pages/DesSick";
+import DesPermit from "./Pages/DesParameter";
+import Permit from "./Pages/Permit";
+import PermitLeave from "./Pages/PermitLeave";
+import ProfileForHR from "./Pages/ProfileForHR";
+import AgazatyNormal from "./Pages/AgazatyNormal";
+import AgazatySick from "./Pages/AgazatySick";
+import AgazatyCasual from "./Pages/AgazatyCasual";
+import UserNormalLeaveRequest from "./Pages/UserNormalLeaveRequest";
+import UserCasualLeaveRequest from "./Pages/UserCasualLeaveRequest";
+import UserSickLeaveRequest from "./Pages/SickLeaveRequest-User";
+import Error404 from "./Pages/Error404";
+import Holidays from "./Pages/Holiday";
+import AddHoliday from "./Pages/AddHoliday";
+import EditHoliday from "./Pages/EditHoliday";
+import UploadUsersExcel from "./Pages/UploadUsersExcel";
+import RequireAuth from "./RequireAuth";
+import Error403 from "./Pages/Error403";
+import Team from "./Pages/Team";
+import ChatBot from "./Pages/ChatBot";
+import LandingPage from "./Pages/LandingPage";
+import AgazatyPermit from "./Pages/AgazatyPermit";
+import React from "react";
+import CasualRequestManager from "./Pages/CasualRequestManager";
+import CasualLeaveRecord from "./Pages/CasualLeaveRecord";
+import Amazon from "./Pages/Amazon";
+import Leaves from "./Pages/Leaves";
+import SickLeaveRecord from "./Pages/SickLeaveRecord";
+import SickRequestManager from "./Pages/SickRequestManager";
 
 function App() {
-
   // const userID = "23651146325632" // ساره
   // const userID = "30203633632333"; // أمين
   // const userID = "20233362565777" // عبدالله
   // const userID = "20233362565777" // يحيى
   // const userID = "20233362565777" // احمد علي
-
-
 
   // const userID = "12345678991111" // نجوى
   // const userID = "20210562565999"; // ندى
@@ -83,27 +80,19 @@ function App() {
   // const userID = "30236542365236" // عماد
   // const userID = "30309092701066"; // مجدي
 
-
-
   const ErrorBoundary = ({ children }) => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const handleError = (status) => {
-    if (status === 403) {
-      navigate('/error403');
-    } else if (status === 404) {
-      navigate('/error404');
-    }
+    const handleError = (status) => {
+      if (status === 403) {
+        navigate("/error403");
+      } else if (status === 404) {
+        navigate("/error404");
+      }
+    };
+
+    return <div>{React.cloneElement(children, { handleError })}</div>;
   };
-
-  return (
-    <div>
-      {React.cloneElement(children, { handleError })}
-    </div>
-  );
-};
-
-
 
   return (
     <div className="App" dir="rtl">
@@ -116,30 +105,34 @@ function App() {
           <Route path="resetpassword" element={<ResetPassword />} />
         </Route>
 
-        <Route path='LandingBage' element={<LandingPage />} />
-
+        <Route path="LandingBage" element={<LandingPage />} />
 
         <Route path="agazaty" element={<Team />} />
         <Route path="ChatBot" element={<ChatBot />} />
 
-        <Route element={<RequireAuth/>}>
+        <Route element={<RequireAuth />}>
           <Route path="error403" element={<Error403 />} />
           <Route path="error404" element={<Error404 />} />
           <Route
             path="/"
             element={
               <div className="row d-flex" style={{ height: "100vh" }}>
-                <div className="col-2 col-xl-1 col-xxl-2 sidebar p-0" style={{ height: "100%", overflowY: "auto" }}>
+                <div
+                  className="col-2 col-xl-1 col-xxl-2 sidebar p-0"
+                  style={{ height: "100%", overflowY: "auto" }}
+                >
                   <SideBar />
                 </div>
 
-                <div className="col p-0" style={{ height: "100%", overflowY: "auto" }}>
+                <div
+                  className="col p-0"
+                  style={{ height: "100%", overflowY: "auto" }}
+                >
                   <NavBar />
                   <Outlet />
                 </div>
               </div>
             }
-
           >
             {/* خلصان */}
             <Route index element={<Home />} />
@@ -161,15 +154,30 @@ function App() {
             <Route path="agazaty/sick" element={<AgazatySick />} />
             <Route path="agazaty/permit" element={<AgazatyPermit />} />
 
-            
-            <Route path="normal-leave-request/:LeaveID" element={
-              <ErrorBoundary>
-              <NormalLeaveRequest />
-              </ErrorBoundary>} />
-            <Route path="casual-leave-request/:id" element={<CasualLeaveRequestManger />} />
-            <Route path="sick-leave-request/:leaveID" element={<SickLeaveRequest />} />
-            <Route path="update-sick-leave/:leaveID" element={<UpdateSickLeave />} />
-            <Route path="update-sick-leave2/:leaveID" element={<UpdateSickLeave2 />} />
+            <Route
+              path="normal-leave-request/:LeaveID"
+              element={
+                <ErrorBoundary>
+                  <NormalLeaveRequest />
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="casual-leave-request/:id"
+              element={<CasualLeaveRequestManger />}
+            />
+            <Route
+              path="sick-leave-request/:leaveID"
+              element={<SickLeaveRequest />}
+            />
+            <Route
+              path="update-sick-leave/:leaveID"
+              element={<UpdateSickLeave />}
+            />
+            <Route
+              path="update-sick-leave2/:leaveID"
+              element={<UpdateSickLeave2 />}
+            />
             <Route path="permit-leave/:permitID" element={<PermitLeave />} />
             <Route path="inquiries" element={<Inquiries />} />
             <Route path="editprofile" element={<EditProfile />} />
@@ -186,14 +194,24 @@ function App() {
             <Route path="sitting" element={<Sitting />} />
             {/* <Route path="archives" element={<Archives />} /> */}
 
-
-            <Route path="update-normal-leave/:leaveID" element={<UpdateNormalLeave />} />
-
+            <Route
+              path="update-normal-leave/:leaveID"
+              element={<UpdateNormalLeave />}
+            />
 
             {/* عرض الاجازة بشكل منفصل */}
-            <Route path="manager-normal-leave-request/:id" element={<NormalRequestManager />} />
-            <Route path="manager-casual-leave-request/:id" element={<CasualRequestManager />} />
-            <Route path="manager-sick-leave-request/:id" element={<SickRequestManager />} />
+            <Route
+              path="manager-normal-leave-request/:id"
+              element={<NormalRequestManager />}
+            />
+            <Route
+              path="manager-casual-leave-request/:id"
+              element={<CasualRequestManager />}
+            />
+            <Route
+              path="manager-sick-leave-request/:id"
+              element={<SickRequestManager />}
+            />
 
             {/* سجل الاجازات الشامل */}
             <Route path="employee/:userId" element={<EditEmployeeForHR />} />
@@ -222,21 +240,25 @@ function App() {
 
             <Route path="profile/user/:userID" element={<ProfileForHR />} />
 
-
-
-
-
-            <Route path="user/normal-leave-request/:leaveID" element={<UserNormalLeaveRequest />} />
-            <Route path="user/casual-leave-request/:leaveID" element={
-              <ErrorBoundary>
-                <UserCasualLeaveRequest />
-              </ErrorBoundary>} />
-            <Route path="user/sick-leave-request/:leaveID" element={<UserSickLeaveRequest />} />
-
-
+            <Route
+              path="user/normal-leave-request/:leaveID"
+              element={<UserNormalLeaveRequest />}
+            />
+            <Route
+              path="user/casual-leave-request/:leaveID"
+              element={
+                <ErrorBoundary>
+                  <UserCasualLeaveRequest />
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="user/sick-leave-request/:leaveID"
+              element={<UserSickLeaveRequest />}
+            />
           </Route>
         </Route>
-            <Route path="*" element={<Error404 />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
   );
