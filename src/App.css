@@ -381,3 +381,7 @@
     border: 1px solid #565656;
     border-radius: 7px;
 }
+
+table th, table td{
+    white-space: nowrap;
+}
