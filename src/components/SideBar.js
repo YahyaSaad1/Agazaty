@@ -31,12 +31,8 @@ import {
 
 function SideBar() {
   const location = useLocation();
-  const navigate = useNavigate();
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [showLeaveOptions, setShowLeaveOptions] = useState(false);
-  const [showEmployeesOptions, setShowEmployeesOptions] = useState(false);
-  const [showLeavesOptions, setShowLeavesOptions] = useState(false);
-  const [showMyLeavesOptions, setShowMyLeavesOptions] = useState(false);
+
+  const [openDropdown, setOpenDropdown] = useState(null);
   const [leavesWating, setLeavesWating] = useState([]);
   const [leavesWatingForDirect, setLeavesWatingForDirect] = useState([]);
   const [leavesWatingForGeneral, setLeavesWatingForGeneral] = useState([]);
@@ -52,7 +48,6 @@ function SideBar() {
   const sidebarRef = useRef();
   const userData = useUserData();
 
-  // Fetch leave request data
   useEffect(() => {
     fetch(`${BASE_API_URL}/api/NormalLeave/WaitingByCoWorkerID/${userID}`, {
       method: "GET",
@@ -112,7 +107,7 @@ function SideBar() {
       .then((res) => res.json())
       .then((data) => setCasualLeavesWatingForGeneral(data))
       .catch((err) =>
-        console.error("Error fetching waiting casual leaves:", err)
+        console.error("Error fetching waiting leaves by general manager:", err)
       );
 
     fetch(
@@ -128,55 +123,52 @@ function SideBar() {
       .then((res) => res.json())
       .then((data) => setSickLeavesWatingForGeneral(data))
       .catch((err) =>
-        console.error("Error fetching waiting sick leaves for GM:", err)
+        console.error("Error fetching waiting leaves by general manager:", err)
       );
 
     fetch(`${BASE_API_URL}/api/SickLeave/GetAllWaitingSickLeavesForHR`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // إضافة التوكن هنا
       },
     })
       .then((res) => res.json())
       .then((data) => setWaitingSickLeaves(data))
-      .catch((err) =>
-        console.error("Error fetching waiting sick leaves:", err)
+      .catch((error) =>
+        console.error("Error fetching waiting sick leaves:", error)
       );
 
     fetch(`${BASE_API_URL}/api/SickLeave/GetAllWaitingCertifiedSickLeaves`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // إضافة التوكن هنا
       },
     })
       .then((res) => res.json())
       .then((data) => setWaitingCertifiedSickLeaves(data))
-      .catch((err) =>
-        console.error("Error fetching waiting certified sick leaves:", err)
+      .catch((error) =>
+        console.error("Error fetching waiting certified sick leaves:", error)
       );
   }, [userID]);
 
-  const toggleSidebar = () => {
-    setIsSidebarCollapsed(!isSidebarCollapsed);
+  const toggleDropdown = (name) => {
+    setOpenDropdown((prev) => (prev === name ? null : name));
   };
 
-  const toggleLeaveOptions = () => {
-    setShowLeaveOptions(!showLeaveOptions);
+  const handleClickOutside = (e) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+      setOpenDropdown(null);
+    }
   };
 
-  const toggleEmployeesOptions = () => {
-    setShowEmployeesOptions(!showEmployeesOptions);
-  };
-
-  const toggleLeavesOptions = () => {
-    setShowLeavesOptions(!showLeavesOptions);
-  };
-
-  const toggleMyLeavesOptions = () => {
-    setShowMyLeavesOptions(!showMyLeavesOptions);
-  };
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const renderLink = (
     title,
@@ -188,34 +180,21 @@ function SideBar() {
     badgeCount = 0
   ) => {
     const rolesArray = roles.split(",").map((role) => role.trim());
-    if (
-      !rolesArray.includes(roleName) &&
-      !(
-        roles === "هيئة تدريس, مدير الموارد البشرية, موظف" &&
-        userData.isDirectManager
-      )
-    )
-      return null;
+    if (!rolesArray.includes(roleName)) return null;
 
     return (
       <Link to={link} className={`link-SideBar ${extraClass}`} key={link}>
         <li
-          className={`${
+          className={`link-SideBar ${extraClass} ${
             location.pathname === link ? "active-link" : ""
           } tran position-relative`}
         >
           <FontAwesomeIcon
             icon={icon}
-            className="  col-xxl-2 pl-5"
+            className="col-sm-12 col-xxl-2 pl-5"
             style={{ fontSize: "1.6em" }}
           />
-          <span
-            className={`col-xl-8 d-none d-xxl-block d-xl-block ${
-              isSidebarCollapsed ? "d-none" : ""
-            }`}
-          >
-            {title}
-          </span>
+          <span className="col-xl-8 d-none d-xxl-block">{title}</span>
           <span className="tooltip-text d-block d-xxl-none">{title}</span>
           {hasBadge && badgeCount > 0 && (
             <span
@@ -244,51 +223,30 @@ function SideBar() {
     if (!rolesArray.includes(roleName)) return null;
 
     return (
-      <Link to={link} className={`link-SideBar2 ${extraClass}`} key={link}>
-        <ul
-          className={`p-0 ${extraClass} ${
-            location.pathname === link ? "active-link" : ""
-          } tran`}
-        >
-          <li
-            className={`d-none ${
-              isSidebarCollapsed ? "d-none" : "d-xxl-block d-xl-block"
-            }`}
-          >
-            {title}
-          </li>
-        </ul>
+      <Link to={link} className={`link-SideBar2 ${extraClass} tran`} key={link}>
+        <li className="d-none d-xxl-block">{title}</li>
       </Link>
     );
   };
 
+  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.clear();
     navigate("/login");
   };
 
   return (
-    <div
-      className={`SideBar ${isSidebarCollapsed ? "collapsed" : ""}`}
-      ref={sidebarRef}
-    >
-      <div className="sidebar-header">
+    <div className="pt-3 SideBar" ref={sidebarRef}>
+      <div>
         <Link
           to={"/agazaty"}
-          className="Agazaty text-center text-primary"
+          className="Agazaty d-flex text-center text-primary"
           title="معلومات عن النظام"
         >
-          {isSidebarCollapsed ? "أ" : "اجازاتي"}
+          اجازاتي
         </Link>
-        <button
-          className="sidebar-toggle btn btn-link p-0"
-          onClick={toggleSidebar}
-        >
-          <FontAwesomeIcon icon={faGear} />
-        </button>
       </div>
-
-      <div className="sidebar-content">
+      <div>
         <ul className="list-unstyled p-0 pt-2">
           {renderLink(
             "الرئيسية",
@@ -304,53 +262,20 @@ function SideBar() {
           )}
 
           {roleName !== "عميد الكلية" && (
-            <div className="position-relative">
-              <div className="link-SideBar">
-                <li onClick={toggleLeaveOptions} style={{ cursor: "pointer" }}>
-                  <FontAwesomeIcon
-                    icon={faCalendarPlus}
-                    className="  col-xxl-2 pl-5"
-                    style={{ fontSize: "1.6em" }}
-                  />
-                  <span
-                    className={`col-xl-8 d-none d-xxl-block d-xl-block ${
-                      isSidebarCollapsed ? "d-none" : ""
-                    }`}
-                  >
-                    طلب إجازة
-                  </span>
-                  <span className="tooltip-text d-block d-xxl-none">
-                    طلب إجازة
-                  </span>
-                </li>
-              </div>
-              <div className="leave-options-hover d-block d-xxl-none">
-                <ul className="list-unstyled">
-                  {renderSubLink(
-                    "اعتيادية",
-                    "/normal-leave",
-                    "أمين الكلية, مدير الموارد البشرية, هيئة تدريس, موظف"
-                  )}
-                  {renderSubLink(
-                    "عارضة",
-                    "/casual-leave",
-                    "أمين الكلية, مدير الموارد البشرية, هيئة تدريس, موظف"
-                  )}
-                  {renderSubLink(
-                    "مرضية",
-                    "/sick-leave",
-                    "أمين الكلية, مدير الموارد البشرية, هيئة تدريس, موظف"
-                  )}
-                </ul>
-              </div>
-              {showLeaveOptions && (
-                <ul
-                  className={`list-unstyled pl-4 ${
-                    isSidebarCollapsed
-                      ? "d-none"
-                      : "d-none d-xxl-block d-xl-block"
-                  }`}
-                >
+            <Link className="link-SideBar4">
+              <li onClick={() => toggleDropdown("leave")}>
+                <FontAwesomeIcon
+                  icon={faCalendarPlus}
+                  className="col-sm-12 col-xxl-2 pl-5"
+                  style={{ fontSize: "1.6em" }}
+                />
+                <span className="col-xl-8 d-none d-xxl-block">طلب اجازة</span>
+                <span className="tooltip-text d-block d-xxl-none">
+                  طلب اجازة
+                </span>
+              </li>
+              {openDropdown === "leave" && (
+                <ul className="list-unstyled pl-4 d-none d-xxl-block">
                   {renderSubLink(
                     "اعتيادية",
                     "/normal-leave",
@@ -368,7 +293,7 @@ function SideBar() {
                   )}
                 </ul>
               )}
-            </div>
+            </Link>
           )}
 
           {renderLink(
@@ -380,63 +305,21 @@ function SideBar() {
             true,
             leavesWating.length
           )}
+          {/* {renderLink('طلبات الاجازات', faHandshake, '/leaves', 'أمين الكلية, عميد الكلية, مدير الموارد البشرية, هيئة تدريس, موظف', '', true, leavesWating.length)} */}
 
           {roleName !== "عميد الكلية" && (
-            <div className="position-relative">
-              <div className="link-SideBar">
-                <li
-                  onClick={toggleMyLeavesOptions}
-                  style={{ cursor: "pointer" }}
-                >
-                  <FontAwesomeIcon
-                    icon={faCalendarDays}
-                    className="  col-xxl-2 pl-5"
-                    style={{ fontSize: "1.6em" }}
-                  />
-                  <span
-                    className={`col-xl-8  d-none  d-xxl-block d-xl-block ${
-                      isSidebarCollapsed ? "d-none" : ""
-                    }`}
-                  >
-                    اجازاتي
-                  </span>
-                  <span className="tooltip-text d-block d-xxl-none">
-                    اجازاتي
-                  </span>
-                </li>
-              </div>
-              <div className="leave-options-hover d-block d-xxl-none">
-                <ul className="list-unstyled">
-                  {renderSubLink(
-                    "اعتيادية",
-                    "/agazaty/normal",
-                    "أمين الكلية, مدير الموارد البشرية, هيئة تدريس, موظف"
-                  )}
-                  {renderSubLink(
-                    "عارضة",
-                    "/agazaty/casual",
-                    "أمين الكلية, مدير الموارد البشرية, هيئة تدريس, موظف"
-                  )}
-                  {renderSubLink(
-                    "مرضية",
-                    "/agazaty/sick",
-                    "أمين الكلية, مدير الموارد البشرية, هيئة تدريس, موظف"
-                  )}
-                  {renderSubLink(
-                    "تصاريح",
-                    "/agazaty/permit",
-                    "أمين الكلية, مدير الموارد البشرية, هيئة تدريس, موظف"
-                  )}
-                </ul>
-              </div>
-              {showMyLeavesOptions && (
-                <ul
-                  className={`list-unstyled pl-4 ${
-                    isSidebarCollapsed
-                      ? "d-none"
-                      : "d-none d-xxl-block d-xl-block"
-                  }`}
-                >
+            <Link className="link-SideBar4">
+              <li onClick={() => toggleDropdown("myLeaves")}>
+                <FontAwesomeIcon
+                  icon={faCalendarDays}
+                  className="col-sm-12 col-xxl-2 pl-5"
+                  style={{ fontSize: "1.6em" }}
+                />
+                <span className="col-xl-8 d-none d-xxl-block">اجازاتي</span>
+                <span className="tooltip-text d-block d-xxl-none">اجازاتي</span>
+              </li>
+              {openDropdown === "myLeaves" && (
+                <ul className="list-unstyled pl-4 d-none d-xxl-block">
                   {renderSubLink(
                     "اعتيادية",
                     "/agazaty/normal",
@@ -459,7 +342,7 @@ function SideBar() {
                   )}
                 </ul>
               )}
-            </div>
+            </Link>
           )}
 
           {renderLink(
@@ -477,56 +360,20 @@ function SideBar() {
 
           {(roleName === "عميد الكلية" ||
             roleName === "مدير الموارد البشرية") && (
-            <div className="position-relative">
-              <div className="link-SideBar">
-                <li
-                  onClick={toggleEmployeesOptions}
-                  style={{ cursor: "pointer" }}
-                >
-                  <FontAwesomeIcon
-                    icon={faUsers}
-                    className="  col-xxl-2 pl-5"
-                    style={{ fontSize: "1.6em" }}
-                  />
-                  <span
-                    className={`col-xl-8 d-none d-xxl-block d-xl-block ${
-                      isSidebarCollapsed ? "d-none" : ""
-                    }`}
-                  >
-                    الموظفين
-                  </span>
-                  <span className="tooltip-text d-block d-xxl-none">
-                    الموظفين
-                  </span>
-                </li>
-              </div>
-              <div className="leave-options-hover d-block d-xxl-none">
-                <ul className="list-unstyled">
-                  {renderSubLink(
-                    "الموظفين النشطين",
-                    "/employees/active",
-                    "أمين الكلية, عميد الكلية, مدير الموارد البشرية"
-                  )}
-                  {renderSubLink(
-                    "الموظفين غير النشطين",
-                    "/employees/nonactive",
-                    "أمين الكلية, عميد الكلية, مدير الموارد البشرية"
-                  )}
-                  {renderSubLink(
-                    "رفع موظف",
-                    "/UploadUsersExcel",
-                    "مدير الموارد البشرية"
-                  )}
-                </ul>
-              </div>
-              {showEmployeesOptions && (
-                <ul
-                  className={`list-unstyled pl-4 ${
-                    isSidebarCollapsed
-                      ? "d-none"
-                      : "d-none d-xxl-block d-xl-block"
-                  }`}
-                >
+            <Link className="link-SideBar4">
+              <li onClick={() => toggleDropdown("employees")}>
+                <FontAwesomeIcon
+                  icon={faUsers}
+                  className="col-sm-12 col-xxl-2 pl-5"
+                  style={{ fontSize: "1.6em" }}
+                />
+                <span className="col-xl-8 d-none d-xxl-block">الموظفين</span>
+                <span className="tooltip-text d-block d-xxl-none">
+                  الموظفين
+                </span>
+              </li>
+              {openDropdown === "employees" && (
+                <ul className="list-unstyled pl-4 d-none d-xxl-block">
                   {renderSubLink(
                     "الموظفين النشطين",
                     "/employees/active",
@@ -544,63 +391,27 @@ function SideBar() {
                   )}
                 </ul>
               )}
-            </div>
+            </Link>
           )}
 
           {(roleName === "عميد الكلية" ||
             roleName === "مدير الموارد البشرية") && (
-            <div className="position-relative">
-              <div className="link-SideBar">
-                <li onClick={toggleLeavesOptions} style={{ cursor: "pointer" }}>
-                  <FontAwesomeIcon
-                    icon={faFolderOpen}
-                    className="  col-xxl-2 pl-5"
-                    style={{ fontSize: "1.6em" }}
-                  />
-                  <span
-                    className={`col-xl-8 d-none d-xxl-block d-xl-block ${
-                      isSidebarCollapsed ? "d-none" : ""
-                    }`}
-                  >
-                    سجل الاجازات
-                  </span>
-                  <span className="tooltip-text d-block d-xxl-none">
-                    سجل الاجازات
-                  </span>
-                </li>
-              </div>
-              <div className="leave-options-hover d-block d-xxl-none">
-                <ul className="list-unstyled">
-                  {renderSubLink(
-                    "اعتيادية",
-                    "/des-requests/normal",
-                    "أمين الكلية, مدير الموارد البشرية, عميد الكلية"
-                  )}
-                  {renderSubLink(
-                    "عارضة",
-                    "/des-requests/casual",
-                    "أمين الكلية, مدير الموارد البشرية, عميد الكلية"
-                  )}
-                  {renderSubLink(
-                    "مرضية",
-                    "/des-requests/sick",
-                    "أمين الكلية, مدير الموارد البشرية, عميد الكلية"
-                  )}
-                  {renderSubLink(
-                    "تصاريح",
-                    "/des-requests/permit",
-                    "مدير الموارد البشرية"
-                  )}
-                </ul>
-              </div>
-              {showLeavesOptions && (
-                <ul
-                  className={`list-unstyled pl-4 ${
-                    isSidebarCollapsed
-                      ? "d-none"
-                      : "d-none d-xxl-block d-xl-block"
-                  }`}
-                >
+            <Link className="link-SideBar4">
+              <li onClick={() => toggleDropdown("leavesRecord")}>
+                <FontAwesomeIcon
+                  icon={faFolderOpen}
+                  className="col-sm-12 col-xxl-2 pl-5"
+                  style={{ fontSize: "1.6em" }}
+                />
+                <span className="col-xl-8 d-none d-xxl-block">
+                  سجل الاجازات
+                </span>
+                <span className="tooltip-text d-block d-xxl-none">
+                  سجل الاجازات
+                </span>
+              </li>
+              {openDropdown === "leavesRecord" && (
+                <ul className="list-unstyled pl-4 d-none d-xxl-block">
                   {renderSubLink(
                     "اعتيادية",
                     "/des-requests/normal",
@@ -623,7 +434,7 @@ function SideBar() {
                   )}
                 </ul>
               )}
-            </div>
+            </Link>
           )}
 
           {userData.isDirectManager &&
@@ -640,7 +451,7 @@ function SideBar() {
             "طلبات الاجازات الاعتيادية",
             faFolderOpen,
             "/leave-record",
-            "أمين الكلية, عميد الكلية",
+            "أمين الكلية ,عميد الكلية",
             "",
             true,
             leavesWatingForGeneral.length
@@ -675,12 +486,14 @@ function SideBar() {
             "/inquiries",
             "أمين الكلية, عميد الكلية, مدير الموارد البشرية, هيئة تدريس, موظف"
           )}
+          {/* {renderLink('الاعدادات', faGear, '/sitting', 'أمين الكلية, عميد الكلية, مدير الموارد البشرية, هيئة تدریس, موظف')} */}
           {renderLink(
             "معلومات عامة",
             faCircleExclamation,
             "/agazaty",
             "أمين الكلية, عميد الكلية, مدير الموارد البشرية, هيئة تدريس, موظف"
           )}
+          {/* {renderLink('سجل الاجازات المرضية', faCircleH, '/sick-leaves-record', 'مدير الموارد البشرية')} */}
           {renderLink(
             "تحديث الاجازة المرضية",
             faCircleH,
@@ -696,22 +509,16 @@ function SideBar() {
             onClick={handleLogout}
           >
             <li
-              className={`${
-                location.pathname === "/login" ? "active-link" : ""
+              className={`link-SideBar ${
+                location.pathname === "/logout" ? "active-link" : ""
               } tran position-relative`}
             >
               <FontAwesomeIcon
                 icon={faRightFromBracket}
-                className="  col-xxl-2 pl-5"
+                className="col-sm-12 col-xxl-2 pl-5"
                 style={{ fontSize: "1.6em" }}
               />
-              <span
-                className={`col-xl-8 d-none d-xxl-block d-xl-block ${
-                  isSidebarCollapsed ? "d-none" : ""
-                }`}
-              >
-                الخروج
-              </span>
+              <span className="col-xl-8 d-none d-xxl-block">الخروج</span>
               <span className="tooltip-text d-block d-xxl-none">الخروج</span>
             </li>
           </Link>

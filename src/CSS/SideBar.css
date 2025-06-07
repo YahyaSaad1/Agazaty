@@ -1,37 +1,13 @@
-/* SideBar.css - Combined Old and New Styles */
-
 /* Sidebar Container */
 .SideBar {
     background-color: #fefeff;
     border-left: 2px solid #eee;
-    height: 100vh;
+    margin: 0;
     padding: 0;
-    position: fixed;
-    width: 250px;
-    top: 0;
-    right: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    direction: rtl;
-    display: flex;
-    flex-direction: column;
+    text-decoration:none ;
+    min-height: 100vh;
 }
 
-/* Collapsed State */
-.SideBar.collapsed {
-    width: 60px;
-}
-
-/* Sidebar Header */
-.sidebar-header {
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #dee2e6;
-}
 
 /* Title Styling */
 .Agazaty {
@@ -42,31 +18,16 @@
     justify-content: center;
 }
 
-/* Sidebar Toggle Button */
-.sidebar-toggle {
-    background: none;
-    border: none;
-    color: #0000ef;
-    cursor: pointer;
-}
-
-/* Sidebar Content Area */
-.sidebar-content {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding-top: 10px;
-}
-
 /* Common Sidebar Link Styles */
 .link-SideBar,
 .link-SideBar2,
 .link-SideBar3 {
     text-decoration: none;
     position: relative;
-    color: #0272e2;
-    display: block;
+    /* For badges and tooltips */
 }
 
+.link-SideBar li,
 .link-SideBar2 ul,
 .link-SideBar3 ul {
     display: flex;
@@ -75,18 +36,18 @@
     padding: 15px;
     border-radius: 12px;
     transition: 0.5s;
-    cursor: pointer;
+    /* Consolidated .tran */
 }
 
-.link-SideBar li {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    border-radius: 12px;
-    transition: 0.5s;
-    cursor: pointer;
-}
+@media (max-width: 750px) {
 
+    .link-SideBar li,
+    .link-SideBar2 ul,
+    .link-SideBar3 ul {
+        padding: 15px 5px;
+        border-radius: 3px;
+    }
+}
 
 /* Hover Effects */
 .link-SideBar li:hover,
@@ -121,7 +82,7 @@
 }
 
 /* Bullet Points for Sub-Items */
-.link-SideBar2 ul li::before,
+.link-SideBar2 li::before,
 .link-SideBar3 ul li::before {
     content: "●";
     color: #0b5ed7;
@@ -142,7 +103,6 @@
     top: -5px;
     left: 110%;
     font-size: 14px;
-    white-space: nowrap;
 }
 
 .link-SideBar:hover .tooltip-text {
@@ -153,15 +113,13 @@
 .leave-options-hover {
     display: none;
     position: absolute;
-    left: 110%;
+    left: 100%;
     top: 0;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 5px;
-    z-index: 1000;
-    min-width: 150px;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    z-index: 1;
 }
 
 .link-SideBar:hover .leave-options-hover {
@@ -179,8 +137,7 @@
 }
 
 .leave-options-hover li:hover {
-    background-color: #0b5ed7;
-    color: white;
+    background-color: #f5f5f5;
 }
 
 /* Badge Styling */
@@ -190,6 +147,7 @@
     line-height: 20px;
     text-align: center;
     background-color: #dc3545;
+    /* Bootstrap danger color */
     color: white;
     border-radius: 50%;
     position: absolute;
@@ -201,95 +159,4 @@
     justify-content: center;
 }
 
-.Agazaty {
-    display: flex;
-}
-
-/* Responsive Design */
-@media (max-width: 1400px) {
-    .SideBar.collapsed li {
-        justify-content: center;
-        padding: 15px 5px;
-    }
-}
-
-@media (max-width: 750px) {
-
-    .link-SideBar li,
-    .link-SideBar2 ul,
-    .link-SideBar3 ul {
-        /* padding: 15px 5px; */
-        border-radius: 3px;
-    }
-
-    .SideBar {
-        width: 80px;
-    }
-
-    .SideBar:hover {
-        width: 250px;
-    }
-
-    .SideBar:hover .d-xxl-block {
-        display: block !important;
-    }
-
-    .SideBar:hover .tooltip-text {
-        display: none !important;
-    }
-
-
-
-}
-
-@media (max-width: 1300px) {
-
-    .link-SideBar li,
-    .link-SideBar2 ul,
-    .link-SideBar3 ul {
-        /* padding: 15px 5px; */
-        border-radius: 3px;
-    }
-
-    .SideBar {
-        width: 80px;
-    }
-
-    .SideBar:hover {
-        width: 250px;
-    }
-
-    .SideBar:hover .d-xxl-block {
-        display: block !important;
-    }
-
-    .SideBar:hover .tooltip-text {
-        display: none !important;
-    }
-
-
-
-}
-
-/* Content Container Adjustments */
-.content-container {
-    margin-right: 250px;
-    transition: margin-right 0.3s ease;
-    padding: 1rem;
-}
-
-.SideBar.collapsed~.content-container {
-    margin-right: 60px;
-}
-
-@media (max-width: 750px) {
-    .content-container {
-        margin-right: 60px;
-    }
-}
-
-@media (max-width: 1300px) {
-    .content-container {
-        margin-right: 60px;
-    }
-}
+/* Remove unused .hintSideBar unless you plan to use it */

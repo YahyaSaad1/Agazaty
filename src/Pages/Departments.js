@@ -12,18 +12,17 @@ function Departments() {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-  fetch(`${BASE_API_URL}/api/Department/GetAllDepartments`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // إضافة التوكن في الهيدر
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => setDepartments(data))
-    .catch((err) => console.error("Error fetching departments:", err)); // معالجة الأخطاء
-}, []);
-
+    fetch(`${BASE_API_URL}/api/Department/GetAllDepartments`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // إضافة التوكن في الهيدر
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setDepartments(data))
+      .catch((err) => console.error("Error fetching departments:", err)); // معالجة الأخطاء
+  }, []);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -36,14 +35,14 @@ function Departments() {
       confirmButtonText: "نعم، احذفه!",
       cancelButtonText: "إلغاء",
       customClass: {
-        title: 'text-red',
-        confirmButton: 'blue-button',
-        cancelButton: 'red-button'
+        title: "text-red",
+        confirmButton: "blue-button",
+        cancelButton: "red-button",
       },
       didOpen: () => {
-        const popup = document.querySelector('.swal2-popup');
-        if (popup) popup.setAttribute('dir', 'rtl');
-      }
+        const popup = document.querySelector(".swal2-popup");
+        if (popup) popup.setAttribute("dir", "rtl");
+      },
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`${BASE_API_URL}/api/Department/DeleteDepartment/${id}`, {
@@ -67,14 +66,14 @@ function Departments() {
               icon: "success",
               confirmButtonText: "موافق",
               customClass: {
-                title: 'text-red',
-                confirmButton: 'blue-button',
-                cancelButton: 'red-button'
+                title: "text-red",
+                confirmButton: "blue-button",
+                cancelButton: "red-button",
               },
               didOpen: () => {
-                const popup = document.querySelector('.swal2-popup');
-                if (popup) popup.setAttribute('dir', 'rtl');
-              }
+                const popup = document.querySelector(".swal2-popup");
+                if (popup) popup.setAttribute("dir", "rtl");
+              },
             });
           })
           .catch((error) => {
@@ -84,14 +83,14 @@ function Departments() {
               icon: "error",
               confirmButtonText: "حسناً",
               customClass: {
-                title: 'text-red',
-                confirmButton: 'blue-button',
-                cancelButton: 'red-button'
+                title: "text-red",
+                confirmButton: "blue-button",
+                cancelButton: "red-button",
               },
               didOpen: () => {
-                const popup = document.querySelector('.swal2-popup');
-                if (popup) popup.setAttribute('dir', 'rtl');
-              }
+                const popup = document.querySelector(".swal2-popup");
+                if (popup) popup.setAttribute("dir", "rtl");
+              },
             });
           });
       }
@@ -99,7 +98,13 @@ function Departments() {
   };
 
   if (!departments || departments.length === 0) {
-    return <LoadingOrError data={departments} btnTitle="إضافة قسم" btnLink="/departments" />;
+    return (
+      <LoadingOrError
+        data={departments}
+        btnTitle="إضافة قسم"
+        btnLink="/departments"
+      />
+    );
   }
 
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -122,15 +127,25 @@ function Departments() {
         </div>
       </div>
       <div className="row">
-        <div>
+        <div style={{ maxHeight: "450px", overflowY: "auto" }}>
           <table className="m-0 table table-striped">
-            <thead>
+            <thead className="sticky-top bg-white">
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>اسم القسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>كود القسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الإنشاء</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>مدير القسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المزيد</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  اسم القسم
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  كود القسم
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  تاريخ الإنشاء
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  مدير القسم
+                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
+                  المزيد
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -139,7 +154,11 @@ function Departments() {
                   <tr key={index}>
                     <th style={{ height: "50px" }}>{department.name}</th>
                     <th style={{ height: "50px" }}>{department.code}</th>
-                    <th style={{ height: "50px" }}>{new Date(department.createDate).toLocaleDateString("ar-EG")}</th>
+                    <th style={{ height: "50px" }}>
+                      {new Date(department.createDate).toLocaleDateString(
+                        "ar-EG"
+                      )}
+                    </th>
                     <th style={{ height: "50px" }}>{department.managerName}</th>
                     <th style={{ height: "50px" }}>
                       <Link to={`/department/${department.id}/edit`}>

@@ -251,7 +251,9 @@ function EmployeesCom({ type }) {
           {type === "active" ? (
             <h2 className="m-0">الموظفيين</h2>
           ) : (
-            <h2 className="m-0">الموظفين الغير نشطين</h2>
+            <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
+              الموظفين الغير نشطين
+            </h2>
           )}
         </div>
 

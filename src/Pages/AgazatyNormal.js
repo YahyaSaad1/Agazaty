@@ -50,7 +50,7 @@ function AgazatyNormal() {
         </div>
       </div>
       <div className="row">
-        <div>
+        <div className="table-responsive">
           <table className="m-0 table table-striped">
             <thead>
               <tr>

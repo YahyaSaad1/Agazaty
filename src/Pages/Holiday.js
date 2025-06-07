@@ -129,9 +129,9 @@ function Holidays() {
         </div>
       </div>
       <div className="row">
-        <div>
+        <div style={{ maxHeight: "450px", overflowY: "auto" }}>
           <table className="m-0 table table-striped">
-            <thead>
+            <thead className="sticky-top bg-white">
               <tr>
                 <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
                   المرجع
