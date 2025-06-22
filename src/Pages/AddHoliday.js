@@ -23,8 +23,9 @@ function AddHoliday() {
             if (data.message) {
             Swal.fire({
                 title: `<span style='color:red;'>${data.message}</span>`,
-                text: "يرجى المحاولة مرة أخرى.",
+                text: "يرجى المحاولة مرة أخرى!",
                 icon: "error",
+                confirmButtonText: "حسناً",
                 customClass: {
                     title: 'text-red',
                     confirmButton: 'blue-button',
@@ -37,9 +38,9 @@ function AddHoliday() {
             });
             } else {
             Swal.fire({
-                title: `<span style='color:#0d6efd;'>تمت إضافة الاجازة بنجاح.</span>`,
+                title: `<span style='color:#0d6efd;'>تمت إضافة الإجازة بنجاح.</span>`,
                 icon: "success",
-                confirmButtonText: "مشاهدة الاجازات",
+                confirmButtonText: "مشاهدة الإجازات",
                 customClass: {
                 title: 'text-blue',
                 confirmButton: 'blue-button',
@@ -60,9 +61,10 @@ function AddHoliday() {
         .catch((error) => {
             console.error("خطأ أثناء الإضافة:", error);
             Swal.fire({
-            title: `<span style='color:red;'>خطأ في الإضافة</span>`,
+            title: `<span style='color:red;'>خطأ في الإضافة!</span>`,
             text: "حدث خطأ أثناء حفظ البيانات. حاول مرة أخرى.",
             icon: "error",
+            confirmButtonText: "حسناً",
             customClass: {
                 title: 'text-red',
                 confirmButton: 'blue-button',
@@ -80,10 +82,10 @@ function AddHoliday() {
         e.preventDefault();
 
         Swal.fire({
-        title: `<span style='color:#0d6efd; font-size:28px;'>هل أنت متأكد من إنشاء اجازة رسمية؟</span>`,
+        title: `<span style='color:#0d6efd; font-size:28px;'>هل أنت متأكد من إنشاء إجازة رسمية؟</span>`,
         html: `
-            <p dir='rtl'><span style='font-weight: bold;'>اسم الاجازة:</span> <span style='color:#0d6efd;'>${name}</span></p>
-            <p dir='rtl'><span style='font-weight: bold;'>تاريخ الاجازة:</span> <span style='color:#0d6efd;'>${new Date(date).toLocaleDateString('ar-EG')}</span></p>
+            <p dir='rtl'><span style='font-weight: bold;'>اسم الإجازة:</span> <span style='color:#0d6efd;'>${name}</span></p>
+            <p dir='rtl'><span style='font-weight: bold;'>تاريخ الإجازة:</span> <span style='color:#0d6efd;'>${new Date(date).toLocaleDateString('ar-EG')}</span></p>
         `,
         icon: "warning",
         showCancelButton: true,
@@ -109,13 +111,13 @@ function AddHoliday() {
     return (
         <div>
         <div className="zzz d-inline-block p-3 ps-5">
-            <h2 className="m-0">إضافة اجازة رسمية</h2>
+            <h2 className="m-0">إضافة إجازة رسمية</h2>
         </div>
 
         <form onSubmit={handleSubmit}>
             <div className="row">
             <div className="col-sm-12 col-md-6 mt-3">
-                <label htmlFor="holidayName" className="form-label">اسم الاجازة</label>
+                <label htmlFor="holidayName" className="form-label">اسم الإجازة</label>
                 <input
                 required
                 className="form-control"
@@ -127,7 +129,7 @@ function AddHoliday() {
             </div>
 
             <div className="col-sm-12 col-md-6 mt-3">
-                <label htmlFor="holidayDate" className="form-label">تاريخ الاجازة</label>
+                <label htmlFor="holidayDate" className="form-label">تاريخ الإجازة</label>
                 <input
                 required
                 type="date"

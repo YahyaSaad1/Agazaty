@@ -5,6 +5,7 @@ import BtnLink from '../components/BtnLink';
 import Btn from '../components/Btn';
 import Swal from 'sweetalert2';
 import { BASE_API_URL, token } from '../server/serves';
+import LoadingOrError from '../components/LoadingOrError';
 
 function SickRequestManager() {
     const LeaveID = useParams().id;
@@ -95,7 +96,7 @@ function SickRequestManager() {
                         cancelButton: 'red-button'
                     },
                 }).then(() => {
-                    window.location.href = "/casual/leave-record";
+                    window.location.href = "/sick/leave-record";
                 });
             })
             .catch((err) => {
@@ -118,17 +119,9 @@ function SickRequestManager() {
             });
     };
 
+
     if (!leave || !user) {
-        return (
-            <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
-                <div className="position-relative" style={{ width: '4rem', height: '4rem' }}>
-                    <div className="spinner-border text-primary w-100 h-100" role="status"></div>
-                    <div className="position-absolute top-50 start-50 translate-middle text-primary fw-bold" style={{ fontSize: '0.75rem' }}>
-                        انتظر...
-                    </div>
-                </div>
-            </div>
-        );
+        return <LoadingOrError data={leave} />;
     }
 
 
@@ -136,10 +129,10 @@ function SickRequestManager() {
         <div>
             <div className="d-flex mb-4 justify-content-between">
                 <div className="zzz d-inline-block p-3 ps-5">
-                    <h2 className="m-0">{`اجازة ${user.firstName} ${user.secondName}`}</h2>
+                    <h2 className="m-0">{`إجازة ${user.firstName} ${user.secondName}`}</h2>
                 </div>
                 <div className="p-3">
-                    <BtnLink name='سجل الاجازات' link='/leave-record' class="btn btn-primary m-0 ms-2 mb-2" />
+                    <BtnLink name='سجل الإجازات' link='/leave-record' className="btn btn-primary m-0 ms-2 mb-2" />
                 </div>
             </div>
 
@@ -150,8 +143,8 @@ function SickRequestManager() {
                             <tr>
                                 <th scope="col" className="pb-3" style={{ backgroundColor: '#F5F9FF' }}>حالة الطلب</th>
                                 <th scope="col" className="text-start" style={{ backgroundColor: '#F5F9FF' }}>
-                                    {leave.generalManagerDecision === false ? <Btn name="في انتظار الإحالة" class="btn-danger text-start text-bold" />
-                                        : <Btn name="معلقة" class="btn-danger text-start" />}
+                                    {leave.generalManagerDecision === false ? <Btn name="في انتظار الإحالة" className="btn-primary text-start text-bold" />
+                                        : <Btn name="مُعلقة" className="btn-primary text-start" />}
                                 </th>
                             </tr>
                         </thead>
@@ -161,7 +154,7 @@ function SickRequestManager() {
                                 <th scope="col" className="text-start">{leave.userName}</th>
                             </tr>
                             <tr>
-                                <th scope="col">نوع الاجازة</th>
+                                <th scope="col">نوع الإجازة</th>
                                 <th scope="col" className="text-start">مرضية</th>
                             </tr>
                             <tr>
@@ -173,7 +166,7 @@ function SickRequestManager() {
                                 <th scope="col" className="text-start">
                                     {user.departmentName
                                         ? user.departmentName
-                                        : <span className="text-danger">لم يُحدد بعد</span>}
+                                        : <span className="text-danger">إدارة مستقلة</span>}
                                 </th>
                             </tr>
                             <tr>

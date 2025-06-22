@@ -85,7 +85,7 @@ function EditHoliday() {
                         Swal.fire({
                             title: `<span style='color:#0d6efd;'>تم التحديث بنجاح.</span>`,
                             icon: "success",
-                            confirmButtonText: "عرض الاجازات",
+                            confirmButtonText: "عرض الإجازات",
                             confirmButtonColor: "#0d6efd",
                             customClass: {
                                 title: 'text-blue',
@@ -124,13 +124,13 @@ function EditHoliday() {
         <form>
             <div className="d-flex mb-4 justify-content-between">
                 <div className="zzz d-inline-block p-3 ps-5">
-                    <h2 className="m-0">تعديل بيانات الاجازة</h2>
+                    <h2 className="m-0">تعديل بيانات الإجازة</h2>
                 </div>
             </div>
 
             <div className="row">
                 <div className="col-sm-12 col-md-6 mt-3">
-                    <label htmlFor="name" className="form-label">اسم الاجازة</label>
+                    <label htmlFor="name" className="form-label">اسم الإجازة</label>
                     <input
                         className="form-control"
                         type="text"
@@ -142,7 +142,7 @@ function EditHoliday() {
                     />
                 </div>
                 <div className="col-sm-12 col-md-6 mt-3">
-                    <label htmlFor="date" className="form-label">تاريخ الاجازة</label>
+                    <label htmlFor="date" className="form-label">تاريخ الإجازة</label>
                     <input
                         type="date"
                         className="form-control"

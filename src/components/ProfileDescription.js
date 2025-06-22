@@ -25,7 +25,7 @@ function ProfileDescription({userData}){
                     </tr>
                     <tr>
                         <th>القسم</th>
-                        <th className="text-start">{userData.departmentName || <apan className='text-danger'>لم يُحدد بعد</apan>}</th>
+                        <th className="text-start">{userData.departmentName || <apan className='text-danger'>إدارة مستقلة</apan>}</th>
                     </tr>
                     <tr>
                         <th>تاريخ التعيين</th>
@@ -41,12 +41,12 @@ function ProfileDescription({userData}){
             <table className="m-0 mt-5 table table-striped" style={{ borderBottomLeftRadius: '15px', borderBottomRightRadius: '15px', overflow: 'hidden'}}>
                 <thead>
                     <tr>
-                        <th colSpan={2} className="text-primary fw-bold" style={{backgroundColor:'#F5F9FF'}}>تفاصيل الاجازات</th>
+                        <th colSpan={2} className="text-primary fw-bold" style={{backgroundColor:'#F5F9FF'}}>تفاصيل الإجازات</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>رصيد الاجازات الاعتيادية السنوية</th>
+                        <th>رصيد الإجازات الاعتيادية السنوية</th>
                         <th className="text-start">{toArabicNumbers(userData.normalLeavesCount)}</th>
                     </tr>
                     {hireYear <= 2015 &&
@@ -55,15 +55,15 @@ function ProfileDescription({userData}){
                             <th className="text-start">{toArabicNumbers(userData.normalLeavesCount_47)}</th>
                         </tr>}
                     <tr>
-                        <th>رصيد الاجازات الاعتيادية سنة {toArabicNumbers(date - 1)}</th>
+                        <th>رصيد الإجازات الاعتيادية سنة {toArabicNumbers(date - 1)}</th>
                         <th className="text-start">{toArabicNumbers(userData.normalLeavesCount_81Before1Years)}</th>
                     </tr>
                     <tr>
-                        <th>رصيد الاجازات الاعتيادية سنة {toArabicNumbers(date - 2)}</th>
+                        <th>رصيد الإجازات الاعتيادية سنة {toArabicNumbers(date - 2)}</th>
                         <th className="text-start">{toArabicNumbers(userData.normalLeavesCount_81Before2Years)}</th>
                     </tr>
                     <tr>
-                        <th>رصيد الاجازات الاعتيادية سنة {toArabicNumbers(date - 3)}</th>
+                        <th>رصيد الإجازات الاعتيادية سنة {toArabicNumbers(date - 3)}</th>
                         <th className="text-start">{toArabicNumbers(userData.normalLeavesCount_81Before3Years)}</th>
                     </tr>
                 </tbody>

@@ -99,7 +99,7 @@ function Amazon(){
                     </div>
                 </div>
             </div>
-            <h4>تتبع مسار الاجازة</h4>
+            <h4>تتبع مسار الإجازة</h4>
             <table className="m-0 table table-striped">
                 <thead>
                     <tr>

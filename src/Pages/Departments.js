@@ -122,7 +122,7 @@ function Departments() {
           <BtnLink
             name="إضافة قسم"
             link="/add-department"
-            class="btn btn-primary m-0 me-2"
+            className="btn btn-primary m-0 me-2"
           />
         </div>
       </div>
@@ -161,7 +161,7 @@ function Departments() {
                     </th>
                     <th style={{ height: "50px" }}>{department.managerName}</th>
                     <th style={{ height: "50px" }}>
-                      <Link to={`/department/${department.id}/edit`}>
+                      <Link to={`/department/edit/${department.id}`}>
                         <FontAwesomeIcon
                           icon={faPenToSquare}
                           color="blue"

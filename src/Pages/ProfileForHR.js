@@ -4,7 +4,7 @@ import ProfileDescription from "../components/ProfileDescription";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { faTable } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTable } from "@fortawesome/free-solid-svg-icons";
 import { BASE_API_URL, token } from "../server/serves";
 import "../CSS/Profile.css";
 function ProfileForHR() {
@@ -25,7 +25,7 @@ function ProfileForHR() {
 
   const handleLeaveUpdate = async () => {
     const { value: decision } = await Swal.fire({
-      title: "هل تريد إضافة أم خصم أيام الاجازة؟",
+      title: "هل تريد إضافة أم خصم أيام الإجازة؟",
       input: "radio",
       inputOptions: {
         true: "إضافة أيام",
@@ -197,28 +197,24 @@ function ProfileForHR() {
 
   return (
     <div>
-      <div className="d-flex mb-4 justify-content-between profile-header">
+      <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
           <h2 className="m-0">
             ملف {userData.firstName} {userData.secondName} الشخصي
           </h2>
         </div>
-        <div className="d-flex profile-buttons">
+        <div className="d-flex ms-3">
           <button
             onClick={handleDownload}
             className="m-3 btn btn-success d-flex justify-content-center align-items-center"
           >
-            <FontAwesomeIcon
-              icon={faTable}
-              style={{ fontSize: "1.4rem" }}
-              color="#fff"
-              className="ms-2"
-            />
-            <span>تنزيل بيانات الموظف</span>
+            <FontAwesomeIcon icon={faTable} style={{ fontSize: "1.4rem" }} color="#fff"/>
+            <span className="d-none d-sm-inline">&nbsp;تنزيل البيانات</span>
           </button>
 
           <button className="my-3 btn btn-primary" onClick={handleLeaveUpdate}>
-            تعديل عدد أيام الاجازات
+            <FontAwesomeIcon icon={faEdit} style={{ fontSize: "1.4rem" }} color="#fff"/>
+            <span className="d-none d-sm-inline">&nbsp; تعديل عدد أيام الإجازات</span>
           </button>
         </div>
       </div>

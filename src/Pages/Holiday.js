@@ -35,7 +35,7 @@ function Holidays() {
   const handleDelete = (id) => {
     Swal.fire({
       title: "هل أنت متأكد؟",
-      text: "لن تتمكن من استعادة بيانات هذا الاجازة!",
+      text: "لن تتمكن من استعادة بيانات هذا الإجازة!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "نعم، احذفها!",
@@ -62,7 +62,7 @@ function Holidays() {
             setHolidays(holidays.filter((holiday) => holiday.id !== id));
             Swal.fire({
               title: "تم الحذف!",
-              text: "تم حذف الاجازة بنجاح.",
+              text: "تم حذف الإجازة بنجاح.",
               icon: "success",
               confirmButtonText: "حسناً",
               customClass: {
@@ -79,7 +79,7 @@ function Holidays() {
           .catch((error) => {
             Swal.fire({
               title: "خطأ!",
-              text: "حدث خطأ أثناء حذف الاجازة.",
+              text: "حدث خطأ أثناء حذف الإجازة.",
               icon: "error",
               confirmButtonText: "حسناً",
               customClass: {
@@ -101,7 +101,7 @@ function Holidays() {
     return (
       <LoadingOrError
         data={holidays}
-        btnTitle="إضافة اجازة رسمية"
+        btnTitle="إضافة إجازة رسمية"
         btnLink="/add-holiday"
       />
     );
@@ -117,14 +117,14 @@ function Holidays() {
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            الاجازات الرسمية
+            الإجازات الرسمية
           </h2>
         </div>
         <div className="p-3">
           <BtnLink
-            name="إضافة اجازة رسمية"
+            name="إضافة إجازة رسمية"
             link="/add-holiday"
-            class="btn btn-primary m-0 me-2"
+            className="btn btn-primary m-0 me-2"
           />
         </div>
       </div>

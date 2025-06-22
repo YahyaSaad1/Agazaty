@@ -4,7 +4,7 @@ export const roleName = localStorage.getItem("roleName");
 export const token = localStorage.getItem("token");
 export const userID = localStorage.getItem("userID");
 export const UserData = JSON.parse(localStorage.getItem("UserData"));
-export const rowsPerPage = "20";
+export const rowsPerPage = "10";
 
 export function useUserData() {
   const [userData, setUserData] = useState([]);

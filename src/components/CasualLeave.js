@@ -38,10 +38,15 @@ function CasualLeave() {
                 text: "يرجى ملء جميع الحقول المطلوبة",
                 icon: "error",
                 confirmButtonText: "حسنًا",
-                didOpen: () => {
-                    const popup = document.querySelector('.swal2-popup');
-                    if (popup) popup.setAttribute('dir', 'rtl');
-                }
+                customClass: {
+                        title: 'text-red',
+                        confirmButton: 'blue-button',
+                        cancelButton: 'red-button'
+                    },
+                    didOpen: () => {
+                        const popup = document.querySelector('.swal2-popup');
+                        if (popup) popup.setAttribute('dir', 'rtl');
+                    }
             });
             return;
         }
@@ -52,10 +57,15 @@ function CasualLeave() {
                 text: "لا يمكن اختيار تاريخ بداية في المستقبل",
                 icon: "error",
                 confirmButtonText: "حسنًا",
-                didOpen: () => {
-                    const popup = document.querySelector('.swal2-popup');
-                    if (popup) popup.setAttribute('dir', 'rtl');
-                }
+                customClass: {
+                        title: 'text-red',
+                        confirmButton: 'blue-button',
+                        cancelButton: 'red-button'
+                    },
+                    didOpen: () => {
+                        const popup = document.querySelector('.swal2-popup');
+                        if (popup) popup.setAttribute('dir', 'rtl');
+                    }
             });
             return;
         }
@@ -66,10 +76,15 @@ function CasualLeave() {
                 text: "لا يمكن اختيار تاريخ نهاية في المستقبل",
                 icon: "error",
                 confirmButtonText: "حسنًا",
-                didOpen: () => {
-                    const popup = document.querySelector('.swal2-popup');
-                    if (popup) popup.setAttribute('dir', 'rtl');
-                }
+                customClass: {
+                        title: 'text-red',
+                        confirmButton: 'blue-button',
+                        cancelButton: 'red-button'
+                    },
+                    didOpen: () => {
+                        const popup = document.querySelector('.swal2-popup');
+                        if (popup) popup.setAttribute('dir', 'rtl');
+                    }
             });
             return;
         }
@@ -80,10 +95,15 @@ function CasualLeave() {
                 text: "تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية",
                 icon: "error",
                 confirmButtonText: "حسنًا",
-                didOpen: () => {
-                    const popup = document.querySelector('.swal2-popup');
-                    if (popup) popup.setAttribute('dir', 'rtl');
-                }
+                customClass: {
+                        title: 'text-red',
+                        confirmButton: 'blue-button',
+                        cancelButton: 'red-button'
+                    },
+                    didOpen: () => {
+                        const popup = document.querySelector('.swal2-popup');
+                        if (popup) popup.setAttribute('dir', 'rtl');
+                    }
             });
             return;
         }
@@ -181,7 +201,7 @@ function CasualLeave() {
                 icon: "error",
                 confirmButtonText: "حسنًا",
                 customClass: {
-                    title: 'text-blue',
+                    title: 'text-red',
                     confirmButton: 'blue-button',
                     cancelButton: 'red-button'
                 },
@@ -197,14 +217,14 @@ function CasualLeave() {
     return (
         <div>
             <div className="zzz d-inline-block p-3 ps-5">
-                <h2 className="m-0">طلب اجازة عارضة</h2>
+                <h2 className="m-0">طلب إجازة عارضة</h2>
             </div>
 
             <form onSubmit={handleData}>
                 <div className="row">
                     <div className="col-sm-12 col-md-6 mt-3">
                         <label htmlFor="startDate" className="form-label">
-                            تاريخ بداية الاجازة
+                            تاريخ بداية الإجازة
                         </label>
                         <input
                             type="date"
@@ -222,7 +242,7 @@ function CasualLeave() {
 
                     <div className="col-sm-12 col-md-6 mt-3">
                         <label htmlFor="endDate" className="form-label">
-                            تاريخ نهاية الاجازة
+                            تاريخ نهاية الإجازة
                         </label>
                         <input
                             type="date"

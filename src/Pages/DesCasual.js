@@ -4,10 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
 import { BASE_API_URL, rowsPerPage, token } from "../server/serves";
 import LoadingOrError from "../components/LoadingOrError";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+import CasualReport from "../components/CasualReport";
 
 function DesCasual() {
   const [leaves, setLeaves] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     fetch(`${BASE_API_URL}/api/CasualLeave/GetAllCasualLeaves`, {
@@ -57,39 +61,40 @@ function DesCasual() {
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            سجل الاجازات العارضة
+            سجل الإجازات العارضة
           </h2>
+        </div>
+        <div className="p-3 pe-0">
+          <button
+              className="btn btn-outline-primary"
+              onClick={() =>
+                  MySwal.fire({
+                  title: 'تقرير الإجازة',
+                  // html: <OfficialLeaveReport leaveID={leaveID} />,
+                  showConfirmButton: false,
+                  showCloseButton: true,
+                  width: '95%',
+                  customClass: {
+                  popup: 'text-end custom-swal-width',
+                  }})}>
+              <FontAwesomeIcon icon={faPrint} />
+              <span className="d-none d-sm-inline"> طباعة</span>
+          </button>
         </div>
       </div>
       <div className="row">
-        <div className="table-responsive" style={{ height: "100vh" }}>
+        <div className="table-responsive">
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المرجع
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الاسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ البدء
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ الانتهاء
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  عدد الأيام
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  ملحوظة
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  طباعة
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الأرشيف
-                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ البدء</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الانتهاء</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>ملحوظة</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
               </tr>
             </thead>
             <tbody>
@@ -115,19 +120,27 @@ function DesCasual() {
 
                     <th>{leave.notes || "بدون"}</th>
                     <th>
-                      <FontAwesomeIcon
-                        icon={faPrint}
-                        fontSize={"26px"}
-                        color="blue"
-                        className="printer"
-                      />
+                      <button
+                        className="btn btn-outline-primary"
+                        onClick={() =>
+                          MySwal.fire({
+                          title: 'تقرير الإجازة',
+                          html: <CasualReport leaveID={leave.id} />,
+                          showConfirmButton: false,
+                          showCloseButton: true,
+                          width: '95%',
+                          customClass: {
+                            popup: 'text-end custom-swal-width',
+                          }})}>
+                        <FontAwesomeIcon icon={faPrint} />
+                      </button>
                     </th>
                     <th>
                       <BtnLink
                         id={leave.id}
                         name="عرض الاجازة"
                         link="/casual-leave-request"
-                        class="btn btn-outline-primary"
+                        className="btn btn-outline-primary"
                       />
                     </th>
                   </tr>

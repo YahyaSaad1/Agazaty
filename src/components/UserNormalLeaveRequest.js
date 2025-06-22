@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import BtnLink from "./BtnLink";
 import { BASE_API_URL, token, userID } from "../server/serves";
 
-function PreviousRequests() {
+function UserNormalLeaveRequest() {
   const [LeaveTypes, setLeaveTypes] = useState([]);
   const [leaveType, setLeaveType] = useState("اعتيادية");
   const [normalLeaves, setNormalLeaves] = useState([]);
@@ -18,7 +18,7 @@ function PreviousRequests() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // إضافة التوكن في الهيدر
+      Authorization: `Bearer ${token}`,
     },
   })
     .then((res) => res.json())
@@ -98,7 +98,7 @@ useEffect(() => {
           </div>
           <Link to={"/normal-leave"} className="btn btn-primary me-2 pt-2">
             <FontAwesomeIcon icon={faPlus} className="pl-3" />
-            <span>اجازة جديدة</span>
+            <span>إجازة جديدة</span>
           </Link>
         </div>
       </div>
@@ -110,91 +110,52 @@ useEffect(() => {
               لا يوجد اجازات اعتيادية لديك
             </p>
           ) : (
-            <table className="m-0 table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">نوع الاجازة</th>
-                  <th scope="col">تاريخ البدء</th>
-                  <th scope="col">عدد الأيام</th>
-                  <th scope="col">القائم بالعمل</th>
-                  <th scope="col">ملحوظات</th>
-                  <th scope="col">حالة الطلب</th>
-                  <th scope="col">الأرشيف</th>
-                </tr>
-              </thead>
-              <tbody>
-                {normalLeaves.slice(-5).map((leave, index) => (
-                  <tr key={index}>
-                    <th>اعتيادية</th>
-                    <th>{new Date(leave.startDate).toLocaleDateString('ar-EG')}</th>
-                      <th>{leave.days.toString().replace(/[0-9]/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[digit])} أيام</th>
-
-                    <th>{leave.coworkerName}</th>
-                    <th>{leave.notesFromEmployee || "بدون"}</th>
-                    <th>
-                      {leave.holder === 0 ? (
-                        <span
-                          className="text-primary cursor-pointer"
-                          title={leave.coworkerName}
-                        >
-                          في انتظار القائم بالعمل
-                        </span>
-                      ) : leave.holder === 1 ? (
-                        <span
-                          className="text-primary cursor-pointer"
-                          title={leave.directManagerName}
-                        >
-                          في انتظار المدير المباشر
-                        </span>
-                      ) : leave.holder === 2 ? (
-                        <span
-                          className="text-primary cursor-pointer"
-                          title={leave.generalManagerName}
-                        >
-                          في انتظار المدير المختص
-                        </span>
-                      ) : leave.coWorker_Decision === false ? (
-                        <span
-                          className="text-danger cursor-pointer"
-                          title={leave.coworkerName}
-                        >
-                          مرفوضة من القائم بالعمل
-                        </span>
-                      ) : leave.directManager_Decision === false ? (
-                        <span
-                          className="text-danger cursor-pointer"
-                          title={leave.directManagerName}
-                        >
-                          مرفوضة من المدير المباشر
-                        </span>
-                      ) : leave.generalManager_Decision === false ? (
-                        <span
-                          className="text-danger cursor-pointer"
-                          title={leave.generalManagerName}
-                        >
-                          مرفوضة من المدير المختص
-                        </span>
-                      ) : (
-                        <span
-                          className="text-success cursor-pointer"
-                          title={"تمت"}
-                        >
-                          مقبولة
-                        </span>
-                      )}
-                    </th>
-                    <td>
-                      <BtnLink
-                        id={leave.id}
-                        name="عرض الاجازة"
-                        link={`/user/normal-leave-request`}
-                        class="btn btn-outline-primary"
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="row">
+              <div className="table-responsive">
+                <table className="m-0 table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">نوع الإجازة</th>
+                      <th scope="col">تاريخ البدء</th>
+                      <th scope="col">عدد الأيام</th>
+                      <th scope="col">القائم بالعمل</th>
+                      <th scope="col">ملحوظات</th>
+                      <th scope="col">حالة الطلب</th>
+                      <th scope="col">الأرشيف</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {normalLeaves.slice(-5).map((leave, index) => (
+                      <tr key={index}>
+                        <th>اعتيادية</th>
+                        <th>{new Date(leave.startDate).toLocaleDateString('ar-EG')}</th>
+                        <th>{leave.days.toString().replace(/[0-9]/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[digit])} أيام</th>
+                        <th>{leave.coworkerName}</th>
+                        <th>{leave.notesFromEmployee || "بدون"}</th>
+                        <th>
+                          {leave.holder === 0 ? (<span className="text-primary cursor-pointer" title={leave.coworkerName}> في انتظار القائم بالعمل</span>
+                          ) : leave.holder === 1 ? (<span className="text-primary cursor-pointer" title={leave.directManagerName}>في انتظار المدير المباشر</span>
+                          ) : leave.holder === 2 ? (<span className="text-primary cursor-pointer" title={leave.generalManagerName}>في انتظار المدير المختص</span>
+                          ) : leave.coWorker_Decision === false ? (<span className="text-danger cursor-pointer"title={leave.coworkerName}>مرفوضة من القائم بالعمل</span>
+                          ) : leave.directManager_Decision === false ? (<span className="text-danger cursor-pointer" title={leave.directManagerName}>مرفوضة من المدير المباشر</span>
+                          ) : leave.generalManager_Decision === false ? (<span className="text-danger cursor-pointer" title={leave.generalManagerName}>مرفوضة من المدير المختص</span>
+                          ) : (<span className="text-success cursor-pointer" title={"تمت"}> مقبولة</span>
+                          )}
+                        </th>
+                        <td>
+                          <BtnLink
+                            id={leave.id}
+                            name="عرض الإجازة"
+                            link={`/agazaty/normal-leave-request`}
+                            className="btn btn-outline-primary"
+                          />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+            </div>
+          </div>
           )
         ) : leaveType === "عارضة" ? (
           casualLeaves.length === 0 ? (
@@ -205,7 +166,7 @@ useEffect(() => {
             <table className="m-0 table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">نوع الاجازة</th>
+                  <th scope="col">نوع الإجازة</th>
                   <th scope="col">تاريخ البدء</th>
                   <th scope="col">تاريخ الانتهاء</th>
                   <th scope="col">عدد الأيام</th>
@@ -232,9 +193,9 @@ useEffect(() => {
                     <th>
                       <BtnLink
                         id={leave.id}
-                        name="عرض الاجازة"
-                        link="/user/casual-leave-request"
-                        class="btn btn-outline-primary"
+                        name="عرض الإجازة"
+                        link="/agazaty/casual-leave-request"
+                        className="btn btn-outline-primary"
                       />
                     </th>
                   </tr>
@@ -251,7 +212,7 @@ useEffect(() => {
             <table className="m-0 table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">نوع الاجازة</th>
+                  <th scope="col">نوع الإجازة</th>
                   <th scope="col">تاريخ البدء</th>
                   <th scope="col">تاريخ الانتهاء</th>
                   <th scope="col">عدد الأيام</th>
@@ -264,24 +225,23 @@ useEffect(() => {
                 {sickLeaves.slice(-5).map((leave, index) => (
                   <tr key={index}>
                     <th>مرضية</th>
-                    {leave.startDate === "0001-01-01T00:00:00" ? <th className="text-danger">لم يحدد بعد</th>
+                    {leave.startDate === "0001-01-01T00:00:00" ? <th className="text-danger">لم يُحدد بعد</th>
                     :<th>{new Date(leave.startDate).toLocaleDateString('ar-EG')}</th>}
 
-                    {leave.endDate === "0001-01-01T00:00:00" ? <th className="text-danger">لم يحدد بعد</th>
+                    {leave.endDate === "0001-01-01T00:00:00" ? <th className="text-danger">لم يُحدد بعد</th>
                     :<th>{new Date(leave.endDate).toLocaleDateString('ar-EG')}</th>}
 
                     {leave.days === null ? <th className="text-danger">لم يُحتسب بعد</th>
-                    :                     <th>{leave.days.toString().replace(/[0-9]/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[digit])} أيام</th>
-}
-                    
-                      {leave.certified === true
-                        ? <th className="text-success">مقبولة</th>
-                        : (leave.responseDoneFinal === false && leave.respononseDoneForMedicalCommitte === false)
-                        ? <th className="text-primary">معلقة عند التحديث الأول</th>
-                        : (leave.responseDoneFinal === false && leave.respononseDoneForMedicalCommitte === true)
-                        ? <th className="text-primary">معلقة عند التحديث الثاني</th>
-                        : <th className="text-danger">مرفوضة</th>
-                      }
+                      :<th>{leave.days.toString().replace(/[0-9]/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[digit])} أيام</th>}
+
+                    {leave.certified === true
+                      ? <th className="text-success">مقبولة</th>
+                      : (leave.responseDoneFinal === false && leave.respononseDoneForMedicalCommitte === false)
+                      ? <th className="text-primary">مُعلقة عند التحديث الأول</th>
+                      : (leave.responseDoneFinal === false && leave.respononseDoneForMedicalCommitte === true)
+                      ? <th className="text-primary">مُعلقة عند التحديث الثاني</th>
+                      : <th className="text-danger">مرفوضة</th>
+                    }
                     <th>
                       <FontAwesomeIcon
                         icon={faPrint}
@@ -293,9 +253,9 @@ useEffect(() => {
                     <th>
                       <BtnLink
                         id={leave.id}
-                        name="عرض الاجازة"
-                        link="/user/sick-leave-request"
-                        class="btn btn-outline-primary"
+                        name="عرض الإجازة"
+                        link="/sick-leave-request"
+                        className="btn btn-outline-primary"
                       />
                     </th>
                   </tr>
@@ -309,4 +269,4 @@ useEffect(() => {
   );
 }
 
-export default PreviousRequests;
+export default UserNormalLeaveRequest;

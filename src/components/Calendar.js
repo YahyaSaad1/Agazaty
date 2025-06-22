@@ -116,7 +116,7 @@ const Calendar = () => {
             key={index}
             className={`day-cell ${day ? "" : "empty"} ${day === currentDate.getDate() && currentDate.getMonth() === new Date().getMonth() ? "selected" : ""} ${isHoliday(day) ? "locked" : ""}`}
             style={isHoliday(day) ? { backgroundColor: 'red', color: 'white', cursor: 'not-allowed' } : {}}
-            title={isHoliday(day) ? "اجازة رسمية" : day !== null && roleName === "مدير الموارد البشرية" ? "إضافة اليوم للاجازات الرسمية؟" : ""}
+            title={isHoliday(day) ? "إجازة رسمية" : day !== null && roleName === "مدير الموارد البشرية" ? "إضافة اليوم للاجازات الرسمية؟" : ""}
             onClick={() => handleDayClick(day)}
           >
             {day}

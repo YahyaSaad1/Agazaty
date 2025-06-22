@@ -1,24 +1,42 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BASE_API_URL, token } from "../server/serves";
 
-function UpdateNormalLeave() {
-    const leaveID = useParams().leaveID;
-    const [endDate, setEndDate] = useState("");
+function UpdateNormalLeave(props) {
+    const { leaveID } = useParams();
+    const leave = useLocation().state?.leave;
+    const [endDate, setEndDate] = useState(() => {
+    const rawDate = leave?.endDate;
+    return rawDate ? rawDate.split("T")[0] : "";
+});
     const [notesFromEmployee, setNotesFromEmployee] = useState("");
 
     const handleData = async (e) => {
         e.preventDefault();
 
         if (!leaveID || !endDate || !notesFromEmployee) {
-            Swal.fire("خطأ!", "يرجى ملء جميع الحقول المطلوبة", "error");
+            Swal.fire({
+                title: "خطأ!",
+                text: "يرجى ملء جميع الحقول المطلوبة",
+                icon: "error",
+                confirmButtonText: "حسناً",
+                customClass: {
+                    title: 'text-red',
+                    confirmButton: 'blue-button',
+                    cancelButton: 'red-button'
+                },
+                didOpen: () => {
+                    const popup = document.querySelector('.swal2-popup');
+                    if (popup) popup.setAttribute('dir', 'rtl');
+                }
+            });
             return;
         }
         const leaveData = {
             startDate: leaveID.toString(),
             endDate: endDate.toString(),
-            notesFromEmployee: notesFromEmployee || "",  // تأكد من أنها ليست `null`
+            notesFromEmployee: notesFromEmployee || "",
         };
 
         try {
@@ -37,40 +55,75 @@ function UpdateNormalLeave() {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                console.error("API Error:", errorData);
-                Swal.fire("خطأ!", `فشل إرسال الطلب: ${errorData.message || "يرجى المحاولة لاحقًا"}`, "error");
+                console.log(errorData)
+                    Swal.fire({
+                    title: `فشل كسر الإجازة!`,
+                    html: `${(errorData.messages || ["يرجى المحاولة لاحقًا"]).join("<br>")}`,
+                    icon: "error",
+                    confirmButtonText: "حسنًا",
+                    customClass: {
+                        title: 'text-red',
+                        confirmButton: 'blue-button',
+                        cancelButton: 'red-button'
+                    },
+                    didOpen: () => {
+                        const popup = document.querySelector('.swal2-popup');
+                        if (popup) popup.setAttribute('dir', 'rtl');
+                    }
+                    });
                 return;
-            }else {
+            } else{
                 const errorData = await response.json();
-                Swal.fire("نجحت!", `تم إرسال الطلب: ${errorData.message || "يرجى انتظار الموافقة"}`, "success");
+                    Swal.fire({
+                    title: "نجحت!",
+                    text: `${errorData.message || "يرجى انتظار الموافقة"}`,
+                    icon: "success",
+                    confirmButtonText: "حسنًا",
+                    customClass: {
+                        title: 'text-blue',
+                        confirmButton: 'blue-button',
+                        cancelButton: 'red-button'
+                    },
+                    didOpen: () => {
+                        const popup = document.querySelector('.swal2-popup');
+                        if (popup) popup.setAttribute('dir', 'rtl');
+                    }
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/des-requests/normal";
+                    }
+                })
             }
         } catch (error) {
-            Swal.fire("خطأ!", "حدث خطأ أثناء إرسال الطلب", "error");
-            console.error("Error:", error);
+            Swal.fire({
+            title: "حدث خطأ أثناء إرسال الطلب",
+            text: `${error}`,
+            icon: "error",
+            confirmButtonText: "حسنًا",
+            customClass: {
+                title: 'text-red',
+                confirmButton: 'blue-button',
+                cancelButton: 'red-button'
+                    },
+            didOpen: () => {
+                const popup = document.querySelector('.swal2-popup');
+                if (popup) popup.setAttribute('dir', 'rtl');
+            }
+            });
         }
     };
 
     return (
-
         <div>
             <div className="zzz d-inline-block p-3 ps-5">
-                <h2 className="m-0">كسر اجازة #{leaveID}</h2>
+                <h2 className="m-0">كسر إجازة {leave.firstName} {leave.secondName}</h2>
             </div>
 
             <form onSubmit={handleData}>
                 <div className="row">
                     <div className="col-sm-12 col-md-6 mt-3">
-                        <label htmlFor="endDate" className="form-label">
-                            تاريخ نهاية الاجازة
-                        </label>
-                        <input
-                            type="date"
-                            value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
-                            className="form-control"
-                            id="endDate"
-                            required
-                        />
+                        <label htmlFor="endDate" className="form-label">تاريخ نهاية الإجازة</label>
+                        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="form-control" id="endDate" required />
                     </div>
 
                     <div className="col-sm-12 col-md-6 mt-3">

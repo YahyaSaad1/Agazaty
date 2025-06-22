@@ -173,14 +173,14 @@ function NormalLeave() {
     return (
         <div>
             <div className="zzz d-inline-block p-3 ps-5">
-                <h2 className="m-0">طلب اجازة اعتيادية</h2>
+                <h2 className="m-0">طلب إجازة اعتيادية</h2>
             </div>
 
             <form onSubmit={handleData}>
             <div className="row">
                 <div className="col-sm-12 col-md-6 mt-3">
                     <label htmlFor="startDate" className="form-label">
-                        تاريخ بداية الاجازة
+                        تاريخ بداية الإجازة
                     </label>
                     <input
                         type="date"
@@ -195,7 +195,7 @@ function NormalLeave() {
 
                 <div className="col-sm-12 col-md-6 mt-3">
                     <label htmlFor="endDate" className="form-label">
-                        تاريخ نهاية الاجازة
+                        تاريخ نهاية الإجازة
                     </label>
                     <input
                         type="date"
@@ -261,7 +261,7 @@ function NormalLeave() {
                                 <span>
                                     أقر بأنني أديت أعمالي المصلحية حتى يوم{' '}
                                     <span className="text-danger">{new Date(startDate).toLocaleDateString('ar-EG')} </span>
-                                    وهو أخر أيام العمل الرسمية السابقة لابتداء الاجازة الأعتيادية المرخص لي بها وبيانها بعاليه.</span>
+                                    وهو أخر أيام العمل الرسمية السابقة لابتداء الإجازة الأعتيادية المرخص لي بها وبيانها بعاليه.</span>
                                 </label>
                             </div>
                         }
@@ -272,7 +272,7 @@ function NormalLeave() {
                                 <span>
                                     أقر بأنني استأنفت أعمالي المصلحية حتى يوم{' '}
                                     <span className="text-danger">{new Date(endDate).toLocaleDateString('ar-EG')} </span>
-                                    وهو اليوم الأول من أيام العمل الرسمية بعد انتهاء الاجازة الأعتيادية المرخص لي بها وبيانها بعاليه.
+                                    وهو اليوم الأول من أيام العمل الرسمية بعد انتهاء الإجازة الأعتيادية المرخص لي بها وبيانها بعاليه.
                                 </span>
                                 </label>
                             </div>

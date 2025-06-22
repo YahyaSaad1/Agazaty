@@ -50,7 +50,7 @@ function LeaveRecord() {
         <div>
             <div className="d-flex mb-4 justify-content-between">
                 <div className="zzz d-inline-block p-3 ps-5">
-                    <h2 className="m-0">طلبات الاجازات</h2>
+                    <h2 className="m-0">طلبات الإجازات</h2>
                 </div>
             </div>
             <div className="row">
@@ -62,7 +62,7 @@ function LeaveRecord() {
                                 <th scope="col" style={{ backgroundColor: '#F5F9FF' }}>الاسم</th>
                                 <th scope="col" style={{ backgroundColor: '#F5F9FF' }}>القسم</th>
                                 <th scope="col" style={{ backgroundColor: '#F5F9FF' }}>رقم الهاتف</th>
-                                <th scope="col" style={{ backgroundColor: '#F5F9FF' }}>نوع الاجازة</th>
+                                <th scope="col" style={{ backgroundColor: '#F5F9FF' }}>نوع الإجازة</th>
                                 <th scope="col" style={{ backgroundColor: '#F5F9FF' }}>تاريخ البداية</th>
                                 <th scope="col" style={{ backgroundColor: '#F5F9FF' }}>تاريخ النهاية</th>
                                 <th scope="col" style={{ backgroundColor: '#F5F9FF' }}>عدد الأيام</th>
@@ -82,11 +82,11 @@ function LeaveRecord() {
                                         <td>{leave.startDate ? new Date(leave.startDate).toLocaleDateString() : "-"}</td>
                                         <td>{leave.endDate ? new Date(leave.endDate).toLocaleDateString() : "-"}</td>
                                         <td>{leave.days} أيام</td>
-                                        <td className={leave.leaveStatus === 0 ? "text-danger" : "text-success"}>
-                                            {leave.leaveStatus === 0 ? "معلقة" : "مقبولة"}
+                                        <td className={leave.leaveStatus === 0 ? "text-primary" : "text-success"}>
+                                            {leave.leaveStatus === 0 ? "مُعلقة" : "مقبولة"}
                                         </td>
                                         <td>
-                                            <BtnLink id={leave.id} name='عرض الاجازة' link='/general-manager/normal-leave-request' class="btn btn-outline-primary" />
+                                            <BtnLink id={leave.id} name='عرض الإجازة' link='/general-manager/normal-leave-request' className="btn btn-outline-primary" />
                                         </td>
                                     </tr>
                                 ))

@@ -279,20 +279,20 @@ function LandingPage() {
                         <h3>نبذة عن نظام اجازاتي:</h3>
                         <h4 className="p-3 line-h-3 w-75">
                             <span className="text-primary">اجازاتي</span> هو نظام إلكتروني
-                            متكامل يهدف إلى إدارة طلبات الاجازات داخل المؤسسات التعليمية بطريقة
+                            متكامل يهدف إلى إدارة طلبات الإجازات داخل المؤسسات التعليمية بطريقة
                             حديثة وفعّالة. يوفّر النظام حلاً رقميًا يسهل على الموظفين تقديم
-                            طلبات الاجازات وتتبع حالتها، مع تمكين الإدارات من مراجعتها واعتمادها
+                            طلبات الإجازات وتتبع حالتها، مع تمكين الإدارات من مراجعتها واعتمادها
                             بسرعة. يتميز النظام بواجهة سهلة الاستخدام، وإدارة واضحة للأدوار
                             والصلاحيات، بالإضافة إلى توليد تقارير دقيقة لدعم اتخاذ القرار. يُعد
                             "اجازاتي" خطوة نحو تعزيز التحول الرقمي في العمليات الإدارية، مما
                             يساهم في تحسين الكفاءة، وتوفير الوقت، وضمان الشفافية في إدارة
-                            الاجازات.
+                            الإجازات.
                         </h4>
                     </div>
                     <div>
                         <h4>أهداف نظام اجازاتي:</h4>
                         <h6 className="pt-3 ps-3 pe-3">
-                            <span>1 . تبسيط إدارة الاجازات:</span>                            <span style={{ fontSize: "16px", fontWeight: "400" }}>
+                            <span>1 . تبسيط إدارة الإجازات:</span>                            <span style={{ fontSize: "16px", fontWeight: "400" }}>
                                 أتمتة عملية تقديم الطلبات واعتمادها لتقليل الوقت والجهد.                            </span>
                         </h6>
                         <h6 className="ps-3 pe-3">
@@ -313,7 +313,7 @@ function LandingPage() {
                         </h6>
                         <h6 className="ps-3 pe-3">
                             <span>6 . تقارير دقيقة:</span>                            <span style={{ fontSize: "16px", fontWeight: "400" }}>
-                                دعم القرارات بتحليل بيانات الاجازات.                            </span>
+                                دعم القرارات بتحليل بيانات الإجازات.                            </span>
                         </h6>
                         <h6 className="pb-3 ps-3 pe-3">
                             <span>7 . تحقيق الشفافية:</span>                            <span style={{ fontSize: "16px", fontWeight: "400" }}>
@@ -333,7 +333,7 @@ function LandingPage() {
                             {team.map((member, index) => {
                                 return (
                                     <div className="   col-sm-12 col-md-6 col-lg-4 col-xl-3 mt-3 ">
-                                        <div class="card border border-1  shadow overflow-hidden  ">
+                                        <div className="card border border-1  shadow overflow-hidden  ">
                                             <div key={index} className="overflow-hidden ff">
                                                 <img
                                                     className="w-100 h-100 PersonImg"
@@ -428,7 +428,7 @@ function LandingPage() {
                             {thanks.map((member, index) => {
                                 return (
                                     <div className="   col-sm-12 col-md-6 col-lg-4 col-xl-3 mt-3 ">
-                                        <div class="card border border-1  shadow overflow-hidden  ">
+                                        <div className="card border border-1  shadow overflow-hidden  ">
                                             <div key={index} className="overflow-hidden ff">
                                                 <img
                                                     className="w-100 h-100 PersonImg"

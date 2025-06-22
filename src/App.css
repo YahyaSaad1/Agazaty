@@ -1,5 +1,6 @@
 :root {
     --main-color: #0d6efd;
+    
     --text-red: #ff0000;
 
 
@@ -9,6 +10,13 @@
     --btn-hover-false: #9c0202;
 }
 
+body {
+    overflow-x: hidden;
+}
+.roleName{
+    border: var(--main-color) 1px dashed;
+    color: var(--main-color);
+}
 .text-bold {
     font-weight: bold;
 }
@@ -50,6 +58,7 @@
 .text-red {
     color: var(--text-red) !important;
 }
+
 
 .red-button {
     color: white;
@@ -321,7 +330,7 @@
 }
 
 
-.bbb {
+.Agazaty-title {
     font-family: Cairo sans-serif;
     font-weight: 600;
     font-size: calc(1.325rem + .9vw);
@@ -340,12 +349,11 @@
     height: 100%;
     object-fit: cover;
     display: block;
-
 }
 
 .desc {
     display: flex;
-    margin-top: -60.35px;
+    margin-top: -65.35px;
     justify-content: center;
 }
 
@@ -353,28 +361,28 @@
     width: 85.2%;
 }
 
-.bbbb {
+.box-team {
+    border: 1px solid #eee;
     background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.bbbb ul {
+.box-team ul {
     font-size: calc(1.3rem + .6vw) !important;
     list-style-type: square;
     line-height: 45px;
-}
-
-
-
-.box-team {
-    border: 1px solid #eee;
-    background: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .social {
     padding: 0 20%;
     display: flex;
     justify-content: space-between;
+}
+
+.social img{
+    width: 30px;
+    height: 30px;
+    objectFit: contain;
 }
 
 .vvvv {

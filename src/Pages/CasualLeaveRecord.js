@@ -59,11 +59,11 @@ function CasualLeaveRecord() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
-          <h2 className="m-0">طلبات الاجازات</h2>
+          <h2 className="m-0">طلبات الإجازات</h2>
         </div>
       </div>
       <div className="row">
-        <div className="table-responsive" style={{ height: "100vh" }}>
+        <div className="table-responsive">
           <table className="m-0 table table-striped">
             <thead>
               <tr>
@@ -124,18 +124,18 @@ function CasualLeaveRecord() {
                     <th
                       className={
                         leave.leaveStatus === false
-                          ? "text-danger"
+                          ? "text-primary"
                           : "text-success"
                       }
                     >
-                      {leave.leaveStatus === false ? "معلقة" : "مقبولة"}
+                      {leave.leaveStatus === false ? "مُعلقة" : "مقبولة"}
                     </th>
                     <th>
                       <BtnLink
                         id={leave.id}
-                        name="عرض الاجازة"
+                        name="عرض الإجازة"
                         link="/manager-casual-leave-request"
-                        class="btn btn-outline-primary"
+                        className="btn btn-outline-primary"
                       />
                     </th>
                   </tr>

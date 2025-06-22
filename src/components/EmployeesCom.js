@@ -2,14 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 import BtnLink from "../components/BtnLink";
 import "../CSS/Employee.css";
-import {
-  faIdCard,
-  faPenToSquare,
-  faTable,
-  faUserPen,
-  faUserPlus,
-  faUserSlash,
-} from "@fortawesome/free-solid-svg-icons";
+import {faIdCard, faPenToSquare, faTable, faUserPen, faUserPlus, faUserSlash} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BASE_API_URL, roleName, rowsPerPage, token } from "../server/serves";
@@ -93,13 +86,14 @@ function EmployeesCom({ type }) {
               icon: "success",
               confirmButtonText: "حسنًا",
               customClass: {
-                title: "text-blue",
-                confirmButton: "blue-button",
+                title: 'text-blue',
+                confirmButton: 'blue-button',
+                cancelButton: 'red-button'
               },
               didOpen: () => {
-                const popup = document.querySelector(".swal2-popup");
-                if (popup) popup.setAttribute("dir", "rtl");
-              },
+                const popup = document.querySelector('.swal2-popup');
+                if (popup) popup.setAttribute('dir', 'rtl');
+              }
             });
           })
           .catch((error) => {
@@ -109,13 +103,14 @@ function EmployeesCom({ type }) {
               confirmButtonText: "حسناً",
               icon: "error",
               customClass: {
-                title: "text-blue",
-                confirmButton: "blue-button",
+                title: 'text-red',
+                confirmButton: 'blue-button',
+                cancelButton: 'red-button'
               },
               didOpen: () => {
-                const popup = document.querySelector(".swal2-popup");
-                if (popup) popup.setAttribute("dir", "rtl");
-              },
+                const popup = document.querySelector('.swal2-popup');
+                if (popup) popup.setAttribute('dir', 'rtl');
+              }
             });
           });
       }
@@ -164,13 +159,14 @@ function EmployeesCom({ type }) {
               icon: "success",
               confirmButtonText: "حسنًا",
               customClass: {
-                title: "text-blue",
-                confirmButton: "blue-button",
+                title: 'text-blue',
+                confirmButton: 'blue-button',
+                cancelButton: 'red-button'
               },
               didOpen: () => {
-                const popup = document.querySelector(".swal2-popup");
-                if (popup) popup.setAttribute("dir", "rtl");
-              },
+                const popup = document.querySelector('.swal2-popup');
+                if (popup) popup.setAttribute('dir', 'rtl');
+              }
             });
 
             fetchEmployees();
@@ -259,32 +255,27 @@ function EmployeesCom({ type }) {
 
         {(roleName === "مدير الموارد البشرية" ||
           roleName === "عميد الكلية") && (
-          <div className="d-flex employee-buttons">
+          <div className="d-flex employee-buttons ms-3">
             <button
               onClick={downloadActiveUsersExcel}
               className="my-3 mx-1 btn btn-success d-flex justify-content-center align-items-center"
               style={{ whiteSpace: "nowrap" }}
             >
-              <FontAwesomeIcon
-                icon={faTable}
-                style={{ fontSize: "1.4rem" }}
-                color="#fff"
-                className="ms-2"
-              />
-              <span>تنزيل البيانات</span>
+              <FontAwesomeIcon icon={faTable} style={{ fontSize: "1.4rem" }} color="#fff"/>
+              <span className="d-none d-sm-inline">&nbsp;تنزيل البيانات</span>
             </button>
 
             {type === "active" ? (
               <BtnLink
                 name="إضافة موظف"
                 link="/add-employee"
-                class="my-3 mx-2 btn btn-primary m-0"
+                className="my-3 mx-2 btn btn-primary m-0"
               />
             ) : (
               <BtnLink
                 name="الموظفين النشطين"
                 link="/employees/active"
-                class="my-3 mx-2 btn btn-primary m-0"
+                className="my-3 mx-2 btn btn-primary m-0"
               />
             )}
           </div>
@@ -303,37 +294,17 @@ function EmployeesCom({ type }) {
 
       <div className="row">
         <div>
-          <div className="table-responsive" style={{ height: "100vh" }}>
+          <div className="table-responsive">
             <table className="m-0 table table-striped">
               <thead>
                 <tr>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                    المرجع
-                  </th>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                    الاسم
-                  </th>
-                  <th
-                    scope="col"
-                    style={{ backgroundColor: "#F5F9FF", whiteSpace: "nowrap" }}
-                  >
-                    المسمى الوظيفي
-                  </th>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                    القسم
-                  </th>
-                  <th
-                    scope="col"
-                    style={{ backgroundColor: "#F5F9FF", whiteSpace: "nowrap" }}
-                  >
-                    تاريخ التعيين
-                  </th>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                    رقم الهاتف
-                  </th>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                    المزيد
-                  </th>
+                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
+                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
+                  <th scope="col" style={{ backgroundColor: "#F5F9FF", whiteSpace: "nowrap" }}>المسمى الوظيفي</th>
+                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>القسم</th>
+                  <th scope="col" style={{ backgroundColor: "#F5F9FF", whiteSpace: "nowrap" }}>تاريخ التعيين</th>
+                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>رقم الهاتف</th>
+                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المزيد</th>
                 </tr>
               </thead>
               <tbody>
@@ -345,66 +316,27 @@ function EmployeesCom({ type }) {
                       </th>
                       <td style={{ height: "50px" }}>{user.fullName}</td>
                       <td style={{ height: "50px" }}>{user.roleName}</td>
-                      <td style={{ height: "50px" }}>
-                        {user.departmentName || "--"}
-                      </td>
-                      <td style={{ height: "50px" }}>
-                        {new Date(user.hireDate).toLocaleDateString("ar-EG")}
-                      </td>
+                      <td style={{ height: "50px" }}>{user.departmentName || <span className="text-primary">إدارة مُستقلة</span>}</td>
+                      <td style={{ height: "50px" }}>{new Date(user.hireDate).toLocaleDateString("ar-EG")}</td>
                       <td style={{ height: "50px" }}>{user.phoneNumber}</td>
                       {type === "active" ? (
                         <td style={{ height: "50px" }}>
-                          <Link
-                            to={`/profile/user/${user.id}`}
-                            className="ms-1"
-                          >
-                            <FontAwesomeIcon
-                              icon={faIdCard}
-                              color="green"
-                              className="fontt"
-                            />
+                          <Link to={`/profile/user/${user.id}`} className="ms-1">
+                            <FontAwesomeIcon icon={faIdCard} color="green" className="fontt" />
                           </Link>
                           <Link to={`/employee/${user.id}`} className="ms-1">
-                            <FontAwesomeIcon
-                              icon={faUserPen}
-                              color="blue"
-                              className="fontt"
-                            />
+                            <FontAwesomeIcon icon={faUserPen} color="blue" className="fontt" />
                           </Link>
-                          <FontAwesomeIcon
-                            icon={faUserSlash}
-                            onClick={() => softDeleteUser(user.id)}
-                            color="red"
-                            className="fontt"
-                            style={{ cursor: "pointer", marginLeft: "10px" }}
-                          />
+                            <FontAwesomeIcon icon={faUserSlash} onClick={() => softDeleteUser(user.id)} color="red" className="fontt" style={{ cursor: "pointer", marginLeft: "10px" }} />
                         </td>
                       ) : (
                         <td style={{ height: "50px" }}>
-                          <Link
-                            to={`/profile/user/${user.id}`}
-                            className="ms-1"
-                          >
-                            <FontAwesomeIcon
-                              icon={faIdCard}
-                              color="green"
-                              className="fontt"
-                            />
-                          </Link>
+                          <Link to={`/profile/user/${user.id}`} className="ms-1">
+                            <FontAwesomeIcon icon={faIdCard} color="green" className="fontt"/></Link>
                           <Link to={`/employee/${user.id}/edit`}>
-                            <FontAwesomeIcon
-                              icon={faPenToSquare}
-                              color="blue"
-                              className="fontt"
-                            />
+                            <FontAwesomeIcon icon={faPenToSquare} color="blue" className="fontt"/>
                           </Link>
-                          <FontAwesomeIcon
-                            icon={faUserPlus}
-                            color="#17a2b8"
-                            onClick={() => ReActiveUser(user.id)}
-                            className="fontt"
-                            style={{ cursor: "pointer", marginLeft: "10px" }}
-                          />
+                            <FontAwesomeIcon icon={faUserPlus} color="#17a2b8" onClick={() => ReActiveUser(user.id)} className="fontt" style={{ cursor: "pointer", marginLeft: "10px" }}/>
                         </td>
                       )}
                     </tr>

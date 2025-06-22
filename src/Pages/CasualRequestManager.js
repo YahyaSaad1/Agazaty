@@ -93,6 +93,10 @@ function CasualRequestManager() {
                         confirmButton: 'blue-button',
                         cancelButton: 'red-button'
                     },
+                    didOpen: () => {
+                        const popup = document.querySelector('.swal2-popup');
+                        if (popup) popup.setAttribute('dir', 'rtl');
+                    }
                 }).then(() => {
                     window.location.href = "/casual/leave-record";
                 });
@@ -125,10 +129,10 @@ function CasualRequestManager() {
         <div>
             <div className="d-flex mb-4 justify-content-between">
                 <div className="zzz d-inline-block p-3 ps-5">
-                    <h2 className="m-0">{`اجازة ${leave.firstName} ${leave.secondName}`}</h2>
+                    <h2 className="m-0">{`إجازة ${leave.firstName} ${leave.secondName}`}</h2>
                 </div>
                 <div className="p-3">
-                    <BtnLink name='سجل الاجازات' link='/leave-record' class="btn btn-primary m-0 ms-2 mb-2" />
+                    <BtnLink name='سجل الإجازات' link='/leave-record' className="btn btn-primary m-0 ms-2 mb-2" />
                 </div>
             </div>
 
@@ -139,10 +143,10 @@ function CasualRequestManager() {
                             <tr>
                                 <th scope="col" className="pb-3" style={{ backgroundColor: '#F5F9FF' }}>حالة الطلب</th>
                                 <th scope="col" className="text-start" style={{ backgroundColor: '#F5F9FF' }}>
-                                    {leave.holder === 1 ? <Btn name="المدير المباشر" class="btn-danger text-start" />
-                                        : leave.holder === 2 ? <Btn name="المدير المختص" class="btn-danger text-start" />
-                                            : leave.holder === 3 ? <Btn name="مقبولة" class="btn-success text-start" />
-                                                : <Btn name="معلقة" class="btn-danger text-start" />}
+                                    {leave.holder === 1 ? <Btn name="المدير المباشر" className="btn-danger text-start" />
+                                        : leave.holder === 2 ? <Btn name="المدير المختص" className="btn-danger text-start" />
+                                            : leave.holder === 3 ? <Btn name="مقبولة" className="btn-success text-start" />
+                                                : <Btn name="مُعلقة" className="btn-primary text-start" />}
                                 </th>
                             </tr>
                         </thead>
@@ -152,7 +156,7 @@ function CasualRequestManager() {
                                 <th scope="col" className="text-start">{leave.userName}</th>
                             </tr>
                             <tr>
-                                <th scope="col">نوع الاجازة</th>
+                                <th scope="col">نوع الإجازة</th>
                                 <th scope="col" className="text-start">عارضة</th>
                             </tr>
                             <tr>

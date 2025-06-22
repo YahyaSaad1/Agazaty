@@ -10,136 +10,7 @@ import Ahmed from "../Images/Ahmed.jpg";
 import user from "../Images/download.jpeg";
 
 function About() {
-  const team = [
-    {
-      id: 1,
-      image: YahyaSaad,
-      type: "FrontEnd",
-      department: "علوم الحاسب",
-      firstName: "يحيى",
-      secondName: "سعد",
-      thirdName: "عبدالموجود",
-      fourthName: "جادالرب",
-      socialMedia: {
-        linkedIn: "yahyasaad1",
-        gitHub: "yahyasaad1",
-        whatsapp: "010027471188",
-        email: "yahyasaad2024@gmail.com",
-      },
-    },
-    {
-      id: 1,
-      image: Abdohamdy,
-      type: "BackEnd",
-      department: "علوم الحاسب",
-      firstName: "عبدالرحمن",
-      secondName: "حمدي",
-      thirdName: "توفيق",
-      fourthName: "شعبان",
-      socialMedia: {
-        linkedIn: "yahyasaad1",
-        gitHub: "yahyasaad1",
-        whatsapp: "01015652527",
-        email: "yahyasaad2024@gmail.com",
-      },
-    },
-    {
-      id: 1,
-      image: ElHawary,
-      type: "FrontEnd",
-      department: "علوم الحاسب",
-      firstName: "محمود",
-      secondName: "نصر الدين",
-      thirdName: "حافظ",
-      fourthName: "محمود",
-      socialMedia: {
-        linkedIn: "yahyasaad1",
-        gitHub: "yahyasaad1",
-        whatsapp: "010027471188",
-        email: "yahyasaad2024@gmail.com",
-      },
-    },
-    {
-      id: 1,
-      image: Ashraf,
-      type: "BackEnd",
-      department: "علوم الحاسب",
-      firstName: "أشرف",
-      secondName: "أبوالري",
-      thirdName: "عطية",
-      fourthName: "محمود",
-      socialMedia: {
-        linkedIn: "yahyasaad1",
-        gitHub: "yahyasaad1",
-        whatsapp: "010027471188",
-        email: "yahyasaad2024@gmail.com",
-      },
-    },
-    {
-      id: 1,
-      image: user,
-      type: "BackEnd",
-      department: "علوم الحاسب",
-      firstName: "عمر",
-      secondName: "حمدي",
-      thirdName: "سيد",
-      fourthName: "عبدالقادر",
-      socialMedia: {
-        linkedIn: "yahyasaad1",
-        gitHub: "yahyasaad1",
-        whatsapp: "01021514586",
-        email: "yahyasaad2024@gmail.com",
-      },
-    },
-    {
-      id: 1,
-      image: AbdElQadir,
-      type: "UI&UX",
-      department: "تكنولوجيا المعلومات",
-      firstName: "عبدالرحمن",
-      secondName: "احمد",
-      thirdName: "علي",
-      fourthName: "عبدالقادر",
-      socialMedia: {
-        linkedIn: "yahyasaad1",
-        gitHub: "yahyasaad1",
-        whatsapp: "01030492160",
-        email: "yahyasaad2024@gmail.com",
-      },
-    },
-    {
-      id: 1,
-      image: Hesham,
-      type: "BackEnd",
-      department: "علوم الحاسب",
-      firstName: "هشام",
-      secondName: "مسعد",
-      thirdName: "احمد",
-      fourthName: "حسين",
-      socialMedia: {
-        linkedIn: "yahyasaad1",
-        gitHub: "yahyasaad1",
-        whatsapp: "010027471188",
-        email: "yahyasaad2024@gmail.com",
-      },
-    },
-    {
-      id: 1,
-      image: Ahmed,
-      type: "FrontEnd",
-      department: "علوم الحاسب",
-      firstName: "احمد",
-      secondName: "يسن",
-      thirdName: "خضري",
-      fourthName: "محمود",
-      socialMedia: {
-        linkedIn: "yahyasaad1",
-        gitHub: "yahyasaad1",
-        whatsapp: "01112672183",
-        email: "yahyasaad2024@gmail.com",
-      },
-    },
-  ];
+  const team = [{id: 1, image: YahyaSaad, type: "FrontEnd", department: "علوم الحاسب", firstName: "يحيى", secondName: "سعد", thirdName: "عبدالموجود", fourthName: "جادالرب", socialMedia: {linkedIn: "yahyasaad1",gitHub: "yahyasaad1",whatsapp: "010027471188",email: "yahyasaad2024@gmail.com"}},];
 
   const thanks = [
     {
@@ -188,21 +59,21 @@ function About() {
           <h4>نبذة عن نظام اجازاتي:</h4>
           <h6 className="p-3 line-h-2">
             <span className="text-primary">اجازاتي</span> هو نظام إلكتروني
-            متكامل يهدف إلى إدارة طلبات الاجازات داخل المؤسسات التعليمية بطريقة
+            متكامل يهدف إلى إدارة طلبات الإجازات داخل المؤسسات التعليمية بطريقة
             حديثة وفعّالة. يوفّر النظام حلاً رقميًا يسهل على الموظفين تقديم
-            طلبات الاجازات وتتبع حالتها، مع تمكين الإدارات من مراجعتها واعتمادها
+            طلبات الإجازات وتتبع حالتها، مع تمكين الإدارات من مراجعتها واعتمادها
             بسرعة. يتميز النظام بواجهة سهلة الاستخدام، وإدارة واضحة للأدوار
             والصلاحيات، بالإضافة إلى توليد تقارير دقيقة لدعم اتخاذ القرار. يُعد
             "اجازاتي" خطوة نحو تعزيز التحول الرقمي في العمليات الإدارية، مما
             يساهم في تحسين الكفاءة، وتوفير الوقت، وضمان الشفافية في إدارة
-            الاجازات.
+            الإجازات.
           </h6>
         </div>
         <div>
           <h4>أهداف نظام اجازاتي:</h4>
           <h6 className="pt-3 ps-3 pe-3">
             {" "}
-            <span>1 . تبسيط إدارة الاجازات:</span>{" "}
+            <span>1 . تبسيط إدارة الإجازات:</span>{" "}
             <span style={{ fontSize: "16px", fontWeight: "400" }}>
               {" "}
               أتمتة عملية تقديم الطلبات واعتمادها لتقليل الوقت والجهد.{" "}
@@ -245,7 +116,7 @@ function About() {
             <span>6 . تقارير دقيقة:</span>{" "}
             <span style={{ fontSize: "16px", fontWeight: "400" }}>
               {" "}
-              دعم القرارات بتحليل بيانات الاجازات.{" "}
+              دعم القرارات بتحليل بيانات الإجازات.{" "}
             </span>
           </h6>
           <h6 className="pb-3 ps-3 pe-3">

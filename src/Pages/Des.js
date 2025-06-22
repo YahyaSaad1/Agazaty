@@ -17,11 +17,11 @@
 //         <div>
 //             <div className="d-flex mb-4 justify-content-between">
 //                 <div className="zzz d-inline-block p-3 ps-5">
-//                     <h2 className="m-0">سجل الاجازات</h2>
+//                     <h2 className="m-0">سجل الإجازات</h2>
 //                 </div>
 //                 <div className="p-3">
 //                     <div className="d-flex">
-//                         <BtnLink name='إضافة اجازة' link='/add-leave' class="btn btn-primary m-0 me-2" />
+//                         <BtnLink name='إضافة إجازة' link='/add-leave' className="btn btn-primary m-0 me-2" />
 //                     </div>
 //                 </div>
 //             </div>
@@ -30,7 +30,7 @@
 //                     <table className="m-0 table table-striped">
 //                         <thead>
 //                             <tr>
-//                                 <th scope="col" style={{backgroundColor:'#F5F9FF'}}>نوع الاجازة</th>
+//                                 <th scope="col" style={{backgroundColor:'#F5F9FF'}}>نوع الإجازة</th>
 //                                 <th scope="col" style={{backgroundColor:'#F5F9FF'}}>تاريخ البدء</th>
 //                                 <th scope="col" style={{backgroundColor:'#F5F9FF'}}>تاريخ الانتهاء</th>
 //                                 <th scope="col" style={{backgroundColor:'#F5F9FF'}}>عدد الأيام</th>
@@ -52,12 +52,12 @@
 
 //                                         <th>{leave.coworkerName}</th>
 //                                         <th>{leave.notesFromEmployee}</th>
-//                                         <th>{leave.leaveStatus === 0 ? "معلقة" : leave.leaveStatus === 1 ? "مقبولة" : "مرفوضة"}</th>
+//                                         <th>{leave.leaveStatus === 0 ? "مُعلقة" : leave.leaveStatus === 1 ? "مقبولة" : "مرفوضة"}</th>
 //                                         <th>
 //                                             <FontAwesomeIcon icon={faPrint} fontSize={'26px'} color="blue" className="printer" />
 //                                         </th>
 //                                         <th>
-//                                             <BtnLink id={leave.id} name='عرض الاجازة' link='/normal-leave-request' class="btn btn-outline-primary" />
+//                                             <BtnLink id={leave.id} name='عرض الإجازة' link='/normal-leave-request' className="btn btn-outline-primary" />
 //                                         </th>
 //                                     </tr>
 //                                 ))

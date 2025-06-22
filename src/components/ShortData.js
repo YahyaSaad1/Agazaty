@@ -91,7 +91,7 @@ const [department, setDepartments] = useState([]);
   useEffect(() => {
     setLeaves({
       numberLeave: {
-        type: "عدد الاجازات",
+        type: "عدد الإجازات",
         num:
           (acceptedLeaves?.length || 0) +
           (rejectedLeaves?.length || 0) +
@@ -106,15 +106,15 @@ const [department, setDepartments] = useState([]);
         num: users?.length || 0,
       },
       acceptableLeave: {
-        type: "الاجازات المقبولة",
+        type: "الإجازات المقبولة",
         num: acceptedLeaves?.length || 0,
       },
       rejectedLeaves: {
-        type: "الاجازات المرفوضة",
+        type: "الإجازات المرفوضة",
         num: rejectedLeaves?.length || 0,
       },
       pendingLeave: {
-        type: "الاجازات المعلقة",
+        type: "الإجازات المُعلقة",
         num: waitingLeaves?.length || 0,
       },
     });

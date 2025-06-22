@@ -179,8 +179,8 @@ function EditProfile() {
               />
             </div>
             <div className="d-flex justify-content-center">
-              <div className="bg-info p-2 d-inline-block rounded-3">
-                <h5 className="m-0 ps-5 pe-5 text-light">{roleName}</h5>
+              <div className="roleName p-2 d-inline-block rounded-3">
+                <h5 className="m-0 ps-5 pe-5 text-bold">{roleName}</h5>
               </div>
             </div>
           </div>
@@ -215,7 +215,7 @@ function EditProfile() {
           </div>
 
           <div className="d-flex justify-content-center mt-3">
-            <Btn name="تحديث البيانات" class="btn-primary w-50" onClick={updateUser}/>
+            <Btn name="تحديث البيانات" className="btn-primary w-50" onClick={updateUser}/>
           </div>
         </div>
       </form>

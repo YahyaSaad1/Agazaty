@@ -119,7 +119,7 @@ function Message() {
                     <div className="mt-3" key={index}>
                         <div className="box mt-3 col-sm-12 col-md-10 col-lg-8">
                             <h5>
-                                طلب اجازة جديد من{" "}
+                                طلب إجازة جديد من{" "}
                                 <span className="text-primary">{leave.userName}</span> في انتظار موافقتك
                             </h5>
                             <p>

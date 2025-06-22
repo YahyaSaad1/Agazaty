@@ -147,141 +147,156 @@ function EditEmployeeForHR() {
     }
     return [];
   };
+
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const selectedDeptID =
-      departement_ID ??
-      departments.find((d) => d.name === user.departmentName)?.id;
-    const finalData = {
-      firstName: updatedFields.firstName || user.firstName,
-      secondName: updatedFields.secondName || user.secondName,
-      thirdName: updatedFields.thirdName || user.thirdName,
-      forthName: updatedFields.forthName || user.forthName,
-      userName: updatedFields.userName || user.userName,
-      nationalID: updatedFields.nationalID || user.nationalID,
-      hireDate: updatedFields.hireDate || user.hireDate,
-      email: updatedFields.email || user.email,
-      phoneNumber: updatedFields.phoneNumber || user.phoneNumber,
-      gender: updatedFields.gender || user.gender,
-      dateOfBirth: updatedFields.dateOfBirth || user.dateOfBirth,
-      position: updatedFields.position || user.position,
-      normalLeavesCount:
-        updatedFields.normalLeavesCount || user.normalLeavesCount,
-      casualLeavesCount:
-        updatedFields.casualLeavesCount || user.casualLeavesCount,
-      nonChronicSickLeavesCount:
-        updatedFields.nonChronicSickLeavesCount ||
-        user.nonChronicSickLeavesCount,
-      departement_ID: selectedDeptID,
-      normalLeavesCount_47:
-        updatedFields.normalLeavesCount_47 || user.normalLeavesCount_47,
-      normalLeavesCount_81Before3Years:
-        updatedFields.normalLeavesCount_81Before3Years ||
-        user.normalLeavesCount_81Before3Years,
-      normalLeavesCount_81Before2Years:
-        updatedFields.normalLeavesCount_81Before2Years ||
-        user.normalLeavesCount_81Before2Years,
-      normalLeavesCount_81Before1Years:
-        updatedFields.normalLeavesCount_81Before1Years ||
-        user.normalLeavesCount_81Before1Years,
-      howManyDaysFrom81And47:
-        updatedFields.howManyDaysFrom81And47 || user.howManyDaysFrom81And47,
-      roleName: updatedFields.roleName || user.roleName,
-      disability:
-        updatedFields.disability === "true"
-          ? true
-          : updatedFields.disability === "false"
-          ? false
-          : user.disability,
-      governorate: updatedFields.governorate || user.governorate,
-      state: updatedFields.state || user.state,
-      street: updatedFields.street || user.street,
-    };
+  e.preventDefault();
 
-    const noChanges = Object.entries(finalData).every(([key, value]) => {
-      const original = user[key];
-      if (key === "departement_ID") {
-        const selectedName = getDeptNameById(value);
-        return selectedName === user.departmentName;
-      }
-      return value === original;
-    });
+  const selectedDeptID =
+    departement_ID ??
+    departments.find((d) => d.name === user.departmentName)?.id;
 
-    if (noChanges) {
-      Swal.fire({
-        title: "!لم تقم بتعديل أي بيانات",
-        icon: "info",
-        confirmButtonText: "حسنًا",
-        customClass: {
-          title: "text-blue",
-          confirmButton: "blue-button",
-          cancelButton: "red-button",
-        },
-        didOpen: () => {
-          const popup = document.querySelector(".swal2-popup");
-          if (popup) popup.setAttribute("dir", "rtl");
-        },
-      });
+  const finalData = {
+    firstName: updatedFields.firstName || user.firstName,
+    secondName: updatedFields.secondName || user.secondName,
+    thirdName: updatedFields.thirdName || user.thirdName,
+    forthName: updatedFields.forthName || user.forthName,
+    userName: updatedFields.userName || user.userName,
+    nationalID: updatedFields.nationalID || user.nationalID,
+    hireDate: updatedFields.hireDate || user.hireDate,
+    email: updatedFields.email || user.email,
+    phoneNumber: updatedFields.phoneNumber || user.phoneNumber,
+    gender: updatedFields.gender || user.gender,
+    dateOfBirth: updatedFields.dateOfBirth || user.dateOfBirth,
+    position: updatedFields.position || user.position,
+    normalLeavesCount: updatedFields.normalLeavesCount || user.normalLeavesCount,
+    casualLeavesCount: updatedFields.casualLeavesCount || user.casualLeavesCount,
+    nonChronicSickLeavesCount:
+      updatedFields.nonChronicSickLeavesCount || user.nonChronicSickLeavesCount,
+    departement_ID: selectedDeptID,
+    normalLeavesCount_47: updatedFields.normalLeavesCount_47 || user.normalLeavesCount_47,
+    normalLeavesCount_81Before3Years:
+      updatedFields.normalLeavesCount_81Before3Years || user.normalLeavesCount_81Before3Years,
+    normalLeavesCount_81Before2Years:
+      updatedFields.normalLeavesCount_81Before2Years || user.normalLeavesCount_81Before2Years,
+    normalLeavesCount_81Before1Years:
+      updatedFields.normalLeavesCount_81Before1Years || user.normalLeavesCount_81Before1Years,
+    howManyDaysFrom81And47:
+      updatedFields.howManyDaysFrom81And47 || user.howManyDaysFrom81And47,
+    roleName: updatedFields.roleName || user.roleName,
+    disability:
+      updatedFields.disability === "true"
+        ? true
+        : updatedFields.disability === "false"
+        ? false
+        : user.disability,
+    governorate: updatedFields.governorate || user.governorate,
+    state: updatedFields.state || user.state,
+    street: updatedFields.street || user.street,
+  };
 
-      return;
+  const noChanges = Object.entries(finalData).every(([key, value]) => {
+    const original = user[key];
+    if (key === "departement_ID") {
+      const selectedName = getDeptNameById(value);
+      return selectedName === user.departmentName;
     }
+    return value === original;
+  });
 
+  if (noChanges) {
     Swal.fire({
-      title: `<span style='color:#0d6efd;'>هل أنت متأكد من تحديث البيانات؟</span>`,
-      text: "لا يمكن التراجع عن هذا الإجراء!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "نعم، تحديث",
-      cancelButtonText: "إلغاء",
+      title: "!لم تقم بتعديل أي بيانات",
+      icon: "info",
+      confirmButtonText: "حسنًا",
       customClass: {
         title: "text-blue",
         confirmButton: "blue-button",
-        cancelButton: "red-button",
       },
       didOpen: () => {
         const popup = document.querySelector(".swal2-popup");
         if (popup) popup.setAttribute("dir", "rtl");
       },
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          const response = await fetch(
-            `${BASE_API_URL}/api/Account/UpdateUser/${userId}`,
-            {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-              body: JSON.stringify(finalData),
-            }
-          );
+    });
+    return;
+  }
 
-          if (response.ok) {
+  Swal.fire({
+    title: `<span style='color:#0d6efd;'>هل أنت متأكد من تحديث البيانات؟</span>`,
+    text: "لا يمكن التراجع عن هذا الإجراء!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "نعم، تحديث",
+    cancelButtonText: "إلغاء",
+    customClass: {
+      title: "text-blue",
+      confirmButton: "blue-button",
+      cancelButton: "red-button",
+    },
+    didOpen: () => {
+      const popup = document.querySelector(".swal2-popup");
+      if (popup) popup.setAttribute("dir", "rtl");
+    },
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      try {
+        const response = await fetch(
+          `${BASE_API_URL}/api/Account/UpdateUser/${userId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(finalData),
+          }
+        );
+
+        if (response.ok) {
+          Swal.fire({
+            title: `<span style='color:#0d6efd;'>تم تحديث بيانات ${user.firstName} ${user.secondName} بنجاح.</span>`,
+            icon: "success",
+            confirmButtonText: "حسنًا",
+            confirmButtonColor: "#0d6efd",
+            customClass: {
+              title: "text-blue",
+              confirmButton: "blue-button",
+            },
+            didOpen: () => {
+              const popup = document.querySelector(".swal2-popup");
+              if (popup) popup.setAttribute("dir", "rtl");
+            },
+          }).then(() => navigate("/employees/active"));
+        } else {
+          const errorData = await response.json();
+          if (errorData) {
+            const validationMessages = Object.values(errorData.errors || { message: errorData.message })
+              .flat()
+              .map((msg) => `<p>${msg || errorData.message}</p>`)
+              .join("");
             Swal.fire({
-              title: `<span style='color:#0d6efd;'>تم تحديث بيانات ${user.firstName} ${user.secondName} بنجاح.</span>`,
-              icon: "success",
-              confirmButtonText: "حسنًا",
-              confirmButtonColor: "#0d6efd",
+              title: "فشل التحديث",
+              html: `${validationMessages || errorData.message}`,
+              icon: "error",
+              confirmButtonText: "حسناً",
               customClass: {
-                title: "text-blue",
+                title: "text-red",
                 confirmButton: "blue-button",
-                cancelButton: "red-button",
               },
               didOpen: () => {
                 const popup = document.querySelector(".swal2-popup");
                 if (popup) popup.setAttribute("dir", "rtl");
               },
-            }).then(() => navigate("/employees/active"));
+            });
           } else {
             Swal.fire({
               title: "حدث خطأ!",
               text: "لم يتم تحديث البيانات، حاول مرة أخرى.",
               icon: "error",
+              confirmButtonText: "حسناً",
               customClass: {
                 title: "text-red",
                 confirmButton: "blue-button",
-                cancelButton: "red-button",
               },
               didOpen: () => {
                 const popup = document.querySelector(".swal2-popup");
@@ -289,27 +304,28 @@ function EditEmployeeForHR() {
               },
             });
           }
-        } catch (error) {
-          console.error("خطأ أثناء تحديث البيانات:", error);
-          Swal.fire({
-            title: "خطأ في الاتصال!",
-            text: "تأكد من تشغيل السيرفر وحاول مجدداً.",
-            icon: "error",
-            customClass: {
-              title: "text-red",
-              confirmButton: "blue-button",
-              cancelButton: "red-button",
-            },
-            didOpen: () => {
-              const popup = document.querySelector(".swal2-popup");
-              if (popup) popup.setAttribute("dir", "rtl");
-            },
-          });
         }
+      } catch (error) {
+        console.error("خطأ أثناء تحديث البيانات:", error);
+        Swal.fire({
+          title: "خطأ في الاتصال!",
+          text: "تأكد من تشغيل السيرفر وحاول مجدداً.",
+          icon: "error",
+          customClass: {
+            title: "text-red",
+            confirmButton: "blue-button",
+          },
+          didOpen: () => {
+            const popup = document.querySelector(".swal2-popup");
+            if (popup) popup.setAttribute("dir", "rtl");
+          },
+        });
       }
-    });
-  };
+    }
+  });
+};
 
+  
   return (
     <div>
       <div className="d-flex mb-3 justify-content-between">
@@ -707,7 +723,7 @@ function EditEmployeeForHR() {
         age <= 50 ? (
           <div className="d-none col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
             <label htmlFor="exampleFormControlNumber10" className="form-label">
-              عدد الاجازات الاعتيادية
+              عدد الإجازات الاعتيادية
             </label>
             <input
               max={0}
@@ -730,7 +746,7 @@ function EditEmployeeForHR() {
           age <= 50 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
             <label htmlFor="exampleFormControlNumber10" className="form-label">
-              عدد الاجازات الاعتيادية
+              عدد الإجازات الاعتيادية
             </label>
             <input
               max={15}
@@ -753,7 +769,7 @@ function EditEmployeeForHR() {
           age <= 50 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
             <label htmlFor="exampleFormControlNumber11" className="form-label">
-              عدد الاجازات الاعتيادية
+              عدد الإجازات الاعتيادية
             </label>
             <input
               max={36}
@@ -773,7 +789,7 @@ function EditEmployeeForHR() {
         ) : user.disability === false && yearsOfWork >= 10 && age <= 50 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
             <label htmlFor="exampleFormControlNumber12" className="form-label">
-              عدد الاجازات الاعتيادية
+              عدد الإجازات الاعتيادية
             </label>
             <input
               max={45}
@@ -793,7 +809,7 @@ function EditEmployeeForHR() {
         ) : age >= 50 || user.disability === true ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
             <label htmlFor="exampleFormControlNumber13" className="form-label">
-              عدد الاجازات الاعتيادية
+              عدد الإجازات الاعتيادية
             </label>
             <input
               max={60}
@@ -815,7 +831,7 @@ function EditEmployeeForHR() {
         {hireYear >= 2015 ? (
           <div className="d-none col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
             <label htmlFor="exampleFormControlNumber5" className="form-label">
-              عدد الاجازات الاعتيادية_47
+              عدد الإجازات الاعتيادية_47
             </label>
             <input
               className="form-control"
@@ -833,7 +849,7 @@ function EditEmployeeForHR() {
         ) : hireYear <= 2015 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
             <label htmlFor="exampleFormControlNumber5" className="form-label">
-              عدد الاجازات الاعتيادية_47
+              عدد الإجازات الاعتيادية_47
             </label>
             <input
               className="form-control"
@@ -895,7 +911,7 @@ function EditEmployeeForHR() {
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
           <label htmlFor="exampleFormControlNumber6" className="form-label">
-            عدد الاجازات الاعتيادية_81 قبل سنة
+            عدد الإجازات الاعتيادية_81 قبل سنة
           </label>
           <input
             className="form-control"
@@ -915,7 +931,7 @@ function EditEmployeeForHR() {
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
           <label htmlFor="exampleFormControlNumber7" className="form-label">
-            عدد الاجازات الاعتيادية_81 قبل سنتين
+            عدد الإجازات الاعتيادية_81 قبل سنتين
           </label>
           <input
             className="form-control"
@@ -935,7 +951,7 @@ function EditEmployeeForHR() {
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
           <label htmlFor="exampleFormControlNumber8" className="form-label">
-            عدد الاجازات الاعتيادية_81 قبل 3 سنوات
+            عدد الإجازات الاعتيادية_81 قبل 3 سنوات
           </label>
           <input
             className="form-control"
@@ -955,7 +971,7 @@ function EditEmployeeForHR() {
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
           <label htmlFor="exampleFormControlNumber12" className="form-label">
-            عدد الاجازات العارضة
+            عدد الإجازات العارضة
           </label>
           <input
             className="form-control"
@@ -974,7 +990,7 @@ function EditEmployeeForHR() {
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
           <label htmlFor="exampleFormControlNumber9" className="form-label">
-            عدد الاجازات المرضية
+            عدد الإجازات المرضية
           </label>
           <input
             className="form-control"
@@ -993,7 +1009,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="d-flex justify-content-center mt-3">
-          <Btn name="حفظ التعديلات" link="/" class="btn-primary w-50" />
+          <Btn name="حفظ التعديلات" link="/" className="btn-primary w-50" />
         </div>
       </form>
     </div>

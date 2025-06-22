@@ -4,10 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
 import { BASE_API_URL, rowsPerPage, token } from "../server/serves";
 import LoadingOrError from "../components/LoadingOrError";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import SickReport from "../components/SickReport";
 
 function DesSick() {
-  const [leaves, setLeaves] = useState(null);
+  const [sickLeaves, setSickLeaves] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     const fetchSickLeaves = async () => {
@@ -23,78 +27,99 @@ function DesSick() {
           }
         );
 
-        const data = await response.json();
-        if (Array.isArray(data)) {
-          setLeaves(data);
-        } else if (Array.isArray(data.result)) {
-          setLeaves(data.result);
-        } else {
-          console.error("Unexpected data format:", data);
-          setLeaves([]);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        const data = await response.json();
+        setSickLeaves(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching sick leaves:", error);
+        setSickLeaves([]);
       }
     };
 
     fetchSickLeaves();
   }, []);
 
-  if (!leaves || leaves.length === 0) {
-    return <LoadingOrError data={leaves} />;
+  if (!sickLeaves || sickLeaves.length === 0) {
+    return <LoadingOrError data={sickLeaves} />;
   }
 
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = leaves.slice(indexOfFirstRow, indexOfLastRow);
-  const totalPages = Math.ceil(leaves.length / rowsPerPage);
+  const currentRows = sickLeaves.slice(indexOfFirstRow, indexOfLastRow);
+  const totalPages = Math.ceil(sickLeaves.length / rowsPerPage);
 
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            سجل الاجازات المرضية
+            سجل الإجازات المرضية
           </h2>
         </div>
+        <div className="p-3 pe-0">
+          <button
+              className="btn btn-outline-primary"
+              onClick={() =>
+                  MySwal.fire({
+                  title: 'تقرير الإجازة',
+                  // html: <OfficialLeaveReport leaveID={leaveID} />,
+                  showConfirmButton: false,
+                  showCloseButton: true,
+                  width: '95%',
+                  customClass: {
+                  popup: 'text-end custom-swal-width',
+                  }})}>
+              <FontAwesomeIcon icon={faPrint} />
+              <span className="d-none d-sm-inline"> طباعة</span>
+          </button>
+        </div>
       </div>
+
       <div className="row">
-        <div className="table-responsive" style={{ height: "100vh" }}>
+        <div className="table-responsive">
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>تاريخ البدء</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>تاريخ الانتهاء</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ البدء</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الانتهاء</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
               </tr>
             </thead>
+
             <tbody>
-              {currentRows.length > 0 &&
+              {currentRows.length > 0 ? (
                 currentRows.map((leave, index) => (
                   <tr key={index}>
                     <th>
                       #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
                     </th>
-                    <th>{leave.userName}</th>
+                    <th>
+                        {leave.userName}
+                      </th>
                     {leave.startDate === "0001-01-01T00:00:00" ? (
-                      <th className="text-danger">لم يحدد بعد</th>
+                      <th className="text-danger">لم يُحدد بعد</th>
                     ) : (
                       <th>
                         {new Date(leave.startDate).toLocaleDateString("ar-EG")}
                       </th>
                     )}
+
                     {leave.endDate === "0001-01-01T00:00:00" ? (
-                      <th className="text-danger">لم يحدد بعد</th>
+                      <th className="text-danger">لم يُحدد بعد</th>
                     ) : (
                       <th>
                         {new Date(leave.endDate).toLocaleDateString("ar-EG")}
                       </th>
                     )}
+
                     {leave.days === null ? (
                       <th className="text-danger">لم يُحتسب بعد</th>
                     ) : (
@@ -108,39 +133,60 @@ function DesSick() {
                         أيام
                       </th>
                     )}
-                    {leave.certified === true ? (
-                      <th className="text-success">مقبولة</th>
-                    ) : !leave.responseDoneFinal &&
-                      !leave.respononseDoneForMedicalCommitte ? (
-                      <th className="text-primary">معلقة عند التحديث الأول</th>
-                    ) : !leave.responseDoneFinal &&
-                      leave.respononseDoneForMedicalCommitte ? (
-                      <th className="text-primary">معلقة عند التحديث الثاني</th>
-                    ) : (
-                      <th className="text-danger">مرفوضة</th>
-                    )}
                     <th>
-                      <FontAwesomeIcon
-                        icon={faPrint}
-                        fontSize={"26px"}
-                        color="blue"
-                        className="printer"
-                      />
+                      {leave.certified === true ? (
+                        <th className="text-success">مستحقة</th>
+                      ) : leave.responseDoneFinal === false &&
+                        leave.respononseDoneForMedicalCommitte === false ? (
+                        <th className="text-primary">
+                          مُعلقة عند التحديث الأول
+                        </th>
+                      ) : leave.responseDoneFinal === false &&
+                        leave.respononseDoneForMedicalCommitte === true ? (
+                        <th className="text-primary">
+                          مُعلقة عند التحديث الثاني
+                        </th>
+                      ) : (
+                        <th className="text-danger">غير مستحقة</th>
+                      )}
                     </th>
-                    <th>
+                    <td>
+                      <button
+                        className="btn btn-outline-primary"
+                        onClick={() =>
+                          MySwal.fire({
+                          title: 'تقرير الإجازة',
+                          html: <SickReport leaveID={leave.id} />,
+                          showConfirmButton: false,
+                          showCloseButton: true,
+                          width: '95%',
+                          customClass: {
+                            popup: 'text-end custom-swal-width',
+                          }})}>
+                        <FontAwesomeIcon icon={faPrint} />
+                      </button>
+                    </td>
+                    <td>
                       <BtnLink
                         id={leave.id}
                         name="عرض الاجازة"
                         link="/sick-leave-request"
-                        class="btn btn-outline-primary"
+                        className="btn btn-outline-primary"
                       />
-                    </th>
+                    </td>
                   </tr>
-                ))}
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="7" className="text-center text-danger p-3">
+                    لا يوجد اجازات مرضية حتى الآن
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
 
-          {leaves.length > rowsPerPage && (
+          {sickLeaves.length > rowsPerPage && (
             <div
               style={{
                 display: "flex",

@@ -40,16 +40,16 @@ function Leaves(){
         <div className="row">
             <div className="p-0">
                 <div className="zzz d-inline-block p-3 ps-5">
-                    <h2 className="m-0">طلبات الاجازات</h2>
+                    <h2 className="m-0">طلبات الإجازات</h2>
                 </div>
             </div>
             {(Array.isArray(casualLeaveWating) && casualLeaveWating.length > 0) && (
                 casualLeaveWating.map((leave, index) => (
                     <div className="mt-3" key={index}>
                         <div className="box mt-3 col-sm-12 col-md-10 col-lg-8">
-                            <h3 className='mb-2'>اجازة {leave.leaveType} <span title='في انتظار الموافقة' className='text-danger'>معلقة</span></h3>
+                            <h3 className='mb-2'>إجازة {leave.leaveType} <span title='في انتظار الموافقة' className='text-primary'>مُعلقة</span></h3>
                             <h5>
-                                طلب اجازة جديد من{" "}
+                                طلب إجازة جديد من{" "}
                                 <Link to={`/profile/user/${leave.userID}`} title='اضغط هنا لمشاهدة الملف الشخصي' className="text-primary text-decoration-none">{leave.userName}</Link> في انتظار اتخاذ قرار
                             </h5>
                             <p>
@@ -58,8 +58,8 @@ function Leaves(){
                             </p>
                             <p>الملحوظات : {leave.notesFromEmployee || "بدون"}</p>
 
-                            {/* <BtnLink id={leave.id} name="عرض الاجازة" link={`/manager-normal-leave-request`} class="btn btn-primary w-25"/> */}
-                            <BtnLink id={leave.id} name="عرض الاجازة" link={`/manager-casual-leave-request`} class="btn btn-primary w-25"/>
+                            {/* <BtnLink id={leave.id} name="عرض الإجازة" link={`/manager-normal-leave-request`} className="btn btn-primary w-25"/> */}
+                            <BtnLink id={leave.id} name="عرض الإجازة" link={`/manager-casual-leave-request`} className="btn btn-primary w-25"/>
                         </div>
                     </div>
                 ))

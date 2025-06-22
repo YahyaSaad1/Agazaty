@@ -9,11 +9,11 @@ function EmergencyLeave(){
 
     const swal = () => {
         Swal.fire({
-            title:`<span style='color:#0d6efd;'>هل أنت متأكد من إرسال الاجازة ؟</span>`,
+            title:`<span style='color:#0d6efd;'>هل أنت متأكد من إرسال الإجازة ؟</span>`,
             html: `
-                <p dir='rtl'><span style='font-weight: bold;'>نوع الاجازة:</span> <span style='color:#0d6efd;'>عارضة</span></p>
-                <p dir='rtl'><span style='font-weight: bold;'>تاريخ بداية الاجازة:</span> <span style='color:#0d6efd;'>${startDate}</span></p>
-                <p dir='rtl'><span style='font-weight: bold;'>عدد أيام الاجازة:</span> <span style='color:#0d6efd;'>${numberOfDays}</span></p>
+                <p dir='rtl'><span style='font-weight: bold;'>نوع الإجازة:</span> <span style='color:#0d6efd;'>عارضة</span></p>
+                <p dir='rtl'><span style='font-weight: bold;'>تاريخ بداية الإجازة:</span> <span style='color:#0d6efd;'>${startDate}</span></p>
+                <p dir='rtl'><span style='font-weight: bold;'>عدد أيام الإجازة:</span> <span style='color:#0d6efd;'>${numberOfDays}</span></p>
                 <p dir='rtl'><span style='font-weight: bold;'>ملحوظاتك:</span> <span style='color:#0d6efd;'>${notes}</span></p>
             `,
             icon: "warning",
@@ -25,9 +25,9 @@ function EmergencyLeave(){
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                title:`<span style='color:#0d6efd;' dir="rtl">تم إرسال الاجازة بنجاح.</span>`,
+                title:`<span style='color:#0d6efd;' dir="rtl">تم إرسال الإجازة بنجاح.</span>`,
                 icon: "success",
-                confirmButtonText: "تتبع الاجازات",
+                confirmButtonText: "تتبع الإجازات",
                 confirmButtonColor: "#0d6efd",
                 });
             }
@@ -37,19 +37,19 @@ function EmergencyLeave(){
         <>
             <div className="row">
                 <div className="col-sm-12 col-md-6 mt-3">
-                    <label htmlFor="exampleInputDate1" className="form-label">تاريخ بداية الاجازة</label>
+                    <label htmlFor="exampleInputDate1" className="form-label">تاريخ بداية الإجازة</label>
                     <input type="date" onChange={(e)=>SetStartDate(e.target.value)} className="form-control" id="exampleInputDate1" max={new Date(new Date().setDate(new Date().getDate()-1)).toISOString().split("T")[0]} />
                 </div>
 
                 <div className="col-sm-12 col-md-6 mt-3">
-                    <label htmlFor="exampleInputDeputy" className="form-label">اختر أيام الاجازة</label>
+                    <label htmlFor="exampleInputDeputy" className="form-label">اختر أيام الإجازة</label>
                     <select
                         className="form-select"
                         id="exampleInputDeputy"
                         aria-label="Default select example"
                         onChange={(e)=> SetNumberOfDays(e.target.value)}
                     >
-                        <option value="">عدد أيام الاجازة</option>
+                        <option value="">عدد أيام الإجازة</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         
@@ -63,7 +63,7 @@ function EmergencyLeave(){
             </div>
 
             <div onClick={swal} className="d-flex justify-content-center mt-3">
-                <Btn name='إرسال الاجازة' link='' class='btn-primary w-50' />
+                <Btn name='إرسال الإجازة' link='' className='btn-primary w-50' />
             </div>
         </>
     )

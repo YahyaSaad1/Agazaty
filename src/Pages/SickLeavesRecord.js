@@ -37,7 +37,7 @@ function SickLeavesRecord() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
-          <h2 className="m-0">الاجازات المرضية</h2>
+          <h2 className="m-0">الإجازات المرضية</h2>
         </div>
       </div>
 
@@ -87,7 +87,7 @@ function SickLeavesRecord() {
                         leave.responseDoneFinal === true ? (
                         <span className="text-danger">غير محتسبة</span>
                       ) : (
-                        <span className="text-danger">معلقة</span>
+                        <span className="text-primary">مُعلقة</span>
                       )}
                     </td>
                     <td>
@@ -106,7 +106,7 @@ function SickLeavesRecord() {
                         id={leave.id}
                         name="تفاصيل الاخطار"
                         link="/sick-leave-request"
-                        class="btn btn-outline-primary"
+                        className="btn btn-outline-primary"
                       />
                     </td>
                   </tr>

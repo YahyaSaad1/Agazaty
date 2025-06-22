@@ -73,36 +73,22 @@ function SickLeavesRecord2() {
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            تحديث الاجازات المرضية
+            تحديث الإجازات المرضية
           </h2>
         </div>
       </div>
       <div className="row">
-        <div className="table-responsive" style={{ height: "100vh" }}>
+        <div className="table-responsive">
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المرجع
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الاسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ الاخطار
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  العنوان
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  نوع التحديث
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الأرشيف
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تحديث
-                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الاخطار</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>العنوان</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>نوع التحديث</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تحديث</th>
               </tr>
             </thead>
             <tbody>
@@ -132,13 +118,13 @@ function SickLeavesRecord2() {
                         id={leave.id}
                         name="تفاصيل الاخطار"
                         link="/sick-leave-request"
-                        class="btn btn-outline-primary"
+                        className="btn btn-outline-primary"
                       />
                     </th>
                     <th>
                       <BtnLink
                         id={leave.id}
-                        class="btn btn-outline-success"
+                        className="btn btn-outline-success"
                         name="تحديث الاخطار"
                         link={
                           sickLeavesWaiting.some(

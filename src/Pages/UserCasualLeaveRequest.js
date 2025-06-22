@@ -4,11 +4,19 @@ import { useEffect, useState } from 'react';
 import BtnLink from '../components/BtnLink';
 import Btn from '../components/Btn';
 import { BASE_API_URL, token, useUserData } from '../server/serves';
+import LoadingOrError from '../components/LoadingOrError';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPrint } from '@fortawesome/free-solid-svg-icons';
+import OfficialLeaveReport from './CasualReport';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
+import CasualReport from '../components/CasualReport';
 
 function UserCasualLeaveRequest({handleError}) {
     const {leaveID} = useParams();
     const [leave, setLeave] = useState(null);
     const userData = useUserData();
+    const MySwal = withReactContent(Swal);
 
     useEffect(() => {
         fetch(`${BASE_API_URL}/api/CasualLeave/GetCasualLeaveById/${leaveID}`, {
@@ -38,16 +46,7 @@ function UserCasualLeaveRequest({handleError}) {
     }, [leaveID]);
 
     if (leave === null || !userData) {
-        return (
-            <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
-                <div className="position-relative" style={{ width: '4rem', height: '4rem' }}>
-                    <div className="spinner-border text-primary w-100 h-100" role="status"></div>
-                    <div className="position-absolute top-50 start-50 translate-middle text-primary fw-bold" style={{ fontSize: '0.75rem' }}>
-                        انتظر...
-                    </div>
-                </div>
-            </div>
-        );
+        return <LoadingOrError data={leave} />;
     }
 
     return (
@@ -56,8 +55,22 @@ function UserCasualLeaveRequest({handleError}) {
                 <div className="zzz d-inline-block p-3 ps-5">
                     <h2 className="m-0">{`اجازتي ال${leave.leaveType}`}</h2>
                 </div>
-                <div className="p-3">
-                    <BtnLink name='سجل الاجازات العارضة' link='/agazaty/casual' class="btn btn-primary m-0 ms-2 mb-2"/>
+                <div className="p-3 pe-0">
+                    <button
+                        className="btn btn-outline-primary"
+                        onClick={() =>
+                            MySwal.fire({
+                            title: 'تقرير الإجازة',
+                            html: <CasualReport leaveID={leave.id} />,
+                            showConfirmButton: false,
+                            showCloseButton: true,
+                            width: '95%',
+                            customClass: {
+                            popup: 'text-end custom-swal-width',
+                            }})}>
+                        <FontAwesomeIcon icon={faPrint} />
+                        <span className="d-none d-sm-inline"> طباعة</span>
+                    </button>
                 </div>
             </div>
             <div className="row mt-5 d-flex justify-content-center">
@@ -67,8 +80,8 @@ function UserCasualLeaveRequest({handleError}) {
                             <tr>
                                 <th scope="col" className="pb-3" style={{backgroundColor:'#F5F9FF'}}>حالة الطلب</th>
                                 <th scope="col" className="text-start text-bold" style={{backgroundColor:'#F5F9FF'}}>
-                                    {leave ? <Btn name="مقبولة" class="btn-success text-start text-bold"/>
-                                    : "جاري التحميل..."}
+                                    {leave.leaveStatus === true ? <Btn name="مقبولة" className="btn-success text-start text-bold"/>
+                                    : <Btn name="في انتظار المدير المختص" className="btn-primary text-start text-bold"/>}
                                 </th>
                             </tr>
                         </thead>
@@ -78,7 +91,7 @@ function UserCasualLeaveRequest({handleError}) {
                                 <th scope="col" className="text-start">{leave ? leave.userName : "جاري التحميل..."}</th>
                             </tr>
                             <tr>
-                                <th scope="col">نوع الاجازة</th>
+                                <th scope="col">نوع الإجازة</th>
                                 <th scope="col" className="text-start">{leave.leaveType}</th>
                             </tr>
                             <tr>
@@ -89,10 +102,10 @@ function UserCasualLeaveRequest({handleError}) {
                                 <th scope="col">القسم</th>
                                 <th scope="col" className="text-start">
                                     {userData 
-                                        ? (userData.departmentName 
-                                        ? userData.departmentName 
-                                        : <span className='text-danger'>لم يُحدد بعد</span>) 
-                                        : "جاري التحميل..."}
+                                    ? (userData.departmentName 
+                                    ? userData.departmentName 
+                                    : <span className='text-danger'>إدارة مستقلة</span>) 
+                                    : "جاري التحميل..."}
                                 </th>
                             </tr>
                             <tr>

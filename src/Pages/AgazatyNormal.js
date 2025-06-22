@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
+import "../CSS/AgazatyNormal.css";
 import BtnLink from "../components/BtnLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
 import { BASE_API_URL, rowsPerPage, token, userID } from "../server/serves";
-import { FaRegFolderOpen } from "react-icons/fa";
 import LoadingOrError from "../components/LoadingOrError";
+import OfficialLeaveReport from "./CasualReport";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 function AgazatyNormal() {
-  const [normalLeaves, setNormalLeaves] = useState(null); // null معناها جاري التحميل
+  const [normalLeaves, setNormalLeaves] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     fetch(`${BASE_API_URL}/api/NormalLeave/AllNormalLeavesByUserId/${userID}`, {
@@ -45,12 +50,21 @@ function AgazatyNormal() {
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            سجل الاجازات الاعتيادية
+            سجل الإجازات الاعتيادية
           </h2>
+        </div>
+        <div className="d-flex">
+          <div className="ps-3">
+            <button
+              className="my-3 mx-1 btn btn-outline-primary d-flex justify-content-center align-items-center" style={{ whiteSpace: "nowrap" }}>
+              <FontAwesomeIcon icon={faPrint} style={{ fontSize: "1.4rem" }}/>
+              <span className="d-none d-sm-inline">&nbsp;طباعة البيانات</span>
+            </button>
+          </div>
         </div>
       </div>
       <div className="row">
-        <div className="table-responsive" style={{ height: "100vh" }}>
+        <div className="table-responsive">
           <table className="m-0 table table-striped">
             <thead>
               <tr>
@@ -92,28 +106,27 @@ function AgazatyNormal() {
                         : "text-danger"
                     }
                   >
-                    {leave.leaveStatus === 0
-                      ? "معلقة"
-                      : leave.leaveStatus === 1
-                      ? "مقبولة"
+                    {leave.leaveStatus === 0 ? "مُعلقة"
+                      : leave.leaveStatus === 1 ? "مقبولة"
                       : "مرفوضة"}
                   </th>
                   <th>
-                    <FontAwesomeIcon
-                      icon={faPrint}
-                      fontSize={"26px"}
-                      color="blue"
-                      className="printer"
-                    />
+                    <button
+                      className="btn btn-outline-primary"
+                      onClick={() =>
+                        MySwal.fire({
+                        title: 'تقرير الإجازة',
+                        html: <OfficialLeaveReport leaveID={leave.id} />,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        width: '95%',
+                        customClass: {
+                          popup: 'text-end custom-swal-width',
+                        }})}>
+                      <FontAwesomeIcon icon={faPrint} />
+                    </button>
                   </th>
-                  <th>
-                    <BtnLink
-                      id={leave.id}
-                      name="عرض الاجازة"
-                      link="/user/normal-leave-request"
-                      class="btn btn-outline-primary"
-                    />
-                  </th>
+                  <th><BtnLink id={leave.id} name="عرض الاجازة" link="/agazaty/normal-leave-request" className="btn btn-outline-primary"/></th>
                 </tr>
               ))}
             </tbody>

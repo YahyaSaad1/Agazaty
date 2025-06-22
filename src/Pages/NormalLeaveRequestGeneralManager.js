@@ -5,6 +5,7 @@ import BtnLink from '../components/BtnLink';
 import Btn from '../components/Btn';
 import Swal from 'sweetalert2';
 import { BASE_API_URL, roleName, token, UserData } from '../server/serves';
+import LoadingOrError from '../components/LoadingOrError';
 
 function NormalLeaveRequestManager() {
     const { id: LeaveID } = useParams();
@@ -128,20 +129,7 @@ function NormalLeaveRequestManager() {
     };
 
     if (leave === null || user === null) {
-        return (
-            <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
-                <div className="position-relative" style={{ width: '4rem', height: '4rem' }}>
-                    <div className="spinner-border text-primary w-100 h-100" role="status"></div>
-                    <div className="position-absolute top-50 start-50 translate-middle text-primary fw-bold" style={{ fontSize: '0.75rem' }}>
-                        انتظر...
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    if (!leave) {
-        return <p className="text-center text-danger">لم يتم العثور على بيانات الإجازة.</p>;
+        return <LoadingOrError data={leave} />;
     }
 
     return (
@@ -151,7 +139,7 @@ function NormalLeaveRequestManager() {
             <h2 className="m-0">{`إجازة ${leave.firstName || ''} ${leave.secondName || ''}`}</h2>
             </div>
             <div className="p-3">
-            <BtnLink name='سجل الإجازات' link='/leave-record' class="btn btn-primary m-0 ms-2 mb-2" />
+            <BtnLink name='سجل الإجازات' link='/leave-record' className="btn btn-primary m-0 ms-2 mb-2" />
             </div>
         </div>
 
@@ -163,13 +151,13 @@ function NormalLeaveRequestManager() {
                     <th scope="col" className="pb-3" style={{ backgroundColor: '#F5F9FF' }}>حالة الطلب</th>
                     <th scope="col" className="text-start" style={{ backgroundColor: '#F5F9FF' }}>
                     {leave.holder === 1 ? (
-                        <Btn name="المدير المباشر" class="btn-danger text-start text-bold" />
+                        <Btn name="في انتظار المدير المباشر" className="btn-primary text-start text-bold" />
                     ) : leave.holder === 2 ? (
-                        <Btn name="المدير المختص" class="btn-danger text-start text-bold" />
+                        <Btn name="في انتظار المدير المختص" className="btn-primary text-start text-bold" />
                     ) : leave.holder === 3 ? (
-                        <Btn name="مقبولة" class="btn-success text-start text-bold" />
+                        <Btn name="مقبولة" className="btn-success text-start text-bold" />
                     ) : (
-                        <Btn name="معلقة" class="btn-danger text-start text-bold" />
+                        <Btn name="مُعلقة" className="btn-primary text-start text-bold" />
                     )}
                     </th>
                 </tr>
@@ -249,37 +237,37 @@ function NormalLeaveRequestManager() {
                     </button>
 
                     <button
-                        className='btn btn-danger w-25'
-                        onClick={async () => {
+                    className='btn btn-danger w-25'
+                    onClick={async () => {
                         const { value: reason } = await Swal.fire({
-                            title: 'رفض الطلب!',
-                            input: 'textarea',
-                            inputLabel: 'سبب الرفض!',
-                            inputPlaceholder: 'اكتب سبب الرفض هنا...',
-                            inputAttributes: {
+                        title: 'رفض الطلب!',
+                        input: 'textarea',
+                        inputLabel: 'سبب الرفض!',
+                        inputPlaceholder: 'اكتب سبب الرفض هنا...',
+                        inputAttributes: {
                             'aria-label': 'اكتب سبب الرفض هنا',
-                            },
-                            showCancelButton: true,
-                            confirmButtonText: 'رفض',
-                            cancelButtonText: 'إلغاء',
-                            customClass: {
+                        },
+                        showCancelButton: true,
+                        confirmButtonText: 'رفض',
+                        cancelButtonText: 'إلغاء',
+                        inputValidator: (value) => {
+                            return !value ? 'يرجى كتابة سبب الرفض!' : null;
+                        },
+                        customClass: {
                             title: 'text-red',
                             confirmButton: 'blue-button',
                             cancelButton: 'red-button',
-                            },
-                            didOpen: () => {
+                        },
+                        didOpen: () => {
                             const popup = document.querySelector('.swal2-popup');
                             if (popup) popup.setAttribute('dir', 'rtl');
-                            },
+                        },
                         });
 
                         if (reason) {
-                            updateDecision(leave.id, false, reason);
+                        updateDecision(leave.id, false, reason);
                         }
-                        }}
-                    >
-                        رفض
-                    </button>
+                    }}>رفض</button>
                     </th>
                 </tr>
                 </tbody>

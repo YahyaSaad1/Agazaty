@@ -14,15 +14,15 @@ function Profile(){
                 </div>
                 <div className="d-flex">
                     <div className="p-3 ps-0">
-                        <BtnLink name='تعديل كلمة المرور' link='/edit-password' class='btn-primary' />
+                        <BtnLink name='تعديل كلمة المرور' link='/edit-password' className='btn-primary' />
                     </div>
                     <div className="p-3">
-                        <BtnLink name='تعديل المعلومات الشخصية' link='/editprofile' class='btn-primary' />
+                        <BtnLink name='تعديل المعلومات الشخصية' link='/editprofile' className='btn-primary' />
                     </div>
                 </div>
             </div>
             <div className="row">
-                <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4 col-xxl-3 mt-4">
+                <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4 col-xxl-3 mt-4 border-dashed">
                     <ProfileCom userData={userData} />
                 </div>
                 <div className="col-sm-12 col-md-6 col-lg-7 col-xl-8 col-xxl-9 mt-4">

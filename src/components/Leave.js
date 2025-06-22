@@ -51,15 +51,15 @@ function Leave(props) {
         <div>
             <div className="d-flex justify-content-between">
                 <div className="zzz d-inline-block p-3 ps-5">
-                    <h2 className="m-0">إضافة اجازة لموظف</h2>
+                    <h2 className="m-0">إضافة إجازة لموظف</h2>
                 </div>
                 {typeLeave === "" && employeeID !== "" ? (
                     <div className="p-3">
-                        <BtnLink name={`رصيد الاجازات ل${employee?.firstName} : ${LeaveNumbers || ""}`} link='/agazaty' class='btn btn-primary m-0' />
+                        <BtnLink name={`رصيد الإجازات ل${employee?.firstName} : ${LeaveNumbers || ""}`} link='/agazaty' className='btn btn-primary m-0' />
                     </div>
                 ) : typeLeave !== "" && employeeID !== "" ? (
                     <div className="p-3">
-                        <BtnLink name={`رصيد الاجازات ال${leave.type} ل${employee.firstName} : ${Number}`} link='/agazaty' class='btn btn-primary m-0' />
+                        <BtnLink name={`رصيد الإجازات ال${leave.type} ل${employee.firstName} : ${Number}`} link='/agazaty' className='btn btn-primary m-0' />
                     </div>
                 ) : null}
             </div>
@@ -89,14 +89,14 @@ function Leave(props) {
 
             <div className="row gap3 mt-3">
                 <div className="col-12">
-                    <label htmlFor="selectTypeLeave" className="form-label">اختر نوع الاجازة</label>
+                    <label htmlFor="selectTypeLeave" className="form-label">اختر نوع الإجازة</label>
                     <select
                         className="form-select"
                         onChange={(e) => setTypeLeave(e.target.value.toString())}
                         id="selectTypeLeave"
                         aria-label="Default select example"
                     >
-                        <option value="">اختر نوع الاجازة</option>
+                        <option value="">اختر نوع الإجازة</option>
                         <option value="0">اعتيادية</option>
                         <option value="1">عارضة</option>
                         <option value="2">مرضية</option>

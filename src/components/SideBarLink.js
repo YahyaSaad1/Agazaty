@@ -104,8 +104,8 @@ function LinkSideBar(props) {
             {filteredItems.map((item, index) => {
                 const isActive = location.pathname === item.link; 
                 return (
-                    <Link to={item.link} className={`link-SideBar ${item.class}`} key={index}>
-                        <li className={`link-SideBar ${item.class} ${isActive ? 'active-link' : ''} tran`}>
+                    <Link to={item.link} className={`link-SideBar ${item.className}`} key={index}>
+                        <li className={`link-SideBar ${item.className} ${isActive ? 'active-link' : ''} tran`}>
                             <FontAwesomeIcon icon={item.icon} className="col-sm-12 col-xxl-2 pl-5" style={{ fontSize: '1.6em' }} />
                             <span className="col-xl-8 d-none d-xxl-block">{item.title}</span>
                             {item.UserHint && leavesWating.length > 0 ? (

@@ -2,13 +2,19 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useParams, useNavigate } from "react-router-dom";
 import { BASE_API_URL, token } from "../server/serves";
+import LoadingOrError from "../components/LoadingOrError";
 
 function EditDepartment() {
-    const { id } = useParams();
+    const { departmentID } = useParams();
     const navigate = useNavigate();
+
     const [department, setDepartment] = useState({ name: "", code: "" });
     const [users, setUsers] = useState([]);
     const [managerId, setManagerId] = useState('');
+
+    const [loadingDepartment, setLoadingDepartment] = useState(true);
+    const [loadingUsers, setLoadingUsers] = useState(true);
+
     useEffect(() => {
         fetch(`${BASE_API_URL}/api/Account/GetAllActiveUsers`, {
             method: 'GET',
@@ -19,24 +25,26 @@ function EditDepartment() {
         })
         .then((res) => res.json())
         .then((data) => setUsers(data))
-    }, [])
-    
+        .catch((err) => console.error("خطأ في تحميل المستخدمين:", err))
+        .finally(() => setLoadingUsers(false));
+    }, []);
+
     useEffect(() => {
-        fetch(`${BASE_API_URL}/api/Department/GetDepartmentById/${id}`, {
+        fetch(`${BASE_API_URL}/api/Department/GetDepartmentById/${departmentID}`, {
             method: "GET",
             headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // إضافة التوكن في الهيدر
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
             },
         })
             .then((res) => res.json())
             .then((data) => {
-            setDepartment(data);
-            setManagerId(data.managerId);
+                setDepartment(data);
+                setManagerId(data.managerId);
             })
-            .catch((error) => console.error("حدث خطأ أثناء جلب البيانات:", error)); // معالجة الأخطاء
-        }, [id]);
-
+            .catch((error) => console.error("حدث خطأ أثناء جلب بيانات القسم:", error))
+            .finally(() => setLoadingDepartment(false));
+    }, [departmentID]);
 
     const handleChange = (e) => {
         setDepartment({ ...department, [e.target.name]: e.target.value });
@@ -44,13 +52,12 @@ function EditDepartment() {
 
     const updateDepartment = async (e) => {
         e.preventDefault();
-    
-        // إنشاء نسخة من بيانات القسم مع تضمين رئيس القسم الجديد
+
         const updatedData = {
             ...department,
-            managerId: managerId || department.managerId,  // إذا لم يتم تغييره، حافظ على القيمة القديمة
+            managerId: managerId || department.managerId,
         };
-    
+
         Swal.fire({
             title: `<span style='color:#0d6efd;'>هل أنت متأكد من تحديث بيانات قسم ${department.name} ؟</span>`,
             text: "لا يمكن التراجع عن هذا الإجراء!",
@@ -70,15 +77,15 @@ function EditDepartment() {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await fetch(`${BASE_API_URL}/api/Department/UpdateDepartment/${id}`, {
+                    const response = await fetch(`${BASE_API_URL}/api/Department/UpdateDepartment/${departmentID}`, {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
                             Authorization: `Bearer ${token}`,
                         },
-                        body: JSON.stringify(updatedData),  // إرسال البيانات المحدثة مع رئيس القسم
+                        body: JSON.stringify(updatedData),
                     });
-    
+
                     if (response.ok) {
                         Swal.fire({
                             title: `<span style='color:#0d6efd;'>تم تحديث بيانات القسم بنجاح.</span>`,
@@ -98,20 +105,7 @@ function EditDepartment() {
                             navigate("/departments");
                         });
                     } else {
-                        Swal.fire({
-                            title: "حدث خطأ!",
-                            text: "لم يتم تحديث البيانات، حاول مرة أخرى.",
-                            icon: "error",
-                            customClass: {
-                                title: 'text-red',
-                                confirmButton: 'blue-button',
-                                cancelButton: 'red-button'
-                            },
-                            didOpen: () => {
-                                const popup = document.querySelector('.swal2-popup');
-                                if (popup) popup.setAttribute('dir', 'rtl');
-                            },
-                        });
+                        throw new Error("فشل في التحديث");
                     }
                 } catch (error) {
                     console.error("خطأ أثناء تحديث البيانات:", error);
@@ -133,6 +127,10 @@ function EditDepartment() {
             }
         });
     };
+
+    if (loadingDepartment || loadingUsers) {
+        return <LoadingOrError data={null} />;
+    }
 
     return (
         <form>
@@ -156,16 +154,16 @@ function EditDepartment() {
                 </div>
 
                 <div className="col-sm-12 col-md-6 mt-3">
-                        <label htmlFor="manager" className="form-label">رئيس القسم</label>
-                        <select className="form-select" id="manager" value={managerId} onChange={(e) => setManagerId(e.target.value)} required>
-                            <option value="">أختر رئيس القسم</option>
-                            {users.map((user, index) => (
-                                <option key={index} value={user.id}>
-                                    {user.fullName} ({user.departmentName})
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                    <label htmlFor="manager" className="form-label">رئيس القسم</label>
+                    <select className="form-select" id="manager" value={managerId} onChange={(e) => setManagerId(e.target.value)} required>
+                        <option value="">أختر رئيس القسم</option>
+                        {users.map((user, index) => (
+                            <option key={index} value={user.id}>
+                                {user.fullName} ({user.departmentName})
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
                 <div className="col-sm-12 col-md-6 mt-3">
                     <label htmlFor="code" className="form-label">كود القسم</label>

@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import BtnLink from "../components/BtnLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
-import { BASE_API_URL, rowsPerPage, token } from "../server/serves";
+import { BASE_API_URL, rowsPerPage, token, userID } from "../server/serves";
 import LoadingOrError from "../components/LoadingOrError";
+import CasualReport from "./CasualReport";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import DesNormalReport from "../components/DesNormalReport";
 
 function DesNormal() {
   const [leaves, setLeaves] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     fetch(`${BASE_API_URL}/api/NormalLeave/GetAllNormalLeaves`, {
@@ -50,61 +55,52 @@ function DesNormal() {
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            سجل الاجازات الاعتيادية
+            سجل الإجازات الاعتيادية
           </h2>
+        </div>
+        <div className="p-3 pe-0">
+          <button
+            className="btn btn-outline-primary"
+            onClick={() =>
+                MySwal.fire({
+                title: 'تقرير الإجازة',
+                html: <DesNormalReport userID={userID} />,
+                showConfirmButton: false,
+                showCloseButton: true,
+                width: '95%',
+                customClass: {
+                popup: 'text-end custom-swal-width',
+                }})}>
+            <FontAwesomeIcon icon={faPrint} />
+            <span className="d-none d-sm-inline"> طباعة البيانات</span>
+          </button>
         </div>
       </div>
       <div className="row">
-        <div className="table-responsive" style={{ height: "100vh" }}>
+        <div className="table-responsive">
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المرجع
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الاسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ البدء
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ الانتهاء
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  عدد الأيام
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  القائم بالعمل
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  ملحوظات
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  حالة الطلب
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  طباعة
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الأرشيف
-                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ البدء</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الانتهاء</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>القائم بالعمل</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>ملحوظات</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
               </tr>
             </thead>
             <tbody>
               {currentRows.length > 0 &&
                 currentRows.map((leave, index) => (
                   <tr key={index}>
-                    <th>
-                      #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
-                    </th>
+                    <th>#{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}</th>
                     <th>{leave.userName}</th>
-                    <th>
-                      {new Date(leave.startDate).toLocaleDateString("ar-EG")}
-                    </th>
-                    <th>
-                      {new Date(leave.endDate).toLocaleDateString("ar-EG")}
-                    </th>
+                    <th>{new Date(leave.startDate).toLocaleDateString("ar-EG")}</th>
+                    <th>{new Date(leave.endDate).toLocaleDateString("ar-EG")}</th>
                     <th>
                       {leave.days
                         .toString()
@@ -113,29 +109,27 @@ function DesNormal() {
                     </th>
                     <th>{leave.coworkerName}</th>
                     <th>{leave.notesFromEmployee || "بدون"}</th>
-                    {leave.leaveStatus === 0 ? (
-                      <th className="text-primary">معلقة</th>
-                    ) : leave.leaveStatus === 1 ? (
-                      <th className="text-success">مقبولة</th>
-                    ) : (
-                      <th className="text-danger">مرفوضة</th>
+                    {leave.leaveStatus === 0 ? (<th className="text-primary">مُعلقة</th>
+                    ) : leave.leaveStatus === 1 ? (<th className="text-success">مقبولة</th>
+                    ) : (<th className="text-danger">مرفوضة</th>
                     )}
                     <th>
-                      <FontAwesomeIcon
-                        icon={faPrint}
-                        fontSize={"26px"}
-                        color="blue"
-                        className="printer"
-                      />
+                      <button
+                        className="btn btn-outline-primary"
+                        onClick={() =>
+                            MySwal.fire({
+                            title: 'تقرير الإجازة',
+                            html: <CasualReport leaveID={leave.id} />,
+                            showConfirmButton: false,
+                            showCloseButton: true,
+                            width: '95%',
+                            customClass: {
+                            popup: 'text-end custom-swal-width',
+                            }})}>
+                        <FontAwesomeIcon icon={faPrint} />
+                      </button>
                     </th>
-                    <th>
-                      <BtnLink
-                        id={leave.id}
-                        name="عرض الاجازة"
-                        link="/normal-leave-request"
-                        class="btn btn-outline-primary"
-                      />
-                    </th>
+                    <th><BtnLink id={leave.id} name="عرض الاجازة" link="/normal-leave-request" className="btn btn-outline-primary" /> </th>
                   </tr>
                 ))}
             </tbody>

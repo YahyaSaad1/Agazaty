@@ -55,50 +55,31 @@ function LeaveRecord() {
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
   const currentRows = leavesWating.slice(indexOfFirstRow, indexOfLastRow);
   const totalPages = Math.ceil(leavesWating.length / rowsPerPage);
+
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            طلبات الاجازات
+            طلبات الإجازات
           </h2>
         </div>
       </div>
       <div className="row">
-        <div className="table-responsive" style={{ height: "100vh" }}>
+        <div className="table-responsive">
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المرجع
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الاسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  القسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  رقم الهاتف
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  نوع الاجازة
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ البداية
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ النهاية
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  عدد الأيام
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  حالة الطلب
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الأرشيف
-                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>القسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>رقم الهاتف</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>نوع الإجازة</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ البداية</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ النهاية</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
               </tr>
             </thead>
             <tbody>
@@ -129,17 +110,17 @@ function LeaveRecord() {
                     </th>
                     <th
                       className={
-                        leave.leaveStatus === 0 ? "text-danger" : "text-success"
+                        leave.leaveStatus === 0 ? "text-primary" : "text-success"
                       }
                     >
-                      {leave.leaveStatus === 0 ? "معلقة" : "مقبولة"}
+                      {leave.leaveStatus === 0 ? "مُعلقة" : "مقبولة"}
                     </th>
                     <th>
                       <BtnLink
                         id={leave.id}
-                        name="عرض الاجازة"
+                        name="عرض الإجازة"
                         link="/manager-normal-leave-request"
-                        class="btn btn-outline-primary"
+                        className="btn btn-outline-primary"
                       />
                     </th>
                   </tr>

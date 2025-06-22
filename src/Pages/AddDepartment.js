@@ -12,7 +12,6 @@ function AddDepartment(){
     const [managerName, setManagerName] = useState('غير معروف');
     const [users, setUsers] = useState([]);
 
-    // ✅ جلب المستخدمين عند تحميل الصفحة
     useEffect(() => {
         fetch(`${BASE_API_URL}/api/Account/GetAllActiveUsers`, {
             method: 'GET',
@@ -194,7 +193,7 @@ function AddDepartment(){
                 </div>
 
                 <div onClick={confirmSubmit} className="d-flex justify-content-center mt-3">
-                    <Btn name='إنشاء' link='/' class='btn-primary w-50' />
+                    <Btn name='إنشاء' link='/' className='btn-primary w-50' />
                 </div>
             </form>
         </div>

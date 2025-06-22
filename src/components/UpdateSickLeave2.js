@@ -42,7 +42,7 @@ function UpdateSickLeave2() {
 
     const confirmResult = await Swal.fire({
         title: "هل أنت متأكد؟",
-        text: "هل تريد فعلاً تحديث بيانات الاجازة؟",
+        text: "هل تريد فعلاً تحديث بيانات الإجازة؟",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "نعم، تحديث",
@@ -148,13 +148,13 @@ function UpdateSickLeave2() {
     return (
         <div>
             <div className="zzz d-inline-block p-3 ps-5">
-                <h2 className="m-0">تحديث اجازة {leave.firstName} {leave.secondName}</h2>
+                <h2 className="m-0">تحديث إجازة {leave.firstName} {leave.secondName}</h2>
             </div>
 
             <form onSubmit={handleData}>
                 <div className="row">
                     <div className="col-sm-12 col-md-6 mt-3">
-                        <label htmlFor="exampleInputDeputy1" className="form-label">حالة الاجازة</label>
+                        <label htmlFor="exampleInputDeputy1" className="form-label">حالة الإجازة</label>
                         <select
                             className="form-select"
                             id="exampleInputDeputy1"
@@ -188,7 +188,7 @@ function UpdateSickLeave2() {
 
                     <div className="col-sm-12 col-md-6 mt-3">
                         <label htmlFor="endDate" className="form-label">
-                            تاريخ بداية الاجازة
+                            تاريخ بداية الإجازة
                         </label>
                         <input
                             type="date"
@@ -202,7 +202,7 @@ function UpdateSickLeave2() {
 
                     <div className="col-sm-12 col-md-6 mt-3">
                         <label htmlFor="endDate" className="form-label">
-                            تاريخ نهاية الاجازة
+                            تاريخ نهاية الإجازة
                         </label>
                         <input
                             type="date"

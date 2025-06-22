@@ -28,7 +28,6 @@ function SickLeaveRecord() {
         );
 
         const results = await Promise.allSettled(requests);
-
         const combinedData = results.reduce((acc, result) => {
           if (result.status === "fulfilled" && Array.isArray(result.value)) {
             acc = acc.concat(result.value);
@@ -58,32 +57,20 @@ function SickLeaveRecord() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
-          <h2 className="m-0">طلبات الاجازات المرضية</h2>
+          <h2 className="m-0">طلبات الإجازات المرضية</h2>
         </div>
       </div>
       <div className="row">
-        <div className="table-responsive" style={{ height: "100vh" }}>
+        <div className="table-responsive">
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المرجع
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الاسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  رقم الهاتف
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المرض
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  حالة الطلب
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الأرشيف
-                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>رقم الهاتف</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرض</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
               </tr>
             </thead>
             <tbody>
@@ -96,13 +83,13 @@ function SickLeaveRecord() {
                     <th>{leave.userName}</th>
                     <th>{leave.phoneNumber}</th>
                     <th>{leave.disease}</th>
-                    <th className="text-danger">في انتظار الإحالة</th>
+                    <th className="text-primary">في انتظار الإحالة</th>
                     <th>
                       <BtnLink
                         id={leave.id}
-                        name="عرض الاجازة"
+                        name="عرض الإجازة"
                         link="/manager-sick-leave-request"
-                        class="btn btn-outline-primary"
+                        className="btn btn-outline-primary"
                       />
                     </th>
                   </tr>

@@ -133,7 +133,7 @@ function AddEmployee() {
   e.preventDefault();
 
   if (
-    !firstName || !secondName || !thirdName || !forthName || !userName || !dateOfBirth || !position ||
+    !firstName || !secondName || !thirdName || !forthName || !userName || !dateOfBirth ||
     !nationalID || !phoneNumber || !howManyDaysFrom81And47 || !normalLeavesCount || !normalLeavesCount_47 ||
     !normalLeavesCount_81Before1Years || !normalLeavesCount_81Before2Years || !normalLeavesCount_81Before3Years ||
     !nonChronicSickLeavesCount || !governorate || !state || !street ||
@@ -260,7 +260,7 @@ function AddEmployee() {
           <BtnLink
             name="رفع موظف بالاكسيل"
             link="/UploadUsersExcel"
-            class="m-3 btn btn-primary m-0"
+            className="m-3 btn btn-primary m-0"
           />
         </div>
       </div>
@@ -644,32 +644,32 @@ function AddEmployee() {
 
         {disability === false && monthsOfWork < 6 && yearsOfWork < 1 && age <= 50 ? (
           <div className="d-none col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber10" className="form-label">عدد الاجازات الاعتيادية</label>
-            <input max={0} className="form-control" type="number" onChange={(e) => setNormalLeavesCount(0)} id="exampleFormControlNumber10" aria-label="default input example" dir="rtl"/>
+            <label htmlFor="exampleFormControlNumber10" className="form-label">عدد الإجازات الاعتيادية</label>
+            <input min={0} className="form-control" type="number" onChange={(e) => setNormalLeavesCount(0)} id="exampleFormControlNumber10" aria-label="default input example" dir="rtl"/>
           </div>
 
           ) : disability === false && monthsOfWork >= 6 && monthsOfWork < 12 && yearsOfWork < 1 && age <= 50 ? (
             <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-              <label htmlFor="exampleFormControlNumber10" className="form-label">عدد الاجازات الاعتيادية</label>
+              <label htmlFor="exampleFormControlNumber10" className="form-label">عدد الإجازات الاعتيادية</label>
               <input max={15} className="form-control" type="number" onChange={(e) => setNormalLeavesCount(e.target.value)} placeholder="حد أقصى: 15" id="exampleFormControlNumber10" aria-label="default input example" dir="rtl"/>
             </div>
 
           ) : disability === false && yearsOfWork >= 1 && yearsOfWork < 10 && age <= 50 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber11" className="form-label"> عدد الاجازات الاعتيادية</label>
+            <label htmlFor="exampleFormControlNumber11" className="form-label"> عدد الإجازات الاعتيادية</label>
             <input max={36} className="form-control" type="number" onChange={(e) => setNormalLeavesCount(e.target.value)} placeholder="حد أقصى: 36" id="exampleFormControlNumber11" aria-label="default input example" dir="rtl"/>
           </div>
 
         ) : disability === false && yearsOfWork >= 10 && age <= 50 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber12" className="form-label">عدد الاجازات الاعتيادية</label>
+            <label htmlFor="exampleFormControlNumber12" className="form-label">عدد الإجازات الاعتيادية</label>
             <input max={45} className="form-control" type="number" onChange={(e) => setNormalLeavesCount(e.target.value)} placeholder="حد أقصى: 45" id="exampleFormControlNumber12" aria-label="default input example" dir="rtl"/>
           </div>
 
         ) : age >= 50 || disability === true ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
             <label htmlFor="exampleFormControlNumber13" className="form-label">
-              عدد الاجازات الاعتيادية
+              عدد الإجازات الاعتيادية
             </label>
             <input max={60} className="form-control" type="number" onChange={(e) => setNormalLeavesCount(e.target.value)} placeholder="حد أقصى: 60" id="exampleFormControlNumber13" aria-label="default input example" dir="rtl"/></div>
         ) : null}
@@ -677,14 +677,14 @@ function AddEmployee() {
         {hireYear >= 2015 ? (
           <div className="d-none col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
             <label htmlFor="exampleFormControlNumber5" className="form-label">
-              عدد الاجازات الاعتيادية_47
+              عدد الإجازات الاعتيادية_47
             </label>
             <input className="form-control" type="number" onChange={(e) => setNormalLeavesCount_47(e.target.value)} id="exampleFormControlNumber5" aria-label="default input example" dir="rtl"/>
           </div>
         ) : hireYear <= 2015 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
             <label htmlFor="exampleFormControlNumber5" className="form-label">
-              عدد الاجازات الاعتيادية_47
+              عدد الإجازات الاعتيادية_47
             </label>
             <input
               className="form-control"
@@ -732,7 +732,7 @@ function AddEmployee() {
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
           <label htmlFor="exampleFormControlNumber6" className="form-label">
-            عدد الاجازات الاعتيادية_81 قبل سنة
+            عدد الإجازات الاعتيادية_81 قبل سنة
           </label>
           <input
             className="form-control"
@@ -749,7 +749,7 @@ function AddEmployee() {
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
           <label htmlFor="exampleFormControlNumber7" className="form-label">
-            عدد الاجازات الاعتيادية_81 قبل سنتين
+            عدد الإجازات الاعتيادية_81 قبل سنتين
           </label>
           <input
             className="form-control"
@@ -766,7 +766,7 @@ function AddEmployee() {
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
           <label htmlFor="exampleFormControlNumber8" className="form-label">
-            عدد الاجازات الاعتيادية_81 قبل 3 سنوات
+            عدد الإجازات الاعتيادية_81 قبل 3 سنوات
           </label>
           <input
             className="form-control"
@@ -782,7 +782,7 @@ function AddEmployee() {
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
           <label htmlFor="exampleFormControlNumber12" className="form-label">
-            عدد الاجازات العارضة
+            عدد الإجازات العارضة
           </label>
           <input
             className="form-control"
@@ -797,7 +797,7 @@ function AddEmployee() {
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
           <label htmlFor="exampleFormControlNumber9" className="form-label">
-            عدد الاجازات المرضية
+            عدد الإجازات المرضية الغير مزمنة
           </label>
           <input
             className="form-control"
@@ -810,7 +810,7 @@ function AddEmployee() {
         </div>
 
         <div className="d-flex justify-content-center mt-3">
-          <Btn name="إضافة" link="/" class="btn-primary w-50 mb-3" />
+          <Btn name="إضافة" link="/" className="btn-primary w-50 mb-3" />
         </div>
       </form>
     </div>

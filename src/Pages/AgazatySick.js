@@ -4,10 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
 import { BASE_API_URL, rowsPerPage, token, userID } from "../server/serves";
 import LoadingOrError from "../components/LoadingOrError";
+import SickReport from "../components/SickReport";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function AgazatySick() {
   const [sickLeaves, setSickLeaves] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     const fetchSickLeaves = async () => {
@@ -52,37 +56,30 @@ function AgazatySick() {
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block p-3 ps-5">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            سجل الاجازات المرضية
+            سجل الإجازات المرضية
           </h2>
+        </div>
+        <div className="ps-3">
+          <button
+            className="my-3 mx-1 btn btn-outline-primary d-flex justify-content-center align-items-center" style={{ whiteSpace: "nowrap" }}>
+            <FontAwesomeIcon icon={faPrint} style={{ fontSize: "1.4rem" }}/>
+            <span className="d-none d-sm-inline">&nbsp;طباعة البيانات</span>
+          </button>
         </div>
       </div>
 
       <div className="row">
-        <div className="table-responsive" style={{ height: "100vh" }}>
+        <div className="table-responsive">
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المرجع
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ البدء
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ الانتهاء
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  عدد الأيام
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  حالة الطلب
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  طباعة
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الأرشيف
-                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ البدء</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الانتهاء</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
               </tr>
             </thead>
 
@@ -94,7 +91,7 @@ function AgazatySick() {
                       #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
                     </th>
                     {leave.startDate === "0001-01-01T00:00:00" ? (
-                      <th className="text-danger">لم يحدد بعد</th>
+                      <th className="text-danger">لم يُحدد بعد</th>
                     ) : (
                       <th>
                         {new Date(leave.startDate).toLocaleDateString("ar-EG")}
@@ -102,7 +99,7 @@ function AgazatySick() {
                     )}
 
                     {leave.endDate === "0001-01-01T00:00:00" ? (
-                      <th className="text-danger">لم يحدد بعد</th>
+                      <th className="text-danger">لم يُحدد بعد</th>
                     ) : (
                       <th>
                         {new Date(leave.endDate).toLocaleDateString("ar-EG")}
@@ -122,37 +119,45 @@ function AgazatySick() {
                         أيام
                       </th>
                     )}
-                    <td>
+                    <th>
                       {leave.certified === true ? (
-                        <th className="text-success">مقبولة</th>
+                        <th className="text-success">مستحقة</th>
                       ) : leave.responseDoneFinal === false &&
                         leave.respononseDoneForMedicalCommitte === false ? (
                         <th className="text-primary">
-                          معلقة عند التحديث الأول
+                          مُعلقة عند التحديث الأول
                         </th>
                       ) : leave.responseDoneFinal === false &&
                         leave.respononseDoneForMedicalCommitte === true ? (
                         <th className="text-primary">
-                          معلقة عند التحديث الثاني
+                          مُعلقة عند التحديث الثاني
                         </th>
                       ) : (
-                        <th className="text-danger">مرفوضة</th>
+                        <th className="text-danger">غير مستحقة</th>
                       )}
-                    </td>
-                    <td>
-                      <FontAwesomeIcon
-                        icon={faPrint}
-                        fontSize={"26px"}
-                        color="blue"
-                        className="printer"
-                      />
-                    </td>
+                    </th>
+                    <th>
+                      <button
+                        className="btn btn-outline-primary"
+                        onClick={() =>
+                          MySwal.fire({
+                          title: 'تقرير الإجازة',
+                          html: <SickReport leaveID={leave.id} />,
+                          showConfirmButton: false,
+                          showCloseButton: true,
+                          width: '95%',
+                          customClass: {
+                            popup: 'text-end custom-swal-width',
+                          }})}>
+                        <FontAwesomeIcon icon={faPrint} />
+                      </button>
+                    </th>
                     <td>
                       <BtnLink
                         id={leave.id}
                         name="عرض الاجازة"
-                        link="/user/sick-leave-request"
-                        class="btn btn-outline-primary"
+                        link="/agazaty/sick-leave-request"
+                        className="btn btn-outline-primary"
                       />
                     </td>
                   </tr>

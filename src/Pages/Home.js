@@ -1,7 +1,7 @@
 import Hint from "../components/Hint";
 import LeaveBalance from "../components/LeaveBalance";
 import '../CSS/Home.css';
-import PreviousRequests from "../components/PreviousRequests";
+import PreviousRequests from "../components/UserNormalLeaveRequest";
 import Calendar from "../components/Calendar";
 import BtnLink from "../components/BtnLink";
 import ShortData from "../components/ShortData";
@@ -80,12 +80,12 @@ function Home(){
                     <div className="box mt-2">
                         <h5 className="text-bold">التواصل مع الدعم الفني</h5>
                         <p>يمكنك مراسلتنا لأي استفسارات أو مشكلات تواجهها أثناء استخدام النظام</p>
-                        <BtnLink onClick={() => showErrorAlert()} name="تواصل معنًا" link="/" class='btn-primary' />
+                        <BtnLink onClick={() => showErrorAlert()} name="تواصل معنًا" link="/" className='btn-primary' />
                     </div>
                     <div className="box mt-2">
-                        <h5 className="text-bold">سياسات الاجازات</h5>
-                        <p>تعرف على قوانين وإجراءات طلب الاجازات لضمان تجربة سلسة ومريحة</p>
-                        <BtnLink name="الإطلاع الآن" link="/inquiries" class='btn-primary' />
+                        <h5 className="text-bold">سياسات الإجازات</h5>
+                        <p>تعرف على قوانين وإجراءات طلب الإجازات لضمان تجربة سلسة ومريحة</p>
+                        <BtnLink name="الإطلاع الآن" link="/inquiries" className='btn-primary' />
                     </div>
                 </div>
             </div>

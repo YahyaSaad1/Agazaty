@@ -3,7 +3,7 @@ import BtnLink from "../components/BtnLink";
 import { BASE_API_URL, rowsPerPage, token, userID } from "../server/serves";
 import LoadingOrError from "../components/LoadingOrError";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserSlash } from "@fortawesome/free-solid-svg-icons";
+import { faPrint, faUserSlash } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 
 function AgazatyPermit() {
@@ -54,27 +54,24 @@ function AgazatyPermit() {
             سجل التصاريح
           </h2>
         </div>
+        <div className="ps-3">
+          <button
+            className="my-3 mx-1 btn btn-outline-primary d-flex justify-content-center align-items-center" style={{ whiteSpace: "nowrap" }}>
+            <FontAwesomeIcon icon={faPrint} style={{ fontSize: "1.4rem" }}/>
+            <span className="d-none d-sm-inline">&nbsp;طباعة البيانات</span>
+          </button>
+        </div>
       </div>
       <div className="row">
-        <div className="table-responsive" style={{ height: "100vh" }}>
+        <div className="table-responsive">
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المرجع
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الاسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  التاريخ
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  عدد الساعات
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الأرشيف
-                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>التاريخ</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الساعات</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
               </tr>
             </thead>
             <tbody>
@@ -97,7 +94,7 @@ function AgazatyPermit() {
                         id={permit.id}
                         name="عرض التصريح"
                         link="/permit-leave"
-                        class="btn btn-outline-primary"
+                        className="btn btn-outline-primary"
                       />
                     </th>
                   </tr>

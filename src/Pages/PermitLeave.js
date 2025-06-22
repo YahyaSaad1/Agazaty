@@ -4,6 +4,12 @@ import { useEffect, useState } from "react";
 import BtnLink from "../components/BtnLink";
 import Modal from "react-modal";
 import { BASE_API_URL, token } from "../server/serves";
+import LoadingOrError from "../components/LoadingOrError";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+import { faPrint } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PermitReport from "../components/PermitReport";
 
 Modal.setAppElement("#root");
 
@@ -13,6 +19,7 @@ function PermitLeave() {
   const [user, setUser] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     const fetchPermitLeave = async () => {
@@ -54,7 +61,6 @@ function PermitLeave() {
         console.error("Error fetching leave image:", err);
       }
     };
-
     fetchPermitLeaveImage();
   }, [permitID]);
 
@@ -78,37 +84,9 @@ function PermitLeave() {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  if (permitLeave === null || user === null) {
-    return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ height: "80vh" }}
-      >
-        <div
-          className="position-relative"
-          style={{ width: "4rem", height: "4rem" }}
-        >
-          <div
-            className="spinner-border text-primary w-100 h-100"
-            role="status"
-          ></div>
-          <div
-            className="position-absolute top-50 start-50 translate-middle text-primary fw-bold"
-            style={{ fontSize: "0.75rem" }}
-          >
-            انتظر...
-          </div>
-        </div>
-      </div>
-    );
-  }
 
-  if (!permitLeave) {
-    return (
-      <p className="text-center text-danger">
-        لم يتم العثور على بيانات التصريح.
-      </p>
-    );
+  if (permitLeave === null || user === null) {
+    return <LoadingOrError data={permitLeave} />;
   }
 
   return (
@@ -117,18 +95,27 @@ function PermitLeave() {
         <div className="zzz d-inline-block p-3 ps-5">
           <h2 className="m-0">{`تصريح ${permitLeave.firstName} ${permitLeave.secondName}`}</h2>
         </div>
-        <div className="p-3">
-          <BtnLink
-            name="سجل التصاريح"
-            link="/des-requests/permit"
-            class="btn btn-primary m-0 ms-2 mb-2"
-          />
+        <div className="p-3 pe-0">
+          <button
+              className="btn btn-outline-primary"
+              onClick={() =>
+                  MySwal.fire({
+                  title: 'تقرير التصريح',
+                  html: <PermitReport permitID={permitID} />,
+                  showConfirmButton: false,
+                  showCloseButton: true,
+                  width: '95%',
+                  customClass: {
+                  popup: 'text-end custom-swal-width',
+                  }})}>
+              <FontAwesomeIcon icon={faPrint} />
+              <span className="d-none d-sm-inline"> طباعة</span>
+          </button>
         </div>
       </div>
       <div className="row mt-5 d-flex justify-content-center">
         <div
           className="col-sm-12 col-lg-10 col-xl-8 box table-responsive"
-          style={{ height: "100vh" }}
         >
           <div
             className="d-flex flex-row p-2 align-items-stretch "
@@ -150,9 +137,7 @@ function PermitLeave() {
                 </tr>
                 <tr>
                   <th scope="col">القسم</th>
-                  <th scope="col" className="text-start">
-                    {user.departmentName}
-                  </th>
+                  <th scope="col" className="text-start">{user.departmentName ? (user.departmentName) : (<span className="text-danger">إدارة مستقلة</span>)}</th>
                 </tr>
                 <tr>
                   <th scope="col">التاريخ</th>

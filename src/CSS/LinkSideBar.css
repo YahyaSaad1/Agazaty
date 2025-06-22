@@ -45,6 +45,14 @@
 
 
 
+.link-SideBar44{
+    color: var(--main-color);
+    cursor: pointer;
+}
+.link-SideBar44:active{
+    background-color: var(--btn-hover-true);
+    color: white;
+}
 
 
 

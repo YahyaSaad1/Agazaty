@@ -1,0 +1,19 @@
+.red-color-button {
+    color: var(--btn-false);
+}
+
+.red-color-button:hover {
+    color: var(--btn-hover-false);
+}
+
+.custom-swal-width {
+    width: 90% !important;
+    max-width: 90% !important;
+}
+
+@media (min-width: 992px) {
+    .custom-swal-width {
+        width: 60% !important;
+        max-width: 60% !important;
+    }
+}

@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { BASE_API_URL, token } from "../server/serves";
 
 function UpdateSickLeave() {
-    const {leaveID} = useParams();
+    const { leaveID } = useParams();
     const [address, setAddress] = useState('');
     const [leave, setLeave] = useState([]);
 
@@ -159,7 +159,7 @@ function UpdateSickLeave() {
     return (
         <div>
             <div className="zzz d-inline-block p-3 ps-5">
-                <h2 className="m-0">تحديث اجازة {leave.firstName} {leave.secondName}</h2>
+                <h2 className="m-0">تحديث إجازة {leave.firstName} {leave.secondName}</h2>
             </div>
 
             <form onSubmit={handleData}>

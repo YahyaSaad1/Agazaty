@@ -135,7 +135,6 @@ const UploadUsersExcel = () => {
                     setFile(null);
                 } catch (error) {
                     const errorMessage = error.response ? error.response.data.message : error.message;
-                    console.log(error.response)
                     Swal.fire({
                         icon: 'error',
                         title: 'حدث خطأ أثناء رفع الملف',
@@ -166,7 +165,7 @@ const UploadUsersExcel = () => {
                     <h2 className="m-0">رفع موظف</h2>
                 </div>
                 <div className="d-flex">
-                    <BtnLink name='إضافة موظف يدويا' link='/add-employee' class="m-3 btn btn-primary m-0"/>
+                    <BtnLink name='إضافة موظف يدويا' link='/add-employee' className="m-3 btn btn-primary m-0"/>
                 </div>
             </div>
 
@@ -225,7 +224,7 @@ const UploadUsersExcel = () => {
                     <div className='text-center mt-3'>
                         <h4>تحميل نموذج جدول البيانات</h4>
                         <div className='mt-3'>
-                            <Btn onClick={downloadActiveUsersExcel} name='مع البيانات الحالية' class='btn-outline-primary w-25 ms-3' />
+                            <Btn onClick={downloadActiveUsersExcel} name='مع البيانات الحالية' className='btn-outline-primary w-25 ms-3' />
                             <a href={vide} download className="btn btn-primary w-25 ms-3">
                                 بدون البيانات الحالية
                             </a>
@@ -267,8 +266,8 @@ const UploadUsersExcel = () => {
                     </div>
                     
                     <div className='d-flex gap-3 justify-content-end mt-3'>
-                    <Btn onClick={() => { setFile(null); }} name='إعادة تعيين' class='btn-outline-primary' />
-                    <Btn onClick={handleUpload} name='تحميل' class='btn-primary' disabled={isUploading} /> {/* تعطيل الزر أثناء التحميل */}
+                    <Btn onClick={() => { setFile(null); }} name='إعادة تعيين' className='btn-outline-primary' />
+                    <Btn onClick={handleUpload} name='تحميل' className='btn-primary' disabled={isUploading} /> {/* تعطيل الزر أثناء التحميل */}
                     </div>
                 </div>
             </div>
