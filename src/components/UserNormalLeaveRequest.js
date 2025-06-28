@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "../CSS/PreviousRequests.css";
-import {faPlus, faCalendarDays, faPrint} from "@fortawesome/free-solid-svg-icons";
+import {faCirclePlus, faCalendarDays, faPrint} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import BtnLink from "./BtnLink";
 import { BASE_API_URL, token, userID } from "../server/serves";
@@ -81,10 +81,10 @@ useEffect(() => {
       <div className="d-flex justify-content-between">
         <h4 className="text-bold">اجازاتك السابقة</h4>
         <div className="d-flex">
-          <div className="d-flex btn btn-primary align-items-center me-2">
-            <FontAwesomeIcon icon={faCalendarDays} className="pl-3" />
+          <div className="me-2 btn btn-primary my-3 d-flex align-items-center">
+            <FontAwesomeIcon icon={faCalendarDays} style={{fontSize: "1.2em"}} />
             <select
-              className="bg-primary border-0 text-light custom-select-fix"
+              className="d-none d-sm-inline bg-primary border-0 text-light custom-select-fix me-1"
               value={leaveType}
               onChange={(e) => setLeaveType(e.target.value)}
               aria-label="Default select example"
@@ -96,9 +96,9 @@ useEffect(() => {
               ))}
             </select>
           </div>
-          <Link to={"/normal-leave"} className="btn btn-primary me-2 pt-2">
-            <FontAwesomeIcon icon={faPlus} className="pl-3" />
-            <span>إجازة جديدة</span>
+          <Link to="/request/normal-leave" role="button" className="me-2 btn btn-primary my-3 d-flex align-items-center" >
+            <FontAwesomeIcon icon={faCirclePlus} style={{fontSize: "1.2em"}} />
+            <span className="d-none d-sm-inline me-1">&nbsp;إجازة جديدة</span>
           </Link>
         </div>
       </div>

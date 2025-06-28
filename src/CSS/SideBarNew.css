@@ -25,8 +25,16 @@
     .side-bar.open{
         width:250px;
         position:absolute;
-
         z-index:999;
+    }
+}
+
+@media (min-width:1750px){
+    .side-bar.open{
+        width:300px;
+    }
+    .side-bar.closed{
+        width:100px;
     }
 }
 
@@ -51,7 +59,7 @@
     justify-content: space-between;
 }
 
-.SideBar-link{
+.sidebar-link{
     display: flex;
     text-decoration: none;
     align-items: center;
@@ -62,7 +70,7 @@
     text-align: center;
 }
 
-.SideBar-link-close{
+.sidebar-link-close{
     display: flex;
     text-decoration: none;
     align-items: center;
@@ -73,12 +81,17 @@
     align-items: center;
 }
 
-.SideBar-link:hover{
+.sidebar-link:hover{
     background-color: var(--main-color) ;
     color: white;
 }
 
-.SideBar-link p{
+.sidebar-link-close:hover{
+    background-color: var(--main-color) ;
+    color: white;
+}
+
+.sidebar-link p{
     font-size: 0.875rem;
     font-weight: 600;
     font-size: 18px;

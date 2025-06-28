@@ -116,9 +116,7 @@ function Holidays() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block">
-          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            الإجازات الرسمية
-          </h2>
+          <h2 className="m-0 text-nowrap">الإجازات الرسمية</h2>
         </div>
         <div className="p-3">
           <BtnLink

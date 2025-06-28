@@ -317,11 +317,7 @@ function DesPermits() {
     const filteredRows = permitLeaves
         .filter((permit) => {
         const query = searchQuery.trim().toLowerCase();
-
-        // فلترة بحث نصي على الاسم أو عدد الساعات فقط
         const matchesSearch = permit.userName.toLowerCase().includes(query);
-
-        // فلترة حسب حالة التصريح بناءً على filterStatus
         const matchesStatus =
             filterStatus === "all"
             ? true
@@ -332,7 +328,6 @@ function DesPermits() {
         return matchesSearch && matchesStatus;
         })
         .sort((a, b) => {
-        // غير المحتسبة (active === true) تظهر أولاً
         if (a.active === b.active) return 0;
         return a.active ? -1 : 1;
         });
@@ -350,37 +345,33 @@ function DesPermits() {
         <div>
             <div className="d-flex mb-4 justify-content-between">
                 <div className="zzz d-inline-block">
-                    <h2 className="m-0">
-                        سجل التصاريح
-                    </h2>
+                    <h2 className="m-0 text-nowrap">سجل التصاريح</h2>
                 </div>
                 <div className="d-flex">
-                    <button
-                        className="m-3 btn btn-outline-primary d-flex justify-content-center align-items-center">
+                    <button className="m-3 btn btn-outline-primary d-flex justify-content-center align-items-center text-nowrap">
                         <FontAwesomeIcon icon={faPrint} />
-                        <span className="d-none d-sm-inline">&nbsp;طباعة البيانات</span>
+                        <span className="d-none d-sm-inline text-nowrap">&nbsp;طباعة البيانات</span>
                     </button>
-                    <button style={{ whiteSpace: "nowrap" }} className="m-3 me-0 btn btn-primary" onClick={handleLeaveUpdate} >
+                    <button className="m-3 me-0 btn btn-primary text-nowrap" onClick={handleLeaveUpdate} >
                         <FontAwesomeIcon icon={faEdit} />
-                        <span className="d-none d-sm-inline">&nbsp;تعديل عدد أيام الإجازات</span>
+                        <span className="d-none d-sm-inline text-nowrap">&nbsp;تعديل عدد أيام الإجازات</span>
                     </button>
                 </div>
             </div>
-        <div className="mb-4 me-3 d-flex align-items-center gap-3">
+        <div className="mb-4 me-3 ms-3 d-flex align-items-center gap-3">
             <input type="text" placeholder="بحث عن موظف ..." className="form-control w-75" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
 
             <select
-            className="form-select w-auto"
-            value={filterStatus}
-            onChange={(e) => {
-                setFilterStatus(e.target.value);
-                setCurrentPage(1);
-            }}
-            aria-label="فلتر حالة التصاريح"
-            >
-            <option value="all">كل التصاريح</option>
-            <option value="active">غير محتسب</option>
-            <option value="inactive">محتسب</option>
+                className="form-select w-auto"
+                value={filterStatus}
+                onChange={(e) => {
+                    setFilterStatus(e.target.value);
+                    setCurrentPage(1);
+                }}
+                aria-label="فلتر حالة التصاريح">
+                <option className="text-nowrap" value="all">كل التصاريح</option>
+                <option className="text-nowrap" value="active">غير محتسب</option>
+                <option className="text-nowrap" value="inactive">محتسب</option>
             </select>
         </div>
         <div className="row">
@@ -388,12 +379,12 @@ function DesPermits() {
             <table className="m-0 table table-striped">
                 <thead className="sticky-top bg-white">
                 <tr>
-                    <th style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                    <th style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
-                    <th style={{ backgroundColor: "#F5F9FF" }}>التاريخ</th>
-                    <th style={{ backgroundColor: "#F5F9FF"}}>عدد الساعات</th>
-                    <th style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
-                    <th style={{ backgroundColor: "#F5F9FF" }}>المزيد</th>
+                    <th style={{backgroundColor: "#F5F9FF"}}>المرجع</th>
+                    <th style={{backgroundColor: "#F5F9FF"}}>الاسم</th>
+                    <th style={{backgroundColor: "#F5F9FF"}}>التاريخ</th>
+                    <th style={{backgroundColor: "#F5F9FF"}} className="text-nowrap">عدد الساعات</th>
+                    <th style={{backgroundColor: "#F5F9FF"}}>الأرشيف</th>
+                    <th style={{backgroundColor: "#F5F9FF"}}>المزيد</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -405,20 +396,13 @@ function DesPermits() {
                         </th>
                         <th>{permit.userName}</th>
                         <th>{new Date(permit.date).toLocaleDateString("ar-EG")}</th>
-                        <th style={{ whiteSpace: "nowrap", paddingRight: "30px" }}>
+                        <th className="text-nowrap" style={{paddingRight: "30px"}}>
                         {permit.hours
                             .toString()
                             .replace(/[0-9]/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d])}{" "}
                         ساعات
                         </th>
-                        <th>
-                        <BtnLink
-                            id={permit.id}
-                            name="عرض التصريح"
-                            link="/permit-leave"
-                            className="btn btn-outline-primary"
-                        />
-                        </th>
+                        <th><BtnLink id={permit.id} name="عرض التصريح" link="/permit-leave" className="btn btn-outline-primary"/></th>
                         {permit.active === true ? (
                         <th>
                             <FontAwesomeIcon

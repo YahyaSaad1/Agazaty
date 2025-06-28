@@ -53,13 +53,11 @@ function AgazatyPermit() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block">
-          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            سجل تصاريحي
-          </h2>
+          <h2 className="m-0 text-nowrap">سجل تصاريحي</h2>
         </div>
         <div className="ps-3">
           <button
-            className="my-3 mx-1 btn btn-outline-primary d-flex justify-content-center align-items-center" style={{ whiteSpace: "nowrap" }}>
+            className="my-3 mx-1 btn btn-outline-primary d-flex justify-content-center align-items-center text-nowrap">
             <FontAwesomeIcon icon={faPrint} style={{ fontSize: "1.2em" }}/>
             <span className="d-none d-sm-inline">&nbsp;طباعة البيانات</span>
           </button>

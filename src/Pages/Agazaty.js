@@ -6,6 +6,7 @@ import ElHawary from "../Images/ElHawary.jpg";
 import Ahmed from "../Images/Ahmed.jpg";
 import AbdElQadir from "../Images/AbdElQadir.jpg";
 import Hesham from "../Images/Hesham.jpg";
+import Magdy from "../Images/Magdy.jpg";
 import facebook from "../Images/facebook.png";
 import linkeIn from "../Images/linkeIn.png";
 import gmail from "../Images/gmail.png";
@@ -67,7 +68,7 @@ function Agazaty() {
                                                         <Link className="p-1 d-flex justify-content-center align-items-center" to={`https://www.linkedin.com/in/${member.socialMedia.linkedIn}`} target="_blank" rel="noopener noreferrer">
                                                             <img src={linkeIn} alt="LinkedIn" />
                                                         </Link>
-                                                                            {console.log(`mailto:${member.socialMedia.email}`)}
+
                                                         <Link className="p-1 d-flex justify-content-center align-items-center" to={`https://www.facebook.com/${member.socialMedia.facebook}`} target="_blank" rel="noopener noreferrer">
                                                             <img src={facebook} alt="Facebook" />
                                                         </Link>
@@ -78,6 +79,42 @@ function Agazaty() {
                                 )
                             })}
                             
+                        </div>
+                    </div>
+
+
+                    <div className="mt-4">
+                        <h2 className="bbb text-center">شكر خاص</h2>
+                    </div>
+
+                    <div className="mt-3 bg-light p-3">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-sm-12 col-md-6 col-lg-4 col-xl-3 mt-3">
+                                <div className="pic">
+                                    <img src={Magdy} alt="teamImg" />
+                                </div>
+                                <div className="desc text-center">
+                                    <div className="mb-3 box-team p-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div>
+                                            <h4 className="text-bold">{'مجدي قدوس'}</h4>
+                                            <p className="mb-2">{'مدير قسم الموارد البشرية'}</p>
+                                        </div>
+                                            <div className="d-flex justify-content-center align-items-center social" style={{ gap: "8px" }}>
+                                                <Link className="p-1 d-flex justify-content-center align-items-center" to={`mailto:yahyasaad2024`} target="_blank" rel="noopener noreferrer">
+                                                    <img src={gmail} alt="Gmail" />
+                                                </Link>
+
+                                                <Link className="p-1 d-flex justify-content-center align-items-center" to={`https://www.linkedin.com/in/yahyasaad1`} target="_blank" rel="noopener noreferrer">
+                                                    <img src={linkeIn} alt="LinkedIn" />
+                                                </Link>
+
+                                                <Link className="p-1 d-flex justify-content-center align-items-center" to={`https://www.facebook.com/magdy.kodous.2025`} target="_blank" rel="noopener noreferrer">
+                                                    <img src={facebook} alt="Facebook" />
+                                                </Link>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

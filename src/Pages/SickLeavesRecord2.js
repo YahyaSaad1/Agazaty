@@ -72,9 +72,7 @@ function SickLeavesRecord2() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block">
-          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            تحديث الإجازات المرضية
-          </h2>
+          <h2 className="m-0 text-nowrap">تحديث الإجازات المرضية</h2>
         </div>
       </div>
       <div className="row">

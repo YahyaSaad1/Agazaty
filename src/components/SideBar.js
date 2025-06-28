@@ -126,8 +126,8 @@
 //         if (!rolesArray.includes(roleName)) return null;
 
 //         return (
-//             <Link to={link} className={`SideBar-link ${extraClass}`} key={link}>
-//                 <li className={`SideBar-link ${extraClass} ${location.pathname === link ? 'active-link' : ''} tran position-relative`}>
+//             <Link to={link} className={`sidebar-link ${extraClass}`} key={link}>
+//                 <li className={`sidebar-link ${extraClass} ${location.pathname === link ? 'active-link' : ''} tran position-relative`}>
 //                     <FontAwesomeIcon icon={icon} className="col-sm-12 col-xxl-2 pl-5" style={{ fontSize: '1.6em' }} />
 //                     <span className="col-xl-8 d-none d-xxl-block">{title}</span>
 //                     {hasBadge && badgeCount > 0 && (
@@ -271,8 +271,8 @@
 //                     {renderLink('معلومات عامة', faCircleExclamation, '/agazaty', 'أمين الكلية, عميد الكلية, مدير الموارد البشرية, هيئة تدريس, موظف')}
 //                     {/* {renderLink('سجل الإجازات المرضية', faCircleH, '/sick-leaves-record', 'مدير الموارد البشرية')} */}
 //                     {renderLink('تحديث الإجازة المرضية', faCircleH, '/sick-leaves-record2', 'مدير الموارد البشرية', '', true, waitingSickLeaves.length + waitingCertifiedSickLeaves.length)}
-//                     <Link to={'/login'} className='SideBar-link text-danger hover-danger' onClick={handleLogout}>
-//                         <li className={`SideBar-link ${location.pathname === '/logout' ? 'active-link' : ''} tran position-relative`}>
+//                     <Link to={'/login'} className='sidebar-link text-danger hover-danger' onClick={handleLogout}>
+//                         <li className={`sidebar-link ${location.pathname === '/logout' ? 'active-link' : ''} tran position-relative`}>
 //                             <FontAwesomeIcon icon={faRightFromBracket} className="col-sm-12 col-xxl-2 pl-5" style={{ fontSize: '1.6em' }} />
 //                             <span className="col-xl-8 d-none d-xxl-block">الخروج</span>
 //                             <span className="tooltip-text d-block d-xxl-none">الخروج</span>
@@ -294,12 +294,13 @@
 import '../CSS/SideBarNew.css';
 import { faHouse, faUser, faCalendarPlus, faHandshake, faUsersRectangle, faUsers, faFolderOpen, faCalendarDays, faCircleQuestion, faScroll, faCircleExclamation, faCircleH, faHouseMedicalCircleCheck, faRightFromBracket, faCalendarDay, faChevronUp, faChevronDown, faUserPlus, faPersonArrowUpFromLine, faNewspaper, faTowerBroadcast, faDisease, faBacteria, faUsersSlash, faArrowsTurnToDots, faFolderClosed, faUsersViewfinder } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Menu } from "./MenuContext";
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { BASE_API_URL, roleName, token, userID, useUserData } from '../server/serves';
 
 function SideBar(){
+    const sidebarRef = useRef(null);
     const userData = useUserData();
     const location = useLocation();
     const [activeMenu, setActiveMenu] = useState(null);
@@ -408,24 +409,43 @@ function SideBar(){
         navigate('/login');
     };
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+        if (
+            isOpen &&
+            window.innerWidth < 700 &&
+            sidebarRef.current &&
+            !sidebarRef.current.contains(event.target)
+        ) {
+            setIsOpen(false);
+        }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
+
+
     return(
-        <div className={`side-bar pt-4 ${isOpen ? 'open' : 'closed'}`} onClick={() => setIsOpen((p) => !p)}>
+        <div ref={sidebarRef} className={`side-bar pt-4 ${isOpen ? 'open' : 'closed'}`}>
             <NavLink to={`${isOpen? '/agazaty' : ''}`} className={`${isOpen?"d-flex m-2 mt-0 p-3 pt-0 justify-content-between align-items-center text-decoration-none": "d-flex justify-content-center align-items-center"}`}>
                 <h2 className='fs-2 fw-bold' style={{display: isOpen? "block": "none"}}>اجازاتي</h2>
                 <FontAwesomeIcon className={`${isOpen? "": "m-2 mt-0 p-3 pt-0"}`} icon={faArrowsTurnToDots} cursor={'pointer'}  onClick={(e) => {e.preventDefault(); e.stopPropagation(); setIsOpen(prev => !prev)}} style={{fontSize: '2em'}} />
             </NavLink>
 
-            <NavLink onClick={() => toggleMenu("/")} to={"/"} className={`${activeMenu === "/" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`}>
+            <NavLink onClick={() => toggleMenu("/")} to={"/"} className={`${activeMenu === "/" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                 <FontAwesomeIcon icon={faHouse} style={{fontSize: '1.6em'}} />
                 <p style={{display: isOpen? "block": "none"}}><span className='me-2 sidebar-title'>الرئيسية</span></p>
             </NavLink>
 
-            <NavLink onClick={() => toggleMenu("profile")} to={"/profile"} className={`${activeMenu === "profile" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`}>
+            <NavLink onClick={() => toggleMenu("profile")} to={"/profile"} className={`${activeMenu === "profile" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                 <FontAwesomeIcon icon={faUser} style={{fontSize: '1.6em'}} />
                 <p style={{display: isOpen? "block": "none"}}><span className='me-2 sidebar-title'>الملف الشخصي</span></p>
             </NavLink>
 
-            <NavLink onClick={() => toggleMenu("coworker")} to={"/coworker"} className={`position-relative ${activeMenu === "coworker" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`}>
+            <NavLink onClick={() => toggleMenu("coworker")} to={"/coworker"} className={`position-relative ${activeMenu === "coworker" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                 {leavesWating.length > 0 &&
                 <span className="bg-danger text-white rounded-circle position-absolute" style={{ top: '5px', right: '5px', fontSize: '12px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {leavesWating.length}
@@ -435,7 +455,7 @@ function SideBar(){
             </NavLink>
 
             {roleName !== "عميد الكلية" &&<>
-                <NavLink className={`zxc ${activeMenu === "request" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`} onClick={() => toggleMenu("request")}>
+                <NavLink className={`zxc ${activeMenu === "request" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`} onClick={() => toggleMenu("request")}>
                     <div className="d-flex">
                         <FontAwesomeIcon icon={faCalendarPlus} style={{fontSize: '1.6em'}} />
                             {isOpen && <span className="me-2 sidebar-title">طلب إجازة</span>}
@@ -455,7 +475,7 @@ function SideBar(){
                 </div>
 
 
-                <NavLink className={`zxc ${activeMenu === "agazaty2" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`} onClick={() => toggleMenu("agazaty2")}>
+                <NavLink className={`zxc ${activeMenu === "agazaty2" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`} onClick={() => toggleMenu("agazaty2")}>
                     <div className="d-flex">
                         <FontAwesomeIcon icon={faCalendarDays} style={{fontSize: "1.6em"}} />
                             {isOpen && <span className="me-2 sidebar-title">إجازاتي</span>}
@@ -479,21 +499,21 @@ function SideBar(){
             </>}
 
             {['عميد الكلية', 'مدير الموارد البشرية'].includes(roleName) &&<>
-                <NavLink onClick={() => toggleMenu("departments")} to={"/departments"} className={`${activeMenu === "departments" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`}>
+                <NavLink onClick={() => toggleMenu("departments")} to={"/departments"} className={`${activeMenu === "departments" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                     <FontAwesomeIcon icon={faUsersRectangle} style={{fontSize: '1.6em'}} />
                     <p style={{display: isOpen? "block": "none"}}><span className='me-2 sidebar-title'>الأقسام</span></p>
                 </NavLink>
             </>}
 
             {['مدير الموارد البشرية'].includes(roleName) &&<>
-                <NavLink onClick={() => toggleMenu("holidays")} to={"/holidays"} className={`${activeMenu === "holidays" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`}>
+                <NavLink onClick={() => toggleMenu("holidays")} to={"/holidays"} className={`${activeMenu === "holidays" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                     <FontAwesomeIcon icon={faCalendarDay} style={{fontSize: '1.6em'}} />
                     <p style={{display: isOpen? "block": "none"}}><span className='me-2 sidebar-title'>الإجازات الرسمية</span></p>
                 </NavLink>
             </>}
 
             {['عميد الكلية', 'مدير الموارد البشرية'].includes(roleName) &&<>
-                <NavLink className={`zxc ${activeMenu === "employees" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`} onClick={() => toggleMenu("employees")}>
+                <NavLink className={`zxc ${activeMenu === "employees" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`} onClick={() => toggleMenu("employees")}>
                     <div className="d-flex">
                         <FontAwesomeIcon icon={faUsersViewfinder} style={{fontSize: "1.6em"}} />
                             {isOpen && <span className="me-2 sidebar-title">الموظفين</span>}
@@ -511,7 +531,7 @@ function SideBar(){
             </>}
 
             {(roleName !== 'مدير الموارد البشرية' && userData.isDirectManager) &&<>
-                <NavLink onClick={() => toggleMenu("recordNormal")} to={"/record/normal/leave"} className={`${activeMenu === "recordNormal" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`}>
+                <NavLink onClick={() => toggleMenu("recordNormal")} to={"/record/normal/leave"} className={`${activeMenu === "recordNormal" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                     {leavesWatingForDirect.length > 0 &&
                         <span className="bg-danger text-white rounded-circle position-absolute" style={{ top: '5px', right: '5px', fontSize: '12px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             {leavesWatingForDirect.length}
@@ -523,7 +543,7 @@ function SideBar(){
 
 
             {/* {(['عميد الكلية', 'أمين الكلية', 'مدير الموارد البشرية'].includes(roleName) || ! userData.isDirectManager) &&<>
-                <NavLink className={`zxc ${activeMenu === "record" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`} onClick={() => toggleMenu("record")}>
+                <NavLink className={`zxc ${activeMenu === "record" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`} onClick={() => toggleMenu("record")}>
                     <div className="d-flex">
                         <FontAwesomeIcon icon={faFolderOpen} style={{fontSize: "1.6em"}} />
                             {isOpen && <span className="me-2 sidebar-title">طلبات الإجازات</span>}
@@ -543,7 +563,7 @@ function SideBar(){
 
 
             {((['عميد الكلية', 'أمين الكلية'].includes(roleName) && !userData.isDirectManager) || (roleName === 'مدير الموارد البشرية')) &&<>
-                <NavLink className={`zxc ${activeMenu === "record" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`} onClick={() => toggleMenu("record")}>
+                <NavLink className={`zxc ${activeMenu === "record" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`} onClick={() => toggleMenu("record")}>
                     <div className="d-flex position-relative">
                         {['عميد الكلية', 'أمين الكلية'].includes(roleName) && (leavesWatingForGeneral.length > 0 || casualLeavesWatingForGeneral.length > 0 || sickLeavesWatingForGeneral.length > 0) &&
                         <span className="sidebar-hint bg-danger text-white rounded-circle position-absolute" style={{ top: '5px', right: '5px', fontSize: '12px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -596,7 +616,7 @@ function SideBar(){
 
 
             {['عميد الكلية', 'مدير الموارد البشرية'].includes(roleName) &&<>
-                <NavLink className={`zxc ${activeMenu === "des-requests" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`} onClick={() => toggleMenu("des-requests")}>
+                <NavLink className={`zxc ${activeMenu === "des-requests" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`} onClick={() => toggleMenu("des-requests")}>
                     <div className="d-flex">
                         <FontAwesomeIcon icon={faFolderClosed} style={{fontSize: "1.6em"}} />
                             {isOpen && <span className="me-2 sidebar-title">سجل الإجازات</span>}
@@ -612,28 +632,28 @@ function SideBar(){
             </>}
 
             {['مدير الموارد البشرية'].includes(roleName) &&<>
-                <NavLink onClick={() => toggleMenu("permit")} to={"/permit"} className={`${activeMenu === "permit" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`}>
+                <NavLink onClick={() => toggleMenu("permit")} to={"/permit"} className={`${activeMenu === "permit" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                     <FontAwesomeIcon icon={faScroll} style={{fontSize: '1.6em'}} />
                     <p style={{display: isOpen? "block": "none"}}><span className='me-2 sidebar-title'>إضافة تصريح</span></p>
                 </NavLink>
             </>}
 
-            <NavLink onClick={() => toggleMenu("inquiries")} to={"/inquiries"} className={`${activeMenu === "inquiries" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`}>
+            <NavLink onClick={() => toggleMenu("inquiries")} to={"/inquiries"} className={`${activeMenu === "inquiries" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                 <FontAwesomeIcon icon={faCircleQuestion} style={{fontSize: '1.6em'}} />
                 <p style={{display: isOpen? "block": "none"}}><span className='me-2 sidebar-title'>الاستفسارات</span></p>
             </NavLink>
 
-            <NavLink onClick={() => toggleMenu("agazaty")} to={"/agazaty"} className={`${activeMenu === "agazaty" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`}>
+            <NavLink onClick={() => toggleMenu("agazaty")} to={"/agazaty"} className={`${activeMenu === "agazaty" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                 <FontAwesomeIcon icon={faCircleExclamation} style={{fontSize: '1.6em'}} />
                 <p style={{display: isOpen? "block": "none"}}><span className='me-2 sidebar-title'>معلومات عامة</span></p>
             </NavLink>
 
-            {/* <NavLink onClick={() => toggleMenu("sitting")} to={"/sitting"} className={`${activeMenu === "sitting" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`}>
+            {/* <NavLink onClick={() => toggleMenu("sitting")} to={"/sitting"} className={`${activeMenu === "sitting" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                 <FontAwesomeIcon icon={faGear} style={{fontSize: '1.6em'}} />
                 <p style={{display: isOpen? "block": "none"}}><span className='me-2 sidebar-title'>الإعدادات</span></p>
             </NavLink> */}
 
-            <NavLink onClick={handleLogout} to={"/login"} className={`logout ${activeMenu === "login" ? 'active-link' : ''} ${isOpen?"SideBar-link": "SideBar-link-close"}`}>
+            <NavLink onClick={handleLogout} to={"/login"} className={`logout ${activeMenu === "login" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                 <FontAwesomeIcon icon={faRightFromBracket} style={{fontSize: '1.6em'}} />
                 <p style={{display: isOpen? "block": "none"}}><span className='me-2 sidebar-title'>الخروج</span></p>
             </NavLink>

@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
-import BtnLink from "../components/BtnLink";
-import "../CSS/Employee.css";
-import {faEdit, faIdCard, faPenToSquare, faTable, faUser, faUserPen, faUserPlus, faUsers, faUserSlash} from "@fortawesome/free-solid-svg-icons";
+import {faIdCard, faPenToSquare, faTable, faUserPen, faUserPlus, faUsers, faUserSlash} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BASE_API_URL, roleName, rowsPerPage, token } from "../server/serves";
@@ -244,35 +242,26 @@ function EmployeesCom({ type }) {
     <div>
       <div className="d-flex mb-4 justify-content-between employee-header">
         <div className="zzz d-inline-block">
-          {type === "active" ? (
-            <h2 className="m-0">الموظفيين</h2>
-          ) : (
-            <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-              الموظفين الغير نشطين
-            </h2>
+          {type === "active" ? (<h2 className="m-0">الموظفيين</h2>) 
+          : (<h2 className="m-0 text-nowrap">الموظفين الغير نشطين</h2>
           )}
         </div>
 
-        {(roleName === "مدير الموارد البشرية" ||
-          roleName === "عميد الكلية") && (
-          <div className="d-flex employee-buttons ms-3">
-            <button
-              onClick={downloadActiveUsersExcel}
-              className="my-3 mx-1 btn btn-success d-flex justify-content-center align-items-center"
-              style={{ whiteSpace: "nowrap" }}
-            >
-              <FontAwesomeIcon icon={faTable} style={{ fontSize: "1.2em" }} color="#fff"/>
+        {(roleName === "مدير الموارد البشرية" || roleName === "عميد الكلية") && (
+          <div className="d-flex flex-column flex-sm-row gap-1 gap-sm-3 align-items-start mt-3 ms-3">
+            <button onClick={downloadActiveUsersExcel} className="btn btn-success employee-button" style={{whiteSpace: 'nowrap'}} >
+              <FontAwesomeIcon icon={faTable} style={{fontSize: '1.2em'}} color="#fff" />
               <span className="d-none d-sm-inline">&nbsp;تنزيل البيانات</span>
             </button>
 
-            {type === "active" ? (
-              <Link to="/employees/add-employee" role="button" className="me-2 btn btn-primary my-3 d-flex align-items-center" >
-                <FontAwesomeIcon icon={faUserPlus} style={{ fontSize: "1.2em" }} />
+            {type === 'active' ? (
+              <Link to="/employees/add-employee" role="button" className="btn btn-primary employee-button" style={{whiteSpace: 'nowrap'}} >
+                <FontAwesomeIcon icon={faUserPlus} style={{fontSize: '1.2em'}} />
                 <span className="d-none d-sm-inline">&nbsp;إضافة موظف</span>
               </Link>
             ) : (
-              <Link to="/employees/active" role="button" className="me-2 btn btn-primary my-3 d-flex align-items-center" >
-                <FontAwesomeIcon icon={faUsers} style={{ fontSize: "1.2em" }} />
+              <Link to="/employees/active" role="button" className="btn btn-primary employee-button" style={{whiteSpace: 'nowrap'}} >
+                <FontAwesomeIcon icon={faUsers} style={{fontSize: '1.2em'}} />
                 <span className="d-none d-sm-inline">&nbsp;الموظفين النشطين</span>
               </Link>
             )}
@@ -296,13 +285,13 @@ function EmployeesCom({ type }) {
             <table className="m-0 table table-striped">
               <thead>
                 <tr>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF", whiteSpace: "nowrap" }}>المسمى الوظيفي</th>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>القسم</th>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF", whiteSpace: "nowrap" }}>تاريخ التعيين</th>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>رقم الهاتف</th>
-                  <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المزيد</th>
+                  <th scope="col" style={{backgroundColor: "#F5F9FF"}}>المرجع</th>
+                  <th scope="col" style={{backgroundColor: "#F5F9FF"}}>الاسم</th>
+                  <th scope="col" style={{backgroundColor: "#F5F9FF"}} className="text-nowrap" >المسمى الوظيفي</th>
+                  <th scope="col" style={{backgroundColor: "#F5F9FF"}}>القسم</th>
+                  <th scope="col" style={{backgroundColor: "#F5F9FF"}} className="text-nowrap" >تاريخ التعيين</th>
+                  <th scope="col" style={{backgroundColor: "#F5F9FF"}} className="text-nowrap" >رقم الهاتف</th>
+                  <th scope="col" style={{backgroundColor: "#F5F9FF"}}>المزيد</th>
                 </tr>
               </thead>
               <tbody>

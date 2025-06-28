@@ -55,9 +55,7 @@ function DesSick() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block">
-          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            سجل الإجازات المرضية
-          </h2>
+          <h2 className="m-0 text-nowrap">سجل الإجازات المرضية</h2>
         </div>
         <div className="p-3 pe-0">
           <button

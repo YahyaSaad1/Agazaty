@@ -54,9 +54,7 @@ function DesNormal() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block">
-          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            سجل الإجازات الاعتيادية
-          </h2>
+          <h2 className="m-0 text-nowrap">سجل الإجازات الاعتيادية</h2>
         </div>
         <div className="p-3 pe-0">
           <button
@@ -129,7 +127,7 @@ function DesNormal() {
                         <FontAwesomeIcon icon={faPrint} />
                       </button>
                     </th>
-                    <th><BtnLink id={leave.id} name="عرض الاجازة" link="/normal-leave-request" className="btn btn-outline-primary" /> </th>
+                    <th><BtnLink id={leave.id} name="عرض الاجازة" link="/request/normal-leave" className="btn btn-outline-primary" /> </th>
                   </tr>
                 ))}
             </tbody>

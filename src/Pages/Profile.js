@@ -16,7 +16,7 @@ function Profile(){
         <div>
             <div className="d-flex mb-4 justify-content-between">
                 <div className="zzz d-inline-block">
-                    <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>الملف الشخصي</h2>
+                    <h2 className="m-0 text-nowrap">الملف الشخصي</h2>
                 </div>
                 <div className="d-flex">
                     <div className="d-flex">

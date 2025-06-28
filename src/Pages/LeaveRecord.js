@@ -60,9 +60,7 @@ function LeaveRecord() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block">
-          <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            طلبات الإجازات الاعتيادية
-          </h2>
+          <h2 className="m-0 text-nowrap">طلبات الإجازات الاعتيادية</h2>
         </div>
       </div>
       <div className="row">

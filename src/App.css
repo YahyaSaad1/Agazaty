@@ -259,12 +259,25 @@ body {
     transition: .15s;
 }
 
+.employee-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 576px) {
+    .employee-button {
+        width: 50px;
+    }
+}
+
 .zzz {
     background-color: var(--main-color);
     border-radius: 0 0 0 3pc;
     color: white;
     padding: 16px;
     padding-left: 25px;
+    margin-left: 8px;
 }
 
 .xxxx {
