@@ -59,7 +59,7 @@ function DesCasual() {
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
             سجل الإجازات العارضة
           </h2>
@@ -78,7 +78,7 @@ function DesCasual() {
                   popup: 'text-end custom-swal-width',
                   }})}>
               <FontAwesomeIcon icon={faPrint} />
-              <span className="d-none d-sm-inline"> طباعة</span>
+              <span className="d-none d-sm-inline">&nbsp;طباعة البيانات</span>
           </button>
         </div>
       </div>

@@ -16,11 +16,11 @@ function Agazaty() {
     const team = [
         {id: 1, image: YahyaSaad, type: "Front End Developer", fullName: "يحيى سعد عبدالموجود", socialMedia: {linkedIn: "yahyasaad1", facebook: "yahyasaad24" ,email: "yahyasaad2024@gmail.com"}},
         {id: 2, image: Abdohamdy, type: "Back End Developer", fullName: "عبدالرحمن حمدي توفيق", socialMedia: {linkedIn: "abdelrhman-hamdy-tawfic-5b56b2282", facebook: "abdelrhman.hamdy.154050" ,email: "abdo7amdy123@gmail.com"}},
-        {id: 3, image: Omar, type: "Front End Developer", fullName: "عمر حمدي سيد", socialMedia: {linkedIn: "yahyasaad1", facebook: "yahyasaad24" ,email: "yahyasaad2024@gmail.com"}},
-        {id: 4, image: Ashraf, type: "Front End Developer", fullName: "أشرف أبوالري عطية", socialMedia: {linkedIn: "yahyasaad1", facebook: "yahyasaad24" ,email: "yahyasaad2024@gmail.com"}},
-        {id: 5, image: ElHawary, type: "Back End Developer", fullName: "محمود نصرالدين حافظ", socialMedia: {linkedIn: "yahyasaad1", facebook: "yahyasaad24" ,email: "yahyasaad2024@gmail.com"}},
-        {id: 6, image: Ahmed, type: "Front End Developer", fullName: "احمد يسن خضري محمود", socialMedia: {linkedIn: "yahyasaad1", facebook: "yahyasaad24" ,email: "yahyasaad2024@gmail.com"}},
-        {id: 7, image: AbdElQadir, type: "UI&UX", fullName: "عبدالرحمن احمد علي", socialMedia: {linkedIn: "yahyasaad1", facebook: "yahyasaad24" ,email: "yahyasaad2024@gmail.com"}},
+        {id: 3, image: Omar, type: "Back End Developer", fullName: "عمر حمدي سيد", socialMedia: {linkedIn: "yahyasaad1", facebook: "yahyasaad24" ,email: "yahyasaad2024@gmail.com"}},
+        {id: 4, image: Ashraf, type: "Back End Developer", fullName: "أشرف أبوالري عطية", socialMedia: {linkedIn: "ashraf-abu-elrai", facebook: "ashraf.abuelray.5" ,email: "ashrafabuelrayattiah@gmail.com"}},
+        {id: 5, image: ElHawary, type: "Front End Developer", fullName: "محمود نصرالدين حافظ", socialMedia: {linkedIn: "mahmoud-nasr-821582229", facebook: "mahmoud.nasr.876051",email: "alhawary11178@gmail.com"}},
+        {id: 6, image: Ahmed, type: "Front End Developer", fullName: "احمد يسن خضري ", socialMedia: {linkedIn: "ahmed-yassen-674840315", facebook: "ahmed.yassen.5220665",email: "ay7522921@gmail.com"}},
+        {id: 7, image: AbdElQadir, type: "UI&UX", fullName: " عبدالرحمن احمد علي ", socialMedia: {linkedIn: "abdelrahman-abd-elkader", facebook: "abdelrahman.abdelkader.990403" ,email: "abdoahmed7433@gmail.com"}},
         {id: 8, image: Hesham, type: "Back End Developer", fullName: "هشام مسعد احمد", socialMedia: {linkedIn: "yahyasaad1", facebook: "yahyasaad24" ,email: "yahyasaad2024@gmail.com"}},
     ];
 
@@ -61,15 +61,15 @@ function Agazaty() {
                                                 </div>
                                                     <div className="d-flex justify-content-center align-items-center social" style={{ gap: "8px" }}>
                                                         <Link className="p-1 d-flex justify-content-center align-items-center" to={`mailto:${member.socialMedia.email}`} target="_blank" rel="noopener noreferrer">
-                                                            <img src={facebook} alt="Gmail" />
+                                                            <img src={gmail} alt="Gmail" />
                                                         </Link>
 
                                                         <Link className="p-1 d-flex justify-content-center align-items-center" to={`https://www.linkedin.com/in/${member.socialMedia.linkedIn}`} target="_blank" rel="noopener noreferrer">
                                                             <img src={linkeIn} alt="LinkedIn" />
                                                         </Link>
-
+                                                                            {console.log(`mailto:${member.socialMedia.email}`)}
                                                         <Link className="p-1 d-flex justify-content-center align-items-center" to={`https://www.facebook.com/${member.socialMedia.facebook}`} target="_blank" rel="noopener noreferrer">
-                                                            <img src={gmail} alt="Facebook" />
+                                                            <img src={facebook} alt="Facebook" />
                                                         </Link>
                                                     </div>
                                             </div>

@@ -121,7 +121,7 @@ function UpdateSickLeave2() {
                 }
             })
             .then(() => {
-                window.location.href = "sick-leaves-record2";
+                window.location.href = "record/sick-leaves";
             });
         }
     } catch (error) {
@@ -147,7 +147,7 @@ function UpdateSickLeave2() {
 
     return (
         <div>
-            <div className="zzz d-inline-block p-3 ps-5">
+            <div className="zzz d-inline-block">
                 <h2 className="m-0">تحديث إجازة {leave.firstName} {leave.secondName}</h2>
             </div>
 

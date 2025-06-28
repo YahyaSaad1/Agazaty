@@ -58,7 +58,7 @@ function CasualLeaveRecord() {
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0">طلبات الإجازات</h2>
         </div>
       </div>
@@ -67,33 +67,15 @@ function CasualLeaveRecord() {
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المرجع
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الاسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  القسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  رقم الهاتف
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ البداية
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ النهاية
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  عدد الأيام
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  حالة الطلب
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الأرشيف
-                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>القسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>رقم الهاتف</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ البداية</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ النهاية</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
               </tr>
             </thead>
             <tbody>
@@ -105,7 +87,7 @@ function CasualLeaveRecord() {
                     </th>
                     <th>{leave.userName}</th>
                     <th>{leave.departmentName}</th>
-                    <th>{leave.phoneNumber}</th>
+                    <th>{leave.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</th>
                     <th>
                       {leave.endDate
                         ? new Date(leave.startDate).toLocaleDateString("ar-EG")

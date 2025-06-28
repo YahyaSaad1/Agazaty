@@ -120,7 +120,7 @@ function NormalLeaveRequestManager() {
                 if (popup) popup.setAttribute('dir', 'rtl');
             }
             });
-            window.location.href = "/leave-record";
+            window.location.href = "/record/normal/leave";
         })
         .catch((err) => {
             console.error("Error updating decision:", err);
@@ -135,7 +135,7 @@ function NormalLeaveRequestManager() {
     return (
         <div>
         <div className="d-flex mb-4 justify-content-between">
-            <div className="zzz d-inline-block p-3 ps-5">
+            <div className="zzz d-inline-block">
             <h2 className="m-0">{`إجازة ${leave.firstName || ''} ${leave.secondName || ''}`}</h2>
             </div>
             <div className="p-3">
@@ -173,7 +173,7 @@ function NormalLeaveRequestManager() {
                 </tr>
                 <tr>
                     <th scope="col">رقم الهاتف</th>
-                    <th scope="col" className="text-start">{loadingUser ? "جاري التحميل..." : (user?.phoneNumber || "غير متوفر")}</th>
+                    <th scope="col" className="text-start">{loadingUser ? "جاري التحميل..." : (user?.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]) || "غير متوفر")}</th>
                 </tr>
                 <tr>
                     <th scope="col">القسم</th>

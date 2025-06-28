@@ -48,12 +48,12 @@ function NormalLeaveRequest({handleError}) {
     return (
         <div>
             <div className="d-flex mb-4 justify-content-between">
-                <div className="zzz d-inline-block p-3 ps-5">
+                <div className="zzz d-inline-block">
                     <h2 className="m-0">{`إجازة ${leave.firstName} ${leave.secondName} الاعتيادية`}</h2>
                 </div>
                 <div className='d-flex'>
                     {leave.accepted === true && leave.holder === 3 && leave.leaveStatus === 1 &&
-                    <div className="p-3">
+                    <div className="p-3 ps-2">
                         <BtnLink name='كسر الإجازة' leave={leave} id={leave.id} link='/update-normal-leave' className="btn btn-primary m-0 ms-2 mb-2"/>
                     </div>}
                     <div className="p-3 pe-0">
@@ -104,7 +104,7 @@ function NormalLeaveRequest({handleError}) {
                             </tr>
                             <tr>
                                 <th scope="col">رقم الهاتف</th>
-                                <th scope="col" className="text-start">{leave.phoneNumber}</th>
+                                <th scope="col" className="text-start">{leave.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</th>
                             </tr>
                             <tr>
                                 <th scope="col">القسم</th>

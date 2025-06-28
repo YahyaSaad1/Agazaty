@@ -9,6 +9,9 @@ import Btn from '../components/Btn';
 import vide from '../Images/vide.xlsx';
 import { BASE_API_URL, downloadActiveUsersExcel, token } from '../server/serves';
 import * as XLSX from 'xlsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 const UploadUsersExcel = () => {
     const [file, setFile] = useState(null);
@@ -161,11 +164,14 @@ const UploadUsersExcel = () => {
     return (
         <div>
             <div className="d-flex mb-3 justify-content-between">
-                <div className="zzz d-inline-block p-3 ps-5">
+                <div className="zzz d-inline-block">
                     <h2 className="m-0">رفع موظف</h2>
                 </div>
                 <div className="d-flex">
-                    <BtnLink name='إضافة موظف يدويا' link='/add-employee' className="m-3 btn btn-primary m-0"/>
+                    <Link to="/employees/UploadUsersExcel" role="button" className="btn btn-primary my-3 d-flex align-items-center ms-3" >
+                        <FontAwesomeIcon icon={faUserPlus} style={{ fontSize: "1.2em" }} />
+                        <span className="d-none d-sm-inline">&nbsp;رفع موظف بالاكسيل</span>
+                    </Link>
                 </div>
             </div>
 

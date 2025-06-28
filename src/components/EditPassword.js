@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Image from "../Images/download.jpeg";
 import axios from "axios";
-import { BASE_API_URL, token, userID, useUserData } from "../server/serves";
+import { BASE_API_URL, roleName, token, userID, useUserData } from "../server/serves";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -74,7 +74,7 @@ function EditPassword() {
     return (
         <div>
             <div className="d-flex mb-4">
-                <div className="zzz d-inline-block p-3 ps-5">
+                <div className="zzz d-inline-block">
                 <h2 className="m-0">تعديل كلمة المرور</h2>
                 </div>
             </div>
@@ -91,11 +91,11 @@ function EditPassword() {
                     />
                     </div>
                     <div className="d-flex justify-content-center">
-                    <div className="bg-info p-2 d-inline-block rounded-3">
-                        <h5 className="m-0 ps-5 pe-5 text-light">
-                        {userData.roleName || "جاري التحميل..."}
-                        </h5>
-                    </div>
+                        <div className="d-flex justify-content-center">
+                            <div className="roleName p-2 d-inline-block rounded-3">
+                                <h5 className="m-0 ps-5 pe-5 text-bold">{roleName}</h5>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

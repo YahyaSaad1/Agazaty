@@ -146,7 +146,7 @@ function AddDepartment(){
     return(
         <div>
             <div>
-                <div className="zzz d-inline-block p-3 ps-5">
+                <div className="zzz d-inline-block">
                     <h2 className="m-0">إضافة قسم</h2>
                 </div>
             </div>

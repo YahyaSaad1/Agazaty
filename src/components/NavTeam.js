@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 function NavTeam() {
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -22,18 +23,10 @@ function NavTeam() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 p-0">
+          <ul className="navbar-nav me-auto p-0">
             <li className="nav-item">
               <Link className="nav-link text-light" to="/login">
-                <h5
-                  className="text-bold btn btn-primary"
-                  style={{
-                    width: "160px",
-                    fontSize: "18px",
-                  }}
-                >
-                  تسجيل الدخول
-                </h5>
+                <h5 className="text-bold btn btn-primary btn-login">تسجيل الدخول</h5>
               </Link>
             </li>
           </ul>

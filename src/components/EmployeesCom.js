@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 import BtnLink from "../components/BtnLink";
 import "../CSS/Employee.css";
-import {faIdCard, faPenToSquare, faTable, faUserPen, faUserPlus, faUserSlash} from "@fortawesome/free-solid-svg-icons";
+import {faEdit, faIdCard, faPenToSquare, faTable, faUser, faUserPen, faUserPlus, faUsers, faUserSlash} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BASE_API_URL, roleName, rowsPerPage, token } from "../server/serves";
@@ -230,7 +230,7 @@ function EmployeesCom({ type }) {
       <LoadingOrError
         data={users}
         btnTitle={type === "active" ? "إضافة موظف" : "الموظفين النشطين"}
-        btnLink={type === "active" ? "/add-employee" : "/employees/active"}
+        btnLink={type === "active" ? "/employees/add-employee" : "/employees/active"}
       />
     );
   }
@@ -243,7 +243,7 @@ function EmployeesCom({ type }) {
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between employee-header">
-        <div className="zzz d-flex p-3 ps-5 justify-content-center align-items-center">
+        <div className="zzz d-inline-block">
           {type === "active" ? (
             <h2 className="m-0">الموظفيين</h2>
           ) : (
@@ -261,22 +261,20 @@ function EmployeesCom({ type }) {
               className="my-3 mx-1 btn btn-success d-flex justify-content-center align-items-center"
               style={{ whiteSpace: "nowrap" }}
             >
-              <FontAwesomeIcon icon={faTable} style={{ fontSize: "1.4rem" }} color="#fff"/>
+              <FontAwesomeIcon icon={faTable} style={{ fontSize: "1.2em" }} color="#fff"/>
               <span className="d-none d-sm-inline">&nbsp;تنزيل البيانات</span>
             </button>
 
             {type === "active" ? (
-              <BtnLink
-                name="إضافة موظف"
-                link="/add-employee"
-                className="my-3 mx-2 btn btn-primary m-0"
-              />
+              <Link to="/employees/add-employee" role="button" className="me-2 btn btn-primary my-3 d-flex align-items-center" >
+                <FontAwesomeIcon icon={faUserPlus} style={{ fontSize: "1.2em" }} />
+                <span className="d-none d-sm-inline">&nbsp;إضافة موظف</span>
+              </Link>
             ) : (
-              <BtnLink
-                name="الموظفين النشطين"
-                link="/employees/active"
-                className="my-3 mx-2 btn btn-primary m-0"
-              />
+              <Link to="/employees/active" role="button" className="me-2 btn btn-primary my-3 d-flex align-items-center" >
+                <FontAwesomeIcon icon={faUsers} style={{ fontSize: "1.2em" }} />
+                <span className="d-none d-sm-inline">&nbsp;الموظفين النشطين</span>
+              </Link>
             )}
           </div>
         )}
@@ -318,7 +316,7 @@ function EmployeesCom({ type }) {
                       <td style={{ height: "50px" }}>{user.roleName}</td>
                       <td style={{ height: "50px" }}>{user.departmentName || <span className="text-primary">إدارة مُستقلة</span>}</td>
                       <td style={{ height: "50px" }}>{new Date(user.hireDate).toLocaleDateString("ar-EG")}</td>
-                      <td style={{ height: "50px" }}>{user.phoneNumber}</td>
+                      <td style={{ height: "50px" }}>{user.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</td>
                       {type === "active" ? (
                         <td style={{ height: "50px" }}>
                           <Link to={`/profile/user/${user.id}`} className="ms-1">

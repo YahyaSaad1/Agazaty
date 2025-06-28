@@ -190,7 +190,7 @@ function CasualLeave() {
                         if (popup) popup.setAttribute('dir', 'rtl');
                     }
                 }).then(() => {
-                    window.location.href = "agazaty/casual";
+                    window.location.href = "agazaty2/casual";
                 });
             }
             } catch (error) {
@@ -216,7 +216,7 @@ function CasualLeave() {
 
     return (
         <div>
-            <div className="zzz d-inline-block p-3 ps-5">
+            <div className="zzz d-inline-block">
                 <h2 className="m-0">طلب إجازة عارضة</h2>
             </div>
 

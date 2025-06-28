@@ -4,34 +4,37 @@ import { useEffect, useState } from "react";
 import Image from "../Images/download.jpeg";
 import Swal from "sweetalert2";
 import { BASE_API_URL, roleName, token, userID } from "../server/serves";
+import LoadingOrError from "../components/LoadingOrError";
 
 function EditProfile() {
   const navigate = useNavigate();
   const [updatedFields, setUpdatedFields] = useState({});
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+    useEffect(() => {
     if (userID) {
       const fetchData = async () => {
         try {
-          const [userRes] = await Promise.all([
-            fetch(`${BASE_API_URL}/api/Account/GetUserById/${userID}`, {
-              method: "GET",
-              headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-              },
-            }),
-          ]);
-          const userData = await userRes.json();
+          const res = await fetch(`${BASE_API_URL}/api/Account/GetUserById/${userID}`, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          });
+          const userData = await res.json();
           setUser(userData);
         } catch (err) {
-          console.error("Error fetching user data or role:", err);
+          console.error("Error fetching user data:", err);
+        } finally {
+          setIsLoading(false);
         }
       };
       fetchData();
     }
   }, [userID]);
+  
   const handleChange = (e) => {
     setUpdatedFields((prev) => ({
       ...prev,
@@ -160,10 +163,17 @@ function EditProfile() {
     });
   };
 
+  if (isLoading) {
+    return <LoadingOrError data={null} />;        // سبينر
+  }
+  if (!user || Object.keys(user).length === 0) {
+    return <LoadingOrError data={[]} />;          // لا توجد بيانات
+  }
+
   return (
     <div>
       <div className="d-flex mb-4">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0">تعديل الملف الشخصي</h2>
         </div>
       </div>
@@ -194,7 +204,7 @@ function EditProfile() {
 
               <div className="col-sm-12 col-md-6 col-lg-6 mb-3">
                 <label htmlFor="phoneNumber" className="form-label">رقم الهاتف</label>
-                <input placeholder="مثال: 01127471188" type="tel" className="form-control" name="phoneNumber" onChange={handleChange} id="phoneNumber" defaultValue={updatedFields.phoneNumber ?? user.phoneNumber}/>
+                <input dir="rtl" placeholder="مثال: 01127471188" type="tel" className="form-control" name="phoneNumber" onChange={handleChange} id="phoneNumber" defaultValue={updatedFields.phoneNumber ?? user.phoneNumber}/>
               </div>
 
               <div className="col-sm-12 col-md-6 col-lg-6 mb-3">

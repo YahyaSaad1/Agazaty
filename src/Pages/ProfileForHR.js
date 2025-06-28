@@ -138,7 +138,7 @@ function ProfileForHR() {
             if (popup) popup.setAttribute("dir", "rtl");
           },
         }).then(() => {
-          window.location.reload(); // إعادة تحميل الصفحة بعد التأكيد
+          window.location.reload();
         });
       } else {
         Swal.fire({
@@ -198,7 +198,7 @@ function ProfileForHR() {
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0">
             ملف {userData.firstName} {userData.secondName} الشخصي
           </h2>

@@ -49,7 +49,7 @@ function LeaveRecord() {
     return (
         <div>
             <div className="d-flex mb-4 justify-content-between">
-                <div className="zzz d-inline-block p-3 ps-5">
+                <div className="zzz d-inline-block">
                     <h2 className="m-0">طلبات الإجازات</h2>
                 </div>
             </div>
@@ -77,7 +77,7 @@ function LeaveRecord() {
                                         <td>{leave.id}#</td>
                                         <td>{leave.userName}</td>
                                         <td>{leave.departmentName}</td>
-                                        <td>{leave.phoneNumber}</td>
+                                        <td>{leave.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</td>
                                         <td>اعتيادية</td>
                                         <td>{leave.startDate ? new Date(leave.startDate).toLocaleDateString() : "-"}</td>
                                         <td>{leave.endDate ? new Date(leave.endDate).toLocaleDateString() : "-"}</td>

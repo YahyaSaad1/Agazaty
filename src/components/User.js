@@ -10,7 +10,7 @@ function Search(){
 
     return(
         <div className='d-flex gap-2 justify-content-center'>
-            <Link to={'/messages'} className='d-flex rounded-circle11'>
+            <Link to={'/coworker'} className='d-flex rounded-circle11'>
                 <FontAwesomeIcon icon={faBell} />
             </Link>
 

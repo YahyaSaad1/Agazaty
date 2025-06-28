@@ -5,8 +5,7 @@ import LoginCom from "./components/LoginCom";
 import ForgetPassword from "./components/ForgetPassword";
 import OTPCode from "./components/OTPCode";
 import ResetPassword from "./components/ResetPassword";
-import About from "./Pages/About";
-import Messages from "./Pages/Messages";
+import CoWorker from "./Pages/CoWorker";
 import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
 import Home from "./Pages/Home";
@@ -72,6 +71,8 @@ function App() {
   // const userID = "30309092701066"; // مجدي
   // const userID = "30203633632333"; // عماد
   // const userID = "30203633632333"; // يحيى سعد
+  // const userID = "40404040404040"; // مصطفى .. موظف
+  // const userID = "80808080808080"; // عبدالله .. موظف
 
   const ErrorBoundary = ({ children }) => {
     const navigate = useNavigate();
@@ -109,43 +110,39 @@ function App() {
           <Route
             path="/"
             element={
-              <div className="row d-flex" style={{ height: "100vh" }}>
-                <div
-                  className="col-2 col-xl-1 col-xxl-2 sidebar p-0"
-                  style={{ height: "100%", overflowY: "auto" }}
-                >
+              <div className="d-flex vh-100">
+                <div className="sidebar p-0 flex-shrink-0" style={{  overflowY: "auto" }} >
                   <SideBar />
                 </div>
 
-                <div
-                  className="col p-0"
-                  style={{ height: "100%", overflowY: "auto" }}
-                >
+                <div className="p-0 flex-grow-1" style={{ overflowY: "auto" }} >
                   <NavBar />
                   <Outlet />
                 </div>
               </div>
-            }
-          >
+            }>
+
+
+
             {/* خلصان */}
             <Route index element={<Home />} />
-            <Route path="normal-leave" element={<NormalLeave />} />
-            <Route path="casual-leave" element={<CasualLeave />} />
-            <Route path="sick-leave" element={<SickLeave />} />
+            <Route path="request/normal-leave" element={<NormalLeave />} />
+            <Route path="request/casual-leave" element={<CasualLeave />} />
+            <Route path="request/sick-leave" element={<SickLeave />} />
             <Route path="Permit" element={<Permit />} />
 
             <Route path="holidays" element={<Holidays />} />
             <Route path="add-holiday" element={<AddHoliday />} />
             <Route path="holiday/edit/:holidayID" element={<EditHoliday />} />
 
-            <Route path="messages" element={<Messages />} />
+            <Route path="coworker" element={<CoWorker />} />
             <Route path="leaves" element={<Leaves />} />
             <Route path="profile" element={<Profile />} />
 
-            <Route path="agazaty/normal" element={<AgazatyNormal />} />
-            <Route path="agazaty/casual" element={<AgazatyCasual />} />
-            <Route path="agazaty/sick" element={<AgazatySick />} />
-            <Route path="agazaty/permit" element={<AgazatyPermit />} />
+            <Route path="agazaty2/normal" element={<AgazatyNormal />} />
+            <Route path="agazaty2/casual" element={<AgazatyCasual />} />
+            <Route path="agazaty2/sick" element={<AgazatySick />} />
+            <Route path="agazaty2/permit" element={<AgazatyPermit />} />
 
             <Route
               path="normal-leave-request/:leaveID"
@@ -164,14 +161,13 @@ function App() {
             <Route path="editprofile" element={<EditProfile />} />
             {/* <Route path="hr/editprofile" element={<EditProfileForHR />} /> */}
             <Route path="departments" element={<Departments />} />
-            <Route path="add-Employee" element={<AddEmployee />} />
+            <Route path="employees/add-employee" element={<AddEmployee />} />
             <Route path="error404" element={<Error404 />} />
             <Route path="add-department" element={<AddDepartment />} />
             <Route path="department/edit/:departmentID" element={<EditDepartment />} />
             <Route path="employees/active" element={<Employees />} />
             <Route path="employees/nonactive" element={<Archives />} />
-            <Route path="UploadUsersExcel" element={<UploadUsersExcel />} />
-            <Route path="about" element={<About />} />
+            <Route path="employees/UploadUsersExcel" element={<UploadUsersExcel />} />
             <Route path="sitting" element={<Sitting />} />
             {/* <Route path="archives" element={<Archives />} /> */}
 
@@ -193,13 +189,13 @@ function App() {
             <Route path="edit-password" element={<EditPassword />} />
 
             {/* طلبات الإجازات عن المديرين */}
-            <Route path="leave-record" element={<LeaveRecord />} />
-            <Route path="casual/leave-record" element={<CasualLeaveRecord />} />
-            <Route path="sick/leave-record" element={<SickLeaveRecord />} />
+            <Route path="record/normal/leave" element={<LeaveRecord />} />
+            <Route path="record/casual/leave" element={<CasualLeaveRecord />} />
+            <Route path="record/sick/leave" element={<SickLeaveRecord />} />
             {/* <Route path="general/leave-record" element={<GeneralManagerLeave />} /> */}
             {/* <Route path="sick-leaves-record" element={<SickLeavesRecord />} /> */}
 
-            <Route path="sick-leaves-record2" element={<SickLeavesRecord2 />} />
+            <Route path="record/sick-leaves" element={<SickLeavesRecord2 />} />
 
             {/* تتبع امازون */}
             <Route path="track-leave/:id" element={<Amazon />} />

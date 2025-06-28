@@ -92,7 +92,7 @@ function PermitLeave() {
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0">{`تصريح ${permitLeave.firstName} ${permitLeave.secondName}`}</h2>
         </div>
         <div className="p-3 pe-0">
@@ -132,7 +132,7 @@ function PermitLeave() {
                 <tr>
                   <th scope="col">رقم الهاتف</th>
                   <th scope="col" className="text-start">
-                    {user.phoneNumber}
+                    {user.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}
                   </th>
                 </tr>
                 <tr>

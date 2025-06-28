@@ -96,7 +96,7 @@ function SickRequestManager() {
                         cancelButton: 'red-button'
                     },
                 }).then(() => {
-                    window.location.href = "/sick/leave-record";
+                    window.location.href = "record/sick/leave";
                 });
             })
             .catch((err) => {
@@ -128,7 +128,7 @@ function SickRequestManager() {
     return (
         <div>
             <div className="d-flex mb-4 justify-content-between">
-                <div className="zzz d-inline-block p-3 ps-5">
+                <div className="zzz d-inline-block">
                     <h2 className="m-0">{`إجازة ${user.firstName} ${user.secondName}`}</h2>
                 </div>
                 <div className="p-3">
@@ -171,7 +171,7 @@ function SickRequestManager() {
                             </tr>
                             <tr>
                                 <th scope="col">رقم الهاتف</th>
-                                <th scope="col" className="text-start">{user.phoneNumber}</th>
+                                <th scope="col" className="text-start">{user.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</th>
                             </tr>
                             <tr>
                                 <th colSpan={2} className="text-center" style={{ backgroundColor: 'white' }}>

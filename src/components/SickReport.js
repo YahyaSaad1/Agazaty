@@ -104,7 +104,7 @@ const SickReport = ({ leaveID }) => {
                 <div>
                     <p><strong>الاسم الرباعي:</strong> {leave.userName}</p>
                     <p><strong>القسم:</strong> {leave.departmentName}</p>
-                    <p><strong>رقم الهاتف:</strong> {convertToArabicNumbers(leave.phoneNumber)}</p>
+                    <p><strong>رقم الهاتف:</strong>{convertToArabicNumbers(leave.phoneNumber)}</p>
                     <p><strong>المسمى الوظيفي:</strong> {roleName}</p>
 
                     <hr className={`${getBorderClass()}`}/>

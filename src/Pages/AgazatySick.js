@@ -54,15 +54,15 @@ function AgazatySick() {
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            سجل الإجازات المرضية
+            سجل إجازاتي المرضية
           </h2>
         </div>
         <div className="ps-3">
           <button
             className="my-3 mx-1 btn btn-outline-primary d-flex justify-content-center align-items-center" style={{ whiteSpace: "nowrap" }}>
-            <FontAwesomeIcon icon={faPrint} style={{ fontSize: "1.4rem" }}/>
+            <FontAwesomeIcon icon={faPrint} style={{ fontSize: "1.2em" }}/>
             <span className="d-none d-sm-inline">&nbsp;طباعة البيانات</span>
           </button>
         </div>

@@ -1,7 +1,3 @@
-.link-SideBar{
-    text-decoration: none;
-}
-
 .link-SideBar li{
     display: flex;
     margin: 10px;
@@ -33,10 +29,7 @@
     background-color: red;
     color: #ffffff !important;
 }
-.active-link {
-    background-color: var(--main-color) !important;
-    color: white;
-}
+
 
 .tran{
     transition: .5s;
@@ -95,9 +88,4 @@
 .hover-danger li:hover{
     background-color: red;
     color: #ffffff !important;
-}
-
-.active-link {
-    background-color: #0d6efd !important;
-    color: white;
 }

@@ -62,7 +62,7 @@ function DesPermits() {
                 box-sizing: border-box;
             }
             </style>
-            <input id="${inputId}" class="swal2-input" list="${datalistId}" placeholder="اختر موظفًا">
+            <input id="${inputId}" className="swal2-input" list="${datalistId}" placeholder="اختر موظفًا">
             <datalist id="${datalistId}">
             ${users
                 .map(
@@ -348,21 +348,20 @@ function DesPermits() {
 
     return (
         <div>
-
             <div className="d-flex mb-4 justify-content-between">
-                <div className="zzz d-inline-block p-3 ps-5">
+                <div className="zzz d-inline-block">
                     <h2 className="m-0">
                         سجل التصاريح
                     </h2>
                 </div>
-                <div className="d-flex ms-3">
+                <div className="d-flex">
                     <button
-                        className="m-3 btn btn-primary d-flex justify-content-center align-items-center">
-                        <FontAwesomeIcon icon={faPrint} style={{ fontSize: "1.4rem" }}/>
+                        className="m-3 btn btn-outline-primary d-flex justify-content-center align-items-center">
+                        <FontAwesomeIcon icon={faPrint} />
                         <span className="d-none d-sm-inline">&nbsp;طباعة البيانات</span>
                     </button>
                     <button style={{ whiteSpace: "nowrap" }} className="m-3 me-0 btn btn-primary" onClick={handleLeaveUpdate} >
-                        <FontAwesomeIcon icon={faEdit} style={{ fontSize: "1.4rem" }}/>
+                        <FontAwesomeIcon icon={faEdit} />
                         <span className="d-none d-sm-inline">&nbsp;تعديل عدد أيام الإجازات</span>
                     </button>
                 </div>
@@ -392,11 +391,7 @@ function DesPermits() {
                     <th style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
                     <th style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
                     <th style={{ backgroundColor: "#F5F9FF" }}>التاريخ</th>
-                    <th
-                    style={{ backgroundColor: "#F5F9FF", whiteSpace: "nowrap" }}
-                    >
-                    عدد الساعات
-                    </th>
+                    <th style={{ backgroundColor: "#F5F9FF"}}>عدد الساعات</th>
                     <th style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
                     <th style={{ backgroundColor: "#F5F9FF" }}>المزيد</th>
                 </tr>

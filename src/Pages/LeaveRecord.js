@@ -59,9 +59,9 @@ function LeaveRecord() {
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            طلبات الإجازات
+            طلبات الإجازات الاعتيادية
           </h2>
         </div>
       </div>
@@ -91,7 +91,7 @@ function LeaveRecord() {
                     </th>
                     <th>{leave.userName}</th>
                     <th>{leave.departmentName}</th>
-                    <th>{leave.phoneNumber}</th>
+                    <th>{leave.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</th>
                     <th>اعتيادية</th>
                     <th>
                       {leave.endDate

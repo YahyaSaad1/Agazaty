@@ -60,7 +60,7 @@ console.log(leave)
     return (
         <div>
             <div className="d-flex mb-4 justify-content-between">
-                <div className="zzz d-inline-block p-3 ps-5">
+                <div className="zzz d-inline-block">
                     <h2 className="m-0">{`إجازة ${leave.firstName} ${leave.secondName} ال${leave.leaveType}`}</h2>
                 </div>
                 <div className="p-3">
@@ -114,7 +114,7 @@ console.log(leave)
                             </tr>
                             <tr>
                                 <th scope="col">رقم الهاتف</th>
-                                <th scope="col" className="text-start">{leave?.phoneNumber || "غير متوفر"}</th>
+                                <th scope="col" className="text-start">{leave.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</th>
                             </tr>
                             <tr>
                                 <th scope="col">القسم</th>

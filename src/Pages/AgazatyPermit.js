@@ -5,10 +5,13 @@ import LoadingOrError from "../components/LoadingOrError";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint, faUserSlash } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
+import PermitReport from "../components/PermitReport";
+import withReactContent from "sweetalert2-react-content";
 
 function AgazatyPermit() {
   const [permitLeaves, setPermitLeaves] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     if (!userID) return;
@@ -49,15 +52,15 @@ function AgazatyPermit() {
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
-            سجل التصاريح
+            سجل تصاريحي
           </h2>
         </div>
         <div className="ps-3">
           <button
             className="my-3 mx-1 btn btn-outline-primary d-flex justify-content-center align-items-center" style={{ whiteSpace: "nowrap" }}>
-            <FontAwesomeIcon icon={faPrint} style={{ fontSize: "1.4rem" }}/>
+            <FontAwesomeIcon icon={faPrint} style={{ fontSize: "1.2em" }}/>
             <span className="d-none d-sm-inline">&nbsp;طباعة البيانات</span>
           </button>
         </div>
@@ -71,6 +74,7 @@ function AgazatyPermit() {
                 <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
                 <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>التاريخ</th>
                 <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الساعات</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
                 <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
               </tr>
             </thead>
@@ -88,6 +92,22 @@ function AgazatyPermit() {
                         .toString()
                         .replace(/[0-9]/g, (digit) => "٠١٢٣٤٥٦٧٨٩"[digit])}{" "}
                       ساعات
+                    </th>
+                    <th>
+                      <button
+                        className="btn btn-outline-primary"
+                        onClick={() =>
+                          MySwal.fire({
+                          title: 'تقرير التصريح',
+                          html: <PermitReport permitID={permit.id} />,
+                          showConfirmButton: false,
+                          showCloseButton: true,
+                          width: '95%',
+                          customClass: {
+                            popup: 'text-end custom-swal-width',
+                          }})}>
+                        <FontAwesomeIcon icon={faPrint} />
+                      </button>
                     </th>
                     <th>
                       <BtnLink

@@ -39,7 +39,7 @@ function Leaves(){
     return(
         <div className="row">
             <div className="p-0">
-                <div className="zzz d-inline-block p-3 ps-5">
+                <div className="zzz d-inline-block">
                     <h2 className="m-0">طلبات الإجازات</h2>
                 </div>
             </div>

@@ -3,6 +3,9 @@ import Btn from "../components/Btn";
 import Swal from "sweetalert2";
 import BtnLink from "../components/BtnLink";
 import { BASE_API_URL, token, validate } from "../server/serves";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPersonArrowUpFromLine } from "@fortawesome/free-solid-svg-icons";
 
 function AddEmployee() {
   const [userName, setUserName] = useState("");
@@ -252,17 +255,18 @@ function AddEmployee() {
   return (
     <div>
       <div className="d-flex mb-3 justify-content-between">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0">إضافة موظف</h2>
         </div>
 
         <div className="d-flex">
-          <BtnLink
-            name="رفع موظف بالاكسيل"
-            link="/UploadUsersExcel"
-            className="m-3 btn btn-primary m-0"
-          />
+          <Link to="/employees/UploadUsersExcel" role="button" className="btn btn-primary my-3 d-flex align-items-center ms-3" >
+            <FontAwesomeIcon icon={faPersonArrowUpFromLine} style={{ fontSize: "1.2em" }} />
+            <span className="d-none d-sm-inline">&nbsp;رفع موظف بالاكسيل</span>
+          </Link>
         </div>
+
+        
       </div>
 
       <form className="row" onSubmit={handleData}>

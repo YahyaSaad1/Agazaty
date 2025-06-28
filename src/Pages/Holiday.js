@@ -115,7 +115,7 @@ function Holidays() {
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>
             الإجازات الرسمية
           </h2>
@@ -133,18 +133,10 @@ function Holidays() {
           <table className="m-0 table table-striped">
             <thead className="sticky-top bg-white">
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المرجع
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  الاسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  التاريخ
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المزيد
-                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>التاريخ</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المزيد</th>
               </tr>
             </thead>
             <tbody>

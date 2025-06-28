@@ -1,23 +1,36 @@
 import ProfileCom from "../components/ProfileCom";
 import ProfileDescription from "../components/ProfileDescription";
-import BtnLink from "../components/BtnLink";
 import { useUserData } from "../server/serves";
+import LoadingOrError from "../components/LoadingOrError";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faUnlockKeyhole } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function Profile(){
     const userData = useUserData();
+    if (!userData || Object.keys(userData).length === 0) {
+        return <LoadingOrError data={null} />;
+    }
 
     return(
         <div>
             <div className="d-flex mb-4 justify-content-between">
-                <div className="zzz d-inline-block p-3 ps-5">
-                    <h2 className="m-0">الملف الشخصي</h2>
+                <div className="zzz d-inline-block">
+                    <h2 className="m-0" style={{ whiteSpace: "nowrap" }}>الملف الشخصي</h2>
                 </div>
                 <div className="d-flex">
-                    <div className="p-3 ps-0">
-                        <BtnLink name='تعديل كلمة المرور' link='/edit-password' className='btn-primary' />
+                    <div className="d-flex">
+                        <Link to="/edit-password" role="button" className="btn btn-primary my-3 d-flex align-items-center ms-3" >
+                            <FontAwesomeIcon icon={faUnlockKeyhole} style={{ fontSize: "1.2em" }} />
+                            <span className="d-none d-sm-inline">&nbsp;تعديل كلمة المرور</span>
+                        </Link>
                     </div>
-                    <div className="p-3">
-                        <BtnLink name='تعديل المعلومات الشخصية' link='/editprofile' className='btn-primary' />
+
+                    <div className="d-flex">
+                        <Link to="/editprofile" role="button" className="btn btn-primary my-3 d-flex align-items-center ms-3" >
+                            <FontAwesomeIcon icon={faPenToSquare} style={{ fontSize: "1.2em" }} />
+                            <span className="d-none d-sm-inline">&nbsp;تعديل المعلومات الشخصية</span>
+                        </Link>
                     </div>
                 </div>
             </div>

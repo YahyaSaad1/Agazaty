@@ -3,7 +3,6 @@ import { roleName } from "../server/serves";
 function ProfileDescription({userData}){
     const hireYear = new Date(userData.hireDate).getFullYear();
     const date = new Date().getFullYear();
-
     const toArabicNumbers = (number) => (number !== undefined && number !== null) ? number.toString().replace(/[0-9]/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[digit]) : '--';
 
     return(
@@ -25,7 +24,7 @@ function ProfileDescription({userData}){
                     </tr>
                     <tr>
                         <th>القسم</th>
-                        <th className="text-start">{userData.departmentName || <apan className='text-danger'>إدارة مستقلة</apan>}</th>
+                        <th className="text-start">{userData.departmentName || <span className='text-primary'>إدارة مستقلة</span>}</th>
                     </tr>
                     <tr>
                         <th>تاريخ التعيين</th>

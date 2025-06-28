@@ -61,7 +61,7 @@
 //     return (
 //         <div>
 //             <div className="d-flex mb-4 justify-content-between">
-//                 <div className="zzz d-inline-block p-3 ps-5">
+//                 <div className="zzz d-inline-block">
 //                     <h2 className="m-0">{`اجازتي ال${leave.leaveType}`}</h2>
 //                 </div>
 //                 <div className="p-3">

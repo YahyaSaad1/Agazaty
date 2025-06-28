@@ -2,7 +2,6 @@ import Image from '../Images/download.jpeg';
 import '../CSS/ProfileCom.css';
 
 function ProfileCom({userData}){
-
     return(
         <div className="rounded profileCom">
             <div className='profileComTop p-3 justify-content-center text-center'>
@@ -17,7 +16,7 @@ function ProfileCom({userData}){
                 </div>
                 <div>
                     <p className='m-0 text-title'>رقم الهاتف</p>
-                    <p className='mt-1'>{userData.phoneNumber}</p>
+                    <p className='mt-1'>{(userData?.phoneNumber ?? '').toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</p>
                 </div>
                 <div>
                     <p className='m-0 text-title'>العنوان</p>

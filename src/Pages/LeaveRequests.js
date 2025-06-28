@@ -39,7 +39,7 @@ function LeaveRequests(){
     return(
         <div>
             <div className="d-flex mb-4 justify-content-between">
-                <div className="zzz d-inline-block p-3 ps-5">
+                <div className="zzz d-inline-block">
                     <h2 className="m-0">طلب إجازة ...</h2>
                 </div>
                 <div className="p-3">
@@ -71,7 +71,7 @@ function LeaveRequests(){
                                 </tr>
                                 <tr>
                                     <th scope="col">رقم الهاتف</th>
-                                    <th scope="col" className="text-start">{item.phoneNumber}</th>
+                                    <th scope="col" className="text-start">{item.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</th>
                                 </tr>
                                 <tr>
                                     <th scope="col">القسم</th>

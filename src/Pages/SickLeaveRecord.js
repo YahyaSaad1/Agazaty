@@ -56,7 +56,7 @@ function SickLeaveRecord() {
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0">طلبات الإجازات المرضية</h2>
         </div>
       </div>
@@ -81,7 +81,7 @@ function SickLeaveRecord() {
                       #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
                     </th>
                     <th>{leave.userName}</th>
-                    <th>{leave.phoneNumber}</th>
+                    <th>{leave.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</th>
                     <th>{leave.disease}</th>
                     <th className="text-primary">في انتظار الإحالة</th>
                     <th>

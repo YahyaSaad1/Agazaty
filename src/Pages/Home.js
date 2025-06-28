@@ -8,28 +8,32 @@ import ShortData from "../components/ShortData";
 import { useEffect, useState } from "react";
 import { BASE_API_URL, roleName, token, userID } from "../server/serves";
 import Swal from "sweetalert2";
+import LoadingOrError from "../components/LoadingOrError";
 
 function Home(){
-    const [leavesWating, setLeavesWating] = useState([]);
+    const [leavesWating, setLeavesWating] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-    fetch(`${BASE_API_URL}/api/NormalLeave/WaitingByUserID/${userID}`, {
+        const abort = new AbortController();
+
+        fetch(`${BASE_API_URL}/api/NormalLeave/WaitingByUserID/${userID}`, {
         method: "GET",
         headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
         },
-    })
-        .then((res) => {
-        if (!res.ok) {
-            throw new Error("Network response was not ok");
-        }
-        return res.json();
+        signal: abort.signal,
         })
-        .then((data) => setLeavesWating(data))
-        .catch((error) => {
-        setLeavesWating([]);
-        });
+        .then(res => {
+            if (!res.ok) throw new Error("Network response was not ok");
+            return res.json();
+        })
+        .then(data => setLeavesWating(data))
+        .catch(() => setLeavesWating([]))
+        .finally(() => setIsLoading(false));
+
+        return () => abort.abort();
     }, [userID]);
 
 
@@ -54,6 +58,13 @@ function Home(){
             }
             });
         };
+
+    if (isLoading) {
+        return <LoadingOrError data={null} />;
+    }
+    if (!leavesWating) {
+        return <LoadingOrError data={[]} />;
+    }
 
     return(
         <div>

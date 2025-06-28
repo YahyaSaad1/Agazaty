@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BtnLink from "../components/BtnLink";
-import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faFolderPlus, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -115,15 +115,14 @@ function Departments() {
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
-        <div className="zzz d-inline-block p-3 ps-5">
+        <div className="zzz d-inline-block">
           <h2 className="m-0">الأقسام</h2>
         </div>
-        <div className="p-3">
-          <BtnLink
-            name="إضافة قسم"
-            link="/add-department"
-            className="btn btn-primary m-0 me-2"
-          />
+        <div className="d-flex">
+          <Link to="/add-department" role="button" className="btn btn-primary my-3 d-flex align-items-center ms-3" >
+            <FontAwesomeIcon icon={faFolderPlus} style={{ fontSize: "1.2em" }} />
+            <span className="d-none d-sm-inline">&nbsp;إضافة قسم</span>
+          </Link>
         </div>
       </div>
       <div className="row">
@@ -131,21 +130,11 @@ function Departments() {
           <table className="m-0 table table-striped">
             <thead className="sticky-top bg-white">
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  اسم القسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  كود القسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  تاريخ الإنشاء
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  مدير القسم
-                </th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>
-                  المزيد
-                </th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>اسم القسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>كود القسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الإنشاء</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>مدير القسم</th>
+                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المزيد</th>
               </tr>
             </thead>
             <tbody>
