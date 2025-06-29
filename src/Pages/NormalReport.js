@@ -23,7 +23,7 @@ const formatArabicTime = (dateStr) => {
     return convertToArabicNumbers(`${hours}:${minutes}:${seconds}`);
 };
 
-const CasualReport = ({ leaveID }) => {
+const NormalReport = ({ leaveID }) => {
     const [leave, setLeave] = useState(null);
     const reportRef = useRef();
 
@@ -75,7 +75,7 @@ const CasualReport = ({ leaveID }) => {
     if (!leave) return <p className="text-center mt-4">جاري تحميل بيانات الإجازة...</p>;
 
     return (
-        <div className="container" dir="rtl" style={{ fontFamily: "Tahoma, Arial" }}>
+        <div className="container" dir="rtl" style={{ fontFamily: "cairo, Arial" }}>
             <div className={`border border-2 rounded p-4 shadow-sm bg-white text-end ${getBorderClass()}`} ref={reportRef} style={{ direction: "rtl" }} >
                 {/* Section الصور والاسماء */}
                 <div style={{
@@ -104,6 +104,7 @@ const CasualReport = ({ leaveID }) => {
                     <p><strong>الاسم الرباعي:</strong> {leave.userName}</p>
                     <p><strong>القسم:</strong> {leave.departmentName}</p>
                     <p><strong>رقم الهاتف:</strong> {convertToArabicNumbers(leave.phoneNumber)}</p>
+                    {/* في مشكلة هنا */}
                     <p><strong>المسمى الوظيفي:</strong> {roleName}</p>
 
                     <hr className={`${getBorderClass()}`}/>
@@ -152,4 +153,4 @@ const CasualReport = ({ leaveID }) => {
     );
 };
 
-export default CasualReport;
+export default NormalReport;

@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import BtnLink from "../components/BtnLink";
-import { BASE_API_URL, rowsPerPage, token } from "../server/serves";
+import { BASE_API_URL, rowsPerPage, token, userID } from "../server/serves";
 import LoadingOrError from "../components/LoadingOrError";
 
-function SickLeavesRecord2() {
-  const [sickLeavesWaiting, setSickLeavesWaiting] = useState(null);
+function NormalLeaveRecord() {
+  const [leavesWating, setLeavesWating] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    const fetchSickLeaves = async () => {
+    const fetchLeaves = async () => {
       try {
         const urls = [
-          `${BASE_API_URL}/api/SickLeave/GetAllWaitingSickLeavesForHR`,
-          `${BASE_API_URL}/api/SickLeave/GetAllWaitingCertifiedSickLeaves`,
+          `${BASE_API_URL}/api/NormalLeave/WaitingByGeneral_ManagerID/${userID}`,
+          `${BASE_API_URL}/api/NormalLeave/WaitingByDirect_ManagerID/${userID}`,
         ];
 
         const requests = urls.map((url) =>
@@ -22,17 +22,8 @@ function SickLeavesRecord2() {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
-          }).then(async (res) => {
-            if (!res.ok) {
-              const errorData = await res.json();
-              const messages = errorData.messages;
-              if (Array.isArray(messages)) {
-                // دمج رسائل الخطأ في نص واحد
-                throw new Error(messages.join(" | "));
-              } else {
-                throw new Error("Network response was not ok");
-              }
-            }
+          }).then((res) => {
+            if (!res.ok) throw new Error("Network response was not ok");
             return res.json();
           })
         );
@@ -46,33 +37,30 @@ function SickLeavesRecord2() {
           return acc;
         }, []);
 
-        setSickLeavesWaiting(combinedData);
+        setLeavesWating(combinedData);
       } catch (error) {
-        console.error("Error fetching sick leave requests:", error.message);
-        setSickLeavesWaiting([]);
+        console.error("Error fetching leave requests:", error);
+        setLeavesWating([]);
       }
     };
 
-    if (token) {
-      fetchSickLeaves();
-    }
+    fetchLeaves();
   }, []);
 
-  if (!sickLeavesWaiting || sickLeavesWaiting.length === 0) {
-    return <LoadingOrError data={sickLeavesWaiting} />;
+  if (!leavesWating || leavesWating.length === 0) {
+    return <LoadingOrError data={leavesWating} />;
   }
 
-  const allLeaves = [...sickLeavesWaiting];
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = allLeaves.slice(indexOfFirstRow, indexOfLastRow);
-  const totalPages = Math.ceil(allLeaves.length / rowsPerPage);
+  const currentRows = leavesWating.slice(indexOfFirstRow, indexOfLastRow);
+  const totalPages = Math.ceil(leavesWating.length / rowsPerPage);
 
   return (
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block">
-          <h2 className="m-0 text-nowrap">تحديث الإجازات المرضية</h2>
+          <h2 className="m-0 text-nowrap">طلبات الإجازات الاعتيادية</h2>
         </div>
       </div>
       <div className="row">
@@ -82,11 +70,14 @@ function SickLeavesRecord2() {
               <tr>
                 <th scope="col" className="th-mult">المرجع</th>
                 <th scope="col" className="th-mult">الاسم</th>
-                <th scope="col" className="th-mult">تاريخ الاخطار</th>
-                <th scope="col" className="th-mult">العنوان</th>
-                <th scope="col" className="th-mult">نوع التحديث</th>
+                <th scope="col" className="th-mult">القسم</th>
+                <th scope="col" className="th-mult">رقم الهاتف</th>
+                <th scope="col" className="th-mult">نوع الإجازة</th>
+                <th scope="col" className="th-mult">تاريخ البداية</th>
+                <th scope="col" className="th-mult">تاريخ النهاية</th>
+                <th scope="col" className="th-mult">عدد الأيام</th>
+                <th scope="col" className="th-mult">حالة الطلب</th>
                 <th scope="col" className="th-mult">الأرشيف</th>
-                <th scope="col" className="th-mult">تحديث</th>
               </tr>
             </thead>
             <tbody>
@@ -95,52 +86,53 @@ function SickLeavesRecord2() {
                   <tr key={index}>
                     <th>
                       #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
-                    </th>{" "}
+                    </th>
                     <th>{leave.userName}</th>
+                    <th>{leave.departmentName}</th>
+                    <th>{leave.phoneNumber.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d])}</th>
+                    <th>اعتيادية</th>
                     <th>
-                      {new Date(leave.requestDate).toLocaleDateString("ar-EG")}
+                      {leave.endDate
+                        ? new Date(leave.startDate).toLocaleDateString("ar-EG")
+                        : "-"}
                     </th>
                     <th>
-                      {leave.governorate} - {leave.state} - {leave.street}
+                      {leave.endDate
+                        ? new Date(leave.endDate).toLocaleDateString("ar-EG")
+                        : "-"}
                     </th>
+
                     <th>
-                      {sickLeavesWaiting.some(
-                        (leave) =>
-                          leave.respononseDoneForMedicalCommitte === false
-                      )
-                        ? "التحديث الأول"
-                        : "التحديث الثاني"}
+                      {leave.days ? leave.days.toLocaleString("ar-EG") : "0"}{" "}
+                      أيام
+                    </th>
+                    <th
+                      className={
+                        leave.leaveStatus === 0 ? "text-primary" : "text-success"
+                      }
+                    >
+                      {leave.leaveStatus === 0 ? "مُعلقة" : "مقبولة"}
                     </th>
                     <th>
                       <BtnLink
                         id={leave.id}
-                        name="تفاصيل الاخطار"
-                        link="/sick-leave-request"
+                        name="عرض الإجازة"
+                        link="/manager-normal-leave-request"
                         className="btn btn-outline-primary"
-                      />
-                    </th>
-                    <th>
-                      <BtnLink
-                        id={leave.id}
-                        className="btn btn-outline-success"
-                        name="تحديث الاخطار"
-                        link={
-                          sickLeavesWaiting.some(
-                            (leave) =>
-                              leave.respononseDoneForMedicalCommitte === false
-                          )
-                            ? `/update-sick-leave`
-                            : `/update-sick-leave2`
-                        }
                       />
                     </th>
                   </tr>
                 ))}
             </tbody>
           </table>
-
-          {allLeaves.length > rowsPerPage && (
-            <div className="d-flex justify-content-center mt-3">
+          {leavesWating.length > rowsPerPage && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "20px",
+              }}
+            >
               <nav>
                 <ul className="pagination">
                   <li
@@ -199,4 +191,4 @@ function SickLeavesRecord2() {
   );
 }
 
-export default SickLeavesRecord2;
+export default NormalLeaveRecord;

@@ -7,6 +7,7 @@ import LoadingOrError from "../components/LoadingOrError";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import SickReport from "../components/SickReport";
+import DesSickReport from "../components/DesSickReport";
 
 function DesSick() {
   const [sickLeaves, setSickLeaves] = useState(null);
@@ -42,9 +43,54 @@ function DesSick() {
     fetchSickLeaves();
   }, []);
 
-  if (!sickLeaves || sickLeaves.length === 0) {
-    return <LoadingOrError data={sickLeaves} />;
-  }
+
+  const handleGeneralReportClick = () => {
+    MySwal.fire({
+      title: "اختر حالة الإجازات",
+      input: "radio",
+      inputOptions: new Map([
+        ["3", "المُعلقة"],
+        ["2", "الغير مٌستحقة"],
+        ["1", "المُستحقة"],
+        ["0", "الكل"],
+      ]),
+      inputValidator: (value) => !value && "يجب اختيار حالة لعرض التقرير",
+      confirmButtonText: "عرض التقرير",
+      cancelButtonText: "إلغاء",
+      showCancelButton: true,
+      customClass: {
+        title: "text-blue",
+        confirmButton: "blue-button",
+        cancelButton: "red-button",
+      },
+      didOpen: () => {
+        const popup = document.querySelector(".swal2-popup");
+        if (popup) popup.setAttribute("dir", "rtl");
+      },
+    }).then((result) => {
+      if (!result.isConfirmed) return;
+
+      const status = Number(result.value);
+      const statusLabel =
+        status === 3 ? "المُعلقة"
+        : status === 2 ? "الغير مٌستحقة"
+        : status === 1 ? "المُستحقة"
+        : "الكل";
+
+      MySwal.fire({
+        title: `تقرير الإجازات ${statusLabel}`,
+        html: <DesSickReport status={status} />,
+        showConfirmButton: false,
+        showCloseButton: true,
+        width: "95%",
+        customClass: { popup: "text-end custom-swal-width" },
+      });
+    });
+  };
+
+
+
+  if (!sickLeaves || sickLeaves.length === 0) {return <LoadingOrError data={sickLeaves} />;}
 
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
@@ -59,19 +105,11 @@ function DesSick() {
         </div>
         <div className="p-3 pe-0">
           <button
-              className="btn btn-outline-primary"
-              onClick={() =>
-                  MySwal.fire({
-                  title: 'تقرير الإجازة',
-                  // html: <OfficialLeaveReport leaveID={leaveID} />,
-                  showConfirmButton: false,
-                  showCloseButton: true,
-                  width: '95%',
-                  customClass: {
-                  popup: 'text-end custom-swal-width',
-                  }})}>
-              <FontAwesomeIcon icon={faPrint} />
-              <span className="d-none d-sm-inline">&nbsp;طباعة البيانات</span>
+            className="btn btn-outline-primary"
+            onClick={handleGeneralReportClick}
+          >
+            <FontAwesomeIcon icon={faPrint} />
+            <span className="d-none d-sm-inline"> طباعة البيانات</span>
           </button>
         </div>
       </div>
@@ -81,14 +119,14 @@ function DesSick() {
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ البدء</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الانتهاء</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
+                <th scope="col" className="th-mult">المرجع</th>
+                <th scope="col" className="th-mult">الاسم</th>
+                <th scope="col" className="th-mult">تاريخ البدء</th>
+                <th scope="col" className="th-mult">تاريخ الانتهاء</th>
+                <th scope="col" className="th-mult">عدد الأيام</th>
+                <th scope="col" className="th-mult">حالة الطلب</th>
+                <th scope="col" className="th-mult">طباعة</th>
+                <th scope="col" className="th-mult">الأرشيف</th>
               </tr>
             </thead>
 
@@ -133,7 +171,7 @@ function DesSick() {
                     )}
                     <th>
                       {leave.certified === true ? (
-                        <th className="text-success">مستحقة</th>
+                        <th className="text-success">مُستحقة</th>
                       ) : leave.responseDoneFinal === false &&
                         leave.respononseDoneForMedicalCommitte === false ? (
                         <th className="text-primary">
@@ -145,7 +183,7 @@ function DesSick() {
                           مُعلقة عند التحديث الثاني
                         </th>
                       ) : (
-                        <th className="text-danger">غير مستحقة</th>
+                        <th className="text-danger">غير مُستحقة</th>
                       )}
                     </th>
                     <td>

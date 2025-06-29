@@ -71,13 +71,13 @@ function AgazatySick() {
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ البدء</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الانتهاء</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
+                <th scope="col" className="th-mult">المرجع</th>
+                <th scope="col" className="th-mult">تاريخ البدء</th>
+                <th scope="col" className="th-mult">تاريخ الانتهاء</th>
+                <th scope="col" className="th-mult">عدد الأيام</th>
+                <th scope="col" className="th-mult">حالة الطلب</th>
+                <th scope="col" className="th-mult">طباعة</th>
+                <th scope="col" className="th-mult">الأرشيف</th>
               </tr>
             </thead>
 
@@ -119,7 +119,7 @@ function AgazatySick() {
                     )}
                     <th>
                       {leave.certified === true ? (
-                        <th className="text-success">مستحقة</th>
+                        <th className="text-success">مُستحقة</th>
                       ) : leave.responseDoneFinal === false &&
                         leave.respononseDoneForMedicalCommitte === false ? (
                         <th className="text-primary">
@@ -131,7 +131,7 @@ function AgazatySick() {
                           مُعلقة عند التحديث الثاني
                         </th>
                       ) : (
-                        <th className="text-danger">غير مستحقة</th>
+                        <th className="text-danger">غير مُستحقة</th>
                       )}
                     </th>
                     <th>

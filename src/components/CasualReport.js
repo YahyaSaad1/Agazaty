@@ -75,7 +75,7 @@ const CasualReport = ({ leaveID }) => {
     if (!leave) return <p className="text-center mt-4">جاري تحميل بيانات الإجازة...</p>;
     console.log(leave);
     return (
-        <div className="container" dir="rtl" style={{ fontFamily: "Tahoma, Arial" }}>
+        <div className="container" dir="rtl" style={{ fontFamily: "cairo, Arial" }}>
             <div className={`border border-2 rounded p-4 shadow-sm bg-white text-end ${getBorderClass()}`} ref={reportRef} style={{ direction: "rtl" }} >
                 <div style={{
                     display: "flex",

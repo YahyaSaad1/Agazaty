@@ -285,13 +285,13 @@ function EmployeesCom({ type }) {
             <table className="m-0 table table-striped">
               <thead>
                 <tr>
-                  <th scope="col" style={{backgroundColor: "#F5F9FF"}}>المرجع</th>
-                  <th scope="col" style={{backgroundColor: "#F5F9FF"}}>الاسم</th>
-                  <th scope="col" style={{backgroundColor: "#F5F9FF"}} className="text-nowrap" >المسمى الوظيفي</th>
-                  <th scope="col" style={{backgroundColor: "#F5F9FF"}}>القسم</th>
-                  <th scope="col" style={{backgroundColor: "#F5F9FF"}} className="text-nowrap" >تاريخ التعيين</th>
-                  <th scope="col" style={{backgroundColor: "#F5F9FF"}} className="text-nowrap" >رقم الهاتف</th>
-                  <th scope="col" style={{backgroundColor: "#F5F9FF"}}>المزيد</th>
+                  <th scope="col" className="th-mult">المرجع</th>
+                  <th scope="col" className="th-mult">الاسم</th>
+                  <th scope="col" className="th-mult">المسمى الوظيفي</th>
+                  <th scope="col" className="th-mult">القسم</th>
+                  <th scope="col" className="th-mult">تاريخ التعيين</th>
+                  <th scope="col" className="th-mult">رقم الهاتف</th>
+                  <th scope="col" className="th-mult">المزيد</th>
                 </tr>
               </thead>
               <tbody>

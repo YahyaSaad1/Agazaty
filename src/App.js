@@ -16,7 +16,7 @@ import AddDepartment from "./Pages/AddDepartment";
 import Departments from "./Pages/Departments";
 import Employees from "./Pages/Employees";
 import AddEmployee from "./Pages/AddEmployee";
-import LeaveRecord from "./Pages/LeaveRecord";
+import NormalLeaveRecord from "./Pages/NormalLeaveRecord";
 import EditDepartment from "./Pages/EditDepartment";
 import Inquiries from "./Pages/Inquiries";
 import NormalLeave from "./components/NormalLeave";
@@ -27,10 +27,9 @@ import SickLeaveRequest from "./components/SickLeaveRequest";
 import EditPassword from "./components/EditPassword";
 import Archives from "./Pages/Archives";
 import CasualLeaveRequestManger from "./Pages/CasualLeaveRequestManger";
-import NormalRequestManager from "./Pages/NormalLeaveRequestGeneralManager";
+import NormalRequestManager from "./Pages/NormalRequestManager";
 import UpdateNormalLeave from "./Pages/UpdateNormalLeave";
 import EditEmployeeForHR from "./Pages/EditEmployee";
-import ExceptionalLeave from "./Pages/ExceptionalLeave";
 import SickLeavesRecord2 from "./Pages/SickLeavesRecord2";
 import UpdateSickLeave from "./components/UpdateSickLeave";
 import UpdateSickLeave2 from "./components/UpdateSickLeave2";
@@ -55,12 +54,9 @@ import UploadUsersExcel from "./Pages/UploadUsersExcel";
 import RequireAuth from "./RequireAuth";
 import Error403 from "./Pages/Error403";
 import ChatBot from "./Pages/ChatBot";
-import LandingPage from "./Pages/LandingPage";
 import React from "react";
 import CasualRequestManager from "./Pages/CasualRequestManager";
 import CasualLeaveRecord from "./Pages/CasualLeaveRecord";
-import Amazon from "./Pages/Amazon";
-import Leaves from "./Pages/Leaves";
 import SickLeaveRecord from "./Pages/SickLeaveRecord";
 import SickRequestManager from "./Pages/SickRequestManager";
 import UserSickLeaveRequest from "./Pages/UserSickLeaveRequest";
@@ -99,8 +95,6 @@ function App() {
           <Route path="resetpassword" element={<ResetPassword />} />
         </Route>
 
-        <Route path="LandingBage" element={<LandingPage />} />
-
         <Route path="agazaty" element={<Agazaty />} />
         <Route path="ChatBot" element={<ChatBot />} />
 
@@ -136,7 +130,6 @@ function App() {
             <Route path="holiday/edit/:holidayID" element={<EditHoliday />} />
 
             <Route path="coworker" element={<CoWorker />} />
-            <Route path="leaves" element={<Leaves />} />
             <Route path="profile" element={<Profile />} />
 
             <Route path="agazaty2/normal" element={<AgazatyNormal />} />
@@ -184,24 +177,14 @@ function App() {
             <Route path="des-requests/casual" element={<DesCasual />} />
             <Route path="des-requests/sick" element={<DesSick />} />
             <Route path="des-requests/permit" element={<DesPermits />} />
-
-            {/* محمود الهواري */}
             <Route path="edit-password" element={<EditPassword />} />
 
             {/* طلبات الإجازات عن المديرين */}
-            <Route path="record/normal/leave" element={<LeaveRecord />} />
+            <Route path="record/normal/leave" element={<NormalLeaveRecord />} />
             <Route path="record/casual/leave" element={<CasualLeaveRecord />} />
             <Route path="record/sick/leave" element={<SickLeaveRecord />} />
-            {/* <Route path="general/leave-record" element={<GeneralManagerLeave />} /> */}
-            {/* <Route path="sick-leaves-record" element={<SickLeavesRecord />} /> */}
 
             <Route path="record/sick-leaves" element={<SickLeavesRecord2 />} />
-
-            {/* تتبع امازون */}
-            <Route path="track-leave/:id" element={<Amazon />} />
-
-            {/* إجازة استثنائية */}
-            <Route path="exceptional-leave" element={<ExceptionalLeave />} />
 
             <Route path="profile/user/:userID" element={<ProfileForHR />} />
 

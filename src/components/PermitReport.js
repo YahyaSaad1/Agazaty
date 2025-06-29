@@ -76,7 +76,7 @@ const PermitReport = ({ permitID }) => {
     if (loading) return <p className="text-center mt-4">جاري تحميل بيانات التصريح...</p>;
 
     return (
-        <div className="container" dir="rtl" style={{ fontFamily: "Tahoma, Arial" }}>
+        <div className="container" dir="rtl" style={{ fontFamily: "cairo, Arial" }}>
             <div className="mt-4 border p-3" ref={reportRef} id="report-content">
                 {imageUrl ? (
                     <div className="text-center">

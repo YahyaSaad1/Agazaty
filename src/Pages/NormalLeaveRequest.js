@@ -5,7 +5,7 @@ import BtnLink from '../components/BtnLink';
 import Btn from '../components/Btn';
 import { BASE_API_URL, token } from '../server/serves';
 import LoadingOrError from '../components/LoadingOrError';
-import OfficialLeaveReport from './CasualReport';
+import OfficialLeaveReport from './NormalReport';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { faPrint } from '@fortawesome/free-solid-svg-icons';

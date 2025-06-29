@@ -2,12 +2,8 @@ import { useState } from "react";
 import ChatBot from "./ChatBot";
 
 function Inquiries(){
-
     const [desc, setDesc] = useState('');
-
-    const handleClick = (message) => {
-        setDesc(message);
-    };
+    const handleClick = (message) => {setDesc(message);};
 
     return(
         <div>

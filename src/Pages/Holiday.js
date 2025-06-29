@@ -131,10 +131,10 @@ function Holidays() {
           <table className="m-0 table table-striped">
             <thead className="sticky-top bg-white">
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>التاريخ</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المزيد</th>
+                <th scope="col" className="th-mult">المرجع</th>
+                <th scope="col" className="th-mult">الاسم</th>
+                <th scope="col" className="th-mult">التاريخ</th>
+                <th scope="col" className="th-mult">المزيد</th>
               </tr>
             </thead>
             <tbody>

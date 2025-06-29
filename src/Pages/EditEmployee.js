@@ -14,21 +14,19 @@ function EditEmployeeForHR() {
   const [monthsOfWork, setMonthsOfWork] = useState(0);
   const [position, setPosition] = useState("");
   const [departement_ID, setDepartement_ID] = useState(null);
-
   const [roles, setRoles] = useState([]);
-  const [role, setRole] = useState();
 
   useEffect(() => {
     fetch(`${BASE_API_URL}/api/Role/GetAllRoles`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // إضافة التوكن في الهيدر
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => res.json())
       .then((data) => setRoles(data))
-      .catch((err) => console.error("Error fetching roles:", err)); // معالجة الأخطاء
+      .catch((err) => console.error("Error fetching roles:", err));
   }, []);
 
   useEffect(() => {
@@ -330,17 +328,13 @@ function EditEmployeeForHR() {
     <div>
       <div className="d-flex mb-3 justify-content-between">
         <div className="zzz d-inline-block">
-          <h2 className="m-0">
-            تعديل بيانات {user.firstName} {user.secondName}
-          </h2>
+          <h2 className="m-0">تعديل بيانات {user.firstName} {user.secondName}</h2>
         </div>
       </div>
 
       <form className="row" onSubmit={handleSubmit}>
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleInputDeputy0" className="form-label">
-            الشخص ذو إعاقة
-          </label>
+          <label htmlFor="exampleInputDeputy0" className="form-label">الشخص ذو إعاقة</label>
           <select
             className="form-select"
             id="exampleInputDeputy0"
@@ -349,18 +343,14 @@ function EditEmployeeForHR() {
             onChange={handleChange}
             value={updatedFields.disability ?? user.disability ?? ""}
           >
-            <option value="" disabled selected>
-              اختر
-            </option>
+            <option value="" disabled selected>اختر</option>
             <option value={false}>لا</option>
             <option value={true}>نعم</option>
           </select>
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleInputDeputy4" className="form-label">
-            المنصب
-          </label>
+          <label htmlFor="exampleInputDeputy4" className="form-label">المنصب</label>
           <select
             className="form-select"
             id="exampleInputDeputy4"
@@ -369,9 +359,7 @@ function EditEmployeeForHR() {
             onChange={handleChange}
             value={updatedFields.roleName ?? user.roleName}
           >
-            <option value="" disabled selected>
-              اختر منصبًا
-            </option>
+            <option value="" disabled selected>اختر منصبًا</option>
             {roles.map((role) => (
               <option key={role.id} value={role.name}>
                 {role.name}
@@ -381,9 +369,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleInputDeputy3" className="form-label">
-            الجنس
-          </label>
+          <label htmlFor="exampleInputDeputy3" className="form-label">الجنس</label>
           <select
             className="form-select"
             id="exampleInputDeputy3"
@@ -392,18 +378,14 @@ function EditEmployeeForHR() {
             onChange={handleChange}
             value={updatedFields.gender ?? user.gender ?? ""}
           >
-            <option value="" disabled selected>
-              اختر الجنس
-            </option>
+            <option value="" disabled selected>اختر الجنس</option>
             <option value="ذكر">ذكر</option>
             <option value="أنثى">أنثى</option>
           </select>
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlText1" className="form-label">
-            الاسم الأول
-          </label>
+          <label htmlFor="exampleFormControlText1" className="form-label">الاسم الأول</label>
           <input
             className="form-control"
             type="text"
@@ -416,9 +398,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlText2" className="form-label">
-            الاسم الثاني
-          </label>
+          <label htmlFor="exampleFormControlText2" className="form-label">الاسم الثاني</label>
           <input
             className="form-control"
             type="text"
@@ -431,9 +411,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlText3" className="form-label">
-            الاسم الثالث
-          </label>
+          <label htmlFor="exampleFormControlText3" className="form-label">الاسم الثالث</label>
           <input
             className="form-control"
             type="text"
@@ -446,9 +424,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlText4" className="form-label">
-            الاسم الرابع
-          </label>
+          <label htmlFor="exampleFormControlText4" className="form-label">الاسم الرابع</label>
           <input
             className="form-control"
             type="text"
@@ -461,8 +437,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlText0" className="form-label">
-            اسم المستخدم
+          <label htmlFor="exampleFormControlText0" className="form-label">اسم المستخدم
           </label>
           <input
             className="form-control"
@@ -477,8 +452,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlNumber1" className="form-label">
-            الرقم القومي
+          <label htmlFor="exampleFormControlNumber1" className="form-label">الرقم القومي
           </label>
           <input
             className="form-control"
@@ -493,9 +467,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlNumber2" className="form-label">
-            رقم الهاتف
-          </label>
+          <label htmlFor="exampleFormControlNumber2" className="form-label">رقم الهاتف</label>
           <input
             className="form-control"
             type="number"
@@ -509,9 +481,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleInputDate2" className="form-label">
-            تاريخ التعيين
-          </label>
+          <label htmlFor="exampleInputDate2" className="form-label">تاريخ التعيين</label>
           <input
             type="date"
             onChange={handleChange}
@@ -525,8 +495,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleInputDate3" className="form-label">
-            تاريخ الميلاد
+          <label htmlFor="exampleInputDate3" className="form-label">تاريخ الميلاد
           </label>
           <input
             type="date"
@@ -544,9 +513,7 @@ function EditEmployeeForHR() {
 
         {(updatedFields.roleName ?? user.roleName) === "هيئة تدريس" ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber11" className="form-label">
-              الدرجة
-            </label>
+            <label htmlFor="exampleFormControlNumber11" className="form-label">الدرجة</label>
             <select
               className="form-select"
               name="position"
@@ -556,18 +523,14 @@ function EditEmployeeForHR() {
               dir="rtl"
               value={updatedFields.position ?? user.position ?? ""}
             >
-              <option value="" disabled selected>
-                اختر الدرجة
-              </option>
+              <option value="" disabled selected>اختر الدرجة</option>
               <option value="2">دكتور</option>
               <option value="1">معيد</option>
             </select>
           </div>
         ) : (updatedFields.roleName ?? user.roleName) === "موظف" ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber11" className="form-label">
-              الدرجة
-            </label>
+            <label htmlFor="exampleFormControlNumber11" className="form-label">الدرجة</label>
             <select
               className="form-select"
               name="position"
@@ -577,18 +540,14 @@ function EditEmployeeForHR() {
               dir="rtl"
               value={updatedFields.position ?? user.position ?? ""}
             >
-              <option value="" disabled selected>
-                اختر الدرجة
-              </option>
+              <option value="" disabled selected>اختر الدرجة</option>
               <option value={2}>إداري</option>
               <option value={1}>عامل</option>
             </select>
           </div>
         ) : (updatedFields.roleName ?? user.roleName) === "عميد الكلية" ? (
           <div className="d-none col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber11" className="form-label">
-              الدرجة
-            </label>
+            <label htmlFor="exampleFormControlNumber11" className="form-label">الدرجة</label>
             <select
               className="form-select"
               name="position"
@@ -598,17 +557,13 @@ function EditEmployeeForHR() {
               dir="rtl"
               value={updatedFields.position ?? user.position ?? ""}
             >
-              <option value="" disabled selected>
-                اختر الدرجة
-              </option>
+              <option value="" disabled selected>اختر الدرجة</option>
               <option value={2}>دكتور</option>
             </select>
           </div>
         ) : (updatedFields.roleName ?? user.roleName) === "أمين الكلية" ? (
           <div className="d-none col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber11" className="form-label">
-              الدرجة
-            </label>
+            <label htmlFor="exampleFormControlNumber11" className="form-label">الدرجة</label>
             <select
               className="form-select"
               name="position"
@@ -618,18 +573,14 @@ function EditEmployeeForHR() {
               dir="rtl"
               value={updatedFields.position ?? user.position ?? ""}
             >
-              <option value="" disabled selected>
-                اختر الدرجة
-              </option>
+              <option value="" disabled selected>اختر الدرجة</option>
               <option value={2}>إداري</option>
             </select>
           </div>
         ) : null}
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlText5" className="form-label">
-            المحافظة
-          </label>
+          <label htmlFor="exampleFormControlText5" className="form-label">المحافظة</label>
           <input
             className="form-control"
             type="text"
@@ -642,9 +593,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlText6" className="form-label">
-            المدينة
-          </label>
+          <label htmlFor="exampleFormControlText6" className="form-label">المدينة</label>
           <input
             className="form-control"
             type="text"
@@ -657,9 +606,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlText7" className="form-label">
-            القرية / الشارع
-          </label>
+          <label htmlFor="exampleFormControlText7" className="form-label">القرية / الشارع</label>
           <input
             className="form-control"
             type="text"
@@ -672,9 +619,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
-            البريد الإلكتروني
-          </label>
+          <label htmlFor="exampleInputEmail1" className="form-label">البريد الإلكتروني</label>
           <input
             className="form-control"
             type="email"
@@ -689,9 +634,7 @@ function EditEmployeeForHR() {
           updatedFields.roleName ?? user.roleName
         ) && (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleInputDeputy1" className="form-label">
-              القسم
-            </label>
+            <label htmlFor="exampleInputDeputy1" className="form-label">القسم</label>
             <select
               className="form-select"
               id="exampleInputDeputy1"
@@ -704,9 +647,7 @@ function EditEmployeeForHR() {
                 ""
               }
             >
-              <option value="" disabled selected>
-                اختر القسم
-              </option>
+              <option value="" disabled selected>اختر القسم</option>
               <option value={null}>حذف القسم</option>
               {getFilteredDepartments().map((department) => (
                 <option key={department.id} value={department.id}>
@@ -722,9 +663,7 @@ function EditEmployeeForHR() {
         yearsOfWork < 1 &&
         age <= 50 ? (
           <div className="d-none col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber10" className="form-label">
-              عدد الإجازات الاعتيادية
-            </label>
+            <label htmlFor="exampleFormControlNumber10" className="form-label">عدد الإجازات الاعتيادية</label>
             <input
               max={0}
               className="form-control"
@@ -745,9 +684,7 @@ function EditEmployeeForHR() {
           yearsOfWork < 1 &&
           age <= 50 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber10" className="form-label">
-              عدد الإجازات الاعتيادية
-            </label>
+            <label htmlFor="exampleFormControlNumber10" className="form-label">عدد الإجازات الاعتيادية</label>
             <input
               max={15}
               className="form-control"
@@ -768,9 +705,7 @@ function EditEmployeeForHR() {
           yearsOfWork < 10 &&
           age <= 50 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber11" className="form-label">
-              عدد الإجازات الاعتيادية
-            </label>
+            <label htmlFor="exampleFormControlNumber11" className="form-label">عدد الإجازات الاعتيادية</label>
             <input
               max={36}
               className="form-control"
@@ -788,9 +723,7 @@ function EditEmployeeForHR() {
           </div>
         ) : user.disability === false && yearsOfWork >= 10 && age <= 50 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber12" className="form-label">
-              عدد الإجازات الاعتيادية
-            </label>
+            <label htmlFor="exampleFormControlNumber12" className="form-label">عدد الإجازات الاعتيادية</label>
             <input
               max={45}
               className="form-control"
@@ -808,9 +741,7 @@ function EditEmployeeForHR() {
           </div>
         ) : age >= 50 || user.disability === true ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber13" className="form-label">
-              عدد الإجازات الاعتيادية
-            </label>
+            <label htmlFor="exampleFormControlNumber13" className="form-label">عدد الإجازات الاعتيادية</label>
             <input
               max={60}
               className="form-control"
@@ -830,9 +761,7 @@ function EditEmployeeForHR() {
 
         {hireYear >= 2015 ? (
           <div className="d-none col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber5" className="form-label">
-              عدد الإجازات الاعتيادية_47
-            </label>
+            <label htmlFor="exampleFormControlNumber5" className="form-label">عدد الإجازات الاعتيادية_47</label>
             <input
               className="form-control"
               type="number"
@@ -848,9 +777,7 @@ function EditEmployeeForHR() {
           </div>
         ) : hireYear <= 2015 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber5" className="form-label">
-              عدد الإجازات الاعتيادية_47
-            </label>
+            <label htmlFor="exampleFormControlNumber5" className="form-label">عدد الإجازات الاعتيادية_47</label>
             <input
               className="form-control"
               type="number"
@@ -869,9 +796,7 @@ function EditEmployeeForHR() {
 
         {hireYear >= 2015 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber4" className="form-label">
-              عدد الأيام المأخوذة هذه السنة من 81
-            </label>
+            <label htmlFor="exampleFormControlNumber4" className="form-label">عدد الأيام المأخوذة هذه السنة من 81</label>
             <input
               className="form-control"
               type="number"
@@ -889,9 +814,7 @@ function EditEmployeeForHR() {
           </div>
         ) : hireYear <= 2015 ? (
           <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-            <label htmlFor="exampleFormControlNumber4" className="form-label">
-              عدد الأيام المأخوذة هذه السنة من47 و 81
-            </label>
+            <label htmlFor="exampleFormControlNumber4" className="form-label">عدد الأيام المأخوذة هذه السنة من47 و 81</label>
             <input
               className="form-control"
               type="number"
@@ -910,9 +833,7 @@ function EditEmployeeForHR() {
         ) : null}
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlNumber6" className="form-label">
-            عدد الإجازات الاعتيادية_81 قبل سنة
-          </label>
+          <label htmlFor="exampleFormControlNumber6" className="form-label">عدد الإجازات الاعتيادية_81 قبل سنة</label>
           <input
             className="form-control"
             type="number"
@@ -930,9 +851,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlNumber7" className="form-label">
-            عدد الإجازات الاعتيادية_81 قبل سنتين
-          </label>
+          <label htmlFor="exampleFormControlNumber7" className="form-label">عدد الإجازات الاعتيادية_81 قبل سنتين</label>
           <input
             className="form-control"
             type="number"
@@ -950,9 +869,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlNumber8" className="form-label">
-            عدد الإجازات الاعتيادية_81 قبل 3 سنوات
-          </label>
+          <label htmlFor="exampleFormControlNumber8" className="form-label">عدد الإجازات الاعتيادية_81 قبل 3 سنوات</label>
           <input
             className="form-control"
             type="number"
@@ -970,9 +887,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlNumber12" className="form-label">
-            عدد الإجازات العارضة
-          </label>
+          <label htmlFor="exampleFormControlNumber12" className="form-label">عدد الإجازات العارضة</label>
           <input
             className="form-control"
             type="number"
@@ -989,9 +904,7 @@ function EditEmployeeForHR() {
         </div>
 
         <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-3">
-          <label htmlFor="exampleFormControlNumber9" className="form-label">
-            عدد الإجازات المرضية
-          </label>
+          <label htmlFor="exampleFormControlNumber9" className="form-label">عدد الإجازات المرضية</label>
           <input
             className="form-control"
             type="number"

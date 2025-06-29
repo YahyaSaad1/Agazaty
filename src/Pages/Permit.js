@@ -4,8 +4,8 @@ import { BASE_API_URL, token, validate } from "../server/serves";
 
 function Permit() {
     const [Hours, setHours] = useState("");
-    const [file, setFile] = useState(null); // تغييرها إلى متغير واحد فقط لتخزين صورة واحدة
-    const [filePreview, setFilePreview] = useState(null); // لتخزين صورة المعاينة
+    const [file, setFile] = useState(null);
+    const [filePreview, setFilePreview] = useState(null);
     const [startDate, setStartDate] = useState("");
     const [UserId, setUserId] = useState("");
     const [users, setUsers] = useState([]);

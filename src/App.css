@@ -22,14 +22,12 @@ body {
     font-weight: 600;
 }
 
-
 .swal-title-red {
     color: red;
 }
 
 .swal-content-red {
     color: red;
-
 }
 
 .abdo {
@@ -56,7 +54,6 @@ body {
     color: var(--text-red) !important;
 }
 
-
 .red-button {
     color: white;
     background-color: var(--btn-false) !important;
@@ -68,8 +65,6 @@ body {
     border-color: var(--btn-hover-false) !important;
 }
 
-
-
 .App {
     margin: 0;
     padding: 0;
@@ -78,7 +73,6 @@ body {
 .row {
     margin: 0;
 }
-
 
 .parent div {
     justify-content: space-between;
@@ -93,14 +87,6 @@ body {
     font-weight: bold;
 }
 
-/* 
-@media (max-width: 550px) {
-
-
-    .sidebar :hover {
-        width: 200px;
-    }
-} */
 .sidebar {
     overflow-x: hidden;
 }
@@ -196,12 +182,6 @@ body {
     background: #0a58ca;
 }
 
-
-
-
-
-
-
 .pr-1 {
     padding-right: 3px;
 }
@@ -242,8 +222,6 @@ body {
 .pl-5 {
     padding-left: 15px;
 }
-
-
 
 .fontt {
     font-size: 25px;
@@ -290,13 +268,6 @@ body {
     cursor: pointer;
 }
 
-
-.qqq {
-    background-color: red !important;
-
-}
-
-
 .rounded-circle4 {
     border: 1px solid #d0d0d0;
     border-radius: 50%;
@@ -305,22 +276,10 @@ body {
     transition: background-color 0.3s, color 0.5s;
 }
 
-
-
-
-
-
-
-
-
-
-
-/* تنسيق SweetAlert لجعل الأزرار في المنتصف */
 .swal-footer {
     text-align: center !important;
 }
 
-/* توسيط الأزرار أفقياً */
 .swal-button-container {
     display: inline-block;
     margin: 0 10px;
@@ -331,23 +290,11 @@ body {
     color: white !important;
 }
 
-
-
-.vc {
-    color: #f0f0f0;
-    color: #e3f2fd;
-    color: #e8f5e9;
-    color: #4caf50;
-    color: #263238;
-}
-
-
 .Agazaty-title {
     font-family: Cairo sans-serif;
     font-weight: 600;
     font-size: calc(1.325rem + .9vw);
 }
-
 
 .pic {
     border: 5px solid black;
@@ -394,7 +341,7 @@ body {
 .social img{
     width: 30px;
     height: 30px;
-    objectFit: contain;
+    object-fit: contain;
 }
 
 .vvvv {
@@ -409,4 +356,13 @@ table th, table td{
 .btn-login{
     width: 160px;
     font-size: 18px;
+}
+
+.th-mult{
+    background-color: #F5F9FF;
+    white-space: nowrap;
+}
+
+.swal2-radio label {
+    white-space: nowrap;
 }

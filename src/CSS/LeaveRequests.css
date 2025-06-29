@@ -5,37 +5,24 @@
     overflow: hidden;
 }
 
-/* For sm screens (up to 576px) */
 @media (max-width: 576px) {
     .rounded-start {
-        max-width: 150px; /* 250px for small screens */
+        max-width: 150px;
     }
 }
 
-/* For md screens (from 576px to 767px) */
 @media (min-width: 576px) and (max-width: 767px) {
     .rounded-start {
-        max-width: 250px; /* 350px for medium screens */
+        max-width: 250px;
     }
 }
 
-/* For lg screens (from 768px and above) */
 @media (min-width: 768px) {
     .rounded-start {
-        max-width: 250px; /* 400px for large screens */
+        max-width: 250px;
     }
 }
-/* نافذة الصور
 
-
-
-
-
-
-
-
-
-/* نافذة الصورة */
 .modal-overlay {
     background-color: rgba(0, 0, 0, 0.7);
     position: fixed;
@@ -53,9 +40,9 @@
     padding: 20px;
     border-radius: 10px;
     position: relative;
-    max-width: 90%; /* العرض هو 90% من النافذة */
-    max-height: 90vh; /* الحد الأقصى للارتفاع هو 90% من الشاشة */
-    overflow: hidden; /* منع التمرير في حال كانت الصورة أكبر */
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,9 +50,9 @@
 
 .modal-image {
     width: 100%;
-    height: auto; /* ضمان أن الصورة تتناسب مع العرض */
-    object-fit: contain; /* الصورة ستظل كاملة دون تقطيع */
-    max-height: 80vh; /* الحد الأقصى للارتفاع هو 80% من النافذة */
+    height: auto;
+    object-fit: contain;
+    max-height: 80vh;
 }
 
 .btn-close {

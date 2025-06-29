@@ -379,12 +379,12 @@ function DesPermits() {
             <table className="m-0 table table-striped">
                 <thead className="sticky-top bg-white">
                 <tr>
-                    <th style={{backgroundColor: "#F5F9FF"}}>المرجع</th>
-                    <th style={{backgroundColor: "#F5F9FF"}}>الاسم</th>
-                    <th style={{backgroundColor: "#F5F9FF"}}>التاريخ</th>
-                    <th style={{backgroundColor: "#F5F9FF"}} className="text-nowrap">عدد الساعات</th>
-                    <th style={{backgroundColor: "#F5F9FF"}}>الأرشيف</th>
-                    <th style={{backgroundColor: "#F5F9FF"}}>المزيد</th>
+                    <th className="th-mult">المرجع</th>
+                    <th className="th-mult">الاسم</th>
+                    <th className="th-mult">التاريخ</th>
+                    <th className="th-mult">عدد الساعات</th>
+                    <th className="th-mult">الأرشيف</th>
+                    <th className="th-mult">المزيد</th>
                 </tr>
                 </thead>
                 <tbody>

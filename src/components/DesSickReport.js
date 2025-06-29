@@ -16,16 +16,16 @@ const formatArabicDate = (dateStr) => {
     return convertToArabicNumbers(formatted);
 };
 
-const DesNormalReport = ({status}) => {
+const DesSickReport = ({status}) => {
     const [leaves, setLeaves] = useState([]);
     const reportRef = useRef();
-    console.log(`status: ${status}`);
+    console.log(leaves);
 
     useEffect(() => {
         const fetchLeaves = async () => {
             try {
             const res = await fetch(
-                `${BASE_API_URL}/api/NormalLeave/GetAllNormalLeaves`,
+                `${BASE_API_URL}/api/SickLeave/GetAllSickLeave`,
                 {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -47,22 +47,20 @@ const DesNormalReport = ({status}) => {
         fetchLeaves();
     }, [token]);
 
-
     const getBorderClass = () => {
         if (status == null) return "";
-        if (status === 0) return "border-primary";
-        if (status === 1) return "border-success";
+        if (status === 3) return "border-dark";
         if (status === 2) return "border-danger";
-        return "border-dark";
+        if (status === 1) return "border-success";
+        return "border-primary";
     };
-
 
     const handlePrintPDF = () => {
         const element = reportRef.current;
 
         const options = {
             margin: 10,
-            filename: "تقرير الإجازات الاعتيادية.pdf",
+            filename: "تقرير الإجازات المرضية.pdf",
             image: { type: "jpeg", quality: 0.98 },
             html2canvas: {
                 scale: 2,
@@ -111,10 +109,7 @@ const DesNormalReport = ({status}) => {
                 </div>
 
                 <div className="text-center">
-                    {status === 0 ? <h5 className="text-bold">تقرير الإجازات الاعتيادية المُعلقة</h5>
-                    : status === 1 ? <h5 className="text-bold">تقرير الإجازات الاعتيادية المقبولة</h5>
-                    : status === 2 ? <h5 className="text-bold">تقرير الإجازات الاعتيادية المرفوضة</h5>
-                    : <h5 className="text-bold">تقرير الإجازات الاعتيادية</h5>}
+                    <h5 className="text-bold">تقرير الإجازات المرضية</h5>
                 </div>
 
                 <hr className={`${getBorderClass()}`} />
@@ -127,37 +122,41 @@ const DesNormalReport = ({status}) => {
                             <th className="th-mult">تاريخ البدء</th>
                             <th className="th-mult">تاريخ الانتهاء</th>
                             <th className="th-mult">عدد الأيام</th>
-                            <th className="th-mult">القائم بالعمل</th>
-                            <th className="th-mult">ملحوظات</th>
-                            <th className="th-mult">حالة الطلب</th>
+                            <th scope="col" className="th-mult">حالة الطلب</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {leaves
-                        ?.filter((leave) => {
-                        if (status === 2) return leave.leaveStatus === 2;
-                        if (status === 1) return leave.leaveStatus === 1;
-                        if (status === 0) return leave.leaveStatus === 0;
-                        return true;
-                        })
-                        .map((leave, index) => (
-                        <tr key={leave.id ?? index}>
-                            <td>#{(index + 1).toLocaleString("ar-EG")}</td>
-                            <td>{leave.userName || "--"}</td>
-                            <td>{formatArabicDate(leave.startDate)}</td>
-                            <td>{formatArabicDate(leave.endDate)}</td>
-                            <td>{leave.days ? convertToArabicNumbers(leave.days) : "--"}</td>
-                            <td>{leave.coworkerName || "--"}</td>
-                            <td>{leave.notesFromEmployee || "بدون"}</td>
-
-                            {leave.leaveStatus === 0 ? (
-                            <th className="text-primary">مُعلَّقة</th>
-                            ) : leave.leaveStatus === 1 ? (
-                            <th className="text-success">مقبولة</th>
-                            ) : (
-                            <th className="text-danger">مرفوضة</th>
-                            )}
-                        </tr>
+                        {leaves?.filter((leave) => {
+                            if (status === 3) return (leave.responseDoneFinal === false);
+                            if (status === 2) return (leave.certified === false && leave.responseDoneFinal === true) ;
+                            if (status === 1) return leave.certified === true;
+                            return true;
+                            }).map((leave, index) => (
+                                <tr key={index}>
+                                    {console.log(leave)}
+                                    <td>#{(index + 1).toLocaleString("ar-EG")}</td>
+                                    <td>{leave.userName || "--"}</td>
+                                    <td>{formatArabicDate(leave.startDate)}</td>
+                                    <td>{formatArabicDate(leave.endDate)}</td>
+                                    <td>{leave.days ? convertToArabicNumbers(leave.days) : "--"}</td>
+                                    <th>
+                                        {leave.certified === true ? (
+                                            <th className="text-success">مُستحقة</th>
+                                        ) : leave.responseDoneFinal === false &&
+                                            leave.respononseDoneForMedicalCommitte === false ? (
+                                            <th className="text-primary">
+                                            مُعلقة عند التحديث الأول
+                                            </th>
+                                        ) : leave.responseDoneFinal === false &&
+                                            leave.respononseDoneForMedicalCommitte === true ? (
+                                            <th className="text-primary">
+                                            مُعلقة عند التحديث الثاني
+                                            </th>
+                                        ) : (
+                                            <th className="text-danger">غير مُستحقة</th>
+                                        )}
+                                    </th>
+                                </tr>
                         ))}
                     </tbody>
                 </table>
@@ -172,4 +171,4 @@ const DesNormalReport = ({status}) => {
     );
 };
 
-export default DesNormalReport;
+export default DesSickReport;

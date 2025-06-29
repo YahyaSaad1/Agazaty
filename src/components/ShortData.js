@@ -134,11 +134,6 @@ const [department, setDepartments] = useState([]);
               <h5 className="text-bold">{leave.type}</h5>
               <h4>{leave.num.toString().replace(/\d/g, (digit) => '٠١٢٣٤٥٦٧٨٩'[digit])}</h4>
             </div>
-
-            // <divclassName="box LeaveBalance col-sm-12 col-md rounded-3 p-3" style={{ minWidth: "200px", flex: "1 1 30%" }} key={index}>
-            //   <h5>{leave.type}</h5>
-            //   <h4>{leave.num}</h4>
-            // </div>
           );
         })}
       </div>

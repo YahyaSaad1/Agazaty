@@ -66,23 +66,23 @@
 .otp-container {
     display: flex;
     justify-content: center;
-    gap: 7px; /* المسافة بين المربعات */
-    margin: 20px 0; /* مسافة حول المربعات */
+    gap: 7px;
+    margin: 20px 0;
 }
 
 .otp-input {
-    width: 45px; /* العرض */
-    height: 45px; /* الارتفاع لجعلها مربعة */
-    text-align: center; /* محاذاة النص إلى المنتصف */
-    font-size: 1.5rem; /* حجم الخط */
-    border: 1px solid #ccc; /* حدود */
-    border-radius: 5px; /* زوايا مستديرة */
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .otp-input:focus {
-    outline: none; /* إزالة الحدود الزرقاء الافتراضية */
-    border-color: #007bff; /* تغيير لون الحدود عند التحديد */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* إضافة تأثير */
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .text-head{

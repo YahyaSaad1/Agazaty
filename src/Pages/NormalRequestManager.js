@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import { BASE_API_URL, roleName, token, UserData } from '../server/serves';
 import LoadingOrError from '../components/LoadingOrError';
 
-function NormalLeaveRequestManager() {
+function NormalRequestManager() {
     const { id: LeaveID } = useParams();
     const [leave, setLeave] = useState(null);
     const [user, setUser] = useState(null);
@@ -278,4 +278,4 @@ function NormalLeaveRequestManager() {
     );
 }
 
-export default NormalLeaveRequestManager;
+export default NormalRequestManager;

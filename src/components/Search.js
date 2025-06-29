@@ -16,7 +16,6 @@ function Search() {
         <div>
             <form className="d-flex" role="search" onSubmit={handleSearch}>
                 <input className="form-control me-2" type="search" placeholder="بحث ..." aria-label="Search" value={query} onChange={(e) => setQuery(e.target.value)}/>
-                {/* <button className="btn btn-outline-success" type="submit">بحث</button> */}
             </form>
         </div>
     );

@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
 import { BASE_API_URL, rowsPerPage, token, userID } from "../server/serves";
 import LoadingOrError from "../components/LoadingOrError";
-import OfficialLeaveReport from "./CasualReport";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import CasualReport from "../components/CasualReport";
@@ -58,9 +57,7 @@ function AgazatyCasual() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block">
-          <h2 className="m-0 text-nowrap">
-            سجل إجازاتي العارضة
-          </h2>
+          <h2 className="m-0 text-nowrap">سجل إجازاتي العارضة</h2>
         </div>
         <div className="ps-3">
           <button
@@ -75,13 +72,13 @@ function AgazatyCasual() {
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ البدء</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الانتهاء</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>ملحوظة</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
+                <th scope="col" className="th-mult">المرجع</th>
+                <th scope="col" className="th-mult">تاريخ البدء</th>
+                <th scope="col" className="th-mult">تاريخ الانتهاء</th>
+                <th scope="col" className="th-mult">عدد الأيام</th>
+                <th scope="col" className="th-mult">ملحوظة</th>
+                <th scope="col" className="th-mult">طباعة</th>
+                <th scope="col" className="th-mult">الأرشيف</th>
               </tr>
             </thead>
 

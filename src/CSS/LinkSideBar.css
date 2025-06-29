@@ -30,24 +30,19 @@
     color: #ffffff !important;
 }
 
-
 .tran{
     transition: .5s;
 }
-
-
-
 
 .link-SideBar44{
     color: var(--main-color);
     cursor: pointer;
 }
+
 .link-SideBar44:active{
     background-color: var(--btn-hover-true);
     color: white;
 }
-
-
 
 .link-SideBar4{
     text-decoration: none;

@@ -5,7 +5,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useUserData } from '../server/serves';
 
-function Search(){
+function User(){
     const userData = useUserData();
 
     return(
@@ -25,4 +25,4 @@ function Search(){
     )
 }
 
-export default Search;
+export default User;

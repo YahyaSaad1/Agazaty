@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
 import { BASE_API_URL, rowsPerPage, token, userID } from "../server/serves";
 import LoadingOrError from "../components/LoadingOrError";
-import OfficialLeaveReport from "./CasualReport";
+import OfficialLeaveReport from "./NormalReport";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -68,26 +68,22 @@ function AgazatyNormal() {
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>تاريخ البدء</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>تاريخ الانتهاء</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>عدد الأيام</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>القائم بالعمل</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>ملحوظات</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
-                <th style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
+                <th className="th-mult">المرجع</th>
+                <th className="th-mult">تاريخ البدء</th>
+                <th className="th-mult">تاريخ الانتهاء</th>
+                <th className="th-mult">عدد الأيام</th>
+                <th className="th-mult">القائم بالعمل</th>
+                <th className="th-mult">ملحوظات</th>
+                <th className="th-mult">حالة الطلب</th>
+                <th className="th-mult">طباعة</th>
+                <th className="th-mult">الأرشيف</th>
               </tr>
             </thead>
             <tbody>
               {currentRows.map((leave, index) => (
                 <tr key={index}>
-                  <th>
-                    #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
-                  </th>
-                  <th>
-                    {new Date(leave.startDate).toLocaleDateString("ar-EG")}
-                  </th>
+                  <th>#{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}</th>
+                  <th>{new Date(leave.startDate).toLocaleDateString("ar-EG")}</th>
                   <th>{new Date(leave.endDate).toLocaleDateString("ar-EG")}</th>
                   <th>
                     {leave.days

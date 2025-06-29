@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Btn from '../components/Btn';
 import { BASE_API_URL, token } from '../server/serves';
 import LoadingOrError from '../components/LoadingOrError';
-import OfficialLeaveReport from './CasualReport';
+import OfficialLeaveReport from './NormalReport';
 import { faPrint } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Swal from 'sweetalert2';

@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import '../CSS/LeaveRequests.css';
 import { useEffect, useState } from 'react';
-import BtnLink from '../components/BtnLink';
 import Btn from '../components/Btn';
 import { BASE_API_URL, token, useUserData } from '../server/serves';
 import LoadingOrError from '../components/LoadingOrError';

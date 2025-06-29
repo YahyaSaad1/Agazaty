@@ -130,11 +130,11 @@ function Departments() {
           <table className="m-0 table table-striped">
             <thead className="sticky-top bg-white">
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>اسم القسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>كود القسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الإنشاء</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>مدير القسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المزيد</th>
+                <th scope="col" className="th-mult">اسم القسم</th>
+                <th scope="col" className="th-mult">كود القسم</th>
+                <th scope="col" className="th-mult">تاريخ الإنشاء</th>
+                <th scope="col" className="th-mult">مدير القسم</th>
+                <th scope="col" className="th-mult">المزيد</th>
               </tr>
             </thead>
             <tbody>

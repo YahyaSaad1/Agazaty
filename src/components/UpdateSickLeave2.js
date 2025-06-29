@@ -163,8 +163,8 @@ function UpdateSickLeave2() {
                             required
                         >
                             <option value="" disabled selected>اختر الحالة</option>
-                            <option value="true">مستحقة</option>
-                            <option value="false">غير مستحقة</option>
+                            <option value="true">مُستحقة</option>
+                            <option value="false">غير مُستحقة</option>
                         </select>
                     </div>
 

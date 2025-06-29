@@ -25,7 +25,7 @@ function SickLeavesRecord() {
   };
 
   fetchSickLeaves();
-}, [token]);  // أضفنا التوكن كاعتماد داخل الـ useEffect
+}, [token]);
 
 
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -46,13 +46,13 @@ function SickLeavesRecord() {
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>تاريخ الاخطار</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>العنوان</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة الطلب</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>حالة المرض</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
+                <th scope="col" className="th-mult">المرجع</th>
+                <th scope="col" className="th-mult">الاسم</th>
+                <th scope="col" className="th-mult">تاريخ الاخطار</th>
+                <th scope="col" className="th-mult">العنوان</th>
+                <th scope="col" className="th-mult">حالة الطلب</th>
+                <th scope="col" className="th-mult">حالة المرض</th>
+                <th scope="col" className="th-mult">الأرشيف</th>
               </tr>
             </thead>
             <tbody>

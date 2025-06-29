@@ -100,7 +100,7 @@ function Agazaty() {
                                             <p className="mb-2">{'مدير قسم الموارد البشرية'}</p>
                                         </div>
                                             <div className="d-flex justify-content-center align-items-center social" style={{ gap: "8px" }}>
-                                                <Link className="p-1 d-flex justify-content-center align-items-center" to={`mailto:yahyasaad2024`} target="_blank" rel="noopener noreferrer">
+                                                <Link className="p-1 d-flex justify-content-center align-items-center" to={`mailto:magdykodous588@gmail.com`} target="_blank" rel="noopener noreferrer">
                                                     <img src={gmail} alt="Gmail" />
                                                 </Link>
 

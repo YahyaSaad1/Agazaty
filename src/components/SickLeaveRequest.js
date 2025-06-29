@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import '../CSS/LeaveRequests.css';
 import { useEffect, useState } from 'react';
-import BtnLink from '../components/BtnLink';
 import Btn from '../components/Btn';
 import { BASE_API_URL, token } from '../server/serves';
 import LoadingOrError from './LoadingOrError';
@@ -89,12 +88,12 @@ console.log(leave)
                                 <th scope="col" className="pb-3" style={{ backgroundColor: '#F5F9FF' }}>حالة الطلب</th>
                                 <th scope="col" className="text-start" style={{ backgroundColor: '#F5F9FF' }}>
                                     {leave?.certified === true
-                                        ? <Btn name="مستحقة" className="btn-success text-bold"/>
+                                        ? <Btn name="مُستحقة" className="btn-success text-bold"/>
                                         : (leave?.responseDoneFinal === false && leave?.respononseDoneForMedicalCommitte === false)
                                         ? <Btn name="مُعلقة عند التحديث الأول" className="btn-primary text-bold"/>
                                         : (leave?.responseDoneFinal === false && leave?.respononseDoneForMedicalCommitte === true)
                                         ? <Btn name="مُعلقة عند التحديث الثاني" className="btn-primary text-bold"/>
-                                        : <Btn name="غير مستحقة" className="btn-danger text-bold"/>
+                                        : <Btn name="غير مُستحقة" className="btn-danger text-bold"/>
                                     }
                                 </th>
                             </tr>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import BtnLink from '../components/BtnLink';
 import Import from '../Images/import.png';
 import Export from '../Images/export.png';
 import Equal from '../Images/equal.png';

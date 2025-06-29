@@ -7,7 +7,7 @@ import { BASE_API_URL, token, useUserData } from '../server/serves';
 import LoadingOrError from '../components/LoadingOrError';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPrint } from '@fortawesome/free-solid-svg-icons';
-import OfficialLeaveReport from './CasualReport';
+import OfficialLeaveReport from './NormalReport';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import CasualReport from '../components/CasualReport';

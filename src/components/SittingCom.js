@@ -1,7 +1,6 @@
 import BtnLink from "./BtnLink";
 
 function SittingCom(){
-
     return(
         <div className="row">
             <div>

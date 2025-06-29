@@ -1,133 +1,145 @@
-/* Sidebar Container */
-.SideBar {
-    background-color: #fefeff;
-    border-left: 2px solid #eee;
-    margin: 0;
-    padding: 0;
-    text-decoration:none ;
-    min-height: 100vh;
+.side-bar{
+    background-color:#fff;
+    border-left:1px solid #5b5b5b35;
+    border-bottom:1px solid #5b5b5b35;
+    min-height:100vh;
+    transition:width .3s ease;
+    white-space: nowrap;
 }
 
-
-/* Title Styling */
-.Agazaty {
-    font-size: 32px;
-    font-weight: bold;
-    line-height: 1.2;
-    text-decoration: none;
-    justify-content: center;
+.side-bar.closed{
+    width:80px;
+    position:relative;
 }
 
-.link-SideBar,
-.link-SideBar2,
-.link-SideBar3 {
-    text-decoration: none;
-    position: relative;
+.side-bar.open{
+    width:250px;
+    position:relative;
 }
 
-.link-SideBar li,
-.link-SideBar2 ul,
-.link-SideBar3 ul {
-    display: flex;
-    margin: 10px;
-    align-items: center;
-    padding: 15px;
-    border-radius: 12px;
-    transition: 0.5s;
-    /* Consolidated .tran */
-}
-
-@media (max-width: 750px) {
-
-    .link-SideBar li,
-    .link-SideBar2 ul,
-    .link-SideBar3 ul {
-        padding: 15px 5px;
-        border-radius: 3px;
+@media (max-width:700px){
+    .side-bar.closed{
+        width:80px;
+        position:relative;
+    }
+    .side-bar.open{
+        width:250px;
+        position:absolute;
+        z-index:999;
     }
 }
 
-/* Hover Effects */
-.link-SideBar li:hover,
-.link-SideBar2 ul:hover,
-.link-SideBar3 ul:hover {
-    background-color: #0b5ed7;
-    color: white;
+@media (min-width:1750px){
+    .side-bar.open{
+        width:300px;
+    }
+    .side-bar.closed{
+        width:100px;
+    }
 }
 
-.hover-danger li:hover {
-    background-color: red !important;
-    color: #ffffff !important;
-}
-
-/* Text Styling */
-.link-SideBar li span {
+.sidebar-title{
     font-size: 18px;
     font-weight: 600;
 }
 
-.link-SideBar2 ul li,
-.link-SideBar3 ul li {
-    font-size: 18px;
-    font-weight: 500;
-    padding: 5px;
+.sidebar-hint{
+    margin: -15px;
 }
 
-/* Bullet Points for Sub-Items */
-.link-SideBar2 li::before,
-.link-SideBar3 ul li::before {
-    content: "●";
-    color: #0b5ed7;
-    font-size: 1.2em;
-    margin-left: 10px;
+.sidebar-hint2{
+    display: flex;
+    width: 15px !important;
+    height: 15px !important;
+    margin: -5px;
 }
 
-/* Tooltip for Small Screens */
-.tooltip-text {
-    visibility: hidden;
-    background-color: #333;
-    color: #fff;
+.zxc{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar-link{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px;
+    align-items: center;
     text-align: center;
-    border-radius: 4px;
-    padding: 5px 10px;
-    position: absolute;
-    z-index: 1;
-    top: -5px;
-    left: 110%;
-    font-size: 14px;
 }
 
-.link-SideBar:hover .tooltip-text {
-    visibility: visible;
+.sidebar-link-close{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Leave Options Hover for Small Screens */
-.leave-options-hover {
-    display: none;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 5px;
-    z-index: 1;
+.sidebar-link:hover{
+    background-color: var(--main-color) ;
+    color: white;
 }
 
-.link-SideBar:hover .leave-options-hover {
-    display: block;
+.sidebar-link-close:hover{
+    background-color: var(--main-color) ;
+    color: white;
 }
 
-.leave-options-hover ul {
+.sidebar-link p{
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.4;
     margin: 0;
-    padding: 0;
 }
 
-.leave-options-hover li {
-    padding: 5px 10px;
-    cursor: pointer;
+.sidebar-list{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    padding: 10px;
+    border-radius: 7px;
+    margin: 10px 35px 10px 10px;
+    gap: 7px;
 }
 
-.leave-options-hover li:hover {
-    background-color: #f5f5f5;
+.sidebar-list:hover{
+    background-color: var(--main-color) ;
+    color: white;
+}
+
+.sidebar-list-close{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    padding: 10px;
+    border-radius: 7px;
+    margin: 10px 35px 10px 10px;
+    gap: 7px;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-list-close:hover{
+    background-color: var(--main-color) ;
+    color: white;
+}
+
+.active-link {
+    background-color: var(--main-color);
+    color: white;
+}
+
+.logout{
+    color: var(--text-red);
+}
+
+.logout:hover{
+    background-color: var(--text-red);
 }

@@ -4,7 +4,7 @@ import ProfileDescription from "../components/ProfileDescription";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { faEdit, faTable } from "@fortawesome/free-solid-svg-icons";
+import { faCircleH, faEdit, faNewspaper, faTable, faTowerBroadcast } from "@fortawesome/free-solid-svg-icons";
 import { BASE_API_URL, token } from "../server/serves";
 import "../CSS/Profile.css";
 function ProfileForHR() {
@@ -199,28 +199,41 @@ function ProfileForHR() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block">
-          <h2 className="m-0">
-            ملف {userData.firstName} {userData.secondName} الشخصي
-          </h2>
+          <h2 className="m-0 text-nowrap">ملف {userData.firstName} {userData.secondName} الشخصي</h2>
         </div>
         <div className="d-flex ms-3">
-          <button
-            onClick={handleDownload}
-            className="m-3 btn btn-success d-flex justify-content-center align-items-center"
-          >
-            <FontAwesomeIcon icon={faTable} style={{ fontSize: "1.4rem" }} color="#fff"/>
+          <button onClick={handleDownload} className="m-3 btn btn-success d-flex justify-content-center align-items-center text-nowrap">
+            <FontAwesomeIcon icon={faTable} style={{ fontSize: "1.2em" }} color="#fff"/>
             <span className="d-none d-sm-inline">&nbsp;تنزيل البيانات</span>
           </button>
 
-          <button className="my-3 btn btn-primary" onClick={handleLeaveUpdate}>
-            <FontAwesomeIcon icon={faEdit} style={{ fontSize: "1.4rem" }} color="#fff"/>
+          <button className="my-3 btn btn-primary text-nowrap" onClick={handleLeaveUpdate}>
+            <FontAwesomeIcon icon={faEdit} style={{ fontSize: "1.2em" }} color="#fff"/>
             <span className="d-none d-sm-inline">&nbsp; تعديل عدد أيام الإجازات</span>
           </button>
         </div>
       </div>
       <div className="row">
         <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4 col-xxl-3 mt-4">
-          <ProfileCom userData={userData} />
+          <div>
+            <ProfileCom userData={userData} />
+          </div>
+          <div className="d-flex flex-wrap mt-4 gap-3">
+            <button className="btn btn-primary" onClick={handleLeaveUpdate}>
+              <FontAwesomeIcon icon={faNewspaper} style={{ fontSize: "1.2em" }} color="#fff"/>
+              <span className="d-none d-sm-inline">&nbsp;الإجازات الاعتيادية</span>
+            </button>
+
+            <button className="btn btn-primary" onClick={handleLeaveUpdate}>
+              <FontAwesomeIcon icon={faTowerBroadcast} style={{ fontSize: "1.2em" }} color="#fff"/>
+              <span className="d-none d-sm-inline">&nbsp;الإجازات العارضة</span>
+            </button>
+
+            <button className="btn btn-primary" onClick={handleLeaveUpdate}>
+              <FontAwesomeIcon icon={faCircleH} style={{ fontSize: "1.2em" }} color="#fff"/>
+              <span className="d-none d-sm-inline">&nbsp;الإجازات المرضية</span>
+            </button>
+          </div>
         </div>
         <div className="col-sm-12 col-md-6 col-lg-7 col-xl-8 col-xxl-9 mt-4">
           <ProfileDescription userData={userData} />

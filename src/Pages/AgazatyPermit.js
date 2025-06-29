@@ -3,7 +3,7 @@ import BtnLink from "../components/BtnLink";
 import { BASE_API_URL, rowsPerPage, token, userID } from "../server/serves";
 import LoadingOrError from "../components/LoadingOrError";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPrint, faUserSlash } from "@fortawesome/free-solid-svg-icons";
+import { faPrint } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import PermitReport from "../components/PermitReport";
 import withReactContent from "sweetalert2-react-content";
@@ -68,12 +68,12 @@ function AgazatyPermit() {
           <table className="m-0 table table-striped">
             <thead>
               <tr>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>المرجع</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الاسم</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>التاريخ</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>عدد الساعات</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>طباعة</th>
-                <th scope="col" style={{ backgroundColor: "#F5F9FF" }}>الأرشيف</th>
+                <th scope="col" className="th-mult">المرجع</th>
+                <th scope="col" className="th-mult">الاسم</th>
+                <th scope="col" className="th-mult">التاريخ</th>
+                <th scope="col" className="th-mult">عدد الساعات</th>
+                <th scope="col" className="th-mult">طباعة</th>
+                <th scope="col" className="th-mult">الأرشيف</th>
               </tr>
             </thead>
             <tbody>

@@ -16,16 +16,16 @@ const formatArabicDate = (dateStr) => {
     return convertToArabicNumbers(formatted);
 };
 
-const DesNormalReport = ({status}) => {
+const DesCasualReport = ({status}) => {
     const [leaves, setLeaves] = useState([]);
     const reportRef = useRef();
-    console.log(`status: ${status}`);
+    console.log(leaves);
 
     useEffect(() => {
         const fetchLeaves = async () => {
             try {
             const res = await fetch(
-                `${BASE_API_URL}/api/NormalLeave/GetAllNormalLeaves`,
+                `${BASE_API_URL}/api/CasualLeave/GetAllCasualLeaves`,
                 {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -47,8 +47,7 @@ const DesNormalReport = ({status}) => {
         fetchLeaves();
     }, [token]);
 
-
-    const getBorderClass = () => {
+        const getBorderClass = () => {
         if (status == null) return "";
         if (status === 0) return "border-primary";
         if (status === 1) return "border-success";
@@ -56,13 +55,12 @@ const DesNormalReport = ({status}) => {
         return "border-dark";
     };
 
-
     const handlePrintPDF = () => {
         const element = reportRef.current;
 
         const options = {
             margin: 10,
-            filename: "تقرير الإجازات الاعتيادية.pdf",
+            filename: "تقرير الإجازات العارضة.pdf",
             image: { type: "jpeg", quality: 0.98 },
             html2canvas: {
                 scale: 2,
@@ -98,7 +96,7 @@ const DesNormalReport = ({status}) => {
 
     return (
         <div className="container" dir="rtl" style={{fontFamily: "cairo, Arial"}}>
-            <div className={`border border-2 rounded p-4 shadow-sm bg-white text-end ${getBorderClass()}`} ref={reportRef}>
+            <div className={`border border-2 rounded p-4 shadow-sm bg-white text-end border-primary`} ref={reportRef}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
                     <div style={{ textAlign: "center" }}>
                         <img src={University} alt="جامعة" style={{ height: 80, objectFit: "contain" }} />
@@ -111,13 +109,10 @@ const DesNormalReport = ({status}) => {
                 </div>
 
                 <div className="text-center">
-                    {status === 0 ? <h5 className="text-bold">تقرير الإجازات الاعتيادية المُعلقة</h5>
-                    : status === 1 ? <h5 className="text-bold">تقرير الإجازات الاعتيادية المقبولة</h5>
-                    : status === 2 ? <h5 className="text-bold">تقرير الإجازات الاعتيادية المرفوضة</h5>
-                    : <h5 className="text-bold">تقرير الإجازات الاعتيادية</h5>}
+                    <h5 className="text-bold">تقرير الإجازات العارضة</h5>
                 </div>
 
-                <hr className={`${getBorderClass()}`} />
+                <hr className="border-primary" />
 
                 <table className="m-0 table table-striped">
                     <thead>
@@ -127,37 +122,19 @@ const DesNormalReport = ({status}) => {
                             <th className="th-mult">تاريخ البدء</th>
                             <th className="th-mult">تاريخ الانتهاء</th>
                             <th className="th-mult">عدد الأيام</th>
-                            <th className="th-mult">القائم بالعمل</th>
                             <th className="th-mult">ملحوظات</th>
-                            <th className="th-mult">حالة الطلب</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {leaves
-                        ?.filter((leave) => {
-                        if (status === 2) return leave.leaveStatus === 2;
-                        if (status === 1) return leave.leaveStatus === 1;
-                        if (status === 0) return leave.leaveStatus === 0;
-                        return true;
-                        })
-                        .map((leave, index) => (
-                        <tr key={leave.id ?? index}>
-                            <td>#{(index + 1).toLocaleString("ar-EG")}</td>
-                            <td>{leave.userName || "--"}</td>
-                            <td>{formatArabicDate(leave.startDate)}</td>
-                            <td>{formatArabicDate(leave.endDate)}</td>
-                            <td>{leave.days ? convertToArabicNumbers(leave.days) : "--"}</td>
-                            <td>{leave.coworkerName || "--"}</td>
-                            <td>{leave.notesFromEmployee || "بدون"}</td>
-
-                            {leave.leaveStatus === 0 ? (
-                            <th className="text-primary">مُعلَّقة</th>
-                            ) : leave.leaveStatus === 1 ? (
-                            <th className="text-success">مقبولة</th>
-                            ) : (
-                            <th className="text-danger">مرفوضة</th>
-                            )}
-                        </tr>
+                        {leaves?.map((leave, index) => (
+                            <tr key={index}>
+                                <td>#{(index + 1).toLocaleString("ar-EG")}</td>
+                                <td>{leave.userName || "--"}</td>
+                                <td>{formatArabicDate(leave.startDate)}</td>
+                                <td>{formatArabicDate(leave.endDate)}</td>
+                                <td>{leave.days ? convertToArabicNumbers(leave.days) : "--"}</td>
+                                <td>{leave.notesFromEmployee || "بدون"}</td>
+                            </tr>
                         ))}
                     </tbody>
                 </table>
@@ -172,4 +149,4 @@ const DesNormalReport = ({status}) => {
     );
 };
 
-export default DesNormalReport;
+export default DesCasualReport;
