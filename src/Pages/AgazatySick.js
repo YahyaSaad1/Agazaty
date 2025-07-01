@@ -139,7 +139,7 @@ function AgazatySick() {
                         className="btn btn-outline-primary"
                         onClick={() =>
                           MySwal.fire({
-                          title: 'تقرير الإجازة',
+                          title: 'تقرير إجازتي المرضية',
                           html: <SickReport leaveID={leave.id} />,
                           showConfirmButton: false,
                           showCloseButton: true,

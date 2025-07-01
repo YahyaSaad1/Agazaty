@@ -35,7 +35,7 @@ function Agazaty() {
                 <div className="mt-5 bbbb box-team p-2">
                     <ul>
                         <li>نحن فريق عمل المشروع، نتكون من ثمانية اشخاص .</li>
-                        <li>التحقنا بكلية الحاسبات والمعلومات جامعة جنوب الوادي بقنا عام 2021.</li>
+                        <li>التحقنا بكلية الحاسبات والمعلومات جامعة قنا عام 2021.</li>
                         <li>من القسمين علوم الحاسب وتكنولوجيا المعلومات .</li>
                         <li>وكان لكل منّا دوره فى المشروع ونجاحه .</li>
                     </ul>
@@ -96,7 +96,7 @@ function Agazaty() {
                                 <div className="desc text-center">
                                     <div className="mb-3 box-team p-2 d-flex flex-column align-items-center justify-content-center">
                                         <div>
-                                            <h4 className="text-bold">{'مجدي قدوس'}</h4>
+                                            <h4 className="text-bold">{'مجدي قدوس يوسف'}</h4>
                                             <p className="mb-2">{'مدير قسم الموارد البشرية'}</p>
                                         </div>
                                             <div className="d-flex justify-content-center align-items-center social" style={{ gap: "8px" }}>

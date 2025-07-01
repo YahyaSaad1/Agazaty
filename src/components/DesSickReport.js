@@ -19,7 +19,6 @@ const formatArabicDate = (dateStr) => {
 const DesSickReport = ({status}) => {
     const [leaves, setLeaves] = useState([]);
     const reportRef = useRef();
-    console.log(leaves);
 
     useEffect(() => {
         const fetchLeaves = async () => {
@@ -109,7 +108,10 @@ const DesSickReport = ({status}) => {
                 </div>
 
                 <div className="text-center">
-                    <h5 className="text-bold">تقرير الإجازات المرضية</h5>
+                    {status === 0 ? <h5 className="text-bold">تقرير الإجازات المرضية المُعلقة</h5>
+                    : status === 1 ? <h5 className="text-bold">تقرير الإجازات المرضية المُستحقة</h5>
+                    : status === 2 ? <h5 className="text-bold">تقرير الإجازات المرضية الغير مُستحقة</h5>
+                    : <h5 className="text-bold">تقرير لكل الإجازات المرضية</h5>}
                 </div>
 
                 <hr className={`${getBorderClass()}`} />
@@ -127,13 +129,12 @@ const DesSickReport = ({status}) => {
                     </thead>
                     <tbody>
                         {leaves?.filter((leave) => {
-                            if (status === 3) return (leave.responseDoneFinal === false);
+                            if (status === 0) return (leave.responseDoneFinal === false);
                             if (status === 2) return (leave.certified === false && leave.responseDoneFinal === true) ;
                             if (status === 1) return leave.certified === true;
                             return true;
                             }).map((leave, index) => (
                                 <tr key={index}>
-                                    {console.log(leave)}
                                     <td>#{(index + 1).toLocaleString("ar-EG")}</td>
                                     <td>{leave.userName || "--"}</td>
                                     <td>{formatArabicDate(leave.startDate)}</td>

@@ -55,7 +55,6 @@ function UpdateNormalLeave(props) {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                console.log(errorData)
                     Swal.fire({
                     title: `فشل كسر الإجازة!`,
                     html: `${(errorData.messages || ["يرجى المحاولة لاحقًا"]).join("<br>")}`,

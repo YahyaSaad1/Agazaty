@@ -96,7 +96,7 @@ function AgazatyCasual() {
                         className="btn btn-outline-primary"
                         onClick={() =>
                           MySwal.fire({
-                          title: 'تقرير الإجازة',
+                          title: 'تقرير إجازتي العارضة',
                           html: <CasualReport leaveID={leave.id} />,
                           showConfirmButton: false,
                           showCloseButton: true,

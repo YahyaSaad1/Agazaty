@@ -96,7 +96,7 @@ function AgazatyPermit() {
                         className="btn btn-outline-primary"
                         onClick={() =>
                           MySwal.fire({
-                          title: 'تقرير التصريح',
+                          title: 'تقرير تصريحي',
                           html: <PermitReport permitID={permit.id} />,
                           showConfirmButton: false,
                           showCloseButton: true,

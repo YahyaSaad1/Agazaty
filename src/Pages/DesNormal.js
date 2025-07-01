@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import BtnLink from "../components/BtnLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
@@ -9,18 +9,22 @@ import withReactContent from "sweetalert2-react-content";
 import DesNormalReport from "../components/DesNormalReport";
 import NormalReport from "./NormalReport";
 
+const MySwal = withReactContent(Swal);
+
 function DesNormal() {
-  const [leaves, setLeaves] = useState(null);
+  const [leaves, setLeaves] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const MySwal = withReactContent(Swal);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const controller = new AbortController();
     fetch(`${BASE_API_URL}/api/NormalLeave/GetAllNormalLeaves`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      signal: controller.signal,
     })
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
@@ -28,61 +32,73 @@ function DesNormal() {
       })
       .then((data) => setLeaves(Array.isArray(data) ? data : []))
       .catch((error) => {
-        console.error("Fetch error:", error);
-        setLeaves([]);
-      });
+        if (error.name !== "AbortError") {
+          console.error("Fetch error:", error);
+          setLeaves([]);
+        }
+      })
+      .finally(() => setLoading(false));
+
+    return () => controller.abort();
   }, []);
 
+  const totalPages = useMemo(() => Math.ceil(leaves.length / rowsPerPage), [leaves.length]);
+  const currentRows = useMemo(() => {
+    const start = (currentPage - 1) * rowsPerPage;
+    return leaves.slice(start, start + rowsPerPage);
+  }, [currentPage, leaves]);
+
   const handleGeneralReportClick = () => {
+  MySwal.fire({
+    title: "اختر حالة الإجازات",
+    input: "radio",
+    inputOptions: new Map([
+      ["3", "الكل"],
+      ["1", "المقبولة"],
+      ["2", "المرفوضة"],
+      ["0", "المُعلقة"],
+    ]),
+    inputValidator: (value) => !value && "يجب اختيار حالة لعرض التقرير",
+    confirmButtonText: "عرض التقرير",
+    cancelButtonText: "إلغاء",
+    showCancelButton: true,
+    customClass: {
+      title: "text-blue",
+      confirmButton: "blue-button",
+      cancelButton: "red-button",
+    },
+    didOpen: () => {
+      document.querySelector(".swal2-popup")?.setAttribute("dir", "rtl");
+    },
+  }).then((result) => {
+    if (!result.isConfirmed) return;
+
+    const status = Number(result.value);
+
+    const statusLabel =
+      status === 2 ? "المرفوضة"
+      : status === 1 ? "المقبولة"
+      : status === 0 ? "المُعلقة"
+      : "الكل";
+
+    const reportTitle =
+      status === 3
+        ? "تقرير لكل الإجازات الاعتيادية"
+        : `تقرير الإجازات الاعتيادية ${statusLabel}`;
+
     MySwal.fire({
-      title: "اختر حالة الإجازات",
-      input: "radio",
-      inputOptions: new Map([
-        ["3", "الكل"],
-        ["2", "المرفوضة"],
-        ["1", "المقبولة"],
-        ["0", "المُعلقة"],
-      ]),
-      inputValidator: (value) => !value && "يجب اختيار حالة لعرض التقرير",
-      confirmButtonText: "عرض التقرير",
-      cancelButtonText: "إلغاء",
-      showCancelButton: true,
-      customClass: {
-        title: "text-blue",
-        confirmButton: "blue-button",
-        cancelButton: "red-button",
-      },
-      didOpen: () => {
-        const popup = document.querySelector(".swal2-popup");
-        if (popup) popup.setAttribute("dir", "rtl");
-      },
-    }).then((result) => {
-      if (!result.isConfirmed) return;
-
-      const status = Number(result.value);
-      const statusLabel =
-        status === 3 ? "الكل"
-        : status === 2 ? "المرفوضة"
-        : status === 1 ? "المقبولة"
-        : "المُعلقة";
-
-      MySwal.fire({
-        title: `تقرير الإجازات ${statusLabel}`,
-        html: <DesNormalReport status={status} />,
-        showConfirmButton: false,
-        showCloseButton: true,
-        width: "95%",
-        customClass: { popup: "text-end custom-swal-width" },
-      });
+      title: reportTitle,
+      html: <DesNormalReport status={status} />,
+      showConfirmButton: false,
+      showCloseButton: true,
+      width: "95%",
+      customClass: { popup: "text-end custom-swal-width" },
     });
-  };
+  });
+};
 
-  if (!leaves || leaves.length === 0) return <LoadingOrError data={leaves} />;
 
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = leaves.slice(indexOfFirstRow, indexOfLastRow);
-  const totalPages = Math.ceil(leaves.length / rowsPerPage);
+  if (loading || !leaves.length) return <LoadingOrError data={leaves} />;
 
   return (
     <div>
@@ -92,10 +108,7 @@ function DesNormal() {
         </div>
 
         <div className="p-3 pe-0">
-          <button
-            className="btn btn-outline-primary"
-            onClick={handleGeneralReportClick}
-          >
+          <button className="btn btn-outline-primary" onClick={handleGeneralReportClick}>
             <FontAwesomeIcon icon={faPrint} />
             <span className="d-none d-sm-inline"> طباعة البيانات</span>
           </button>
@@ -122,33 +135,38 @@ function DesNormal() {
             <tbody>
               {currentRows.map((leave, index) => (
                 <tr key={index}>
-                  <th>#{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}</th>
+                  <th>#{(currentPage - 1) * rowsPerPage + index + 1}</th>
                   <th>{leave.userName}</th>
                   <th>{new Date(leave.startDate).toLocaleDateString("ar-EG")}</th>
                   <th>{new Date(leave.endDate).toLocaleDateString("ar-EG")}</th>
                   <th>
                     {leave.days
                       .toString()
-                      .replace(/[0-9]/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d])}{" "}
-                    أيام
+                      .replace(/[0-9]/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d])} أيام
                   </th>
                   <th>{leave.coworkerName}</th>
                   <th>{leave.notesFromEmployee || "بدون"}</th>
-                  {leave.leaveStatus === 0 ? (
-                    <th className="text-primary">مُعلقة</th>
-                  ) : leave.leaveStatus === 1 ? (
-                    <th className="text-success">مقبولة</th>
-                  ) : (
-                    <th className="text-danger">مرفوضة</th>
-                  )}
-
-                  {/* طباعة إجازة فردية */}
+                  <th
+                    className={
+                      leave.leaveStatus === 0
+                        ? "text-primary"
+                        : leave.leaveStatus === 1
+                        ? "text-success"
+                        : "text-danger"
+                    }
+                  >
+                    {leave.leaveStatus === 0
+                      ? "مُعلقة"
+                      : leave.leaveStatus === 1
+                      ? "مقبولة"
+                      : "مرفوضة"}
+                  </th>
                   <th>
                     <button
                       className="btn btn-outline-primary"
                       onClick={() =>
                         MySwal.fire({
-                          title: "تقرير الإجازة",
+                          title: `تقرير إجازة ${leave.firstName} ${leave.secondName}`,
                           html: <NormalReport leaveID={leave.id} />,
                           showConfirmButton: false,
                           showCloseButton: true,
@@ -160,8 +178,6 @@ function DesNormal() {
                       <FontAwesomeIcon icon={faPrint} />
                     </button>
                   </th>
-
-                  {/* زر الأرشيف */}
                   <th>
                     <BtnLink
                       id={leave.id}
@@ -175,39 +191,37 @@ function DesNormal() {
             </tbody>
           </table>
 
-          {/* ترقيم الصفحات */}
           {leaves.length > rowsPerPage && (
             <div className="d-flex justify-content-center mt-4">
               <nav>
                 <ul className="pagination">
-                  <li className={`page-item ${currentPage === 1 && "disabled"}`}>
+                  <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
                     <button
                       className="page-link"
-                      onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
+                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                     >
                       السابق
                     </button>
                   </li>
-
                   {Array.from({ length: totalPages }, (_, i) => (
                     <li
                       key={i}
-                      className={`page-item ${currentPage === i + 1 && "active"}`}
+                      className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
                     >
-                      <button className="page-link" onClick={() => setCurrentPage(i + 1)}>
+                      <button
+                        className="page-link"
+                        onClick={() => setCurrentPage(i + 1)}
+                      >
                         {i + 1}
                       </button>
                     </li>
                   ))}
-
                   <li
-                    className={`page-item ${currentPage === totalPages && "disabled"}`}
+                    className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}
                   >
                     <button
                       className="page-link"
-                      onClick={() =>
-                        currentPage < totalPages && setCurrentPage(currentPage + 1)
-                      }
+                      onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
                     >
                       التالي
                     </button>

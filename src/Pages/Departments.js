@@ -128,7 +128,7 @@ function Departments() {
       <div className="row">
         <div style={{ height: "100vh", overflowY: "auto" }}>
           <table className="m-0 table table-striped">
-            <thead className="sticky-top bg-white">
+            <thead className="bg-white">
               <tr>
                 <th scope="col" className="th-mult">اسم القسم</th>
                 <th scope="col" className="th-mult">كود القسم</th>

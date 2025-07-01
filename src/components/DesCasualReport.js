@@ -19,7 +19,6 @@ const formatArabicDate = (dateStr) => {
 const DesCasualReport = ({status}) => {
     const [leaves, setLeaves] = useState([]);
     const reportRef = useRef();
-    console.log(leaves);
 
     useEffect(() => {
         const fetchLeaves = async () => {
@@ -97,14 +96,14 @@ const DesCasualReport = ({status}) => {
     return (
         <div className="container" dir="rtl" style={{fontFamily: "cairo, Arial"}}>
             <div className={`border border-2 rounded p-4 shadow-sm bg-white text-end border-primary`} ref={reportRef}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
-                    <div style={{ textAlign: "center" }}>
-                        <img src={University} alt="جامعة" style={{ height: 80, objectFit: "contain" }} />
-                        <div style={{ fontWeight: "bold", marginTop: 5 }}>جامعة قنا</div>
+                <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem"}}>
+                    <div style={{textAlign: "center"}}>
+                        <img src={University} alt="جامعة" style={{height: 80, objectFit: "contain"}} />
+                        <div style={{fontWeight: "bold", marginTop: 5}}>جامعة قنا</div>
                     </div>
-                    <div style={{ textAlign: "center" }}>
-                        <img src={Faculty} alt="كلية" style={{ height: 80, objectFit: "contain" }} />
-                        <div style={{ fontWeight: "bold", marginTop: 5 }}>كلية الحاسبات والمعلومات</div>
+                    <div style={{textAlign: "center"}}>
+                        <img src={Faculty} alt="كلية" style={{height: 80, objectFit: "contain"}} />
+                        <div style={{fontWeight: "bold", marginTop: 5}}>كلية الحاسبات والمعلومات</div>
                     </div>
                 </div>
 

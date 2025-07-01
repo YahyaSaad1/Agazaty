@@ -105,16 +105,23 @@ function App() {
             path="/"
             element={
               <div className="d-flex vh-100">
-                <div className="sidebar p-0 flex-shrink-0" style={{  overflowY: "auto" }} >
+                <div className="sidebar p-0 flex-shrink-0" style={{ overflowY: "auto" }}>
                   <SideBar />
                 </div>
 
-                <div className="p-0 flex-grow-1" style={{ overflowY: "auto" }} >
-                  <NavBar />
-                  <Outlet />
+                <div className="p-0 flex-grow-1 d-flex flex-column" style={{ overflowY: "auto" }}>
+                  <NavBar className="sticky-top" style={{ zIndex: 1020 }} />
+
+                  <div className="flex-grow-1 overflow-auto">
+                    <Outlet />
+                  </div>
                 </div>
               </div>
             }>
+
+
+      
+
 
 
 

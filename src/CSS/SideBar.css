@@ -44,14 +44,27 @@
 }
 
 .sidebar-hint{
+    display: flex;
+    width: 20px;
+    height: 20px;
     margin: -15px;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
 }
 
-.sidebar-hint2{
+.sidebar-hint-list{
     display: flex;
-    width: 15px !important;
-    height: 15px !important;
+    width: 15px;
+    height: 15px;
     margin: -5px;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
 }
 
 .zxc{

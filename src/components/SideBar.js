@@ -3,7 +3,7 @@ import { faHouse, faUser, faCalendarPlus, faHandshake, faUsersRectangle, faUsers
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Menu } from "./MenuContext";
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { BASE_API_URL, roleName, token, userID, useUserData } from '../server/serves';
 
 function SideBar(){
@@ -24,7 +24,6 @@ function SideBar(){
     const menu = useContext(Menu)
     const isOpen = menu.isOpen;
     const setIsOpen = menu.setIsOpen;
-    console.log(activeMenu)
 
     useEffect(() => {
         fetch(`${BASE_API_URL}/api/NormalLeave/WaitingByCoWorkerID/${userID}`, {
@@ -137,8 +136,8 @@ function SideBar(){
 
     return(
         <div ref={sidebarRef} className={`side-bar pt-4 ${isOpen ? 'open' : 'closed'}`}>
-            <NavLink to={`${isOpen? '/agazaty' : ''}`} className={`${isOpen?"d-flex m-2 mt-0 p-3 pt-0 justify-content-between align-items-center text-decoration-none": "d-flex justify-content-center align-items-center"}`}>
-                <h2 className='fs-2 fw-bold' style={{display: isOpen? "block": "none"}}>اجازاتي</h2>
+            <NavLink className={`${isOpen?"d-flex m-2 mt-0 p-3 pt-0 justify-content-between align-items-center text-decoration-none": "d-flex justify-content-center align-items-center"}`}>
+                <Link to={`${isOpen? '/agazaty' : ''}`} className='fs-2 fw-bold text-decoration-none' style={{display: isOpen? "block": "none"}}>اجازاتي</Link>
                 <FontAwesomeIcon className={`${isOpen? "": "m-2 mt-0 p-3 pt-0"}`} icon={faArrowsTurnToDots} cursor={'pointer'}  onClick={(e) => {e.preventDefault(); e.stopPropagation(); setIsOpen(prev => !prev)}} style={{fontSize: '2em'}} />
             </NavLink>
 
@@ -240,7 +239,7 @@ function SideBar(){
             {(roleName !== 'مدير الموارد البشرية' && userData.isDirectManager) &&<>
                 <NavLink onClick={() => toggleMenu("recordNormal")} to={"/record/normal/leave"} className={`${activeMenu === "recordNormal" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`}>
                     {leavesWatingForDirect.length > 0 &&
-                        <span className="bg-danger text-white rounded-circle position-absolute" style={{ top: '5px', right: '5px', fontSize: '12px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <span className="sidebar-hint bg-danger text-white rounded-circle position-absolute">
                             {leavesWatingForDirect.length}
                         </span>}
                     <FontAwesomeIcon icon={faFolderOpen} style={{fontSize: '1.6em'}} />
@@ -273,23 +272,27 @@ function SideBar(){
                 <NavLink className={`zxc ${activeMenu === "record" ? 'active-link' : ''} ${isOpen?"sidebar-link": "sidebar-link-close"}`} onClick={() => toggleMenu("record")}>
                     <div className="d-flex position-relative">
                         {['عميد الكلية', 'أمين الكلية'].includes(roleName) && (leavesWatingForGeneral.length > 0 || casualLeavesWatingForGeneral.length > 0 || sickLeavesWatingForGeneral.length > 0) &&
-                        <span className="sidebar-hint bg-danger text-white rounded-circle position-absolute" style={{ top: '5px', right: '5px', fontSize: '12px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <span className="sidebar-hint bg-danger text-white rounded-circle position-absolute">
                             {leavesWatingForGeneral.length + casualLeavesWatingForGeneral.length + sickLeavesWatingForGeneral.length}
                         </span>}
 
-                        {['مدير الموارد البشرية'].includes(roleName) && (leavesWatingForDirect.length > 0 || waitingSickLeaves.length > 0 || waitingCertifiedSickLeaves.length > 0) &&
-                        <span className="sidebar-hint bg-danger text-white rounded-circle position-absolute" style={{ top: '5px', right: '5px', fontSize: '12px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            {leavesWatingForDirect.length + waitingSickLeaves.length + waitingCertifiedSickLeaves.length}
-                        </span>}
+                        {['مدير الموارد البشرية'].includes(roleName) && ((() => {const totalWaiting =(leavesWatingForDirect?.length ?? 0) +(waitingSickLeaves?.length ?? 0) +(waitingCertifiedSickLeaves?.length ?? 0);
+                            return totalWaiting > 0 && (
+                            <span className="sidebar-hint bg-danger text-white rounded-circle position-absolute">{totalWaiting}</span>
+                            );
+                        })()
+                        )}
+
                         <FontAwesomeIcon icon={faFolderOpen} style={{fontSize: "1.6em"}} />
                         {isOpen && <span className="me-2 sidebar-title">طلبات الإجازات</span>}
                     </div>
                     <div>{isOpen && ( <FontAwesomeIcon icon={activeMenu === "record" ? faChevronUp : faChevronDown} className="ms-auto" /> )}</div>
                 </NavLink>
+
                 <div className={`collapse ${activeMenu === "record" ? "show" : ""}`}>
                     <NavLink to="/record/normal/leave" className={`position-relative ${location.pathname === "/record/normal/leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
                         {(leavesWatingForGeneral.length > 0 || leavesWatingForDirect.length > 0) &&
-                            <span className="sidebar-hint2 bg-danger text-white rounded-circle position-absolute" style={{ top: '5px', right: '5px', fontSize: '12px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <span className="sidebar-hint-list bg-danger text-white rounded-circle position-absolute">
                                 {leavesWatingForGeneral.length || leavesWatingForDirect.length}
                             </span>}
                         <FontAwesomeIcon icon={faNewspaper} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>اعتيادية</p>
@@ -297,14 +300,14 @@ function SideBar(){
                     {['عميد الكلية', 'أمين الكلية'].includes(roleName) ?<>
                         <NavLink to="/record/casual/leave" className={`position-relative ${location.pathname === "/record/casual/leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
                             {casualLeavesWatingForGeneral.length > 0 &&
-                                <span className="sidebar-hint2 bg-danger text-white rounded-circle position-absolute" style={{ top: '5px', right: '5px', fontSize: '12px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <span className="sidebar-hint-list bg-danger text-white rounded-circle position-absolute">
                                     {casualLeavesWatingForGeneral.length}
                                 </span>}
                             <FontAwesomeIcon icon={faTowerBroadcast} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>عارضة</p>
                         </NavLink>
                         <NavLink to="/record/sick/leave" className={`position-relative ${location.pathname === "/record/sick/leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
                             {sickLeavesWatingForGeneral.length > 0 &&
-                                <span className="sidebar-hint2 bg-danger text-white rounded-circle position-absolute" style={{ top: '5px', right: '5px', fontSize: '12px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <span className="sidebar-hint-list bg-danger text-white rounded-circle position-absolute">
                                     {sickLeavesWatingForGeneral.length}
                                 </span>}
                             <FontAwesomeIcon icon={faHouseMedicalCircleCheck} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p>
@@ -312,7 +315,7 @@ function SideBar(){
                     </> : <>
                         <NavLink to="/record/sick-leaves" className={`position-relative ${location.pathname === "/record/sick-leaves" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
                             {(waitingSickLeaves.length > 0 || waitingCertifiedSickLeaves.length > 0) &&
-                                <span className="sidebar-hint2 bg-danger text-white rounded-circle position-absolute" style={{ top: '5px', right: '5px', fontSize: '12px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <span className="sidebar-hint-list bg-danger text-white rounded-circle position-absolute">
                                     {waitingSickLeaves.length + waitingCertifiedSickLeaves.length}
                                 </span>}
                             <FontAwesomeIcon icon={faHouseMedicalCircleCheck} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p>

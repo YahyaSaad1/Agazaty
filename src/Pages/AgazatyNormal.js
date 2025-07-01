@@ -111,7 +111,7 @@ function AgazatyNormal() {
                       className="btn btn-outline-primary"
                       onClick={() =>
                         MySwal.fire({
-                        title: 'تقرير الإجازة',
+                        title: 'تقرير إجازاتي الاعتيادية',
                         html: <OfficialLeaveReport leaveID={leave.id} />,
                         showConfirmButton: false,
                         showCloseButton: true,

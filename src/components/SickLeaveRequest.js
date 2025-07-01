@@ -55,7 +55,6 @@ function SickLeaveRequest() {
         return <LoadingOrError data={leave} />;
     }
 
-console.log(leave)
     return (
         <div>
             <div className="d-flex mb-4 justify-content-between">

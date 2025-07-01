@@ -49,7 +49,7 @@ const CasualReport = ({ leaveID }) => {
         const element = reportRef.current;
         const options = {
             margin: 0.5,
-            filename: `تقرير إجازة ${convertToArabicNumbers(leave.firstName)} ${convertToArabicNumbers(leave.secondName)}.pdf`,
+            filename: `تقرير إجازة ${convertToArabicNumbers(leave.firstName)} ${convertToArabicNumbers(leave.secondName)} (عارضة).pdf`,
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2 },
             jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
@@ -65,15 +65,14 @@ const CasualReport = ({ leaveID }) => {
             link.remove();
             URL.revokeObjectURL(blobUrl);
 
-            // إغلاق نافذة SweetAlert بعد التحميل
             setTimeout(() => {
-                window.Swal?.close(); // يعمل فقط إذا SweetAlert معرف جلوبال
+                window.Swal?.close();
             }, 1000);
         });
     };
 
     if (!leave) return <p className="text-center mt-4">جاري تحميل بيانات الإجازة...</p>;
-    console.log(leave);
+
     return (
         <div className="container" dir="rtl" style={{ fontFamily: "cairo, Arial" }}>
             <div className={`border border-2 rounded p-4 shadow-sm bg-white text-end ${getBorderClass()}`} ref={reportRef} style={{ direction: "rtl" }} >
@@ -94,7 +93,7 @@ const CasualReport = ({ leaveID }) => {
                 </div>
 
                 <div className="text-center">
-                    <h5 className="text-bold">تقرير إجازة العارضة</h5>
+                    <h5 className="text-bold">تقرير إجازة {leave.firstName} {leave.secondName} العارضة</h5>
                 </div>
 
                 <hr className={`${getBorderClass()}`}/>
@@ -103,7 +102,8 @@ const CasualReport = ({ leaveID }) => {
                     <p><strong>الاسم الرباعي:</strong> {leave.userName}</p>
                     <p><strong>القسم:</strong> {leave.departmentName}</p>
                     <p><strong>رقم الهاتف:</strong> {convertToArabicNumbers(leave.phoneNumber)}</p>
-                    <p><strong>المسمى الوظيفي:</strong> {roleName}</p>
+                    {/* نفس المشكلة */}
+                    <p><strong>المسمى الوظيفي:</strong> {leave.roleName}</p>
 
                     <hr className={`${getBorderClass()}`}/>
 
@@ -121,7 +121,7 @@ const CasualReport = ({ leaveID }) => {
                     <p><strong>المدير المختص:</strong> {leave.generalManagerName}</p>
                     <p className="text-bold"><strong>حالة الإجازة: </strong>
                         <span className="text-success">
-                            { leave.leaveStatus === false ? <span className="text-primary">مُعلقة عند المدير المباشر</span>
+                            { leave.leaveStatus === false ? <span className="text-primary">في انتظار إحالة المدير المختص</span>
                             : <span className="text-success">مقبولة</span>}
                         </span>
                     </p>
@@ -129,9 +129,7 @@ const CasualReport = ({ leaveID }) => {
             </div>
 
             <div className="text-center mt-3">
-                <button className="btn btn-primary" onClick={handlePrintPDF}>
-                    تحميل التقرير PDF
-                </button>
+                <button className="btn btn-primary" onClick={handlePrintPDF}>تحميل التقرير PDF</button>
             </div>
         </div>
     );

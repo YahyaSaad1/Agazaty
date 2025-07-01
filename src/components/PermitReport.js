@@ -38,13 +38,12 @@ const PermitReport = ({ permitID }) => {
         }
     }, [permitID]);
 
-    // تحميل الصورة فقط
     const handleDownloadImage = () => {
         if (!imageUrl) return;
 
         const link = document.createElement('a');
         link.href = `${BASE_API_URL}${imageUrl}`;
-        const fileExtension = imageUrl.split('.').pop(); // استخراج الامتداد تلقائياً
+        const fileExtension = imageUrl.split('.').pop();
         link.download = `تصريح-${convertToArabicNumbers(permitID)}.${fileExtension}`;
         document.body.appendChild(link);
         link.click();
@@ -55,7 +54,6 @@ const PermitReport = ({ permitID }) => {
         }, 1000);
     };
 
-    // تحميل PDF من المكون الكامل
     const handleDownloadPDF = () => {
         const element = reportRef.current;
         const options = {
@@ -76,8 +74,8 @@ const PermitReport = ({ permitID }) => {
     if (loading) return <p className="text-center mt-4">جاري تحميل بيانات التصريح...</p>;
 
     return (
-        <div className="container" dir="rtl" style={{ fontFamily: "cairo, Arial" }}>
-            <div className="mt-4 border p-3" ref={reportRef} id="report-content">
+        <div className="container" dir="rtl" style={{fontFamily: "cairo, Arial"}}>
+            <div className="border border-2 rounded mt-4 p-3" ref={reportRef} id="report-content">
                 {imageUrl ? (
                     <div className="text-center">
                         <img
@@ -92,12 +90,8 @@ const PermitReport = ({ permitID }) => {
                 )}
 
                 <div className="text-center mt-3 d-flex justify-content-center gap-2 flex-wrap">
-                    <button className="btn btn-success" onClick={handleDownloadImage}>
-                        تحميل صورة التصريح
-                    </button>
-                    <button className="btn btn-primary" onClick={handleDownloadPDF}>
-                        تحميل التقرير PDF
-                    </button>
+                    <button className="btn btn-success" onClick={handleDownloadImage}>تحميل صورة التصريح</button>
+                    <button className="btn btn-primary" onClick={handleDownloadPDF}>تحميل التقرير PDF</button>
                 </div>
             </div>
         </div>

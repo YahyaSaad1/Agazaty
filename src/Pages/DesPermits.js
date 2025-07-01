@@ -375,9 +375,9 @@ function DesPermits() {
             </select>
         </div>
         <div className="row">
-            <div style={{ height: "100vh", overflowY: "auto" }}>
+            <div style={{overflowY: "auto"}}>
             <table className="m-0 table table-striped">
-                <thead className="sticky-top bg-white">
+                <thead className="bg-white">
                 <tr>
                     <th className="th-mult">المرجع</th>
                     <th className="th-mult">الاسم</th>

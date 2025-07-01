@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { BASE_API_URL, roleName, token } from "../server/serves";
+import { BASE_API_URL, token } from "../server/serves";
 import html2pdf from "html2pdf.js";
 import University from "../Images/University.png";
 import Faculty from "../Images/Faculty.png";
@@ -51,7 +51,7 @@ const SickReport = ({ leaveID }) => {
         const element = reportRef.current;
         const options = {
             margin: 0.5,
-            filename: `تقرير إجازة ${convertToArabicNumbers(leave.firstName)} ${convertToArabicNumbers(leave.secondName)}.pdf`,
+            filename: `تقرير إجازة ${convertToArabicNumbers(leave.firstName)} ${convertToArabicNumbers(leave.secondName)} (مرضية).pdf`,
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2 },
             jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
@@ -74,7 +74,6 @@ const SickReport = ({ leaveID }) => {
     };
 
     if (!leave) return <p className="text-center mt-4">جاري تحميل بيانات الإجازة...</p>;
-    console.log(leave)
 
     return (
         <div className="container" dir="rtl" style={{ fontFamily: "cairo, Arial" }}>
@@ -96,16 +95,18 @@ const SickReport = ({ leaveID }) => {
                 </div>
 
                 <div className="text-center">
-                    <h5 className="text-bold">تقرير إجازة مرضية</h5>
+                    <h5 className="text-bold">تقرير إجازة {leave.firstName} {leave.secondName} المرضية</h5>
                 </div>
 
                 <hr className={`${getBorderClass()}`}/>
 
                 <div>
                     <p><strong>الاسم الرباعي:</strong> {leave.userName}</p>
+                    {console.log(leave)}
                     <p><strong>القسم:</strong> {leave.departmentName}</p>
                     <p><strong>رقم الهاتف:</strong>{convertToArabicNumbers(leave.phoneNumber)}</p>
-                    <p><strong>المسمى الوظيفي:</strong> {roleName}</p>
+                    {/* فيها مشكلة */}
+                    <p><strong>المسمى الوظيفي:</strong> {leave.roleName}</p>
 
                     <hr className={`${getBorderClass()}`}/>
 

@@ -100,16 +100,10 @@ function DesCasual() {
               {currentRows.length > 0 &&
                 currentRows.map((leave, index) => (
                   <tr key={index}>
-                    <th>
-                      #{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}
-                    </th>
+                    <th>#{(indexOfFirstRow + index + 1).toLocaleString("ar-EG")}</th>
                     <th>{leave.userName}</th>
-                    <th>
-                      {new Date(leave.startDate).toLocaleDateString("ar-EG")}
-                    </th>
-                    <th>
-                      {new Date(leave.endDate).toLocaleDateString("ar-EG")}
-                    </th>
+                    <th>{new Date(leave.startDate).toLocaleDateString("ar-EG")}</th>
+                    <th>{new Date(leave.endDate).toLocaleDateString("ar-EG")}</th>
                     <th>
                       {leave.days
                         .toString()
@@ -123,7 +117,7 @@ function DesCasual() {
                         className="btn btn-outline-primary"
                         onClick={() =>
                           MySwal.fire({
-                          title: 'تقرير الإجازة',
+                          title: `تقرير إجازة ${leave.firstName} ${leave.secondName}`,
                           html: <CasualReport leaveID={leave.id} />,
                           showConfirmButton: false,
                           showCloseButton: true,
@@ -134,14 +128,7 @@ function DesCasual() {
                         <FontAwesomeIcon icon={faPrint} />
                       </button>
                     </th>
-                    <th>
-                      <BtnLink
-                        id={leave.id}
-                        name="عرض الاجازة"
-                        link="/casual-leave-request"
-                        className="btn btn-outline-primary"
-                      />
-                    </th>
+                    <th><BtnLink id={leave.id} name="عرض الاجازة" link="/casual-leave-request" className="btn btn-outline-primary" /></th>
                   </tr>
                 ))}
             </tbody>

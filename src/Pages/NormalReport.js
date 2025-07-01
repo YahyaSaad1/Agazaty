@@ -49,7 +49,7 @@ const NormalReport = ({ leaveID }) => {
         const element = reportRef.current;
         const options = {
             margin: 0.5,
-            filename: `تقرير إجازة ${convertToArabicNumbers(leave.firstName)} ${convertToArabicNumbers(leave.secondName)}.pdf`,
+            filename: `تقرير إجازة ${convertToArabicNumbers(leave.firstName)} ${convertToArabicNumbers(leave.secondName)} (اعتيادية).pdf`,
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2 },
             jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
@@ -65,9 +65,8 @@ const NormalReport = ({ leaveID }) => {
             link.remove();
             URL.revokeObjectURL(blobUrl);
 
-            // إغلاق نافذة SweetAlert بعد التحميل
             setTimeout(() => {
-                window.Swal?.close(); // يعمل فقط إذا SweetAlert معرف جلوبال
+                window.Swal?.close();
             }, 1000);
         });
     };
@@ -77,7 +76,6 @@ const NormalReport = ({ leaveID }) => {
     return (
         <div className="container" dir="rtl" style={{ fontFamily: "cairo, Arial" }}>
             <div className={`border border-2 rounded p-4 shadow-sm bg-white text-end ${getBorderClass()}`} ref={reportRef} style={{ direction: "rtl" }} >
-                {/* Section الصور والاسماء */}
                 <div style={{
                     display: "flex",
                     justifyContent: "space-between",
@@ -95,17 +93,18 @@ const NormalReport = ({ leaveID }) => {
                 </div>
 
                 <div className="text-center">
-                    <h5 className="text-bold">تقرير إجازة اعتيادية</h5>
+                    <h5 className="text-bold">تقرير إجازة {leave.firstName} {leave.secondName} الاعتيادية</h5>
                 </div>
 
                 <hr className={`${getBorderClass()}`}/>
 
                 <div>
+                    {console.log(leave)}
                     <p><strong>الاسم الرباعي:</strong> {leave.userName}</p>
                     <p><strong>القسم:</strong> {leave.departmentName}</p>
                     <p><strong>رقم الهاتف:</strong> {convertToArabicNumbers(leave.phoneNumber)}</p>
-                    {/* في مشكلة هنا */}
-                    <p><strong>المسمى الوظيفي:</strong> {roleName}</p>
+                    {/* فيها مشكلة */}
+                    <p><strong>المسمى الوظيفي:</strong> {leave.roleName}</p>
 
                     <hr className={`${getBorderClass()}`}/>
 

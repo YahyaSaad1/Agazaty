@@ -19,7 +19,6 @@ const formatArabicDate = (dateStr) => {
 const DesNormalReport = ({status}) => {
     const [leaves, setLeaves] = useState([]);
     const reportRef = useRef();
-    console.log(`status: ${status}`);
 
     useEffect(() => {
         const fetchLeaves = async () => {
@@ -43,7 +42,6 @@ const DesNormalReport = ({status}) => {
             console.error("خطأ أثناء الجلب:", err);
             }
         };
-
         fetchLeaves();
     }, [token]);
 
@@ -60,24 +58,38 @@ const DesNormalReport = ({status}) => {
     const handlePrintPDF = () => {
         const element = reportRef.current;
 
-        const options = {
-            margin: 10,
-            filename: "تقرير الإجازات الاعتيادية.pdf",
-            image: { type: "jpeg", quality: 0.98 },
-            html2canvas: {
-                scale: 2,
-                onclone: (clonedDoc) => {
-                clonedDoc.documentElement.dir = "rtl";
-                clonedDoc.body.style.direction = "rtl";
-                clonedDoc.querySelectorAll("table").forEach(t => t.setAttribute("dir", "rtl"));
-                },
-            },
-            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
-            pagebreak: {
-                mode: ["avoid-all"],
-                avoid: "tr"
-            }
+        const statusMap = {
+            0: "المُعلقة",
+            1: "المقبولة",
+            2: "المرفوضة",
             };
+
+        const fileName =
+        status in statusMap
+            ? `تقرير الإجازات الاعتيادية ${statusMap[status]}.pdf`
+            : "تقرير لكل الإجازات الاعتيادية.pdf";
+
+        const options = {
+        margin: 10,
+        filename: fileName,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: {
+            scale: 2,
+            onclone: (clonedDoc) => {
+            clonedDoc.documentElement.dir = "rtl";
+            clonedDoc.body.style.direction = "rtl";
+            clonedDoc
+                .querySelectorAll("table")
+                .forEach((t) => t.setAttribute("dir", "rtl"));
+            },
+        },
+        jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+        pagebreak: {
+            mode: ["avoid-all"],
+            avoid: "tr",
+        },
+        };
+
 
         Swal.fire({
             title: "جاري تجهيز التقرير...",
@@ -114,7 +126,7 @@ const DesNormalReport = ({status}) => {
                     {status === 0 ? <h5 className="text-bold">تقرير الإجازات الاعتيادية المُعلقة</h5>
                     : status === 1 ? <h5 className="text-bold">تقرير الإجازات الاعتيادية المقبولة</h5>
                     : status === 2 ? <h5 className="text-bold">تقرير الإجازات الاعتيادية المرفوضة</h5>
-                    : <h5 className="text-bold">تقرير الإجازات الاعتيادية</h5>}
+                    : <h5 className="text-bold">تقرير لكل الإجازات الاعتيادية</h5>}
                 </div>
 
                 <hr className={`${getBorderClass()}`} />
