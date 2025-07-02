@@ -8,7 +8,7 @@
 }
 
 .side-bar.closed{
-    width:80px;
+    width:75px;
     position:relative;
 }
 
@@ -19,7 +19,7 @@
 
 @media (max-width:700px){
     .side-bar.closed{
-        width:80px;
+        width:75px;
         position:relative;
     }
     .side-bar.open{
@@ -133,7 +133,7 @@
     align-items: center;
     padding: 10px;
     border-radius: 7px;
-    margin: 10px 35px 10px 10px;
+    margin: 10px 30px 10px 10px;
     gap: 7px;
     justify-content: center;
     align-items: center;

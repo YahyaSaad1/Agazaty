@@ -170,13 +170,13 @@ function SideBar(){
                 </NavLink>
                 <div className={`collapse ${activeMenu === "request" ? "show" : ""}`}>
                     <NavLink to="/request/normal-leave" className={`${location.pathname === "/request/normal-leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
-                        <FontAwesomeIcon icon={faNewspaper} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>اعتيادية</p>
+                        <FontAwesomeIcon icon={faNewspaper} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>اعتيادية</p>
                     </NavLink>
                     <NavLink to="/request/casual-leave" className={`${location.pathname === "/request/casual-leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
-                        <FontAwesomeIcon icon={faTowerBroadcast} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>عارضة</p>
+                        <FontAwesomeIcon icon={faTowerBroadcast} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>عارضة</p>
                     </NavLink>
                     <NavLink to="/request/sick-leave" className={`${location.pathname === "/request/sick-leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
-                        <FontAwesomeIcon icon={faDisease} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p>
+                        <FontAwesomeIcon icon={faDisease} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p>
                     </NavLink>
                 </div>
 
@@ -190,16 +190,16 @@ function SideBar(){
                 </NavLink>
                 <div className={`collapse ${activeMenu === "agazaty2" ? "show" : ""}`}>
                     <NavLink to="/agazaty2/normal" className={`${location.pathname === "/agazaty2/normal" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
-                        <FontAwesomeIcon icon={faNewspaper} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>اعتيادية</p>
+                        <FontAwesomeIcon icon={faNewspaper} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>اعتيادية</p>
                     </NavLink>
                     <NavLink to="/agazaty2/casual" className={`${location.pathname === "/agazaty2/casual" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
-                        <FontAwesomeIcon icon={faTowerBroadcast} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>عارضة</p>
+                        <FontAwesomeIcon icon={faTowerBroadcast} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>عارضة</p>
                     </NavLink>
                     <NavLink to="/agazaty2/sick" className={`${location.pathname === "/agazaty2/sick" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
-                        <FontAwesomeIcon icon={faBacteria} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p>
+                        <FontAwesomeIcon icon={faBacteria} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p>
                     </NavLink>
                     <NavLink to="/agazaty2/permit" className={`${location.pathname === "/agazaty2/permit" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
-                        <FontAwesomeIcon icon={faScroll} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>تصاريح</p>
+                        <FontAwesomeIcon icon={faScroll} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>تصاريح</p>
                     </NavLink>
                 </div>
             </>}
@@ -227,11 +227,11 @@ function SideBar(){
                     <div>{isOpen && ( <FontAwesomeIcon icon={activeMenu === "employees" ? faChevronUp : faChevronDown} className="ms-auto" /> )}</div>
                 </NavLink>
                 <div className={`collapse ${activeMenu === "employees" ? "show" : ""}`}>
-                    <NavLink to="/employees/active" className={`${location.pathname === "/employees/active" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faUsers} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>الموظفين النشطين</p></NavLink>
-                    <NavLink to="/employees/nonactive" className={`${location.pathname === "/employees/nonactive" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faUsersSlash} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>الموظفين الغير نشطين</p></NavLink>
+                    <NavLink to="/employees/active" className={`${location.pathname === "/employees/active" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faUsers} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>الموظفين النشطين</p></NavLink>
+                    <NavLink to="/employees/nonactive" className={`${location.pathname === "/employees/nonactive" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faUsersSlash} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>الموظفين الغير نشطين</p></NavLink>
                     {['مدير الموارد البشرية'].includes(roleName) &&<>
-                        <NavLink to="/employees/add-employee" className={`${location.pathname === "/employees/add-employee" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faUserPlus} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>إضافة موظف</p></NavLink>
-                        <NavLink to="/employees/UploadUsersExcel" className={`${location.pathname === "/ploadUsersExcel" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faPersonArrowUpFromLine} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>رفع موظف</p></NavLink>
+                        <NavLink to="/employees/add-employee" className={`${location.pathname === "/employees/add-employee" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faUserPlus} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>إضافة موظف</p></NavLink>
+                        <NavLink to="/employees/UploadUsersExcel" className={`${location.pathname === "/ploadUsersExcel" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faPersonArrowUpFromLine} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>رفع موظف</p></NavLink>
                     </>}
                 </div>
             </>}
@@ -257,12 +257,12 @@ function SideBar(){
                     <div>{isOpen && ( <FontAwesomeIcon icon={activeMenu === "record" ? faChevronUp : faChevronDown} className="ms-auto" /> )}</div>
                 </NavLink>
                 <div className={`collapse ${activeMenu === "record" ? "show" : ""}`}>
-                    <NavLink to="/record/normal/leave" className={`${location.pathname === "/record/normal/leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faNewspaper} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>اعتيادية</p></NavLink>
+                    <NavLink to="/record/normal/leave" className={`${location.pathname === "/record/normal/leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faNewspaper} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>اعتيادية</p></NavLink>
                     {['عميد الكلية', 'أمين الكلية'].includes(roleName) ?<>
-                        <NavLink to="/record/casual/leave" className={`${location.pathname === "/record/casual/leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faTowerBroadcast} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>عارضة</p></NavLink>
-                        <NavLink to="/record/sick/leave" className={`${location.pathname === "/record/sick/leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faHouseMedicalCircleCheck} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p></NavLink>
+                        <NavLink to="/record/casual/leave" className={`${location.pathname === "/record/casual/leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faTowerBroadcast} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>عارضة</p></NavLink>
+                        <NavLink to="/record/sick/leave" className={`${location.pathname === "/record/sick/leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faHouseMedicalCircleCheck} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p></NavLink>
                     </> :['مدير الموارد البشرية'].includes(roleName) && <>
-                        <NavLink to="/record/sick-leaves" className={`${location.pathname === "/record/sick-leaves" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faHouseMedicalCircleCheck} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p></NavLink>
+                        <NavLink to="/record/sick-leaves" className={`${location.pathname === "/record/sick-leaves" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}><FontAwesomeIcon icon={faHouseMedicalCircleCheck} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p></NavLink>
                     </>}
                 </div>
             </>} */}
@@ -295,7 +295,7 @@ function SideBar(){
                             <span className="sidebar-hint-list bg-danger text-white rounded-circle position-absolute">
                                 {leavesWatingForGeneral.length || leavesWatingForDirect.length}
                             </span>}
-                        <FontAwesomeIcon icon={faNewspaper} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>اعتيادية</p>
+                        <FontAwesomeIcon icon={faNewspaper} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>اعتيادية</p>
                     </NavLink>
                     {['عميد الكلية', 'أمين الكلية'].includes(roleName) ?<>
                         <NavLink to="/record/casual/leave" className={`position-relative ${location.pathname === "/record/casual/leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
@@ -303,14 +303,14 @@ function SideBar(){
                                 <span className="sidebar-hint-list bg-danger text-white rounded-circle position-absolute">
                                     {casualLeavesWatingForGeneral.length}
                                 </span>}
-                            <FontAwesomeIcon icon={faTowerBroadcast} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>عارضة</p>
+                            <FontAwesomeIcon icon={faTowerBroadcast} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>عارضة</p>
                         </NavLink>
                         <NavLink to="/record/sick/leave" className={`position-relative ${location.pathname === "/record/sick/leave" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
                             {sickLeavesWatingForGeneral.length > 0 &&
                                 <span className="sidebar-hint-list bg-danger text-white rounded-circle position-absolute">
                                     {sickLeavesWatingForGeneral.length}
                                 </span>}
-                            <FontAwesomeIcon icon={faHouseMedicalCircleCheck} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p>
+                            <FontAwesomeIcon icon={faHouseMedicalCircleCheck} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p>
                         </NavLink>
                     </> : <>
                         <NavLink to="/record/sick-leaves" className={`position-relative ${location.pathname === "/record/sick-leaves" ? 'active-link' : ''} ${isOpen?"sidebar-list": "sidebar-list-close"}`}>
@@ -318,7 +318,7 @@ function SideBar(){
                                 <span className="sidebar-hint-list bg-danger text-white rounded-circle position-absolute">
                                     {waitingSickLeaves.length + waitingCertifiedSickLeaves.length}
                                 </span>}
-                            <FontAwesomeIcon icon={faHouseMedicalCircleCheck} style={{ fontSize: "1em" }} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p>
+                            <FontAwesomeIcon icon={faHouseMedicalCircleCheck} style={{fontSize: "1em"}} /><p className='m-0' style={{display: isOpen? "block": "none"}}>مرضية</p>
                         </NavLink>
                     </>}
                 </div>
