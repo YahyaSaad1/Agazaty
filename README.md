@@ -1,57 +1,33 @@
+# Agazaty - Leave Management Web App
 
+A university leave management system that streamlines the leave request and approval process through a multi-role web platform.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🔍 Overview
 
+**Agazaty** is a graduation project designed to simplify and digitize the management of official leaves in academic institutions. The system provides role-based access for different stakeholders:
 
-In the project directory, you can run:
+- 🧑‍💼 **Dean**
+- 📝 **College Secretary**
+- 🧑‍💻 **HR**
+- 👨‍🏫 **Faculty Members**
+- 👨‍🔧 **Staff**
 
+Each role has custom access and permissions, ensuring a secure and efficient workflow for submitting, tracking, and approving leave requests.
 
-Runs the app in the development mode.
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🌐 Live Demo
 
-The page will reload when you make changes.
-You may also see any lint errors in the console.
+👉 [agazaty.vercel.app](https://agazaty.vercel.app)
 
+## 💻 Tech Stack
 
-Launches the test runner in the interactive watch mode.
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-`
+- **Frontend:** React, Redux, JavaScript
+- **Styling:** Bootstrap, HTML, CSS
+- **UI Enhancements:** SweetAlert2
+- **APIs:** Integrated with RESTful backend
 
-Builds the app for production to the `build` folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🧑‍💼 My Role
 
-The build is minified and the filenames include the hashes.
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Developed the entire **frontend** using **React**
+- Handled **routing**, **hooks**, and **state management** with **Redux**
+- Integrated frontend with **REST APIs** to handle dynamic data
+- Used **SweetAlert2** for clean and user-friendly alerts
