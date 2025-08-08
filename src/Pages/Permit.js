@@ -142,7 +142,6 @@ function Permit() {
     }
 };
 
-
     return (
         <div>
             <div className="zzz d-inline-block">

@@ -49,9 +49,7 @@ function AgazatyNormal() {
     <div>
       <div className="d-flex mb-4 justify-content-between">
         <div className="zzz d-inline-block">
-          <h2 className="m-0 text-nowrap">
-            سجل إجازاتي الاعتيادية
-          </h2>
+          <h2 className="m-0 text-nowrap">سجل إجازاتي الاعتيادية</h2>
         </div>
         <div className="d-flex">
           <div className="ps-3">

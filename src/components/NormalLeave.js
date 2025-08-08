@@ -132,7 +132,7 @@ function NormalLeave() {
                     if (popup) popup.setAttribute('dir', 'rtl');
                 }
             }).then(() => {
-                window.location.href = "agazaty2/normal";
+                window.location.href = "/agazaty2/normal";
             });
         }
     } catch (error) {

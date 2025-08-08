@@ -190,7 +190,7 @@ function CasualLeave() {
                         if (popup) popup.setAttribute('dir', 'rtl');
                     }
                 }).then(() => {
-                    window.location.href = "agazaty2/casual";
+                    window.location.href = "/agazaty2/casual";
                 });
             }
             } catch (error) {

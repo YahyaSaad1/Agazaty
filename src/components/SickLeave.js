@@ -112,7 +112,7 @@ function SickLeave() {
                         if (popup) popup.setAttribute('dir', 'rtl');
                     }
                 }).then(() => {
-                    window.location.reload();
+                    window.location.href = "/agazaty2/sick";
                 });
             }
         } catch (error) {
