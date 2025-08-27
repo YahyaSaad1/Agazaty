@@ -32,10 +32,10 @@ function Login() {
                             <img src={LogoUniversity} alt="LogoUniversity" />
                         </div>
                         <Outlet />
-                        //<div className="wordBottom">
-                          //  <span id="emailHelp" className="form-text">تم بواسطة. </span>
-                         //   <Link to={'/agazaty'} id="emailHelp" className="form-text text-color text-primary">طلاب من الدفعة الثانية حاسبات قنا</Link>
-                        //</div>
+                        <div className="wordBottom">
+                            <span id="emailHelp" className="form-text">تم بواسطة. </span>
+                            <Link to={'/agazaty'} id="emailHelp" className="form-text text-color text-primary">طلاب من الدفعة الثانية حاسبات قنا</Link>
+                        </div>
                     </div>
                 </div>
                 <div className="col d-none d-md-block">
@@ -58,9 +58,7 @@ function Login() {
     link.download = "website-images.pdf";
     link.click();
   }}
->
-  ⬇ تحميل صور الموقع
-</button>
+>تحميل صور الموقع</button>
 
             </div>
         </div>
