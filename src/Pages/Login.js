@@ -43,7 +43,7 @@ function Login() {
                 </div>
 
 <button
-  className="btn btn-success"
+  className="btn btn-primary"
   style={{
     position: "fixed",
     top: "20px",
