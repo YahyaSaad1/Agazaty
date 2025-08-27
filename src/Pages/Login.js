@@ -48,7 +48,8 @@ function Login() {
     position: "fixed",
     top: "20px",
     left: "20px",
-    zIndex: 9999
+    zIndex: 9999,
+    width: "150px"
   }}
   onClick={() => {
     const link = document.createElement("a");
