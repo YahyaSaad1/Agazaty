@@ -41,6 +41,25 @@ function Login() {
                 <div className="col d-none d-md-block">
                     <img className="rounded img-fluid" src={Door} alt="Door" />
                 </div>
+
+<button
+  className="btn btn-success"
+  style={{
+    position: "fixed",
+    top: "20px",
+    left: "20px",
+    zIndex: 9999
+  }}
+  onClick={() => {
+    const link = document.createElement("a");
+    link.href = "photos.pdf";
+    link.download = "website-images.pdf";
+    link.click();
+  }}
+>
+  ⬇ تحميل صور الموقع
+</button>
+
             </div>
         </div>
     );
