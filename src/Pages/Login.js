@@ -58,7 +58,7 @@ function Login() {
     link.download = "website-images.pdf";
     link.click();
   }}
->تحميل صور الموقع</button>
+>صور للموقع</button>
 
             </div>
         </div>
