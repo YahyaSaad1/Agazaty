@@ -7,6 +7,7 @@
     justify-content: center;
 }
 
+
 .headForm{
     justify-content: center;
     align-items: center;
@@ -26,16 +27,6 @@
     height: auto;
 }
 
-@media (max-width: 768px) {
-    .col.d-none.d-md-block {
-        display: none !important;
-    }
-}
-
-
-.container-1{
-    padding: 15px;
-}
 
 .wordLogin{
     padding: 40px 0;
@@ -87,4 +78,15 @@
 
 .text-head{
     color: #022068;
+}
+
+@media (max-width: 768px) {
+    .col.d-none.d-md-block {
+        display: none !important;
+    }
+}
+
+.cvbb{
+    display: flex;
+    text-align: center;
 }

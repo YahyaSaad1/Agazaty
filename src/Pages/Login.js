@@ -22,9 +22,9 @@ function Login() {
 
     return (
         <div className="container login">
-            <div className="row">
-                <div className="col-12 col-md-4">
-                    <div className='container-1'>
+            <div className="row w-100 justify-content-center">
+                <div className="col-12 col-md-10 col-lg-4">
+                    <div className='p-2 pb-0'>
                         <div className="d-flex headForm text-primary">
                             <Link className='text-decoration-none' to={"/agazaty"}><h4 className='text-bold'>اجازاتي</h4></Link>
                             <p></p>
@@ -32,15 +32,30 @@ function Login() {
                             <img src={LogoUniversity} alt="LogoUniversity" />
                         </div>
                         <Outlet />
-                        <div className="wordBottom">
-                            <span id="emailHelp" className="form-text">تم بواسطة. </span>
-                            <Link to={'/agazaty'} id="emailHelp" className="form-text text-color text-primary">طلاب من الدفعة الثانية حاسبات قنا</Link>
-                        </div>
                     </div>
                 </div>
-                <div className="col d-none d-md-block">
-                    <img className="rounded img-fluid" src={Door} alt="Door" />
+                <div className="col d-none d-lg-block cvbb">
+                    <img className="rounded img-fluid w-100" src={Door} alt="Door" />
                 </div>
+
+                <button
+                className="btn btn-primary"
+                style={{
+                    position: "fixed",
+                    top: "20px",
+                    left: "20px",
+                    zIndex: 9999,
+                    width: "auto",
+                    padding: "5px 10px" 
+                }}
+                onClick={() => {
+                    const link = document.createElement("a");
+                    link.href = "photos.pdf";
+                    link.download = "website-images.pdf";
+                    link.click();
+                }}
+                >صور للموقع</button>
+
             </div>
         </div>
     );
